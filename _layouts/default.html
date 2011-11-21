@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="utf-8"/>
+		<title>{{ page.title }}</title>
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" media="all" href="css/style.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+</head>
+<body lang="en">
+
+	<!--[if lt IE 9]>
+	<div id="update_your_browser" style="z-index:2147483647;position:absolute;left:200px;top:50px;" >
+		<img src="img/update_browser.png" alt="Update your browser!" width="640px" height="340px" usemap="#linkmap" />
+		<map name="linkmap" id="linkmap" >
+			<area shape="circle" coords="620,20,20"  style="cursor:pointer" onclick="getElementById('update_your_browser').style.display = 'none';" title="Close Window" alt="Close Window" />
+			<area shape="rect" coords="30,160,160,330" href="http://www.mozilla.com/" target="_blank" title="Download Firefox" alt="Download Firefox" />
+			<area shape="rect" coords="190,160,310,330" href="http://www.google.com/chrome" target="_blank"  title="Download Google Chrome" alt="Download Google Chrome" />
+			<area shape="rect" coords="340,160,470,330" href="http://www.opera.com/download/" target="_blank" title="Download Opera" alt="Download Opera" />
+			<area shape="rect" coords="500,160,630,330" href="http://www.apple.com/safari/download/" target="_blank" title="Download Apple Safari" alt="Download Apple Safari" />
+		</map>
+	</div>
+	<![endif]-->	
+	
+	<div id="wrapper">
+	
+		<div id="nav">
+			<a href="index.php"><h1>Adrian Sieber</h1></a><div id="links"><a href="contact.php" >Contact</a></div>
+		</div>
+ 	 
+		<div id="wrapcontent">
+			{{ content }}
+		</div>
+
+  		<div id="footer">
+       		</div>
+	
+	</div>
+
+	<!-- Piwik --> 
+	<script type="text/javascript">
+	var pkBaseURL = (("https:" == document.location.protocol) ? "https://adriansieber.com/piwik/" : "http://adriansieber.com/piwik/");
+	document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+	</script><script type="text/javascript">
+	try {
+	var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+	piwikTracker.trackPageView();
+	piwikTracker.enableLinkTracking();
+	} catch( err ) {}
+	</script><noscript><p><img src="http://adriansieber.com/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+	<!-- End Piwik Tracking Code -->	
+</body>
+</html>
