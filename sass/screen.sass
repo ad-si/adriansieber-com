@@ -1,0 +1,112 @@
+@import compass
+
+
+html
+	background: url(http://subtlepatterns.com/patterns/wood_pattern.png)
+
+body
+	font: 500 18px / 18px "Helvetica", sans-serif
+	color: rgba(0, 0, 0, 0.6)
+
+#wrapper
+	width: 960px
+	margin: 0 auto 0 auto
+	text-align: center
+	padding: 30px 0
+
+h1
+	display: inline-block
+	font: 900 50px / 80px "Trebuchet MS", sans-serif
+	color: rgba(40, 40, 40, 1)
+	margin: 0px 20px 0px 10px
+
+h2
+	text-align: center
+	font: 500 30px / 30px "Tahoma", sans-serif
+	color: rgba(60, 60, 60, 1)
+
+h3
+	text-align: center
+	font: 500 20px / 20px "Tahoma", sans-serif
+	color: rgba(60, 60, 60, 1)
+
+/*------------------------------------------------------home-------------------------------------------*/
+
+iframe
+	height: 50px !important
+	width: 200px
+
+.bitcoinate
+	vertical-align: top
+
+.box
+	display: inline-block
+	vertical-align: bottom
+	text-decoration: none
+	width: 280px
+	height: 160px
+	background: rgba(255, 255, 255, 0.4)
+	margin: 20px 15px 20px 15px
+	border-radius: 10px
+	box-shadow: 2px 2px 5px rgb(50, 50, 50)
+	&:hover
+		box-shadow: inset 2px 2px 5px rgb(50, 50, 50), inset -2px -2px 5px rgba(250, 250, 250, 0.5)
+
+svg text
+	font: 900 60px / 40px Trebuchet MS
+	opacity: 0.7
+	cursor: pointer
+	color: green
+
+#chuisy
+	+background-image(url(../img/chuisy.png), linear-gradient(rgb(230, 30, 75), rgb(140, 0, 0)))
+	background-repeat: no-repeat, repeat-x
+	background-size: 200px, 100%
+	background-position: center
+	text-indent: -9999px
+
+#schifferpatent
+	+background-image(url(http://schifferpatent.org/img/logo.svg), linear-gradient(rgb(60, 160, 250), rgb(30, 100, 200)))
+	background-repeat: no-repeat, repeat-x
+	background-position: 50%, 50%
+	background-size: 90% auto, 100%
+	text-indent: -9999px
+
+#timeomat
+	background-image: url(../img/timeomat.jpg)
+	background-position: 0px, -20px
+	background-size: 100%
+	text-align: center
+	color: rgb(255, 255, 255)
+	text-indent: -9999px
+
+#bitcoinate
+	+background-image(url("http://bitcoinate.org/img/bitcoinate50.png"), linear-gradient(#f7931a, #c16c07))
+	background-size: 28px, 100%
+	background-position: 30px 50%, 50%
+	background-repeat: no-repeat
+	font: 900 40px / 160px "Arial", sans-serif
+	text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.5)
+	color: white
+	text-indent: 40px
+
+#designection
+	+background-image(url(../img/designection.png), linear-gradient(rgba(150, 150, 150, 1), rgba(50, 50, 50, 1)))
+	background-repeat: no-repeat, repeat-x
+	background-size: 280px, 100%
+	background-position: center
+	text-indent: -9999px
+
+#isittoolate
+	+background-image(linear-gradient(rgb(255, 255, 255), rgb(210, 210, 210)))
+	text-align: center
+	font: 500 45px / 160px "Times New Roman", serif
+	color: black
+	text-shadow: 0 0 1px black
+
+#leomask
+	+background-image(linear-gradient(rgba(0, 0, 0, 0), rgba(30, 30, 30, 0.3)), url(../img/paper.jpg))
+	text-align: center
+	font: 700 55px / 160px "Myriad Pro", sans-serif
+	color: rgb(50, 50, 50)
+	text-shadow: 0 -1px 1px black, 0 1px 1px white

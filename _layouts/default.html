@@ -1,46 +1,31 @@
 <!doctype html>
 <html>
-<head>
+	<head>
 		<meta charset="utf-8"/>
 		<title>{{ page.title }}</title>
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link rel="stylesheet" media="all" href="/css/style.css"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-</head>
-<body lang="en">
-	<script type="text/javascript" src="https://raw.github.com/adius/UpdateYourBrowser/master/UpdateYourBrowser.min.js"></script>
-	
-	<div id="wrapper">
-	
-		<div id="nav">
-			<a href="/"><h1>Adrian Sieber</h1></a>
-			<div id="links">
-				<a href="contact" >Contact</a>
-			</div>
-		</div>
- 	 
-		<div id="wrapcontent">
+		<link rel="stylesheet" media="all" href="css/screen.css"/>
+	</head>
+	<body>
+		<script type="text/javascript" src="https://raw.github.com/adius/UpdateYourBrowser/master/UpdateYourBrowser.min.js"></script>
+		
+		<div id="wrapper">	 	
 			{{ content }}
 		</div>
+		
+		<script src="https://raw.github.com/adius/bitcoinate/master/js/bitcoinate.min.js"></script>
 
-  		<div id="footer">
-       		</div>
-	
-	</div>
-
-	<!-- Piwik --> 
-	<script type="text/javascript">
-	var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.adriansieber.com/" : "http://piwik.adriansieber.com/");
-	document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-	</script><script type="text/javascript">
-	try {
-	var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
-	piwikTracker.trackPageView();
-	piwikTracker.enableLinkTracking();
-	} catch( err ) {}
-	</script><noscript><p><img src="http://piwik.adriansieber.com/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
-	<!-- End Piwik Tracking Code -->	
-</body>
+		<!-- Piwik --> 
+		<script type="text/javascript">
+		var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.adriansieber.com/" : "http://piwik.adriansieber.com/");
+		document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+		</script><script type="text/javascript">
+		try {
+		var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+		piwikTracker.trackPageView();
+		piwikTracker.enableLinkTracking();
+		} catch( err ) {}
+		</script><noscript><p><img src="http://piwik.adriansieber.com/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+		<!-- End Piwik Tracking Code -->	
+	</body>
 </html>
