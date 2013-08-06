@@ -1,6 +1,5 @@
 @import compass
 
-
 *
 	border: 0px
 	margin: 0px
@@ -9,73 +8,69 @@
 	+box-sizing(border-box)
 
 html
-	background: url(../img/wood_pattern.png)
+	background-color: white //rgb(60,60,60)
 
 body
 	font: 500 18px/1.3 "Helvetica", sans-serif
-	color: rgba(0, 0, 0, 0.6)
+	color: rgb(80,80,80)
 
 #wrapper
-	width: 960px
-	margin: 0 auto 0 auto
 	text-align: center
-	padding: 30px 0
+
+#wrapcontent
+	margin: 0 auto 50px auto
+	width: 960px
 
 #buttons
-	height: 40px
+	background-color: rgb(240,240,240)
+	padding: 10px
+	margin-bottom: 40px
+
+#description
+	margin-bottom: 80px
 
 h1
 	display: inline-block
-	font: 900 54px / 100px "Trebuchet MS", sans-serif
-	color: rgb(153, 107, 77)
-	text-shadow: 0 -2px 1px rgba(0,0,0,0.6), 0 2px 1px rgba(255,255,255,0.6)
+	font: 900 54px / 120px "Trebuchet MS", sans-serif
 
 h2
 	text-align: center
 	font: 500 34px / 50px "Tahoma", sans-serif
-	color: rgb(202, 151, 101)
-	text-shadow: 0 -2px 1px rgba(0,0,0,0.6), 0 2px 1px rgba(255,255,255,0.6)
+	color: rgb(140,140,140)
 
 h3
 	text-align: center
 	font: 500 26px / 40px "Tahoma", sans-serif
-	color: rgb(203, 154, 106)
-	text-shadow: 0 -2px 1px rgba(0,0,0,0.6), 0 2px 1px rgba(255,255,255,0.6)
 	margin-bottom: 30px
+	color: rgb(140, 140, 140)
 
 /*------------------------------------------------------home-------------------------------------------*/
 
+
 iframe
-	height: 50px !important
+	border: none
+	overflow: hidden
 	width: 200px
+	height: 20px
 
 .bitcoinate
 	vertical-align: top
 
-.box
-	display: inline-block
-	vertical-align: top
-	text-decoration: none
-	width: 280px
-	height: 160px
-	background: rgba(255, 255, 255, 0.4)
-	margin: 20px 15px 20px 15px
-	border-radius: 10px
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8)
-	position: relative
-	&:hover
-		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4)
-		bottom: 2px
-		right: 2px
-	&:active
-		box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6)
-		bottom: 1px
-		right: 1px
-svg text
-	font: 900 60px / 40px Trebuchet MS
-	opacity: 0.7
-	cursor: pointer
-	color: green
+#projects
+	> li
+		display: inline-block
+		vertical-align: top
+		margin: 20px 15px 20px 15px
+		width: 280px
+		height: 160px
+		//border-radius: 5px
+		//box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4)
+		a
+			text-decoration: none
+			display: block
+			width: 100%
+			height: 100%
+
 
 #chuisy
 	+background-image(url(../img/chuisy.png), linear-gradient(rgb(230, 30, 75), rgb(140, 0, 0)))
@@ -89,6 +84,13 @@ svg text
 	background-repeat: no-repeat, repeat-x
 	background-position: 50%, 50%
 	background-size: 90% auto, 100%
+	text-indent: -9999px
+
+#vectual
+	background-image: url(../img/vectual.png)
+	background-repeat: no-repeat, repeat-x
+	background-position: 60%, 50%
+	background-size: 120%
 	text-indent: -9999px
 
 #timeomat
@@ -106,8 +108,9 @@ svg text
 	background-repeat: no-repeat
 	font: 900 40px / 160px "Arial", sans-serif
 	text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.5)
-	color: white
 	text-indent: 40px
+	a
+		color: white
 
 #designection
 	+background-image(url(../img/designection.png), linear-gradient(rgba(150, 150, 150, 1), rgba(50, 50, 50, 1)))
@@ -116,16 +119,18 @@ svg text
 	background-position: center
 	text-indent: -9999px
 
-#isittoolate
-	+background-image(linear-gradient(rgb(255, 255, 255), rgb(210, 210, 210)))
-	text-align: center
-	font: 500 45px / 160px "Times New Roman", serif
-	color: black
-	text-shadow: 0 0 1px black
-
 #leomask
 	+background-image(linear-gradient(rgba(0, 0, 0, 0), rgba(30, 30, 30, 0.3)), url(../img/paper.jpg))
 	text-align: center
-	font: 700 55px / 160px "Myriad Pro", sans-serif
-	color: rgb(50, 50, 50)
-	text-shadow: 0 -1px 1px black, 0 1px 1px white
+	font: 700 40px / 160px "Myriad Pro", sans-serif
+	a
+		color: rgb(50, 50, 50)
+
+#coming-soon
+	border: 4px dashed rgb(100,100,100)
+	line-height: 160px
+	text-decoration: none
+	font-size: 24px
+	vertical-align: 90%
+	a
+		color: rgb(100,100,100)
