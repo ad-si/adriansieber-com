@@ -1,0 +1,8 @@
+{
+  "name": "adriansieber",
+  "private": true,
+  "scripts": {
+    "start": "stylus --watch --out ./css styl & jekyll serve",
+    "build": "stylus --out ./css styl && jekyll build"
+  }
+}
