@@ -1,4 +1,5 @@
 permalink: /:title/
+
 defaults:
   -
     scope:
@@ -16,3 +17,6 @@ defaults:
       layout: post
       isHome: false
       isPost: true
+
+kramdown:
+  smart_quotes: [apos, apos, quot, quot]
