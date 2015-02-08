@@ -21,9 +21,9 @@ We will soon publish the website and the source code on GitHub.
 Apart from that I like to make a lot of music.
 My main instrument is the Saxophone.
 However, recently I only find time to grab my ukulele now and then and
-to strum and sing along to my favorite pop/rock songs.
-There are even a view (really old =D)
-videos on [youtube](https://youtube.com/LeoMaskMusic).
+to strum and sing along to my favorite pop/rock songs.<br>
+There are even a few (really old) videos on
+[youtube](https://youtube.com/LeoMaskMusic).
 
 As sitting in front of the computer the whole day is rather unhealthy
 I regularly go jogging and do gymnastics.
