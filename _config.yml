@@ -1,2 +1,16 @@
----
 permalink: /:title/
+defaults:
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+      isPost: false
+  -
+    scope:
+      path: ""
+      types: [posts, drafts]
+    values:
+      layout: post
+      isPost: true
