@@ -2,7 +2,7 @@
   "name": "adriansieber",
   "private": true,
   "scripts": {
-    "start": "stylus --watch --out ./css styl & jekyll serve",
+    "start": "stylus --watch --out ./css styl & jekyll serve --trace --drafts",
     "build": "stylus --compress --out ./css styl && jekyll build"
   }
 }
