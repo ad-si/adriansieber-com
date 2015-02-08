@@ -14,7 +14,45 @@
 <body>
 
 <div id="wrapper">
-    {{ content }}
+
+	<header {% if page.isPost%} class="postHeader" {% endif %}>
+		<div class="headerContent">
+			{% if page.isPost %}
+				<h1><a href="/">Adrian Sieber</a></h1>
+			{% endif %}
+
+			<aside id="buttons">
+				<a class="fa fa-github"
+				   href="https://github.com/adius">
+					<span>GitHub</span>
+				</a>
+				<a class="fa fa-twitter"
+				   href="https://twitter.com/adriansieber">
+					<span>Twitter</span>
+				</a>
+				<a class="fa fa-facebook"
+				   href="https://facebook.com/adriansieber1">
+					<span>Facebook</span>
+				</a>
+				<a class="fa fa-dribbble"
+				   href="https://dribbble.com/adius">
+					<span>Dribbble</span>
+				</a>
+				<a class="fa fa-linkedin"
+				   href="https://de.linkedin.com/in/adriansieber">
+					<span>LinkedIn</span>
+				</a>
+				<a class="fa fa-stack-overflow"
+				   href="https://stackoverflow.com/users/1850340/adius">
+					<span>Stack Overflow</span>
+				</a>
+			</aside>
+		</div>
+	</header>
+
+	<main id="wrapcontent">
+        {{ content }}
+	</main>
 </div>
 
 <script>
