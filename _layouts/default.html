@@ -15,9 +15,9 @@
 
 <div id="wrapper">
 
-	<header {% if page.isPost%} class="postHeader" {% endif %}>
+	<header {% if page.isHome == false %} class="fullHeader" {% endif %}>
 		<div class="headerContent">
-			{% if page.isPost %}
+			{% if page.isHome == false %}
 				<h1><a href="/">Adrian Sieber</a></h1>
 			{% endif %}
 
