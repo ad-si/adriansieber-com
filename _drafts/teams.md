@@ -2,10 +2,15 @@
 title: Teams
 ---
 
-This post is based on the final paper of the university course "Wirtschaftliche Grundlagen 1" (Business Basics) in the winter-semester 2012/2013" at the [Hasso Plattner Institute](https://hpi.de) in Potsdam, Germany.
+This post is based on the final paper of the university course
+"Wirtschaftliche Grundlagen 1" (Business Basics)
+in the winter-semester 2012/2013 at the
+[Hasso Plattner Institute](https://hpi.de) in Potsdam, Germany.
 
-Thanks a lot to the co-authors [Johannes Deselaers](https://twitter.com/johannes_d)
-and [Yannis Kommana](https://github.com/stuikomma) for letting me publish this post.
+Thanks a lot to the co-authors
+[Johannes Deselaers](https://twitter.com/johannes_d)
+and [Yannis Kommana](https://github.com/stuikomma)
+for letting me publish this post.
 
 Please note that this is a living document and therefore might change over time.
 For the full history check out the post on
@@ -20,14 +25,20 @@ with improvements and fixes! =)
 
 ## Abstract
 
-In this paper, we characterize teams as groups of at least three people with complementary skills who are committed to a common purpose or common performance goal and who complete their interdependent tasks through collaboration. [katzenbach (2003)]
-We discuss how teams can collaborate virtually, which challenges follow from geographical dispersion of team members and how they can be addressed and overcome.
+In this paper, we characterize teams as groups of at least three people
+with complementary skills who are committed to a common purpose or
+common performance goal and who complete their interdependent tasks
+through collaboration. [katzenbach (2003)]
+We discuss how teams can collaborate virtually, which challenges follow
+from geographical dispersion of team members
+and how they can be addressed and overcome.
 Furthermore, we outline the feats that members should have in every team.
 Lastly, we present a list of collaboration tools that enable teams
 to work together both synchronously and asynchronously.
 We conclude with some of our own experiences from the virtual work
 on this project and our opinion about the future of collaboration:
-What is considered extraordinary and challenging about virtual teams nowadays might be considered normal in the not-too-distant future.
+What is considered extraordinary and challenging about virtual teams
+nowadays might be considered normal in the not-too-distant future.
 
 
 ## Definition of a Team
@@ -39,29 +50,59 @@ heard of various attempts at the definition of a team:
 For ourselves, we focus the definition on
 the following three aspects of a team:
 
-1. A team is composed of at least 3 individuals. 2 people do not form a team since it is not possible for them to partake in the same rich interactions that arise in a larger group of people (e.g alliance formation).
+1. A team is composed of at least 3 individuals.<br>
+	2 people do not form a team since it is not possible for them to partake
+	in the same rich interactions that arise in a larger group of people
+	(e.g alliance formation).
 
-2. A team works towards some a common purpose or a common performance goal. Ideally, the team members commit to a shared vision of what they want to achieve and hold themselves mutually accountable for the work towards this goal.
+2. A team works towards some a common purpose or a common performance goal.<br>
+	Ideally, the team members commit to a shared vision of what they
+	want to achieve and hold themselves mutually accountable for the work
+	towards this goal.
 
-3. Teams can be differentiated from "simple" groups of people through the interdependent nature of their work. In teams, responsibility is shared between members on tasks that require collaboration. Ideally, individual skills can be coordinated so that members are able to maximize their strengths and minimize their weaknesses.
+3. Teams can be differentiated from "simple" groups of people
+	through the interdependent nature of their work.<br>
+	In teams, responsibility is shared between members on tasks that require
+	collaboration.
+	Ideally, individual skills can be coordinated so that members are able
+	to maximize their strengths and minimize their weaknesses.
 
 
 ## Virtual Teams
 
-In today’s age of flourishing globalization teams are faced with new challenges. One especially important is the geographical dispersion of its members. These teams - working across temporal, spatial and maybe also across organizational boundaries - are called virtual teams. Typically they are composed of highly cross-functional members from various ethical and cultural backgrounds working on highly interdependent tasks. The existence of these teams is enabled solely by the use of information technology and in particular communication technology.
+In today’s age of flourishing globalization teams are faced with new challenges.
+One especially important is the geographical dispersion of its members.
+These teams - working across temporal, spatial and maybe also across
+organizational boundaries - are called virtual teams.
+Typically they are composed of highly cross-functional members from
+various ethical and cultural backgrounds working on highly interdependent tasks.
+The existence of these teams is enabled solely by the use of
+information technology and in particular communication technology.
 
-The challenges these teams face are not only those imposed by their goals, but also the management of the virtual interaction.
-On top of the task-related processes such as communication and coordination - also socio-emotional processes like relationship building - team cohesion and establishment of mutual trust need to be taken into consideration. [Powell Piccoli Ives (2004)]
+The challenges these teams face are not only those imposed by their goals,
+but also the management of the virtual interaction.
+On top of the task-related processes such as communication and coordination
+- also socio-emotional processes like relationship building - team cohesion
+and establishment of mutual trust need to be taken into consideration.
+[Powell Piccoli Ives (2004)]
 
-Additional strain on the interaction can arise from cultural differences and language barriers.
+Additional strain on the interaction can arise from cultural differences
+and language barriers.
 
 
 ### Software Development Teams
 
-Another type of team to be mentioned is the software development team. It relates to a virtual team insofar, that its day-to-day work includes a lot of the technological tools a virtual team uses.
-In fact software development teams created most of the technologie other teams are adopting nowadays.
-Like in virtual teams, a lot of collaboration in software development happens asynchronously.
-Apart from that, software teams are highly specialized teams. Required roles like Architect, Database Administrator, Designer, Programmer, Requirements Analyst, etc. are usually assigned to individual team members. [Ambler (2000)]
+Another type of team to be mentioned is the software development team.
+It relates to a virtual team insofar, that its day-to-day work includes a lot
+of the technological tools a virtual team uses.
+In fact software development teams created most of the technologie other teams
+are adopting nowadays.
+Like in virtual teams, a lot of collaboration in software development
+happens asynchronously.
+Apart from that, software teams are highly specialized teams.
+Required roles like Architect, Database Administrator, Designer, Programmer,
+Requirements Analyst, etc. are usually assigned to individual team members.
+[Ambler (2000)]
 
 
 ### Special conditions
@@ -474,27 +515,63 @@ teamwork perceived as "normal" today.
 
 ## References
 
-- **[katzenbach (2003)]** Jon Katzenbach. The wisdom of teams : creating the high-performance organization. HarperBusiness Essentials, New York, 2003. ISBN 9780060522001.
+- **[katzenbach (2003)]**
+	Jon Katzenbach.
+	The wisdom of teams: creating the high-performance organization.
+	HarperBusiness Essentials, New York, 2003. ISBN 9780060522001.
 
-- **[MIT (2007)]** MIT. What is a team?, May 2007. URL http://web.mit.edu/is/competency/guide/definitions.html.
+- **[MIT (2007)]**
+	MIT.
+	[What is a team?](http://web.mit.edu/is/competency/guide/definitions.html),
+	May 2007.
 
-- **[Hoelzle (2012)]** Prof. Dr. Katharina Hoelzle. Wirtschaftliche grundlagen, December 2012.
+- **[Hoelzle (2012)]**
+	Prof. Dr. Katharina Hoelzle.
+	Wirtschaftliche Grundlagen, December 2012.
 
-- **[Powell and Ives (2004)]** Piccoli Gabriele Powell, Anne and Blake Ives. Virtual teams : A review of current literature and directions for future. Data Base For Advances In Information Systems, 35(1), 2004.
+- **[Powell and Ives (2004)]**
+	Piccoli Gabriele Powell, Anne and Blake Ives.
+	Virtual teams: A review of current literature and directions for future.
+	Data Base For Advances In Information Systems, 35(1), 2004.
 
-- **[Ambler (2000)]** Scott W. Ambler. Web services programming tips and tricks: How to organize a software development team, November 2000. URL http://ibm.com/developerworks/webservices/library/ ws-tip-team/index.html.
+- **[Ambler (2000)]**
+	Scott W. Ambler.
+	Web services programming tips and tricks: How to organize a
+	software development team, November 2000.
 
-- **[Ferrazzi (2012)]** Keith Ferrazzi. Virtual teams can outperform traditional teams, March 2012. URL http://blogs.hbr.org/cs/2012/03/ how_virtual_teams_can_outperfo.html.
+- **[Ferrazzi (2012)]**
+	Keith Ferrazzi.
+	[Virtual teams can outperform traditional
+	teams](http://blogs.hbr.org/cs/2012/03/how_virtual_teams_can_outperfo.html),
+	March 2012.
 
-- **[Belbin (1996)]** R Belbin. Management teams : why they succeed or fail. Butterworth-Heinemann, Oxford Boston, 1996. ISBN 9780750626767.
+- **[Belbin (1996)]**
+	R Belbin.
+	Management teams: why they succeed or fail.
+	Butterworth-Heinemann, Oxford Boston, 1996. ISBN 9780750626767.
 
-- **[Hancock (2012)]** Jeff Hancock. The future of lying, November 2012. URL http://ted.com/talks/ jeff_hancock_3_types_of_digital_lies.html.
+- **[Hancock (2012)]**
+	Jeff Hancock.
+	[The future of
+	lying](http://ted.com/talks/jeff_hancock_3_types_of_digital_lies.html),
+	November 2012.
 
-- **[Kawasaki (2007)]** Guy Kawasaki. Who to hire, November 2007. URL https://youtube.com/watch?v=JvryrILt8d0.
+- **[Kawasaki (2007)]**
+	Guy Kawasaki.
+	[Who to hire](https://youtube.com/watch?v=JvryrILt8d0),
+	November 2007.
 
-- **[Mark Mortensen (2008)]** Michael O’Leary Mark Mortensen. Managing a virtual team, May 2008. URL http://blogs.hbr.org/cs/2012/04/how_to_manage_a_virtual_team.html.
+- **[Mark Mortensen (2008)]**
+	Michael O’Leary Mark Mortensen.
+	[Managing a virtual
+	team](http://blogs.hbr.org/cs/2012/04/how_to_manage_a_virtual_team.html),
+	May 2008.
 
-- **[Thawar (2012)]** Farhan Thawar. Pair programming considered extremely beneficial, March 2012. URL http://techcrunch.com/2012/03/17/ pair-programming-considered-extremely-beneficial/.
+- **[Thawar (2012)]**
+	Farhan Thawar.
+	[Pair programming considered extremely beneficial
+	](http://techcrunch.com/2012/03/17/ pair-programming-considered-extremely-beneficial),
+	March 2012.
 
 
 ## Purgatory
