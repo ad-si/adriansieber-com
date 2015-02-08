@@ -1,107 +1,81 @@
 ---
-layout: default
 title: Adrian Sieber
 ---
 
-<aside id="buttons">
-	<a class="fa fa-github"
-	   href="https://github.com/adius">
-		<span>GitHub</span>
-	</a>
-	<a class="fa fa-twitter"
-	   href="https://twitter.com/adriansieber">
-		<span>Twitter</span>
-	</a>
-	<a class="fa fa-facebook"
-	   href="https://facebook.com/adriansieber1">
-		<span>Facebook</span>
-	</a>
-	<a class="fa fa-dribbble"
-	   href="https://dribbble.com/adius">
-		<span>Dribbble</span>
-	</a>
-	<a class="fa fa-linkedin"
-	   href="https://de.linkedin.com/in/adriansieber">
-		<span>LinkedIn</span>
-	</a>
-	<a class="fa fa-stack-overflow"
-	   href="https://stackoverflow.com/users/1850340/adius">
-		<span>Stack Overflow</span>
-	</a>
-</aside>
+<header id="description">
+	<h1>Hi. I'm Adrian Sieber.</h1>
 
-<main id="wrapcontent">
+	<p class="subtitle">A developer and designer from Germany.</p>
 
-	<header id="description">
-		<h1>Hi. I'm Adrian Sieber.</h1>
+	<p class="subSubtitle">
+		Check out my <a href="/about">about page</a> and my
+		<a href="/resume">resume</a> for more information.
+	</p>
+</header>
 
-		<p class="subtitle">A developer and designer from Germany.</p>
-	</header>
+<hr/>
 
-	<hr/>
+<article>
+	<h1>Blog-posts</h1>
 
-	<article>
-		<h1>Blog-posts</h1>
+	<ul>
+		{% for post in site.posts %}
+		<li>
+			<span>{{ post.date | date: "%F" }}</span>
+			 -
+			<a href="{{ post.url | append: '$' | remove: '/$' }}">
+				{{ post.title}}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
 
-		<ul>
-			{% for post in site.posts %}
-			<li>
-				<span>{{ post.date | date: "%F" }}</span>
-				 -
-				<a href="{{ post.url | append: '$' | remove: '/$' }}">
-					{{ post.title}}
-				</a>
-			</li>
-			{% endfor %}
-		</ul>
+</article>
 
-	</article>
+<hr/>
 
-	<hr/>
+<article>
+	<h1>Projects</h1>
 
-	<article>
-		<h1>Projects</h1>
+	<ul id="projects">
+		<li id="shaven">
+			<a href="http://adriansieber.com/shaven"
+			   title="Shaven">Shaven</a>
+		</li>
 
-		<ul id="projects">
-			<li id="shaven">
-				<a href="http://adriansieber.com/shaven"
-				   title="Shaven">Shaven</a>
-			</li>
+		<li id="fakesome">
+			<a href="http://adriansieber.com/fakesome"
+			   title="Fakesome">Fakesome</a>
+		</li>
 
-			<li id="fakesome">
-				<a href="http://adriansieber.com/fakesome"
-				   title="Fakesome">Fakesome</a>
-			</li>
+		<li id="timeomat">
+			<a href="http://timeomat.com"
+			   title="Timeomat">Timeomat</a>
+		</li>
 
-			<li id="timeomat">
-				<a href="http://timeomat.com"
-				   title="Timeomat">Timeomat</a>
-			</li>
+		<li id="schifferpatent">
+			<a href="http://schifferpatent.org"
+			   title="Bodenseeschifferpatent">Schifferpatent</a>
+		</li>
 
-			<li id="schifferpatent">
-				<a href="http://schifferpatent.org"
-				   title="Bodenseeschifferpatent">Schifferpatent</a>
-			</li>
+		<li id="bitcoinate">
+			<a href="http://bitcoinate.org"
+			   title="bitcoinate">bitcoinate</a>
+		</li>
 
-			<li id="bitcoinate">
-				<a href="http://bitcoinate.org"
-				   title="bitcoinate">bitcoinate</a>
-			</li>
+		<li id="vectual">
+			<a href="http://vectual.org"
+			   title="Vectual">vectual</a>
+		</li>
 
-			<li id="vectual">
-				<a href="http://vectual.org"
-				   title="Vectual">vectual</a>
-			</li>
+		<li id="leomask">
+			<a href="http://leomask.com"
+			   title="Leo Mask">Leo Mask</a>
+		</li>
 
-			<li id="leomask">
-				<a href="http://leomask.com"
-				   title="Leo Mask">Leo Mask</a>
-			</li>
-
-			<li id="coming-soon">
-				<a href="http://github.com/adius"
-				   title="More coming soon">More Coming Soon</a>
-			</li>
-		</ul>
-	</article>
-</main>
+		<li id="coming-soon">
+			<a href="http://github.com/adius"
+			   title="More coming soon">More Coming Soon</a>
+		</li>
+	</ul>
+</article>
