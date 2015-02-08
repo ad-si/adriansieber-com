@@ -70,7 +70,7 @@ the following three aspects of a team:
 
 ## Virtual Teams
 
-In today’s age of flourishing globalization teams are faced with new challenges.
+In today's age of flourishing globalization teams are faced with new challenges.
 One especially important is the geographical dispersion of its members.
 These teams - working across temporal, spatial and maybe also across
 organizational boundaries - are called virtual teams.
@@ -123,7 +123,7 @@ We will now explain some of the problems and possible solutions:
 		convenient times difficult. One or more team members might have
 		to work at an inconvenient time and not be capable of performing
 		to their full extent. This problem can either be worked around
-		or even used to the team’s benefit.
+		or even used to the team's benefit.
 
 		1. Plan the meetings at different times so that each team
 			member at least once has the convenience to work normally
@@ -139,8 +139,8 @@ We will now explain some of the problems and possible solutions:
 		in person can be difficult for reasons of cost and
 		time-effectiveness. If the duration of the project is long
 		enough the effort will most certainly have positive effects and
-		make up for the initial investment by boosting the team’s spirit
-		and performance. See ‘The kick-off meeting’.
+		make up for the initial investment by boosting the team's spirit
+		and performance. See 'The kick-off meeting'.
 
 3.  Cultural differences
 
@@ -160,12 +160,12 @@ We will now explain some of the problems and possible solutions:
 		for aggression and therefore get angry themselves. The team
 		manager must assure that either the temper of the one is
 		restrained or the others are made aware to the fact that their
-		counterpart is just discussing ‘normally’.
+		counterpart is just discussing 'normally'.
 
 4.  Language
 
 	1. English as standard language<br>
-		As it is the ‘business language’ being fluent in English is a
+		As it is the 'business language' being fluent in English is a
 		requirement for working in an international team.
 
 	2. Translations, idioms and "false friends"<br>
@@ -178,7 +178,7 @@ We will now explain some of the problems and possible solutions:
 		pan into the fire".
 
 5. Technical terms in different languages<br>
-	It is a common thing to know the terms of one’s field of expertise
+	It is a common thing to know the terms of one's field of expertise
 	in English but less so with the vocabulary of other fields.
 	Explaining the terms of software engineering to a designer can cost
 	precious time. In such cases the team leader needs to assess the
@@ -188,11 +188,11 @@ We will now explain some of the problems and possible solutions:
 ## The kick-off Meeting
 
 The kick-off meeting is a face-to-face meeting at the
-beginning of the work phase and helps to build the team’s cohesion by
+beginning of the work phase and helps to build the team's cohesion by
 getting to know each other on a more personal level than it is possible
 by means of virtual communication. In this meeting every team member
 should introduce himself and the field he is working in. Telling a
-personal story of one’s own is also important in order to establish
+personal story of one's own is also important in order to establish
 social relations. Furthermore sharing the hopes and expectations for the
 project helps building a common vision and mindset. At this opportunity
 the team leader will set and explain guidelines for work practices like
@@ -248,17 +248,17 @@ Being honest is a prerequisite to being communicative about all aspects
 of the work progress including advances but also delays, problems and
 failure. The members need to be informed about such issues to help solve
 them faster. It may seem easier to deceive others in a virtual
-environment but it turns out that in fact email is a more ‘honest’ media
+environment but it turns out that in fact email is a more 'honest' media
 than most other including telephone and speech. One reason is that
 e-mail conversations leave a record and people think twice before
-‘lying’ if it is stored and can be used against them. [Hancock (2012)]
+'lying' if it is stored and can be used against them. [Hancock (2012)]
 
 
 ### Trust
 
 Communicating openly will eventually lead to trust among the team.
 Trusting the other team members and the quality of their contributions
-is a basis for delegating tasks. If they don’t trust one another they
+is a basis for delegating tasks. If they don't trust one another they
 might settle for doing the tasks themselves creating doubling and wasted
 efforts.
 
@@ -267,7 +267,7 @@ efforts.
 
 Every member needs to contribute at least a basic set of skills to the
 team. They must quite naturally be in the specific field of expertise.
-Introducing measures for estimating the person’s performance can be a
+Introducing measures for estimating the person's performance can be a
 good mean but needs to be applied carefully. Additionally, social skills
 matter just as much as the technical ones and are the key to successful
 teamwork. [Kawasaki (2007)]
@@ -285,7 +285,7 @@ commitment for the project.
 
 ### Compromise
 
-Insisting on your own opinion will not contribute to the team’s success.
+Insisting on your own opinion will not contribute to the team's success.
 In particular if there are many different fields of expertise present
 this will lead to a wide variety of opinions. Before you get stuck in
 endless debates you must make a compromise. Find a solution that
@@ -306,10 +306,10 @@ to fulfill [Mark Mortensen (2008)]:
 	need to get their job done instead of wasting it for configuration,
 	integration and incorporation. Besides, more functionality does not
 	necessarily mean better interactions. Your tool should get out of
-	your way and let you focus on what’s really important: the message.
+	your way and let you focus on what's really important: the message.
 	One might argue that this wasted time can be saved later, due to a
 	more powerful tool and therefore a more effective work process.
-	However, its likely that you’ll see yourself spending more time on
+	However, its likely that you'll see yourself spending more time on
 	the correct usage of the software than the actual content. So make
 	sure your software does exactly what its supposed to do and does it
 	as precisely and simple as possible.
@@ -320,12 +320,12 @@ to fulfill [Mark Mortensen (2008)]:
 	reliability. Though it can not compete in terms of functionality, it
 	is without doubt the most unfailing communication tool. The latest
 	video conferencing, instant messaging, or screen sharing feature
-	won’t help you if you’re internet connection can (again) not be
+	won't help you if you're internet connection can (again) not be
 	established. Your phone, however, is a reliable and proven
 	communication tool that will not let you down easily.
 
 3. Accessibility<br>
-	No matter if you’re in Africa enhancing your international reach, in
+	No matter if you're in Africa enhancing your international reach, in
 	Antarctica figuring out if this is the place for your next server
 	farm or just about anywhere else, you might want to be able to
 	contact your team members at any given time. Here again your cell
@@ -354,9 +354,9 @@ good reference point for your custom software solution.
 2. Screen Sharing<br>
 	Closely related to conferencing is screen sharing software.
 	Additionally to seeing and hearing your partner you might want to be
-	able to see what he’s working on right now. Instead of having to
+	able to see what he's working on right now. Instead of having to
 	save and share his progress laboriously he can easily share his
-	screen. This enables you to see what he’s doing in real time. That
+	screen. This enables you to see what he's doing in real time. That
 	brings us to our next point.
 
 3. Real time collaboration<br>
@@ -364,7 +364,7 @@ good reference point for your custom software solution.
 	Real time means that you can collaborate simultaneously and
 	synchronously on the same task. I.e. it is very useful to work on a
 	document simultaneously as you can see what the others are writing
-	and you don’t have to merge it intricately afterwards. Another
+	and you don't have to merge it intricately afterwards. Another
 	example is pair programming, which is considered to be extremely
 	beneficial.@TC Writing code simultaneously together means that it
 	will be high-quality, include knowledge from different domains and
@@ -409,8 +409,8 @@ good reference point for your custom software solution.
 6. Calendar<br>
 	As already mentioned it is important to capture your goals and tasks
 	for the future. Very handy for this purpose is a globally shared
-	calendar. It’s the place where all you team mates can store and look
-	up what’s going on and what will be important in the near future.
+	calendar. It's the place where all you team mates can store and look
+	up what's going on and what will be important in the near future.
 	Ideally all your other software tools also have access to this
 	calendar so that everything is neatly kept at one place.
 
@@ -432,7 +432,7 @@ good reference point for your custom software solution.
 	synchronously due to time shifts or a general shift in work time.
 	Occasionally you will also want to make sure that everything you are
 	talking about is written down so that nobody can claim to have said
-	something else than he actually did. That’s when a forum comes in
+	something else than he actually did. That's when a forum comes in
 	handy. It constitutes a simple but yet effective means to discuss
 	different ideas and topics.
 
@@ -562,7 +562,7 @@ teamwork perceived as "normal" today.
 	November 2007.
 
 - **[Mark Mortensen (2008)]**
-	Michael O’Leary Mark Mortensen.
+	Michael O'Leary Mark Mortensen.
 	[Managing a virtual
 	team](http://blogs.hbr.org/cs/2012/04/how_to_manage_a_virtual_team.html),
 	May 2008.
