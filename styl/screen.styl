@@ -1,4 +1,7 @@
 contentWidth = 660px
+textColor = rgb(80,80,80)
+projectImageHeight = 180px
+
 
 *
 	border 0
@@ -12,15 +15,29 @@ html
 
 body
 	font 500 18px/1.3 "Helvetica", sans-serif
-	color rgb(80,80,80)
+	color textColor
 
 hr
 	height 1px
 	background-color rgb(240, 240, 240)
 	margin-bottom 1em
 
+
+h1,h2,h3,h4,h5,h6
+	color: rgb(30,30,30)
+
 h1
 	margin-bottom 1em
+
+a
+	&:link
+		color rgb(100,150,200)
+	&:visited
+		color rgb(150,100,200)
+
+
+p
+	margin-bottom 0.8em
 
 ul
 	margin-left 2em
@@ -36,6 +53,10 @@ ol
 		margin-bottom 40px
 		h1
 			display inline-block
+		a
+			&:link,
+			&:visited
+				color textColor
 	.headerContent
 		margin 0 auto
 		width contentWidth
@@ -44,7 +65,7 @@ ol
 	margin 0 auto 50px auto
 	width contentWidth
 
-.postHeader
+.fullHeader
 	.headerContent
 		position relative
 	text-align left
@@ -52,7 +73,6 @@ ol
 		margin-bottom 0
 		a
 			text-decoration none
-			color inherit
 	aside
 		position absolute
 		right 0
@@ -81,24 +101,17 @@ aside
 		font 900 54px / 120px "Trebuchet MS", sans-serif
 		margin-bottom 0
 
+	.subtitle,
+	.subSubtitle
+		color rgb(120,120,120)
+
 	.subtitle
 		text-align center
 		font 500 34px / 50px "Tahoma", sans-serif
 		margin-bottom 0.5em
 
-	.subtitle,
-	.subSubtitle
-		color rgb(140,140,140)
-
-
-
-
 article
 	margin-bottom 2em
-
-/*-------------------------- Home --------------------------*/
-
-projectImageHeight = 180px
 
 #projects
 	margin-left 0
