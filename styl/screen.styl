@@ -1,7 +1,6 @@
 contentWidth = 660px
-textColor = rgb(80,80,80)
+textColor = rgb(80, 80, 80)
 projectImageHeight = 180px
-
 
 *
 	border 0
@@ -14,7 +13,7 @@ html
 	background-color white
 
 body
-	font 500 18px/1.3 "Helvetica", sans-serif
+	font 500 18px / 1.3 "Helvetica", sans-serif
 	color textColor
 
 hr
@@ -22,19 +21,17 @@ hr
 	background-color rgb(240, 240, 240)
 	margin-bottom 1em
 
-
-h1,h2,h3,h4,h5,h6
-	color: rgb(30,30,30)
+h1, h2, h3, h4, h5, h6
+	color: rgb(30, 30, 30)
 
 h1
 	margin-bottom 1em
 
 a
 	&:link
-		color rgb(100,150,200)
+		color rgb(100, 150, 200)
 	&:visited
-		color rgb(150,100,200)
-
+		color rgb(150, 100, 200)
 
 p
 	margin-bottom 0.8em
@@ -47,7 +44,7 @@ ol
 
 #wrapper
 	> header
-		background-color rgb(240,240,240)
+		background-color rgb(240, 240, 240)
 		height 2.5em
 		padding 10px
 		margin-bottom 40px
@@ -96,7 +93,6 @@ aside
 		span
 			display none
 
-
 #description
 	margin-bottom 3em
 	h1
@@ -106,7 +102,7 @@ aside
 
 	.subtitle,
 	.subSubtitle
-		color rgb(120,120,120)
+		color rgb(120, 120, 120)
 
 	.subtitle
 		text-align center
@@ -134,16 +130,14 @@ article
 			width 100%
 			height 100%
 
-
-
 #chuisy
-	background-image url(../img/chuisy.png), linear-gradient(rgb(230, 30, 75), rgb(140, 0, 0))
+	background-image url(../img/chuisy.png) , linear-gradient(rgb(230, 30, 75), rgb(140, 0, 0))
 	background-repeat no-repeat, repeat-x
 	background-size 200px, 100%
 	background-position center
 
 #schifferpatent
-	background-image url(http://schifferpatent.org/img/logo.svg), linear-gradient(rgb(60, 160, 250), rgb(30, 100, 200))
+	background-image url(http://schifferpatent.org/img/logo.svg) , linear-gradient(rgb(60, 160, 250), rgb(30, 100, 200))
 	background-repeat no-repeat, repeat-x
 	background-position 50%, 50%
 	background-size 90% auto, 100%
@@ -162,7 +156,7 @@ article
 	color rgb(255, 255, 255)
 
 #bitcoinate
-	background-image url(https://raw.github.com/adius/bitcoinate/v0.1.2/img/bitcoinate50.png), linear-gradient(#f7931a, #c16c07)
+	background-image url(https://raw.github.com/adius/bitcoinate/v0.1.2/img/bitcoinate50.png) , linear-gradient(#f7931a, #c16c07)
 	background-size 28px, 100%
 	background-position 50px 50%, 50%
 	background-repeat no-repeat
@@ -173,7 +167,7 @@ article
 		color white
 
 #designection
-	background-image url(../img/designection.png), linear-gradient(rgba(150, 150, 150, 1), rgba(50, 50, 50, 1))
+	background-image url(../img/designection.png) , linear-gradient(rgba(150, 150, 150, 1), rgba(50, 50, 50, 1))
 	background-repeat no-repeat, repeat-x
 	background-size 280px, 100%
 	background-position center
@@ -198,11 +192,174 @@ article
 	text-align center
 
 #coming-soon
-	border 4px dashed rgb(100,100,100)
+	border 4px dashed rgb(100, 100, 100)
 	line-height projectImageHeight
 	text-decoration none
 	font-size 24px
 	text-indent 0 !important
 	vertical-align middle
 	a
-		color rgb(100,100,100)
+		color rgb(100, 100, 100)
+
+#resume
+	p
+		line-height 1.5
+		margin 0
+		& + p
+			margin-top 10px
+
+	h1, h2, h3, h4
+		margin-top 0
+
+	section
+		margin-top 30px
+
+	li
+		line-height 1.8
+		list-style none
+		&:before
+			content "\f052"
+			float left
+			font 13px Octicons
+			margin-top 6px
+			margin-left -20px
+			opacity .1
+			position absolute
+
+	blockquote
+		border-left 5px solid #e7e9ec
+		font-size 14px
+
+	em
+		color #95a5a6
+		font-weight normal
+		font-style normal
+
+	h4
+		span:first-child
+			color #000
+			font-weight bold
+
+	.container
+		max-width 750px
+		padding 0 30px
+
+	.col-sm-6
+		margin-bottom 10px
+
+	.col-sm-12
+		h4
+			margin-top 12px
+		& + .col-sm-12
+			margin-top 30px
+
+	#header
+		background #f4f6f6
+		padding 50px 0
+		margin-bottom 30px
+		margin-bottom 10px
+		padding 40px 0
+		h2
+			color #95a5a6
+			font-size 24px
+
+	#content
+		h3
+			color #f1c40f
+			font-size 26px
+			margin-top -4px
+		aside
+			text-align right
+			padding-right 30px
+			margin-bottom 20px
+			padding-right 0
+			text-align left
+
+	#profiles
+		.network
+			text-transform capitalize
+
+	#work .position,
+	#volunteer .position
+		font-weight bold
+		margin-bottom 8px
+
+	#education
+		.area
+			font-weight bold
+			&:before
+				content "\f0d7"
+				font 16px Octicons
+				margin-right 6px
+		.studyType
+			margin-left 25px
+
+	#awards .summary,
+	#publications .summary
+		margin-top 8px
+
+	#publications
+		.website
+			a:before
+				content attr(href)
+				content "View publication"
+
+	@media (min-width: 480px)
+		.strike-through span,
+		.strike-through a
+			background #fff
+			position absolute
+
+		.strike-through
+			border-top 1px solid #f4f6f6
+			height 20px
+			margin-top 12px
+			margin-bottom -2px
+			position relative
+			span:first-child
+				padding-right 20px
+				margin-top -12px
+			span + span
+				font-size 14px
+				margin-top -10px
+				padding-left 20px
+				right 0
+
+
+	@media (max-width: 768px)
+		.col-sm-6:last-child
+			margin-bottom: 0px
+
+		#content aside
+			margin-bottom: 20px
+			padding-right: 0
+			text-align: left
+
+		#publications .website a:before
+			content: "View publication"
+
+
+	@media (max-width: 480px)
+		h1
+			font-size: 26px
+
+		.date
+			font-size: 14px
+			margin-bottom: 5px
+
+		.strike-through span:first-child
+			margin-bottom: 7px
+
+		.strike-through span
+			display: block
+
+		#header
+			margin-bottom: 10px
+			padding: 40px 0
+
+		#actions
+			display: none
+
+
+
+
