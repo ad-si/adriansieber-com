@@ -18,5 +18,8 @@ defaults:
       isHome: false
       isPost: true
 
+markdown: redcarpet
+
 kramdown:
+  input: GFM
   smart_quotes: [apos, apos, quot, quot]
