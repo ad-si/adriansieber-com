@@ -23,7 +23,7 @@ isHome: true
 		{% for post in site.posts %}
 		<li>
 			<span>{{ post.date | date: "%F" }}</span>
-			 -
+			<span> – </span>
 			<a href="{{ post.url | append: '$' | remove: '/$' }}">
 				{{ post.title}}
 			</a>
