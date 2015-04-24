@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "handlebars": "^2.0.0-alpha.4",
-    "js-yaml": "^3.2.6"
+    "js-yaml": "^3.2.6",
+    "stylus": "^0.50.0"
   }
 }
