@@ -1,6 +1,7 @@
 contentWidth = 660px
 textColor = rgb(80, 80, 80)
 projectImageHeight = 180px
+projectImageWidth = 300px
 
 *
 	border 0
@@ -22,7 +23,7 @@ hr
 	margin-bottom 1em
 
 h1, h2, h3, h4, h5, h6
-	color: rgb(30, 30, 30)
+	color rgb(30, 30, 30)
 
 h1
 	margin-bottom 1em
@@ -47,43 +48,46 @@ pre
 	margin-bottom 0.6em
 
 pre code
-	font-size: inherit;
+	font-size inherit;
 
 code
-	background-color: rgb(230,230,230);
-	border: 1px solid rgb(220,220,220);
-	font-size: 0.9em;
-	border-radius: 2px;
-	padding: 0 0.2em;
+	background-color rgb(230,230,230);
+	border 1px solid rgb(220,220,220);
+	font-size 0.9em;
+	border-radius 2px;
+	padding 0 0.2em;
 
 ul
-	margin-bottom: 0.6em;
+	margin-bottom 0.6em;
 
 
 #wrapper
 	> header
 		background-color rgb(240, 240, 240)
 		height 2.5em
-		padding 10px
 		margin-bottom 40px
+		padding-top 10px
+		padding-bottom 10px
 		h1
 			display inline-block
 		a
 			&:link,
 			&:visited
 				color textColor
+
 	.headerContent
 		margin 0 auto
-		width contentWidth
 
 #wrapcontent
 	margin 0 auto 50px auto
-	width contentWidth
+	padding 0 1em
 
 .fullHeader
 	.headerContent
 		position relative
-	text-align left
+		text-align left
+		padding-left 1em
+		padding-right 1em
 	h1
 		margin-bottom 0
 		a
@@ -115,8 +119,14 @@ aside
 	margin-bottom 3em
 	h1
 		display inline-block
-		font 900 54px / 120px "Trebuchet MS", sans-serif
-		margin-bottom 0
+		font-weight 900
+		font-size 3em
+		font-family "Trebuchet MS", sans-serif
+		line-height 1.3
+		margin-bottom 0.5em
+		margin-top 0.4em
+		span
+			display inline-block // Avoid wrapping in mobile view
 
 	.subtitle,
 	.subSubtitle
@@ -132,14 +142,15 @@ article
 
 #projects
 	margin-left 0
+	max-width projectImageWidth
 	li
 		text-align center
 		display inline-block
 		vertical-align top
 		margin 0 15px 20px 0
-		width 320px
 		height projectImageHeight
 		text-indent -9999px
+		width 100%
 		&:nth-of-type(2n)
 			margin-right 0
 		a
@@ -168,6 +179,7 @@ article
 
 #timeomat
 	background-image url(../img/timeomat.png)
+	background-repeat no-repeat
 	background-position 0px, -20px
 	background-size 100%
 	text-align center
@@ -200,12 +212,14 @@ article
 
 #fakesome
 	background-image url(../img/fakesome.png)
+	background-repeat no-repeat
 	background-size 100%
 	text-align center
 	color rgb(255, 255, 255)
 
 #shaven
 	background-image url(../img/shaven.png)
+	background-repeat no-repeat
 	background-size 100%
 	text-align center
 
@@ -322,7 +336,7 @@ article
 				content attr(href)
 				content "View publication"
 
-	@media (min-width: 480px)
+	@media (min-width 480px)
 		.strike-through span,
 		.strike-through a
 			background #fff
@@ -344,36 +358,54 @@ article
 				right 0
 
 
-	@media (max-width: 768px)
+	@media (max-width 768px)
 		.col-sm-6:last-child
-			margin-bottom: 0px
+			margin-bottom 0px
 
 		#content aside
-			margin-bottom: 20px
-			padding-right: 0
-			text-align: left
+			margin-bottom 20px
+			padding-right 0
+			text-align left
 
 		#publications .website a:before
-			content: "View publication"
+			content "View publication"
 
 
-	@media (max-width: 480px)
+	@media (max-width 480px)
 		h1
-			font-size: 26px
+			font-size 26px
 
 		.date
-			font-size: 14px
-			margin-bottom: 5px
+			font-size 14px
+			margin-bottom 5px
 
 		.strike-through span:first-child
-			margin-bottom: 7px
+			margin-bottom 7px
 
 		.strike-through span
-			display: block
+			display block
 
 		#header
-			margin-bottom: 10px
-			padding: 40px 0
+			margin-bottom 10px
+			padding 40px 0
 
 		#actions
-			display: none
+			display none
+
+
+@media screen and (min-width 400px)
+	#projects
+		margin 0 auto
+		li
+			width projectImageWidth
+
+@media screen and (min-width contentWidth)
+	#wrapper
+		.headerContent
+			width contentWidth
+
+	#wrapcontent
+		width contentWidth
+		
+	#projects
+		max-width none
