@@ -101,9 +101,6 @@ ul {
   float: right;
   display: inline-block;
 }
-.post p {
-  text-align: justify;
-}
 header {
   text-align: center;
 }
@@ -436,5 +433,8 @@ article > h1 {
   }
   #projects {
     max-width: none;
+  }
+  .post p {
+    text-align: justify;
   }
 }
