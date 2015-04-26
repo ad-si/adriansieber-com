@@ -93,8 +93,7 @@ ul
 		a
 			text-decoration none
 	aside
-		position absolute
-		right 0
+		float right
 		display inline-block
 
 .post
@@ -109,11 +108,13 @@ aside
 	font-size 1.2em
 	a
 		display inline-block
-		margin-right 0.5em
+		margin-right 0.2em
 		text-decoration none
 		color inherit
 		span
 			display none
+		&:last-of-type
+			margin-right 0
 
 #description
 	margin-bottom 3em
@@ -139,6 +140,8 @@ aside
 
 article
 	margin-bottom 2em
+	> h1
+		font-size 1.2em
 
 #projects
 	margin-left 0
@@ -398,6 +401,9 @@ article
 		margin 0 auto
 		li
 			width projectImageWidth
+	aside
+		a
+			margin-right 0.5em
 
 @media screen and (min-width contentWidth)
 	#wrapper
@@ -406,6 +412,6 @@ article
 
 	#wrapcontent
 		width contentWidth
-		
+
 	#projects
 		max-width none
