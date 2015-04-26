@@ -28,7 +28,7 @@ So how can we get the issues from GitHub into our flat-file database?
 First of all we need an URL-endpoint where we can easily access the issues.
 GitHub provides an extensive and well documented [API](https://developer.github.com/v3).
 
-In order to list all issues from a repo we simply need to open the URL 
+In order to list all issues from a repo we simply need to open the URL
 
 ```sh
 https://api.github.com/repos/<username>/<repo>/issues
@@ -43,12 +43,12 @@ as it is necessary to authenticate.
 For authentication we can either use basic auth or even better access tokens.
 For now we will stick to basic auth to keep it simple.
 
-Combined we get following command: 
+Combined we get following command:
 
 ```sh
 http -a <username> \
 -b https://api.github.com/repos/<username>/<repo>/issues
-``` 
+```
 
 Execute it by copying it into the terminal/command line of your choice and pressing enter.
 
@@ -80,9 +80,9 @@ Explanation:
 - Pipe them into json
 - `-0` Remove all unnecessary whitespace (newlines, spaces, tabs) from the JSON
 - `-a` reformat the JSON-array into a newline delimited stream of JSON events.
-	See [JSON Lines](http://jsonlines.org) for more information. 
+	See [JSON Lines](http://jsonlines.org) for more information.
 
-Now we can simply loop over the lines and execute code for each line and therefore each issue. 
+Now we can simply loop over the lines and execute code for each line and therefore each issue.
 In this example we simply print the issue again:
 
 ```sh
