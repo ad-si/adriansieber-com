@@ -1,5 +1,5 @@
 ---
-title: How to Download GitHub Issues from your Command Line
+title: How to Download GitHub Issues from the Command Line
 ---
 
 # {{ page.title }}
@@ -20,8 +20,8 @@ I've decided to store the issues in the repo itself from now on.
 (How I plan to manage them will be the story of another post)
 
 Human readability is a plus for issues.
-Therefore I'm going to use YAML instead of JSON for storage.
-My data-structure will be an `issues` directory with one YAML-file for each issue.
+Therefore we're going to use YAML instead of JSON for storage.
+The data-structure will be an `./issues` directory with one YAML-file for each issue.
 
 So how can we get the issues from GitHub into our flat-file database?
 
@@ -34,8 +34,8 @@ In order to list all issues from a repo we simply need to open the URL
 https://api.github.com/repos/<username>/<repo>/issues
 ```
 
-with a browser or the command line HTTP client of our choice.
-There are for example the industry standard [curl](http://curl.haxx.se) or my preference
+We can either use a browser or the command line HTTP client of our choice.
+There are for example the industry standard [curl](http://curl.haxx.se) or in my opinion even better
 [httpie](https://github.com/jakubroztocil/httpie) which has a beautiful output and is simpler to use.
 
 Note that private repos can only be accessed from the command line and not via the browser
@@ -50,7 +50,7 @@ http -a <username> \
 -b https://api.github.com/repos/<username>/<repo>/issues
 ``` 
 
-Execute it by copying it into the terminal/command line interface (cli) of your choice and pressing enter.
+Execute it by copying it into the terminal/command line of your choice and pressing enter.
 
 Explanation:
 
@@ -58,8 +58,9 @@ Explanation:
 - `-a <username>`: We try to basic authenticate as "<username>".
 	This will prompt use to enter the corresponding password.
 - `-b`: Only download the body and not the header of the resource.
-- `\`: Backslashes are used to escape the following newline character so that we can split the command over several lines.
-	This is just for readability reasons. You can type the whole command simply in one line as well.
+- `\`: Backslashes are used to escape the adjacent newline character so that we can split the command over several lines.
+	This is just to increase readability.
+	You can type the whole command simply in one line as well.
 
 You might have noticed that this request only contains open issues.
 To get all issues - including closed ones - we need to add the query string `?state=all` to the request-URL.
@@ -93,13 +94,19 @@ http -a <username> \
 
 Make sure to use the `-r` flag for the while loop to prevent special characters from being interpreted as commands.
 
-Instead of just printing the issues we now want to convert them to YAML and save them to a file.
+Instead of just printing the issues we lastly want to convert them to YAML and save them to a file.
+
+Make sure to create and go to the issues directory first - `mkdir issues && cd ./issues` - as the command
+will save the issues in the present working directory.
+
 For the filenames we are going to use the number of each issue.
 
 In order to retrieve the issue-number we could extract it form the JSON and cache it in a variable.
 It is, however, easier to simply sort the issues ascending by creation date and increment a counter for each issue.
 For the conversion from JSON to YAML we use [js-yaml](https://github.com/nodeca/js-yaml).
+
 Combined we get the final command:
+
 
 ```sh
 count=0 http -a <username> -b \
@@ -110,9 +117,3 @@ do (( count++ )); echo $line | js-yaml > $count.yaml; done
 ```
 
 Note that it's necessary to escape `&` characters as they would get interpreted by the shell.
-
----
-
-If you have any comments, thoughts or other feedback feel free to tweet me [@AdrianSieber](https://twitter.com/AdrianSieber)!
-Additionally, pull requests for improvements and corrections to this article's [GitHub Repo](https://github.com/adius/adius.github.io) 
-are also very appreciated! =)
