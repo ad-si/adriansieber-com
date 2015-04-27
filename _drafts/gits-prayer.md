@@ -3,12 +3,19 @@ title: Git's Prayer
 ---
 
 <style>
-    @import url(http://fonts.googleapis.com/css?family=Pinyon+Script);
-    .post > p:first-of-type,
-    .post > h1 {
-        font-size: 160%;
-        font-family: 'Pinyon Script', cursive;
-    }
+	@import url(http://fonts.googleapis.com/css?family=Pinyon+Script);
+	.post > p:first-of-type,
+	.post > h1 {
+		font-size: 140%;
+		font-family: 'Pinyon Script', cursive;
+	}
+
+	@media screen and (min-width: 660px) {
+		.post > p:first-of-type,
+		.post > h1 {
+			font-size: 160%;
+		}
+	}
 </style>
 
 # {{page.title}}
