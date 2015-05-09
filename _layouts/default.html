@@ -79,15 +79,16 @@
 
 <script>
 	var codeBlocks = document.querySelectorAll('pre code'),
-		i
+			i,
+			_paq
 
+	// Highlight code
 	for (i = 0; i < codeBlocks.length; i++) {
 		hljs.highlightBlock(codeBlocks[i])
 	}
-</script>
-<script>
+
 	// Piwik
-	var _paq = _paq || []
+	_paq = _paq || []
 	_paq.push(["trackPageView"])
 	_paq.push(["enableLinkTracking"])
 
