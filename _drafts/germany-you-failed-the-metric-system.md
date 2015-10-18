@@ -1,5 +1,5 @@
 ---
-title: "Germany - You failed the metric system"
+title: "Germany - You failed the metric system!"
 ---
 
 # {{page.title}}
@@ -18,14 +18,15 @@ who refuse to join the golden path of standardization.
 Maybe we could call him "Captain ISO". 😂
 
 Joking aside, it's striking how often standards
-are ignored or non-stanard units are used even in countries
+are ignored or non-standard units are used even in countries
 which claim to be metric.
 
-Lately I've become a huge fan of the blog http://themetricmaven.com
-in which an US Engineer explores issues which arise
+Lately I've become a huge fan of the blog
+[themetricmaven.com](http://themetricmaven.com)
+in which an US Engineer explores issues arising
 from sticking to the "imperial mess of units".
 
-It also made me think of how German use units and how the quest of
+It also made me think of how Germans use units and how the quest of
 metrication and standardization has faired here.
 I already knew that the US is a huge mess,
 but it just dawned on me lately that Germany is only better of
@@ -125,19 +126,66 @@ To be exact: 1 metric hp is 0.986 imperial mechanical hp.
 
 But to be fair, it seems we are on the right track with this issue.
 Since 2010 it's mandatory to specify the power of vehicles in ads
-also in kW and manufacturer even seem to use preferably kW in ads for
+also in kW and manufacturer even seem to prefer kW over PS in ads for
 electro vehicles.
-
-
-## Energy
-
-- kilocalories or calories instead of Kj
 
 
 ## Speed
 
-- Knots and beaufort instead of km/h
-- kmh instead of km/h
+Talking about cars:
+Of course Germans love to go fast on the Autobahn
+and they measure their speed properly in km/h.
+The more of them they measure the better.
+
+However, there is one little problem:
+We tend to be a little sloppy with our language.
+Germans often say "k m h" instead of
+"Kilometer pro Stunde" (kilometer per hour),
+which is actually something entirely different,
+namely km * h instead of km/h.
+You might say that this is half as bad when you just say it,
+but mean the correct thing.
+This, however, is exactly the problem.
+I bet many math and physics teachers can tell you a thing or two about
+students not just saying, but also using it the wrong way
+and being suprised afterwards that nothing makes any sense.
+
+
+This is the situation on land.
+If we go onto the water, however,
+we proverbial throw our metric system over board.
+Suddenly we start to measure wind speeds with "Knoten" (knots) or Beaufort,
+distances with "Seemeilen" (nautical miles)
+and a hand full of other antique units.
+
+How's that again?
+We adopted the metric system?
+Don't make me laugh!
+
+
+## Energy
+
+We all need it, we all consume it, we all name it wrong.
+Not that is not already bad enough that we still use "Kalorie" (calorie)
+although Joule is require by law since 1969.
+No, we even use it in the wrong way. Like the US we say "Kalorie",
+although we mean "Kilokalorie".
+And I feel that it has even gotten worse in recent times.
+Previously at least some people said it
+and most products were advertised with Kilokalorie.
+But nowadays nobody seems to care anymore and e.g. recently I noticed that
+exclusively "Kalorie" was used in the description
+and software of my gym's fitness machines.
+And all this trouble even though the conversion isn't even that hard.
+The kJ (kilojoule) value is approximately 4 times the kcal (kilocalorie) value.
+i.e 50 kcal ~= 200 kJ
+
+And even better, it is very imaginative.
+1 kJ is approximately the energy needed to lift 100 kg vertically 1 m.
+This means if you eat one piece of German chocolate (~370 kJ) you
+can lift a quarterback 370 times 1 meter. 💪
+(Now you also now why eating less is far more important
+for loosing weight than exercising)
 
 
 ## Sizes
