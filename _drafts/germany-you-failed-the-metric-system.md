@@ -30,7 +30,7 @@ It also made me think of how Germans use units and how the quest of
 metrication and standardization has faired here.
 I already knew that the US is a huge mess,
 but it just dawned on me lately that Germany is only better of
-by an <del>inch</del> <ins>millimeter</ins>.
+by <del>an inch</del> <ins>a millimeter</ins>.
 
 So let's get started and have a look at all those nasty problem areas.
 
@@ -40,8 +40,8 @@ So let's get started and have a look at all those nasty problem areas.
 While we're far better of with our 24 hours notation then the US
 with its PM and AM, in colloquial German we don't always stick to it.
 
-For example if you might want to meet up with someone
-you would ask him or text him: "Sollen wir uns um 9 Uhr treffen?"
+For example if you want to meet up with someone
+you could ask  or text them: "Sollen wir uns um 9 Uhr treffen?"
 ("Shall we meet at 9 o'clock?")
 
 This, however, does not necessarily mean 09:00 h (9 AM).
@@ -72,7 +72,7 @@ and misunderstanding a few times.
 
 ## Date
 
-The normal way to write a date in Germany is DD.MM.YYYY.
+The common way to write a date in Germany is DD.MM.YYYY.
 The 23. September 2015 e.g. would be 23.09.2015.
 This is already better than the absolutely ridiculous US way
 of using MM/DD/YYYY, but it still sucks.
@@ -82,12 +82,12 @@ that it's sorted from large to small.
 That means if you e.g. name you files accordingly they will automatically
 be sorted by date as the lexicographical order (alphabetical order)
 is the same as the chronological order.
-Another example would be skimming of dates in a list.
-If you are just interested in the year of a date you don't have to
+Another good example is skimming of dates in a list.
+If you are just interested in the year of a date, you don't have to
 read the useless day and month values first.
 This is even more obvious when you use the full datetime format.
 E.g. 2015-09-23 17:46:23.
-It's neatly ordered by magnitude of denoted time
+It's neatly ordered ascending by magnitude of denoted time
 and can be filtered step by step from year over month over day to time.
 
 The funny (or rather sad) thing is that in 1996 the corresponding
@@ -127,13 +127,13 @@ To be exact: 1 metric hp is 0.986 imperial mechanical hp.
 But to be fair, it seems we are on the right track with this issue.
 Since 2010 it's mandatory to specify the power of vehicles in ads
 also in kW and manufacturer even seem to prefer kW over PS in ads for
-electro vehicles.
+electric vehicles.
 
 
 ## Speed
 
 Talking about cars:
-Of course Germans love to go fast on the Autobahn
+Of course Germans love to go fast on the "Autobahn"
 and they measure their speed properly in km/h.
 The more of them they measure the better.
 
@@ -148,15 +148,17 @@ but mean the correct thing.
 This, however, is exactly the problem.
 I bet many math and physics teachers can tell you a thing or two about
 students not just saying, but also using it the wrong way
-and being suprised afterwards that nothing makes any sense.
-
+and being surprised afterwards that nothing makes any sense.
+(Well at least the smarter kids are surprised.
+The rest just calculates complete bulls*** without the blink of an eye.)
 
 This is the situation on land.
 If we go onto the water, however,
 we proverbial throw our metric system over board.
+
 Suddenly we start to measure wind speeds with "Knoten" (knots) or Beaufort,
 distances with "Seemeilen" (nautical miles)
-and a hand full of other antique units.
+and start to use a hand full of other antique units.
 
 How's that again?
 We adopted the metric system?
@@ -171,12 +173,12 @@ although Joule is require by law since 1969.
 No, we even use it in the wrong way. Like the US we say "Kalorie",
 although we mean "Kilokalorie".
 And I feel that it has even gotten worse in recent times.
-Previously at least some people said it
+Previously at least some people said it correctly
 and most products were advertised with Kilokalorie.
 But nowadays nobody seems to care anymore and e.g. recently I noticed that
-exclusively "Kalorie" was used in the description
-and software of my gym's fitness machines.
-And all this trouble even though the conversion isn't even that hard.
+exclusively "Kalorie" was used in the descriptions
+and the software of my gym's fitness machines.
+And all this trouble even though the conversion isn't difficulty.
 The kJ (kilojoule) value is approximately 4 times the kcal (kilocalorie) value.
 i.e 50 kcal ~= 200 kJ
 
@@ -190,33 +192,75 @@ for loosing weight than exercising)
 
 ## Sizes
 
-- Display sizes in inch
-- Wheel size in inch
-- Surfboard size
-- Font size in point
-- Resolution in dpi
-- Seemeile
+Worst of all, even the parade discipline of the metric system -
+measuring distances - is not spared.
+For many fields there exists the convention to use "Zoll" (inch)
+as the preferred (or even the mandatory) unit.
+
+Just to name a few items of the endless list of things
+you have to buy in inch sizes:
+
+- Displays
+- Wheels
+- Surfboards
+- Many tools
+- …
+
+There are also several other specialized units which are derived
+from the imperial units:
+
+- Font sizes are measured in point instead of millimeter
+- Screen-resolution in dpi (dots per inch) instead of p/mm (pixel per mm)
+
+Lastly we still use imperial units in our language.
+You can say:
+
+- "Meilenweit von etwas entfernt sein" (to be miles away from something)
+- "Meilenstein" (milestone)
+- "Etwas 3 Meilen gegen den Wind riechen" (smell something a mile off)
+- "Zollstock" (yardstick)
 
 
 ## Weight
 
-- Karat
+Luckily weight is one category which has completely succeeded
+in switching to the metric units … except for one little stubborn unit.
 
+"Karat" (carat)
 
-## Notation
+This is a particularly nasty one, because it actually means two things
+and I don't think many people are aware of it.
+In conjunction with gold, carat is an unit to specify the purity of the gold.
+In conjunction with diamonds and other gemstones it is an unit of mass.
 
-- comma vs decimal point
-- space vs apostrophe as thousands separator
+Seriously? Yes, seriously!
+It is the culmination of human idiocy.
 
+Let's make an example:
+You want to buy your fiancé(e) a beautiful diamond ring.
+The salesman in the jewelry store might show you a particularly lovely one
+and explain that it's made from 18 carat yellow gold and is topped with a
+2 carat diamond.
+What this actually means is that the ring is made from a gold alloy,
+which contains 18/24 = 0.75 = 75% pure yellow gold
+and that the diamond has a mass of 2 * 0.2 g = 0.4 g.
 
-So what are you proposing?
-While it requires some getting used to at the beginning,
-it's definitely possible to erase most of the
-bad habits from your routines.
-I did it and so can you! 😉
+But I can understand that making transparent statements about the composition
+of jewelry is not in the interest of the salesman.
+E.g. calling it 12 carat gold sounds much better than admitting that
+actually only 50% of it is real gold.
 
+---
 
-PS: I know that "Germany - You failed standardization" would have been a
-more correct title, but I felt that
-"Germany - You failed the metric system"
-would be more accessible for readers.
+To sum up:
+This rant got a little out of hand.
+I didn't expect it to get so comprehensive.
+Which, however, is a just another evidence of how broken our
+*oh so beautiful* system of units is.
+But hey, at least it's made in Germany.
+
+The only good thing is that it doesn't have to stay this way.
+It's in our hands to change our daily (bad) habits,
+to encourage friends to do better
+and to urge companies and organizations to use
+the internationally recommended units.
