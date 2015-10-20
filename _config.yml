@@ -20,6 +20,9 @@ defaults:
 
 markdown: redcarpet
 
-kramdown:
-  input: GFM
-  smart_quotes: [apos, apos, quot, quot]
+redcarpet:
+  extensions:
+    - space_after_headers
+    - underline
+    - strikethrough
+    - highlight
