@@ -2,8 +2,6 @@
 title: How to Download GitHub Issues from the Command Line
 ---
 
-# {{ page.title }}
-
 A few days ago I got a warning in my GitHub news feed that my 2 year
 [educational discount](https://education.github.com/discount_requests/new) was about to expire.
 As each of my 5 private repos contained a sensitive project I was forced to take them down

@@ -12,8 +12,6 @@ title: "Germany - You have failed the metric system"
 <script  src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js>
 </script>
 
-# {{page.title}}
-
 Some of you might watch the TV series "Arrow".
 Every time the Arrow catches a criminal who is supposedly harming
 his city, he will point it out to them in a theatrical fashion and yell:
