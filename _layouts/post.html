@@ -3,8 +3,13 @@ layout: default
 ---
 
 <article class="post">
-	<h1>{{ page.title }}</h1>
-	<time>{{ page.date | date: "%Y %B %d" }}</time>
+	<header>
+		<h1>{{ page.title }}</h1>
+		<p>
+			<time>{{ page.date | date: "%Y %B %d" }}</time> —
+			{{ page.content | number_of_words }} Words
+		</p>
+	</header>
 	{{ content }}
 	<hr>
 	<p>If you have any comments, thoughts or other feedback
