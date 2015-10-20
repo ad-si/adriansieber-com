@@ -1,5 +1,5 @@
 ---
-title: "Germany - You have failed the metric system"
+title: "Germany — You have failed the metric system"
 ---
 
 <link
@@ -16,7 +16,7 @@ Some of you might watch the TV series "Arrow".
 Every time the Arrow catches a criminal who is supposedly harming
 his city, he will point it out to them in a theatrical fashion and yell:
 
-> &lt;name of the criminal&gt; - You have failed this city!
+> &lt;name of the criminal&gt; — You have failed this city!
 
 I wish we would have someone like him for all the people and organizations
 which fail the metric system or standardization in general.
@@ -24,7 +24,7 @@ A standardization vigilante who is crusading against those
 who refuse to join the golden path of standardization.
 Maybe something like "Captain ISO"? 😂
 
-![Germany - You have failed the metric system!](../img/arrow-meme.jpg)
+![Germany — You have failed the metric system!](../img/arrow-meme.jpg)
 
 Joking aside, it's striking how often standards
 are ignored or non-standard units are used, even in countries
@@ -71,8 +71,8 @@ Nobody would be sure what you are talking about.
 For digits from 1 to 12, however, it's perfectly fine to skip the "Uhr"
 and everybody still knows that you are talking about a time.</small>
 
-As you have to infer the correct time from the context -
-which is not always possible - this is less than optimal.
+As you have to infer the correct time from the context —
+which is not always possible — this is less than optimal.
 It already has (at least in my life) lead to confusion
 and misunderstanding a few times.
 
@@ -99,8 +99,8 @@ and can be filtered step by step by year, month, day, hour, minute and second.
 
 The funny (or rather sad) thing is that in 1996 the corresponding
 DIN standard (the German version of the ISO standard)
-declared YYYY-MM-DD the only valid date format in Germany.
-This means that all national institutions - educational as well as public -
+declared YYYY&#8209;MM&#8209;DD the only valid date format in Germany.
+This means that all national institutions — educational as well as public —
 were supposed to use exclusively this format.
 **I can't remember having learned it at school at all.** 😡
 However, as the Germans did not really bother to use the format, they
@@ -124,7 +124,7 @@ They proudly state how much "Pferdestärken" (horsepower)
 it has, instead of using the much more suited SI unit kilowatt.
 
 <small>By the way: The US/UK version
-of the horsepower - also called imperial mechanical horsepower -
+of the horsepower — also called imperial mechanical horsepower —
 isn't even the same as the German metric horsepower.
 To be exact:
 1 metric hp is 0.986 imperial mechanical horsepower.</small> 🙈
@@ -188,14 +188,14 @@ Even better, it is very imaginative.
 $1\,kJ$ is approximately the energy needed to lift $100\,kg$ vertically $1\,m$.
 This means if you eat one piece of German chocolate ($\approx 90\,kJ$) you
 can lift a quarterback $90$ times $1$ meter. 💪
-Now you also now why eating less is far more important for loosing weight
-than exercising.
+Now you also know why eating less is far more important than exercising
+for loosing weight.
 
 
 ## Length
 
-Worst of all, even the parade discipline of the metric system -
-measuring lengths - is not spared.
+Worst of all, even the parade discipline of the metric system —
+measuring lengths — is not spared.
 For many fields there exists the convention to use "Zoll" (inch)
 as the preferred (or even the mandatory) unit.
 
