@@ -54,7 +54,7 @@ you could ask or text them: "Sollen wir uns um 9 Uhr treffen?"
 This, however, does not necessarily mean 09:00 (9 AM).
 It can just as well mean 21:00 (9 PM).
 
-One might argue that the same problem holds true for US english
+One might argue that the same problem holds true for US English
 to a certain degree as well.
 The advantage of the US system, however, is that "nine P-M" is even shorter
 to say than "nine o-clock".
@@ -62,7 +62,7 @@ This leaves little reason to prefer the ambiguous "nine o-clock"
 over the shorter and more precise "nine P-M".
 
 In German, however, it's kind of awkward to say
-"um ein-und-zwan-zig Uhr" (at twentyone o'clock)
+"um ein-und-zwan-zig Uhr" (at twenty-one o'clock)
 and so people often just say "um neun" (at nine).
 
 <small>You also can't just say "um ein-und-zwan-zig"
