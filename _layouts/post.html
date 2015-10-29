@@ -8,7 +8,7 @@ layout: default
 		<p>
 			<time>{{ page.date | date: "%F" }}</time> —
 			{{ page.content | number_of_words }} Words —
-			{{ page.content | number_of_words | divided_by: 150.0 | round }}
+			{{ page.content | number_of_words | divided_by: 150 | plus: 1 }}
 			min
 		</p>
 	</header>
