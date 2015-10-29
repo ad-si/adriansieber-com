@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "stylus --watch --out ./css styl & jekyll serve --trace --drafts",
+    "test": "npm run buildCss && npm run buildResume && jekyll serve",
     "build": "npm run buildCss && npm run buildResume && jekyll build",
     "buildResume": "node ./_resume/index.js",
     "buildCss": "stylus --compress --out ./css styl"
