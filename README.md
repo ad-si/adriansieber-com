@@ -5,16 +5,15 @@ My website on Github. Great! =)
 
 ## Development
 
-Host and automatically rebuild website (except resume) on
-[localhost:4000](http://localhost:4000).
+Run `npm install` to install Javascript dependencies
+and `bundle` to install ruby dependencies.
 
-```
-$ npm start
-```
+Run `npm start` to host and automatically rebuild website (except resume) on
+[localhost:4000](http://localhost:4000).
 
 
 ## Build
 
 ```
-$ npm run build
+npm run build
 ```
