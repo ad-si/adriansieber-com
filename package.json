@@ -2,12 +2,16 @@
   "name": "adriansieber",
   "private": true,
   "scripts": {
-    "jekyll-drafts": "bundle exec jekyll serve --trace --drafts",
-    "start": "stylus --watch --out ./css styl & npm run jekyll-drafts",
-    "test": "npm run buildCss && npm run buildResume && bundle exec jekyll serve",
-    "build": "npm run buildCss && npm run buildResume && bundle exec jekyll build",
     "buildResume": "node ./_resume/index.js",
-    "buildCss": "stylus --compress --out ./css styl"
+    "buildCss": "stylus --compress --include-css --out ./css styl/screen.styl",
+
+    "watchCss": "stylus --watch --include-css --out ./css styl/screen.styl",
+    "serve-drafts": "bundle exec jekyll serve --trace --drafts",
+    "start": "npm run watchCss & npm run serve-drafts",
+
+    "build": "npm run buildCss && npm run buildResume && bundle exec jekyll build",
+    "test": "npm run build",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "handlebars": "^2.0.0-alpha.4",

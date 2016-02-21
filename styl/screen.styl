@@ -1,3 +1,5 @@
+@import './base16-tomorrow.dark.styl'
+
 contentWidth = 660px
 textColor = rgb(40, 50, 60)
 projectImageHeight = 180px
@@ -45,14 +47,20 @@ ol
 	margin-bottom 1em
 
 pre
+	background-color: #1d1f21
+	color: rgb(220, 220, 220)
 	font-size 0.8em
 	margin-bottom 0.6em
+	border-radius 3px
+	code
+		display: block
+		padding 0.8em 1.5em
+		overflow-x scroll
 
-pre code
-	font-size inherit
-	white-space inherit
-
-code
+code.highlighter-rouge,
+h1 code,
+h2 code,
+h3 code
 	background-color rgb(230, 230, 230)
 	border 1px solid rgb(220, 220, 220)
 	font-size 0.9em
