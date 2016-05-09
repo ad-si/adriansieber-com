@@ -9,11 +9,15 @@
     "start": "npm run watchCss & npm run serve-drafts",
     "build": "npm run buildCss && npm run buildResume && bundle exec jekyll build",
     "test": "npm run build",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "precommit": "npm run prepublish"
   },
   "dependencies": {
     "handlebars": "^4.0.5",
     "js-yaml": "^3.6.0",
     "stylus": "^0.54.5"
+  },
+  "devDependencies": {
+    "husky": "^0.11.4"
   }
 }
