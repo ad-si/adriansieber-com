@@ -6,10 +6,11 @@ title: "Germany — You have failed the metric system"
 	rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
 
-<script src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js">
 </script>
 
-<script  src=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js">
 </script>
 
 Some of you might watch the TV series "Arrow".
