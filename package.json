@@ -4,18 +4,16 @@
   "scripts": {
     "buildResume": "node ./_resume/index.js",
     "buildCss": "stylus --compress --include-css --out ./css styl/screen.styl",
-
     "watchCss": "stylus --watch --include-css --out ./css styl/screen.styl",
     "serve-drafts": "bundle exec jekyll serve --trace --drafts",
     "start": "npm run watchCss & npm run serve-drafts",
-
     "build": "npm run buildCss && npm run buildResume && bundle exec jekyll build",
     "test": "npm run build",
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "handlebars": "^2.0.0-alpha.4",
-    "js-yaml": "^3.2.6",
-    "stylus": "^0.50.0"
+    "handlebars": "^4.0.5",
+    "js-yaml": "^3.6.0",
+    "stylus": "^0.54.5"
   }
 }
