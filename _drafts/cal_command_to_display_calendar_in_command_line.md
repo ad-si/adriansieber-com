@@ -1,29 +1,35 @@
 ---
-title: '<code>cal</code> - Display a Calendar in your Terminal'
+title: '<code>cal</code> - Display a Calendar in Your Terminal'
 ---
 
+<style>
+   pre:nth-of-type(4) {
+      font-size: 0.7em;
+   }
+</style>
+
 This is my first post in the
-[Command Line Sunday](/command-line-sunday) series,
-in which I will give a short introduction
-to an useful command line tool every sunday.
+[Command Line Monday](/command-line-monday) series.
+It gives a short introduction to an useful command line tool every Monday.
 
 `cal` is part of the
 [Single UNIX Specification](https://en.wikipedia.org/wiki/Single_UNIX_Specification)
-and <del>is</del> <ins>should</ins> therefore <ins>be</ins> installed on every
+and <del>is</del> <ins>should</ins> therefore be installed on every
 unix-like operating system.
 
-The [official manual](http://pubs.opengroup.org/onlinepubs/9699919799/utilities/cal.html)
+The [official manual](
+   http://pubs.opengroup.org/onlinepubs/9699919799/utilities/cal.html)
 of `cal` in the unix specification defines only 3 commands:
 
 ```txt
 $ cal
-   February 2016
+      May 2016
 Su Mo Tu We Th Fr Sa
-    1  2  3  4  5  6
- 7  8  9 10 11 12 13
-14 15 16 17 18 19 20
-21 22 23 24 25 26 27
-28 29
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29 30 31
 ```
 
 ```txt
@@ -74,24 +80,26 @@ Su Mo Tu We Th Fr Sa
 27 28 29 30
 ```
 
-Simple but useful. That's what we love about unix.
+Simple but useful. That's what we love about Unix.
 
-However, real world implementations which can be found on MAC OS, BSD
-and of course GNU/Linux are much more powerful and have some nifty
-additional features. We'll have closer look at the GNU version,
-also called `gcal`. It's installed on Ubunutu per default and can
-be installed on Mac OS with [Homebrew](brew.sh): `brew install gcal`
+Real world implementations which can be found on Mac OS, BSD
+and of course GNU/Linux are, however, much more powerful and have some nifty
+additional features.
+We'll have closer look at the GNU version, also called `gcal`.
+It's installed on Ubuntu per default and can
+be installed on Mac OS with [Homebrew](brew.sh):
+`brew install gcal`
 
-One very useful command is for example
-`gcal --cc-holiday <location-code> --holiday-list` or the short form
-`gcal -q <location-code> -n`,
+One very useful command for example is
+`gcal --holiday-list --cc-holiday=<location-code>` or the short form
+`gcal -n -q <location-code>`,
 where `<location-code>` is a two letter country code
 plus (sometimes) a two letter territory code.
 
 Example output:
 
 ```txt
-$ gcal --cc-holidays=us_ca --holiday-list
+$ gcal --holiday-list --cc-holidays=us_ca
 
 Eternal holiday list:                      The year 2016 is A leap year
 
@@ -137,24 +145,24 @@ Kwanzaa (US_CA)                          - Sat,  Dec 31st 2016 = +314 days
 ```
 
 There are also countless options to change the display range
-and the output formatting. E.g.:
+and the output formatting.
 
 - `gcal .` - Display the last, the current and the next month
-- `gcal -j` - Display day as day of the year instead of day of the month
+- `gcal -j` - Display the days as day of the year instead of day of the month
 	(e.g. 342 instead of 7)
 - `gcal 3-7` - Display days of month 3 to 7
+- …
 
 Time range and filtering options can of course also be combined.
 
 Another interesting feature is gcals ability to load calendar entries
 from a so called resource file. Basically it's a list of dates and
 a corresponding text.
-
-In order to try it out create the file `~/.gcalrc` with following content:
+To try it out create the file `~/.gcalrc` with following content:
 
 ```txt
-20160221 1. Write your first "Command Line Sunday" post!
-00000221 It's John's %B1987  Birthday
+20160428 1. Write your first "Command Line Monday" post!
+00000428 It's John's %B1987  Birthday
 
 0 Today is %>1*K , %>02&*D  %U  %Y !
 0 It's the %>03&*N  day of the year.
@@ -165,38 +173,41 @@ In order to try it out create the file `~/.gcalrc` with following content:
 0 Moon phase %>03*O ~Text %Z
 ```
 
-If you now run `gcal --today` and it is 2016-02-21 it will display this:
+If you now run `gcal --today` and it was 2016-04-28 or you specify the date with
+`gcal --list-of-fixed-dates %20160516` (short `gcal -c %20160516`)
+you get following result:
 
 ```txt
-$ gcal --today
+$ gcal --list-of-fixed-dates %20160428
 
 Fixed date list:
 
-Sun,  Feb<21st>2016: 1. Write your first "Command Line Sunday" post!
-Sun,  Feb<21st>2016: Hurry up with your work, sunrise is at 08:32.
-Sun,  Feb<21st>2016: It's 08:11pm o'clock, Mr. adrian
-Sun,  Feb<21st>2016: It's John's 29 Birthday
-Sun,  Feb<21st>2016: It's the 052nd day of the year.
-Sun,  Feb<21st>2016: Moon phase 096%+
+Thu,  Apr<28th>2016: 1. Write your first "Command Line Monday" post!
+Thu,  Apr<28th>2016: Hurry up with your work, sunrise is at 06:03.
+Thu,  Apr<28th>2016: It's 09:56am o'clock, Mr. adrian
+Thu,  Apr<28th>2016: It's John's 29 Birthday
+Thu,  Apr<28th>2016: It's the 119th day of the year.
+Thu,  Apr<28th>2016: Moon phase 066%-
                      Text
-                                @@@@@@@@@@@@@@
-                           @@@@@@@@@@@@@@@@@@@@@@@@
-                         @@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                      @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                           @@@@@@@@@@@@@@@@@@@@@@@@
-                               @@@@@@@@@@@@@@@@
-Sun,  Feb<21st>2016: The week number is: 08
-Sun,  Feb<21st>2016: Today is Sunday, 21st February 2016!
+                                @@@@@@@@@@   )
+                           @@@@@@@@@@@@@@@@@@     )
+                         @@@@@@@@@@@@@@@@@@@@@      )
+                       @@@@@@@@@@@@@@@@@@@@@@@@       )
+                      @@@@@@@@@@@@@@@@@@@@@@@@@        )
+                     @@@@@@@@@@@@@@@@@@@@@@@@@@@        )
+                     @@@@@@@@@@@@@@@@@@@@@@@@@@@        )
+                      @@@@@@@@@@@@@@@@@@@@@@@@@        )
+                       @@@@@@@@@@@@@@@@@@@@@@@@       )
+                        @@@@@@@@@@@@@@@@@@@@@@       )
+                           @@@@@@@@@@@@@@@@@@     )
+                               @@@@@@@@@@@@   )
+Thu,  Apr<28th>2016: The week number is: 17
+Thu,  Apr<28th>2016: Today is Thursday, 28th April 2016!
 ```
 
-As you can see gcal has some crazy features, like displaying the current
-moon phase as well calculating the current sunrise / sunset / ….
+As you can see gcal has some crazy features.
+And displaying the current moon phase
+as well calculating the current sunrise and sunset times are just the beginning.
 There is even a feature to adjust the sunrise time by specifying the current
 atmospheric air pressure. 😯
 This, however, is completely out of the scope of this post.
@@ -206,10 +217,14 @@ It's quite a read.
 
 I'd be really excited to hear all the use cases for gcal one can come up with.
 Seems really suited for a TODO list manager
-or to never forget a birthday again, maybe even as a full fledged calendar.
-Let me hear your thoughts on this!
+or to never forget a birthday again.
+Maybe even as a ssh-synced shared company calendar app
+where every employee has its own resource file.
 
-So, this was my first post of the "Command Line Sunday" series.
-I hope you liked it! Make sure to come back next sunday for the next post,
-or go back to the [landing page](/) and sign up for my newsletter
+**Let me hear your thoughts on this!**
+
+I hope you enjoyed my first post of the "Command Line Monday" series.
+Make sure to come back next Monday for a new post!
+If you are afraid that you might miss it you can
+go to the [landing page](/) and sign up for my newsletter
 to get a friendly reminder!
