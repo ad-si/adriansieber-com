@@ -5,6 +5,10 @@ sansSerifFont = Helvetica, sans-serif
 
 contentWidth = 660px
 textColor = rgb(40, 50, 60)
+primaryColor = white
+slightlyMutedColor = rgb(240, 240, 240)
+mediumMutedColor = rgb(220, 220, 220)
+contrastColor = rgb(30, 30, 30)
 projectImageHeight = 180px
 projectImageWidth = 300px
 
@@ -16,7 +20,7 @@ projectImageWidth = 300px
 	box-sizing border-box
 
 html
-	background-color white
+	background-color primaryColor
 
 body
 	font-size 18px
@@ -26,15 +30,32 @@ body
 
 hr
 	height 1px
-	background-color rgb(240, 240, 240)
+	background-color slightlyMutedColor
 	margin-bottom 1em
 
 h1, h2, h3, h4, h5, h6
 	font-family sansSerifFont
-	color rgb(30, 30, 30)
+	color contrastColor
 
 h1
 	margin-bottom 1em
+
+input
+	padding 0.5em 1em
+	display inline-block
+	border-radius 2px
+	&[type=email]
+		border-width 1px
+		border-style solid
+		border-color mediumMutedColor
+		width 20em
+
+	&[type=submit]
+		background-color slightlyMutedColor
+		border-width 1px
+		border-style solid
+		border-color mediumMutedColor
+
 
 a
 	&:link
@@ -155,7 +176,6 @@ article
 		margin-left auto
 		margin-right auto
 
-
 #wrapper
 	> header
 		text-align center
@@ -230,6 +250,16 @@ aside
 #home article
 	h1
 		margin-bottom 0.8em
+
+	#mce-responses
+		display inline-block
+
+	form
+		margin-bottom 2em
+
+	label
+		display none
+
 
 #projects
 	margin-left 0
