@@ -80,6 +80,17 @@ Su Mo Tu We Th Fr Sa
 27 28 29 30
 ```
 
+```txt
+# Shortest Month
+$ cal 09 1752
+   September 1752
+Su Mo Tu We Th Fr Sa
+       1  2 14 15 16
+17 18 19 20 21 22 23
+24 25 26 27 28 29 30
+```
+
+
 Simple but useful. That's what we love about Unix.
 
 Real world implementations which can be found on Mac OS, BSD
