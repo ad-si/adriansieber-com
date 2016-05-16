@@ -9,6 +9,8 @@ title: '<code>cal</code> - Display a Calendar in Your Terminal'
    }
 </style>
 
+![Screenshot of command line execution of `cal`](/img/cal-screenshot.png)
+
 This is my first post in the
 [Command Line Monday](/command-line-monday) series.
 It gives a short introduction to an useful command line tool every Monday.
