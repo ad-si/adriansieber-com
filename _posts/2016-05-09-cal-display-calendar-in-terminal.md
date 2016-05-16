@@ -3,7 +3,8 @@ title: '<code>cal</code> - Display a Calendar in Your Terminal'
 ---
 
 <style>
-   pre:nth-of-type(4) {
+   pre:nth-of-type(4),
+   pre:last-of-type {
       font-size: 0.7em;
    }
 </style>
@@ -174,7 +175,7 @@ To try it out create the file `~/.gcalrc` with following content:
 ```
 
 If you now run `gcal --today` and it was 2016-04-28 or you specify the date with
-`gcal --list-of-fixed-dates %20160516` (short `gcal -c %20160516`)
+`gcal --list-of-fixed-dates %20160428` (short `gcal -c %20160428`)
 you get following result:
 
 ```txt
@@ -228,3 +229,59 @@ Make sure to come back next Monday for a new post!
 If you are afraid that you might miss it you can
 go to the [landing page](/) and sign up for my newsletter
 to get a friendly reminder!
+
+
+## Update 2016-05-16
+
+This post got unexpectedly quite some traction on
+[Hacker News](https://news.ycombinator.com/item?id=11665909) 😁
+and therefore I just wanted to highlight a few of the
+interesting things people mentioned in the comments.
+
+A lot of people [thought](https://news.ycombinator.com/item?id=11677784)
+that Monday should be the first day of the week
+and I completely agree!
+It's the official ISO 8601 standard after all.
+<small>
+  (And as you can read in [Germany — You have failed the metric system](
+  /germany-you-have-failed-the-metric-system), standards mean a lot to me!)
+</small>
+
+For convenience I use following script on my mac to alias `cal`:
+
+```bash
+#! /usr/bin/env bash
+
+gcal --starting-day=1 "$1"
+```
+
+This uses Monday as the first day of the week.
+Problem solved 😊
+
+[Bushra8](https://news.ycombinator.com/user?id=Bushra8) also
+[mentioned](https://news.ycombinator.com/item?id=11678096)
+a cool flag which displays the astronomical holidays.
+I.e. the next full moon or the next lunar eclipse.
+
+```shell
+$ gcal --holiday-list --astronomical-holidays
+
+Eternal holiday list:                      The year 2016 is A leap year
+
+New Moon 01:30 (Ast)                     - Sun,  Jan 10th 2016 = -127 days
+Waxing Half Moon 23:26 (Ast)             - Sat,  Jan 16th 2016 = -121 days
+Full Moon 01:46 (Ast)                    - Sun,  Jan 24th 2016 = -113 days
+Waning Half Moon 03:28 (Ast)             - Mon,  Feb  1st 2016 = -105 days
+New Moon 14:39 (Ast)                     - Mon,  Feb  8th 2016 =  -98 days
+Waxing Half Moon 07:46 (Ast)             - Mon,  Feb 15th 2016 =  -91 days
+Full Moon 18:20 (Ast)                    - Mon,  Feb 22nd 2016 =  -84 days
+Waning Half Moon 23:11 (Ast)             - Tue,  Mar  1st 2016 =  -76 days
+New Moon 01:54 (Ast)                     - Wed,  Mar  9th 2016 =  -68 days
+Solar Eclipse/Total 01:57 (Ast)          - Wed,  Mar  9th 2016 =  -68 days
+Waxing Half Moon 17:03 (Ast)             - Tue,  Mar 15th 2016 =  -62 days
+Equinox Day 04:30 (Ast)                  - Sun,  Mar 20th 2016 =  -57 days
+Full Moon 12:01 (Ast)                    - Wed,  Mar 23rd 2016 =  -54 days
+Lunar Eclipse/Penumbral 11:47 (Ast)      - Wed,  Mar 23rd 2016 =  -54 days
+Waning Half Moon 15:17 (Ast)             - Thu,  Mar 31st 2016 =  -46 days
+…
+```
