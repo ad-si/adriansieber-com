@@ -27,3 +27,5 @@ kramdown:
 safe: true
 incremental: true
 highlighter: rouge
+gems:
+  - jekyll-sitemap
