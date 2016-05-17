@@ -12,4 +12,4 @@ to a useful command line tool.
 - [<code>cal</code> - Display a Calendar in Your Terminal](
     /cal-display-calendar-in-terminal)
 - [<code>fold</code> - Wrap lines to fit in specified width](
-    /fold-wrap-lines-to-fit-in-specified-width.md)
+    /fold-wrap-lines-to-fit-in-specified-width)
