@@ -1,0 +1,82 @@
+<svg
+	width="300"
+	height="280"
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+
+	<style>
+		.changed,
+		.legend rect {
+			fill: orange;
+		}
+		#arrow {
+			stroke-width: 1;
+		}
+		.arrows * {
+			fill: none;
+			stroke: rgb(40, 50, 60);
+		}
+		.distances {
+			font-size: 0.8em;
+		}
+	</style>
+
+	<defs>
+		<marker
+			id="triangle"
+			viewBox="0 0 2 2"
+			refX="0"
+			refY="1"
+			orient="auto">
+			<path d="M0,0 L2,1 L0,2 z" />
+		</marker>
+		<g id="arrow">
+			<path
+				d="M0,0 h4 a1,1 1 1 1 0,20"
+				marker-end="url(#triangle)" />
+		</g>
+	</defs>
+
+	<g transform="translate(20,20)">
+		<g transform="translate(0,20)">
+			<text><tspan class="changed">000</tspan></text>
+			<text y="30">00<tspan class="changed">1</tspan></text>
+			<text y="60">0<tspan class="changed">10</tspan></text>
+			<text y="90">01<tspan class="changed">1</tspan></text>
+			<text y="120"><tspan class="changed">100</tspan></text>
+			<text y="150">10<tspan class="changed">1</tspan></text>
+			<text y="180">1<tspan class="changed">10</tspan></text>
+			<text y="210">11<tspan class="changed">1</tspan></text>
+		</g>
+
+		<g class="arrows" transform="translate(50,18)">
+			<use xlink:href="#arrow"/>
+			<use y="30" xlink:href="#arrow"/>
+			<use y="60" xlink:href="#arrow"/>
+			<use y="90" xlink:href="#arrow"/>
+			<use y="120" xlink:href="#arrow"/>
+			<use y="150" xlink:href="#arrow"/>
+			<use y="180" xlink:href="#arrow"/>
+			<path
+				d="M0,210 h4 a1,1 0 1 1 0,20 h-60 a10,10 0 0 1 -10,-10
+					v-240 a10,10 0 0 1 10,-10 h60 a1,1 1 1 1 0,20"
+				marker-end="url(#triangle)" />
+		</g>
+
+		<g class="distances" transform="translate(70,34)">
+			<text>Hamming Distance = 1</text>
+			<text y="30">Hamming Distance = 2</text>
+			<text y="60">Hamming Distance = 1</text>
+			<text y="90">Hamming Distance = 3</text>
+			<text y="120">Hamming Distance = 1</text>
+			<text y="150">Hamming Distance = 2</text>
+			<text y="180">Hamming Distance = 1</text>
+			<text y="210">Hamming Distance = 3</text>
+		</g>
+
+		<!-- <g class="legend" transform="translate(130,260)">
+			<rect width="20" height="20" />
+			<text x="30" y="18">Changed bits</text>
+		</g> -->
+	</g>
+</svg>

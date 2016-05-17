@@ -1,7 +1,9 @@
-# How to write a software rasterizer in ECMAScript 6
+---
+title: How to write a software rasterizer in ES2015
+---
 
 This is the table of contents for an extensive series of posts on how to write
-a software rasterizer in Javascript (or more specifically in ECMAScript 6).
+a software rasterizer in Javascript (or more specifically in ES2015).
 
 List of posts:
 
