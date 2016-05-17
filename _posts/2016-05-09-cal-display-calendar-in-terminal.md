@@ -1,5 +1,6 @@
 ---
 title: '<code>cal</code> - Display a Calendar in Your Terminal'
+image: /img/cal-screenshot.png
 ---
 
 <style>

@@ -1,5 +1,19 @@
 name: Adrian Sieber's Website
-description: My personal website including a blog
+description: My personal website and blog
+url: adriansieber.com
+author: Adrian Sieber
+twitter:
+  username: AdrianSieber
+logo: /img/logo.png
+
+social:
+  name: Adrian Sieber
+  links:
+    - facebook.com/adriansieber1
+    - github.com/adius
+    - linkedin.com/in/adriansieber
+    - stackoverflow.com/users/1850340/adius
+
 
 permalink: /:title/
 
@@ -29,3 +43,4 @@ incremental: true
 highlighter: rouge
 gems:
   - jekyll-sitemap
+  - jekyll-seo-tag
