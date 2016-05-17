@@ -56,7 +56,7 @@ also combine it with the `-s` flag:
    /img/fold-file-40-spaces-screenshot.png)
 
 And last but not least the command line flag `-b` lets `fold` count
-bytes rather then characters.
+bytes rather than characters.
 This can be especially useful if the input contains tabs
 and the tab characters shall be counted instead of the number of spaces they
 represent.
