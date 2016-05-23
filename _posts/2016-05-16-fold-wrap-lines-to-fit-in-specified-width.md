@@ -48,7 +48,7 @@ at the closest preceding whitespace character.
 ![Screenshot of command line output of `fold -s example.txt`](
    /img/fold-file-spaces-screenshot.png)
 
-If you don't want use the custom terminal width for wrapping
+If you don't want to use the custom terminal width for wrapping
 you can set up a custom one with the `-w` flag and
 also combine it with the `-s` flag:
 
