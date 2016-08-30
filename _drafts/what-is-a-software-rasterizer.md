@@ -17,7 +17,7 @@ So what is rasterization then?
 > Rasterization is the process of converting a vector image into a raster image.
 
 A vector-graphic is a set of simple shapes
-with certain properties like form, color and position which are layed out
+with certain properties like form, color and position which are laid out
 on an infinitely large canvas.
 As our screens aren't infinite we also need to define a viewport.
 This is the rectangle which defines the part of the canvas that is
