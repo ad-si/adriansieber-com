@@ -20,5 +20,20 @@
   },
   "devDependencies": {
     "husky": "^0.11.4"
-  }
+  },
+  "description": "My website on Github. Great! =)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adius/adius.github.io"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adius/adius.github.io/issues"
+  },
+  "homepage": "https://github.com/adius/adius.github.io#readme",
+  "keywords": [
+    "adriansieber"
+  ]
 }
