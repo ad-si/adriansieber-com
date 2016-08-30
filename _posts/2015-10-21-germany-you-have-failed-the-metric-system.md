@@ -190,7 +190,7 @@ $1\,kJ$ is approximately the energy needed to lift $100\,kg$ vertically $1\,m$.
 This means if you eat one piece of German chocolate ($\approx 90\,kJ$) you
 can lift a quarterback $90$ times $1$ meter. 💪
 Now you also know why eating less is far more important than exercising
-for loosing weight.
+for losing weight.
 
 
 ## Length
