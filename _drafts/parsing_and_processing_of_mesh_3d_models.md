@@ -42,7 +42,7 @@ All mayor browsers have been supporting this feature since spring 2012.
 [http://caniuse.com/#search=file%20api]
 
 Traditionally, a working file-upload component consists
-of a upload button which prompts the user to select files
+of an upload button which prompts the user to select files
 and a script which handles those specified.
 
 The minimal implementation looks like this:
