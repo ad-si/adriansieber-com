@@ -465,7 +465,7 @@ As mentioned during our presentation, we simulated a virtual team
 during the creation of this paper and its preceding in-class
 presentation. In an initial face-to-face kick-off meeting (as described
 above) we defined our toolset: For asynchronous communication we used
-Facebook Messenger. We synchronised via Skype as conferencing and screen
+Facebook Messenger. We synchronized via Skype as conferencing and screen
 sharing tool. Google Documents/Drive was our choice for both
 asynchronous and synchronous collaboration during the planning phase for
 the presentation and especially in the process of writing this paper. It
