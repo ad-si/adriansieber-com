@@ -14,7 +14,7 @@ image: /img/cal-screenshot.png
 
 This is my first post in the
 [Command Line Monday](/command-line-monday) series.
-It gives a short introduction to an useful command line tool every Monday.
+It gives a short introduction to a useful command line tool every Monday.
 
 `cal` is part of the
 [Single UNIX Specification](https://en.wikipedia.org/wiki/Single_UNIX_Specification)

@@ -28,7 +28,7 @@ at any time.
 One way to achieve this is to specify the absolute rotation angle during setup
 and measure the change afterwards.
 This, however, is not optimal.
-When the crane is restarted or it loses power due to an power outage
+When the crane is restarted or it loses power due to a power outage
 the steering controllers memory is erased
 and the crane therefore can't "remember" the original position.
 It therefore would be necessary to recalibrate it every time it's restarted.
