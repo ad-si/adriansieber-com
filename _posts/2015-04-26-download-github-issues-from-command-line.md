@@ -54,11 +54,11 @@ Explanation:
 
 - `http`: The command-name of httpie.
 - `-a <username>`: We try to basic authenticate as "<username>".
-	This will prompt use to enter the corresponding password.
+  This will prompt use to enter the corresponding password.
 - `-b`: Only download the body and not the header of the resource.
 - `\`: Backslashes are used to escape the adjacent newline character so that we can split the command over several lines.
-	This is just to increase readability.
-	You can type the whole command simply in one line as well.
+  This is just to increase readability.
+  You can type the whole command simply in one line as well.
 
 You might have noticed that this request only contains open issues.
 To get all issues - including closed ones - we need to add the query string `?state=all` to the request-URL.
@@ -78,7 +78,7 @@ Explanation:
 - Pipe them into json
 - `-0` Remove all unnecessary whitespace (newlines, spaces, tabs) from the JSON
 - `-a` reformat the JSON-array into a newline delimited stream of JSON events.
-	See [JSON Lines](http://jsonlines.org) for more information.
+  See [JSON Lines](http://jsonlines.org) for more information.
 
 Now we can simply loop over the lines and execute code for each line and therefore each issue.
 In this example we simply print the issue again:

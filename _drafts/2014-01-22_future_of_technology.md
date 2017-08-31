@@ -92,10 +92,10 @@ Especially improvements in software, like smarter and more eﬃcient algorithms,
 recent years possible.
 
 - Artificial Intelligence
-	- Speech Recognition
-	- Computer Vision
-	- Machine Learning
+  - Speech Recognition
+  - Computer Vision
+  - Machine Learning
 - Big Data
 - Social
 - Always online (3G & 4G Networks)
-
+

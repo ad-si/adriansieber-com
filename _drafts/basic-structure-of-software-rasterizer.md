@@ -16,25 +16,25 @@ appear in the Array. So the first element in the Array is the lowest shape
 ```javascript
 
 let listOfShapes = [
-	{
-		type: 'circle',
-		radius: 2,
-		center: {
-			x: 5,
-			y: 5
-		},
-		color: 'red'
-	},
-	{
-		type: 'rectangle',
-		width: 4,
-		height: 2,
-		origin: {
-			x: 1,
-			y: 1
-		},
-		color: 'green'
-	}
+  {
+    type: 'circle',
+    radius: 2,
+    center: {
+      x: 5,
+      y: 5
+    },
+    color: 'red'
+  },
+  {
+    type: 'rectangle',
+    width: 4,
+    height: 2,
+    origin: {
+      x: 1,
+      y: 1
+    },
+    color: 'green'
+  }
 ]
 ```
 
@@ -47,24 +47,24 @@ pixels and each pixel is simply a hexadecimal number defining the color.
 ```javascript
 
 let imageRows = [
-	[
-		#00ff00,
-		#00ff00,
-		#00ff00,
-		#00ff00
-	],
-	[
-		#ff0000,
-		#ff0000,
-		#ff0000,
-		#ff0000
-	],
-	[
-		#000000,
-		#555555,
-		#aaaaaa,
-		#ffffff
-	]
+  [
+    #00ff00,
+    #00ff00,
+    #00ff00,
+    #00ff00
+  ],
+  [
+    #ff0000,
+    #ff0000,
+    #ff0000,
+    #ff0000
+  ],
+  [
+    #000000,
+    #555555,
+    #aaaaaa,
+    #ffffff
+  ]
 ]
 ```
 

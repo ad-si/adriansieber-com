@@ -3,17 +3,17 @@ title: Git's Prayer
 ---
 
 <style>
-	@import url(http://fonts.googleapis.com/css?family=Pinyon+Script);
-	.post > p:first-of-type {
-		font-size: 140%;
-		font-family: 'Pinyon Script', cursive;
-	}
+  @import url(http://fonts.googleapis.com/css?family=Pinyon+Script);
+  .post > p:first-of-type {
+    font-size: 140%;
+    font-family: 'Pinyon Script', cursive;
+  }
 
-	@media screen and (min-width: 660px) {
-		.post > p:first-of-type {
-			font-size: 160%;
-		}
-	}
+  @media screen and (min-width: 660px) {
+    .post > p:first-of-type {
+      font-size: 160%;
+    }
+  }
 </style>
 
 Our origin in the cloud,  

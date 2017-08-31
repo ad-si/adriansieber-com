@@ -26,15 +26,15 @@ supposed to get displayed.
 For example: A vector image might be composed of 2 elements:
 
 1. A circle with this properties:
-	- Radius of 2
-	- Center at `x = 5` and `y = 5`
-	- Red color
+  - Radius of 2
+  - Center at `x = 5` and `y = 5`
+  - Red color
 
 1. A rectangle with this properties:
-	- Height of 2
-	- Width of 4
-	- Upper left corner positioned at `x = 1` and `y = 1`
-	- Green color
+  - Height of 2
+  - Width of 4
+  - Upper left corner positioned at `x = 1` and `y = 1`
+  - Green color
 
 Furthermore lies the rectangle on top of the circle.
 The section which defines our final image (the viewport)

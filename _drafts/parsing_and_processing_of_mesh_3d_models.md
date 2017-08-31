@@ -13,11 +13,11 @@ This process consists of six steps:
 1. Loading the file
 1. Parsing the file and converting it into a native data-structure
 1. Optimizing the data-structure for increased performance
-	and decreased storage requirements
+  and decreased storage requirements
 1. Automatic alignment
-	1. Rotating the model to align it to the grid imposed by the bricks
-	1. Centering the model in the xy-plane
-	1. Aligning the model-surface and the brick surfaces
+  1. Rotating the model to align it to the grid imposed by the bricks
+  1. Centering the model in the xy-plane
+  1. Aligning the model-surface and the brick surfaces
 
 
 Our goal was to archive a performant and visually pleasing experience
@@ -52,19 +52,19 @@ The minimal implementation looks like this:
 <title>Minimal file upload example</title>
 <input type=file id=input>
 <script>
-	document
-		.getElementById('input')
-		.addEventListener('change', function () {
-			var file = this.files[0],
-				reader = new FileReader()
+  document
+    .getElementById('input')
+    .addEventListener('change', function () {
+      var file = this.files[0],
+        reader = new FileReader()
 
-			reader.onload = function () {
-				// File content is now available in reader.result
-				// and can be processed
-			}
+      reader.onload = function () {
+        // File content is now available in reader.result
+        // and can be processed
+      }
 
-			reader.readAsArrayBuffer(file)
-		})
+      reader.readAsArrayBuffer(file)
+    })
 </script>
 ```
 

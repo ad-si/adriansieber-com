@@ -4,112 +4,112 @@ isHome: true
 ---
 
 <header id=description>
-	<h1>Hi. <span>I'm Adrian Sieber.</span></h1>
+  <h1>Hi. <span>I'm Adrian Sieber.</span></h1>
 
-	<p class=subtitle>A developer and designer from Germany.</p>
+  <p class=subtitle>A developer and designer from Germany.</p>
 
-	<p class=subSubtitle>
-		Check out my <a href=/about>about page</a> and my
-		<a href=/resume>resume</a> for more information.
-	</p>
+  <p class=subSubtitle>
+    Check out my <a href=/about>about page</a> and my
+    <a href=/resume>resume</a> for more information.
+  </p>
 </header>
 
 <hr/>
 
 <article id=post-listing>
-	<h1>Blog Posts</h1>
+  <h1>Blog Posts</h1>
 
-	<p>Signup for the newsletter to get informed about new posts!
-		<small>(~ 1/week)</small></p>
+  <p>Signup for the newsletter to get informed about new posts!
+    <small>(~ 1/week)</small></p>
 
-	<form
-		action="//adriansieber.us1.list-manage.com/subscribe/post?u=53f9a8f66939c80e2686e9084&amp;id=099350cf4a"
-		method=post
-		id=mc-embedded-subscribe-form
-		name=mc-embedded-subscribe-form
-		target=_blank>
+  <form
+    action="//adriansieber.us1.list-manage.com/subscribe/post?u=53f9a8f66939c80e2686e9084&amp;id=099350cf4a"
+    method=post
+    id=mc-embedded-subscribe-form
+    name=mc-embedded-subscribe-form
+    target=_blank>
 
-		<label for=mce-EMAIL>Email Address</label>
-		<input type=email name=EMAIL
-			class="required email" id=mce-EMAIL
-			placeholder="Email address">
-		<div id=mce-responses class=clear>
-			<div class=response id=mce-error-response style=display:none></div>
-			<div class=response id=mce-success-response style=display:none></div>
-		</div>
-		<!-- Do not remove this or risk form bot signups -->
+    <label for=mce-EMAIL>Email Address</label>
+    <input type=email name=EMAIL
+      class="required email" id=mce-EMAIL
+      placeholder="Email address">
+    <div id=mce-responses class=clear>
+      <div class=response id=mce-error-response style=display:none></div>
+      <div class=response id=mce-success-response style=display:none></div>
+    </div>
+    <!-- Do not remove this or risk form bot signups -->
     <div style=position:absolute;left:-5000px; aria-hidden=true>
-			<input
-				type=text
-				name=b_53f9a8f66939c80e2686e9084_099350cf4a
-				tabindex=-1>
-		</div>
-		<input
-			type=submit
-			value=Subscribe
-			name=subscribe
-			id=mc-embedded-subscribe
-			class=button>
-	</form>
+      <input
+        type=text
+        name=b_53f9a8f66939c80e2686e9084_099350cf4a
+        tabindex=-1>
+    </div>
+    <input
+      type=submit
+      value=Subscribe
+      name=subscribe
+      id=mc-embedded-subscribe
+      class=button>
+  </form>
 
-	<ul>
-		{% for post in site.posts %}
-		<li>
-			<span>{{ post.date | date: "%F" }}</span>
-			<span> – </span>
-			<a href="{{ post.url | append: '$' | remove: '/$' }}">
-				{{ post.title}}
-			</a>
-		</li>
-		{% endfor %}
-	</ul>
+  <ul>
+    {% for post in site.posts %}
+    <li>
+      <span>{{ post.date | date: "%F" }}</span>
+      <span> – </span>
+      <a href="{{ post.url | append: '$' | remove: '/$' }}">
+        {{ post.title}}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
 
 </article>
 
 <hr/>
 
 <article>
-	<h1>Projects</h1>
+  <h1>Projects</h1>
 
-	<ul id=projects>
-		<li id=educatopia>
-			<a href=http://educatopia.org
-			   title=Educatopia>educatopia</a>
-		</li>
+  <ul id=projects>
+    <li id=educatopia>
+      <a href=http://educatopia.org
+         title=Educatopia>educatopia</a>
+    </li>
 
-		<li id=shaven>
-			<a href=http://adriansieber.com/shaven
-			   title=Shaven>Shaven</a>
-		</li>
+    <li id=shaven>
+      <a href=http://adriansieber.com/shaven
+         title=Shaven>Shaven</a>
+    </li>
 
-		<li id=fakesome>
-			<a href=http://adriansieber.com/fakesome
-			   title=Fakesome>Fakesome</a>
-		</li>
+    <li id=fakesome>
+      <a href=http://adriansieber.com/fakesome
+         title=Fakesome>Fakesome</a>
+    </li>
 
-		<li id=timeomat>
-			<a href=http://timeomat.com
-			   title=Timeomat>Timeomat</a>
-		</li>
+    <li id=timeomat>
+      <a href=http://timeomat.com
+         title=Timeomat>Timeomat</a>
+    </li>
 
-		<li id=schifferpatent>
-			<a href=http://schifferpatent.org
-			   title=Bodenseeschifferpatent>Schifferpatent</a>
-		</li>
+    <li id=schifferpatent>
+      <a href=http://schifferpatent.org
+         title=Bodenseeschifferpatent>Schifferpatent</a>
+    </li>
 
-		<li id=bitcoinate>
-			<a href=http://bitcoinate.org
-			   title=bitcoinate>bitcoinate</a>
-		</li>
+    <li id=bitcoinate>
+      <a href=http://bitcoinate.org
+         title=bitcoinate>bitcoinate</a>
+    </li>
 
-		<li id=vectual>
-			<a href=http://vectual.org
-			   title=Vectual>vectual</a>
-		</li>
+    <li id=vectual>
+      <a href=http://vectual.org
+         title=Vectual>vectual</a>
+    </li>
 
-		<li id=leomask>
-			<a href=https://www.youtube.com/user/LeoMaskMusic/videos
-			   title="Leo Mask">Leo Mask</a>
-		</li>
-	</ul>
+    <li id=leomask>
+      <a href=https://www.youtube.com/user/LeoMaskMusic/videos
+         title="Leo Mask">Leo Mask</a>
+    </li>
+  </ul>
 </article>

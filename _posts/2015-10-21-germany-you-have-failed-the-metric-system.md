@@ -3,8 +3,8 @@ title: "Germany — You have failed the metric system"
 ---
 
 <link
-	rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js">
 </script>
@@ -273,6 +273,6 @@ the internationally recommended units.
 
 <script>
 renderMathInElement(document.getElementById('wrapcontent'), {
-	delimiters: [{left: "$", right: "$", display: false}]
+  delimiters: [{left: "$", right: "$", display: false}]
 })
 </script>

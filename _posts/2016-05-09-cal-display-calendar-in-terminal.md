@@ -153,7 +153,7 @@ and the output formatting.
 
 - `gcal .` - Display the last, the current and the next month
 - `gcal -j` - Display the days as day of the year instead of day of the month
-	(e.g. 342 instead of 7)
+  (e.g. 342 instead of 7)
 - `gcal 3-7` - Display days of month 3 to 7
 - …
 

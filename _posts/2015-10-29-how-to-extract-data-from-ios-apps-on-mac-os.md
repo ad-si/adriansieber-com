@@ -35,13 +35,13 @@ To get started, you first of all need to create a backup of your iOS device.
 1. Open iTunes.
 1. Click the iPhone/iPad icon to access the settings menu.
 
-	![Click the iPhone icon](/img/select-iphone.png)
+  ![Click the iPhone icon](/img/select-iphone.png)
 
 1. Create a backup of your device by clicking the "Back Up Now" button.
-	**Make sure that the "Encrypt iPhone backup" option is NOT set.**
-	Otherwise iPhone Backup Extractor won't be able to access the backup.
+  **Make sure that the "Encrypt iPhone backup" option is NOT set.**
+  Otherwise iPhone Backup Extractor won't be able to access the backup.
 
-	![Create a backup](/img/backups.png)
+  ![Create a backup](/img/backups.png)
 
 
 Now you can use the iPhone Backup Extractor
@@ -50,19 +50,19 @@ to extract the data of a particular app from the backup.
 1. Open the iPhone Backup Extractor.
 1. Click "Read Backups" to find suitable backups.
 
-	![iPhone Back Extractor](/img/iphone-backup-extractor.png)
+  ![iPhone Back Extractor](/img/iphone-backup-extractor.png)
 
 1. Select the proper backup and click "Choose" to confirm.
 
-	![Select the correct device](/img/device-selection.png)
+  ![Select the correct device](/img/device-selection.png)
 
 1. Select the app you want to extract the data from
-	and click "Extract" to confirm.
+  and click "Extract" to confirm.
 
-	![Select the App to extract the data from](/img/extract-app-data.png)
+  ![Select the App to extract the data from](/img/extract-app-data.png)
 
 1. Finally select a directory to save the data to
-	and click "Extract here" to finish the process.
+  and click "Extract here" to finish the process.
 
 In the created directory you can find the main data in
 the `Documents` directory and in the file<br>

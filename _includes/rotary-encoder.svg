@@ -1,70 +1,70 @@
 <svg
-	width="500"
-	height="300"
-	xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink">
+  width="500"
+  height="300"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
 
-	<style>
-		.changed {fill: orange}
-	</style>
+  <style>
+    .changed {fill: orange}
+  </style>
 
-	<defs>
-		<marker
-			id="triangle"
-			viewBox="0 0 2 2"
-			refX="0"
-			refY="1"
-			markerWidth="5"
-			markerHeight="5"
-			orient="auto">
-			<path d="M0,0 L2,1 L0,2 z"/>
-		</marker>
-		<g id="arrow">
-			<path
-				d="M40,15 h10 a1,1 1 1 1 0,20"
-				marker-end="url(#triangle)"
-				fill="none"
-				stroke="black"
-				stroke-width="2"
-				/>
-		</g>
-	</defs>
+  <defs>
+    <marker
+      id="triangle"
+      viewBox="0 0 2 2"
+      refX="0"
+      refY="1"
+      markerWidth="5"
+      markerHeight="5"
+      orient="auto">
+      <path d="M0,0 L2,1 L0,2 z"/>
+    </marker>
+    <g id="arrow">
+      <path
+        d="M40,15 h10 a1,1 1 1 1 0,20"
+        marker-end="url(#triangle)"
+        fill="none"
+        stroke="black"
+        stroke-width="2"
+        />
+    </g>
+  </defs>
 
-	<g transform="translate(100,0)">
-		<text y="20">000</text>
-		<text y="50">00<tspan class="changed">1</tspan></text>
-		<text y="80">0<tspan class="changed">10</tspan></text>
-		<text y="110">01<tspan class="changed">1</tspan></text>
-		<text y="140"><tspan class="changed">100</tspan></text>
-		<text y="170">10<tspan class="changed">1</tspan></text>
-		<text y="200">1<tspan class="changed">10</tspan></text>
-		<text y="230">11<tspan class="changed">1</tspan></text>
+  <g transform="translate(100,0)">
+    <text y="20">000</text>
+    <text y="50">00<tspan class="changed">1</tspan></text>
+    <text y="80">0<tspan class="changed">10</tspan></text>
+    <text y="110">01<tspan class="changed">1</tspan></text>
+    <text y="140"><tspan class="changed">100</tspan></text>
+    <text y="170">10<tspan class="changed">1</tspan></text>
+    <text y="200">1<tspan class="changed">10</tspan></text>
+    <text y="230">11<tspan class="changed">1</tspan></text>
 
-		<g transform="translate(10,0)">
-			<use xlink:href="#arrow"/>
-			<use y="30" xlink:href="#arrow"/>
-			<use y="60" xlink:href="#arrow"/>
-			<use y="90" xlink:href="#arrow"/>
-			<use y="120" xlink:href="#arrow"/>
-			<use y="150" xlink:href="#arrow"/>
-			<use y="180" xlink:href="#arrow"/>
-		</g>
+    <g transform="translate(10,0)">
+      <use xlink:href="#arrow"/>
+      <use y="30" xlink:href="#arrow"/>
+      <use y="60" xlink:href="#arrow"/>
+      <use y="90" xlink:href="#arrow"/>
+      <use y="120" xlink:href="#arrow"/>
+      <use y="150" xlink:href="#arrow"/>
+      <use y="180" xlink:href="#arrow"/>
+    </g>
 
-		<g transform="translate(80,30)">
-			<text>Hamming Distance = 1</text>
-			<text y="30">Hamming Distance = 2</text>
-			<text y="60">Hamming Distance = 1</text>
-			<text y="90">Hamming Distance = 3</text>
-			<text y="120">Hamming Distance = 1</text>
-			<text y="150">Hamming Distance = 2</text>
-			<text y="180">Hamming Distance = 1</text>
-		</g>
-	</g>
-			<path
-				d="M20,180 h-10 a1,1 1 1 1 0,-20 v180 a1,1 1 1 1 0,-20"
-				marker-end="url(#triangle)"
-				fill="none"
-				stroke="black"
-				stroke-width="2"
-				/>
+    <g transform="translate(80,30)">
+      <text>Hamming Distance = 1</text>
+      <text y="30">Hamming Distance = 2</text>
+      <text y="60">Hamming Distance = 1</text>
+      <text y="90">Hamming Distance = 3</text>
+      <text y="120">Hamming Distance = 1</text>
+      <text y="150">Hamming Distance = 2</text>
+      <text y="180">Hamming Distance = 1</text>
+    </g>
+  </g>
+      <path
+        d="M20,180 h-10 a1,1 1 1 1 0,-20 v180 a1,1 1 1 1 0,-20"
+        marker-end="url(#triangle)"
+        fill="none"
+        stroke="black"
+        stroke-width="2"
+        />
 </svg>
