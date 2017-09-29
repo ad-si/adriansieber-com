@@ -2,16 +2,7 @@
   "name": "adriansieber",
   "private": true,
   "scripts": {
-    "buildResume": "node ./_resume/index.js",
-    "buildCss": "stylus --compress --include-css --out ./css styl/screen.styl",
-    "watchCss": "stylus --watch --include-css --out ./css styl/screen.styl",
-    "serve": "bundle exec jekyll serve",
-    "serve-drafts": "bundle exec jekyll serve --trace --drafts",
-    "start": "npm run watchCss & npm run serve-drafts",
-    "build": "npm run buildCss && npm run buildResume && bundle exec jekyll build",
-    "test": "npm run build",
-    "prepublish": "npm run build",
-    "precommit": "npm run prepublish"
+    "test": "make build"
   },
   "dependencies": {
     "handlebars": "^4.0.5",
