@@ -2,6 +2,7 @@ name: Adrian Sieber's Website
 description: My personal website and blog
 url: adriansieber.com
 author: Adrian Sieber
+repository: adius/adius.github.io
 twitter:
   username: AdrianSieber
 logo: /img/logo.png
@@ -42,5 +43,9 @@ safe: true
 incremental: true
 highlighter: rouge
 gems:
-  - jekyll-sitemap
+  - jekyll-github-metadata
+  - jekyll-mentions
+  - jekyll-redirect-from
   - jekyll-seo-tag
+  - jekyll-sitemap
+  - jemoji
