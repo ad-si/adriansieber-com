@@ -28,7 +28,12 @@ install:
 
 
 # Build deployable files
-build: build-resume css
+build: build-resume css build-page
+
+
+# Build page from markdown and template files
+build-page:
+	bundler exec jekyll build
 
 
 # Build resume from resume.json
@@ -53,6 +58,11 @@ serve:
 # Serve files including drafts
 serve-drafts:
 	bundle exec jekyll serve --trace --drafts
+
+
+# Deploy website to surge.sh
+deploy: build
+	surge _site adriansieber.com
 
 
 # Remove all build artifacts
