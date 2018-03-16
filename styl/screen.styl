@@ -270,103 +270,104 @@ aside
 #projects
   margin-left 0
   max-width projectImageWidth
+  a
+    white-space nowrap
   li
-    background-position 50% 50%
-    text-align center
-    display inline-block
-    vertical-align top
-    margin 0 15px 20px 0
-    height projectImageHeight
-    text-indent -9999px
-    width 100%
-    &:nth-of-type(2n)
-      margin-right 0
-    a
-      text-decoration none
+    display flex
+    align-items center
+    margin-bottom 1.5rem
+    > a
+      flex-grow 0
+      flex-shrink 0
+      flex-basis 15rem
+      background-position 50% 50%
       display block
-      width 100%
       height 100%
+      height projectImageHeight
+      margin-right 2rem
+      text-align center
+      text-decoration none
+      text-indent -9999px
+      vertical-align top
+    > p
+      margin-bottom 0
 
-#educatopia
-  background-image url(//educatopia.org/img/favicon.png)
-  border 1px solid rgb(240,240,240)
-  background-repeat no-repeat
-  background-size 34px, 100%
-  background-position 40px 50%, 50% !important
-  font-family 'Josefin Sans', sans-serif
+
+#feram > a
+  background-color hsl(0, 0, 90%)
+  text-indent 0 !important
+  color black
   font-size 40px
   line-height projectImageHeight
-  text-indent 40px !important
-  a
-    color rgb(50,50,50)
 
 
-#schifferpatent
-  background-image url(//schifferpatent.org/images/logo.svg), linear-gradient(rgb(60, 160, 250), rgb(30, 100, 200))
-  background-repeat no-repeat, repeat-x
-  background-position 50%, 50%
-  background-size 90% auto, 100%
-
-#vectual
-  background-image url(../img/vectual.png)
-  background-repeat no-repeat, repeat-x
-  background-position 60%, 50%
-  background-size 120%
-
-#timeomat
-  background-image url(../img/timeomat.png)
+#educatopia > a
+  background-image url(/img/logos/educatopia.svg)
+  border 1px solid hsl(0, 0, 90%)
   background-repeat no-repeat
-  background-position 0, -20px
+  background-size 34px, 100%
+  background-position 20px 50%, 50% !important
+  font-family 'Josefin Sans', sans-serif
+  font-size 2rem
+  line-height projectImageHeight
+  text-indent 40px !important
+  color rgb(50,50,50)
+
+
+#schifferpatent > a
+  background-image url(/img/logos/schifferpatent.png)
+  // background-image linear-gradient(rgb(60, 160, 250), rgb(30, 100, 200))
+  background-repeat no-repeat, repeat-x
+  background-position 50% 50%
+  background-size 100%
+
+#vectual > a
+  background-color hsl(0, 0, 10%)
+  text-indent 0 !important
+  color white
+  font-size 40px
+  line-height projectImageHeight
+
+#timeomat > a
+  background-image url(/img/logos/timeomat.png)
+  background-repeat no-repeat
   background-size 100%
   text-align center
   color rgb(255, 255, 255)
+  height projectImageHeight * 1.2 !important
 
-#bitcoinate
-  background-image url(//bitcoinate.org/images/bitcoinate50.png), linear-gradient(#f7931a, #c16c07)
+#bitcoinate > a
+  background-image url(/img/logos/bitcoinate.png), linear-gradient(#f7931a, #c16c07)
   background-size 28px, 100%
   background-position 40px 50%, 50%  !important
   background-repeat no-repeat
   font 900 40px / projectImageHeight "Arial", sans-serif
   text-shadow 0 -2px 1px rgba(0, 0, 0, 0.5)
   text-indent 40px !important
-  a
-    color white
+  color white
 
-#designection
-  background-image url(../img/designection.png) , linear-gradient(rgba(150, 150, 150, 1), rgba(50, 50, 50, 1))
-  background-repeat no-repeat, repeat-x
-  background-size 280px, 100%
-  background-position center
-
-#leomask
-  background-image linear-gradient(rgba(0, 0, 0, 0), rgba(30, 30, 30, 0.3)), url(../img/paper.jpg)
-  text-align center
-  text-indent 0 !important
-  font 700 40px / projectImageHeight "Myriad Pro", sans-serif
-  a
-    color rgb(50, 50, 50)
-
-#fakesome
-  background-image url(../img/fakesome.png)
+#fakesome > a
+  background-image url(/img/logos/fakesome.png)
   background-color rgb(205, 92, 92)
   background-repeat no-repeat
   background-size 100%
   text-align center
   color rgb(255, 255, 255)
 
-#shaven
-  background-image url(../img/shaven.png)
+#shaven > a
+  background-image url(/img/logos/shaven.png)
   background-repeat no-repeat
   background-size 100%
+  background-position 0 40% !important
   text-align center
 
+
 @import './resume.styl'
+
 
 @media screen and (min-width 400px)
   #projects
     margin 0 auto
-    li
-      width projectImageWidth
   aside
     a
       margin-right 0.5em
