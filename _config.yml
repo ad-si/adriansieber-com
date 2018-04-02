@@ -1,4 +1,4 @@
-name: Adrian Sieber's Website
+title: Adrian Sieber's Website
 description: My personal website and blog
 url: adriansieber.com
 author: Adrian Sieber
@@ -36,13 +36,13 @@ defaults:
       isHome: false
       isPost: true
 
-markdown: kramdown
+markdown: CommonMarkGhPages
 kramdown:
   hard_wrap: false
 safe: true
 incremental: true
 highlighter: rouge
-gems:
+plugins:
   - jekyll-github-metadata
   - jekyll-mentions
   - jekyll-redirect-from
