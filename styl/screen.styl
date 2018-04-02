@@ -76,33 +76,38 @@ ol
   margin-left 2em
   margin-bottom 1.5em
 
-pre
-  background-color: #1d1f21
-  color: rgb(220, 220, 220)
-  font-size 0.8em
-  margin-bottom 0.5em
-  border-radius 3px
+code
+  font-family 'Source Code Pro', 'Courier New', monospace
+  font-weight 400
+  background-color rgb(230, 230, 230)
+  border 1px solid rgb(220, 220, 220)
+  padding 0 0.2em
+  border-radius 2px
+
+p
   code
-    display: block
+    white-space nowrap
+    font-size 0.8em
+
+pre
+  code
+    background-color #1d1f21
+    border-radius 3px
+    color rgb(220, 220, 220)
+    display block
+    font-size 0.8em
+    margin-bottom 0.5em
     padding 0.8em 1.5em
     overflow-x scroll
   + p
     margin-top 1.5em
 
-.highlighter-rouge
-  + p
-    margin-top 1.5em
-
-code.highlighter-rouge,
-h1 code,
-h2 code,
-h3 code
-  background-color rgb(230, 230, 230)
-  border 1px solid rgb(220, 220, 220)
-  font-size 0.9em
-  border-radius 2px
-  padding 0 0.2em
-  white-space nowrap
+h1,
+h2,
+h3
+  code
+    font-size 0.9em
+    font-weight 700
 
 table,
 svg
@@ -132,7 +137,7 @@ blockquote
   padding-left 1em
 
 strong
-  font-weight 500
+  font-weight 700
 
 small
   font-size 0.85em
