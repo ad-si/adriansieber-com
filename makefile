@@ -1,8 +1,10 @@
 # Continously build website
+.PHONY: watch
 watch: stylus-watch docker-serve
 
 
 # Continously build website
+.PHONY: stylus-watch
 stylus-watch: styl/screen.styl
 	stylus \
 		--watch \
@@ -12,6 +14,7 @@ stylus-watch: styl/screen.styl
 
 
 # Serve website with docker
+.PHONY: docker-serve
 docker-serve:
 	docker run \
 		--interactive \
@@ -22,21 +25,25 @@ docker-serve:
 
 
 # Install dependencies
+.PHONY: install
 install:
 	npm install
 	# bundle install
 
 
 # Build deployable files
+.PHONY: build
 build: build-resume css build-page
 
 
 # Build page from markdown and template files
+.PHONY: build-page
 build-page:
 	bundler exec jekyll build
 
 
 # Build resume from resume.json
+.PHONY: build-resume
 build-resume: ./_resume/index.js
 	node $<
 
@@ -51,24 +58,39 @@ css: styl/screen.styl
 
 
 # Serve files with local jekyll server
+.PHONY: serve
 serve:
-	bundle exec jekyll serve
+	bundle exec jekyll serve --incremental
 
 
 # Serve files including drafts
+.PHONY: serve-drafts
 serve-drafts:
-	bundle exec jekyll serve --trace --drafts
+	bundle exec jekyll serve \
+		--trace \
+		--strict_front_matter \
+		--future \
+		--drafts \
+		--unpublished \
+		--watch \
+		--incremental \
+		--livereload \
+		--open-url
 
 
 # Deploy website to surge.sh
+.PHONY: deploy
 deploy: build
 	surge _site adriansieber.com
 
 
 # Remove all build artifacts
+.PHONY: clean
 clean:
 	-rm -r _site
 
 
-.PHONY: watch stylus-watch docker-serve install \
-	build build-resume serve serve-drafts
+# Upgrade bundler (ruby) dependencies
+.PHONY: upgrade
+upgrade:
+	bundle update github-pages
