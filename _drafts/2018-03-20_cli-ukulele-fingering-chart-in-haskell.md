@@ -6,7 +6,7 @@ title: <code>uku</code> - A CLI tool to display Ukulele fingering charts
 This is a tutorial on how to write a CLI tool to display fingering
 charts for Ukuleles in your terminal.
 As it's written in literate Haskell
-it also contains the code itself for this program.
+the post also contains the code itself for the program.
 If you just want to use the tool install it with `stack install uku`.
 
 <!-- 2 years ago I started to write a CLI tool to display Ukulele fingering
@@ -19,7 +19,7 @@ While I originally started to write this in JavaScript 2 years ago
 I recently got introduced to Haskell and I fell in love with it.
 One cool feature is that it has first class support for [literate programming].
 This means this post contains all the code
-and can be executed like a shell script.
+and is executed like a shell script.
 ([Expand documentation on how to do it.](TODO))
 It also means I can explain to you how I build the tool
 while writing the code for it. 😁
@@ -37,7 +37,7 @@ Cool, right? So let's get started with the code:
 
 First some meta stuff. I'm using stack's [script interpreter]
 to make it an easily executable CLI script
-with no need for compilation.
+with no need for an extra compilation step.
 
 
 <!--
@@ -79,82 +79,72 @@ import Unsafe
 ```
 
 
-Now we need some types to model our domain.
+Now we need types to model our domain.
 Normally you'd expect something like `data Note = C | Cis | D | Dis …` here,
-but this notation is used for historical reasons
-and actually makes not a lot of sense nowadays.
+but this notation is only for historical reasons still used.
+It actually makes not a lot of sense nowadays.
 E.g. the distance between `E` and `F` is half the distance of `F` to `G` 🤦.
 I'll call this notation the  "arachaic notation" for the rest of the post.
 
-Actually even the notion of absolute note values isn't particularly useful,
+Actually, even the notion of absolute note values isn't particularly useful,
 as western music is inherently relative and therefore
 you can start a song from every note.
-To accomodate this we simply model everything relatively
-and only make the common note names and the particluar tuning of the
+To accommodate this we simply model everything relatively
+and only make the common note names and the particular tuning of the
 Ukulele a special instance of it.
 I'll call this notation the "relative notation".
 
 A Piano supports 88 notes and MIDI supports 128 notes.
-As there are 12 notes per octave we can use a base 12 ([duodecimal]) system
+An octave contains 12 notes and so we can use a base 12 ([duodecimal]) system
 to simplify counting in octaves.
-There are 2 special unicode characters for ten and eleven
-in the duodecimal system (pitman digits): `1 2 3 4 5 6 7 8 9 ↊ ↋`.
-Unfortunately they are understood as symbols in GHC (Glasgow Haskell Compiler)
-and therefore not allowed in regular names.
+The duodecimal system uses 2 special unicode characters for ten and eleven,
+called pitman digits: `1 2 3 4 5 6 7 8 9 ↊ ↋`.
+Unfortunately GHC (Glasgow Haskell Compiler) interprets them as symbols
+and does not allow them in regular names.
 <small>Explanation on [stackoverflow].</small>
 For that reason we replace `↊` with `X`
 (like the Roman literal) and `↋` with `E` (like "eleven"),
-which is the recommend way by the [Dozenal Society of America][duodecimal].
+which is the recommend way for ASCII text
+by the [Dozenal Society of America][duodecimal].
 Each step corresponds to one archaic notation semi tone.
 
 [duodecimal]: http://www.dozenal.org
 [stackoverflow]: https://stackoverflow.com/questions/31965349/using-emoji-in-haskell
 
+Our `Interval` data type.
+The first duodecimal number after the `I`
+is the octave and the second one is the semi tone.
+To spare you the complete list, I append it to the end of the post.
+
 ```haskell
-data Step
-  = S0 | S1 | S2 | S3 | S4 | S5
-  | S6 | S7 | S8 | S9 | SX | SE
+data Interval = I00 | I01 | I02 | … | I09 | I0X | I0E | I10 | … | IEX | IEE
 ```
 
-Explicitly listing all possible distances has the advantage that we can
+Explicitly listing all possible intervals has the advantage that we can
 now ensure at compile time that no invalid intervals are specified.
-
-```haskell
-data Octave
-  = O0 | O1 | O2 | O3 | O4 | O5
-  | O6 | O7 | O8 | O9 | OX | OE
-```
-
-Combined, they yield our `Interval` data type.
-
-```haskell
-data Interval = Interval Octave Step
-```
 
 This amounts to 144 intervals, which is great, as it's
 slightly more than the 128 notes defined in MIDI and therefore
 we can model everything that MIDI can.
 
-We can further simplify it by defining constants for
-common intervals: `i1X = Interval O1 SX`,
-where the first duodecimal number after the `i`
-is the octave and the second one is the step.
-To spare you the complete list, I append it to the end of the post.
-
 For specifying absolute note values, which you'll need at some point,
-we simply use the MIDI values in hex notation:
-`data MidiNote = M00 | M01 | M02 | … | M7F | M80`.
+we simply use the MIDI values in dozenal notation:
+`data MidiNote = M00 | M01 | M02 | … | M09 | M0X | M0E | M10 | … | MX6 | MX7`
+
+Hereby applies that `M00` is `C-1`, `M10` is `C0` and so on.
+This makes it really easy to map notes from
+archaic notation to the equivalent MIDI notes and vice versa.
 I appended the full list to the end of the post.
 
 We can now map this to our Ukulele:
 
-```
-Archaic notation             Relative notation (relative to E4)
+```txt
+Archaic notation          Relative notation (to C4)    MIDI notes
 
-A4 ╓──┬──┬──┬──┬             i07 ╓──┬──┬──┬──┬
-E4 ╟──┼──┼──┼──┼             i00 ╟──┼──┼──┼──┼
-C4 ╟──┼──┼──┼──┼             i04 ╟──┼──┼──┼──┼
-G4 ╙──┴──┴──┴──┴             i09 ╙──┴──┴──┴──┴
+A4 ╓──┬──┬──┬──┬          I09 ╓──┬──┬──┬──┬            M59 ╓──┬──┬──┬──┬
+E4 ╟──┼──┼──┼──┼          I04 ╟──┼──┼──┼──┼            M54 ╟──┼──┼──┼──┼
+C4 ╟──┼──┼──┼──┼          I00 ╟──┼──┼──┼──┼            M50 ╟──┼──┼──┼──┼
+G4 ╙──┴──┴──┴──┴          I07 ╙──┴──┴──┴──┴            M57 ╙──┴──┴──┴──┴
 ```
 
 
@@ -162,7 +152,7 @@ To completely model the domain we need some more types ...
 like for our fingers🤞.
 
 ```haskell
-data Finger = Thumb | Index | Middle | Ring | Pinky | SomFngr
+data Finger = Thumb | Index | Middle | Ring | Pinky | Any
 ```
 
 And now let's make it possible to pick a string at a certain position,
@@ -186,7 +176,7 @@ data Pick = Pick FretPosition Finger | Open | Mute
 ```
 
 Several fingers can pick one string and that for each string.
-The strings are listed from thick (low pitch) to thin (high pitch)
+The strings are listed from `i07`/`G4` to `i09`/`A4`
 as that's what your fretboard looks like when you look at the ukulele
 as depicted in the chord boxes.
 
@@ -215,7 +205,7 @@ the data constructor like this:
 
 ```haskell
 ukulele :: Instrument
-ukulele = PlayedInst [i07, i00, i04, i09, i09] M40
+ukulele = PlayedInst [i07, i00, i04, i09] M34
 ```
 
 I added the type signature to make it clearer.
@@ -231,7 +221,6 @@ gMajor = ukulele [
     [Open], [Pick F2 Index], [Pick F3 Ring], [Pick F2 Middle]
   ]
 
---  As ANSI art:
 --     G
 --  ╒═╤═╤═╕
 --  │_│_│_│
@@ -251,7 +240,6 @@ bMajor = ukulele [
                        Pick F3 Middle], [Pick F2 Index], [Pick F2 Index]
   ]
 
---  As ANSI art:
 --     G
 --  ╒═╤═╤═╕
 --  │_│_│_│
@@ -283,7 +271,7 @@ archaicToFrettingA = Map.fromList [
     ]),
     ("am", [
       [[Pick F2 Middle], [Open], [Open], [Open]],
-      [[Pick F2 Middle], [Open], [Open], [Pick F3 SomFngr]]
+      [[Pick F2 Middle], [Open], [Open], [Pick F3 Any]]
     ])
   ]
 ```
@@ -305,14 +293,23 @@ chordToPlayedInst chord instrument =
 ```
 
 ```haskell
+renderPicks :: [Pick] -> Text
+renderPicks picks =
+  let
+    maxPos = picks
+      & fmap (\(Pick fretPosition _) -> fretPosition)
+      & Protolude.maximum
+  in
+    show maxPos
+
 showPlayedInst :: PlayedInstrument -> Either Text Text
 showPlayedInst (PlayedInst strings midiNote fretting)
   | length strings /= length fretting =
       Left "Number of strings and number of picks in fretting are not the same"
-  | otherwise =
-      Right $ "LIKE WHAT"
+  | otherwise = Right $
+      show (fmap renderPicks fretting)
 ```
-
+ook
 
 [literate programming]: https://en.wikipedia.org/wiki/Literate_programming
 
@@ -330,7 +327,6 @@ main = do
 ```
 
 
-
 [1]
 
 Turns out it's a little more involved when you
@@ -341,7 +337,7 @@ want to write it in Markdown instead of LaTeX.
 But following command will execute this post in most shells:
 
 ```bash
-cat 2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
+cat _drafts/2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
 | sed 's/```haskell/```{.literate .haskell}/g' \
 | pandoc \
   --from markdown \
@@ -349,6 +345,7 @@ cat 2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
   --output temp.lhs \
 | stack runhaskell \
   --resolver lts-11.1 \
+  --package protolude \
   --package cmdargs \
   -- \
   temp.lhs \
@@ -362,45 +359,35 @@ All MIDI notes:
 
 ```haskell
 data MidiNote
-  = M00 | M01 | M02 | M03 | M04 | M05 | M06 | M07
-  | M08 | M09 | M0A | M0B | M0C | M0D | M0E | M0F
-  | M10 | M11 | M12 | M13 | M14 | M15 | M16 | M17
-  | M18 | M19 | M1A | M1B | M1C | M1D | M1E | M1F
-  | M20 | M21 | M22 | M23 | M24 | M25 | M26 | M27
-  | M28 | M29 | M2A | M2B | M2C | M2D | M2E | M2F
-  | M30 | M31 | M32 | M33 | M34 | M35 | M36 | M37
-  | M38 | M39 | M3A | M3B | M3C | M3D | M3E | M3F
-  | M40 | M41 | M42 | M43 | M44 | M45 | M46 | M47
-  | M48 | M49 | M4A | M4B | M4C | M4D | M4E | M4F
-  | M50 | M51 | M52 | M53 | M54 | M55 | M56 | M57
-  | M58 | M59 | M5A | M5B | M5C | M5D | M5E | M5F
-  | M60 | M61 | M62 | M63 | M64 | M65 | M66 | M67
-  | M68 | M69 | M6A | M6B | M6C | M6D | M6E | M6F
-  | M70 | M71 | M72 | M73 | M74 | M75 | M76 | M77
-  | M78 | M79 | M7A | M7B | M7C | M7D | M7E | M7F
+  = M00 | M01 | M02 | M03 | M04 | M05 | M06 | M07 | M08 | M09 | M0X | M0E
+  | M10 | M11 | M12 | M13 | M14 | M15 | M16 | M17 | M18 | M19 | M1X | M1E
+  | M20 | M21 | M22 | M23 | M24 | M25 | M26 | M27 | M28 | M29 | M2X | M2E
+  | M30 | M31 | M32 | M33 | M34 | M35 | M36 | M37 | M38 | M39 | M3X | M3E
+  | M40 | M41 | M42 | M43 | M44 | M45 | M46 | M47 | M48 | M49 | M4X | M4E
+  | M50 | M51 | M52 | M53 | M54 | M55 | M56 | M57 | M58 | M59 | M5X | M5E
+  | M60 | M61 | M62 | M63 | M64 | M65 | M66 | M67 | M68 | M69 | M6X | M6E
+  | M70 | M71 | M72 | M73 | M74 | M75 | M76 | M77 | M78 | M79 | M7X | M7E
+  | M80 | M81 | M82 | M83 | M84 | M85 | M86 | M87 | M88 | M89 | M8X | M8E
+  | M90 | M91 | M92 | M93 | M94 | M95 | M96 | M97 | M98 | M99 | M9X | M9E
+  | MX0 | MX1 | MX2 | MX3 | MX4 | MX5 | MX6 | MX7
 ```
 
 
 All intervals:
 
 ```haskell
-i00 = Interval O0 S0;  i01 = Interval O0 S1;  i02 = Interval O0 S2
-i03 = Interval O0 S3;  i04 = Interval O0 S4;  i05 = Interval O0 S5
-i06 = Interval O0 S6;  i07 = Interval O0 S7;  i08 = Interval O0 S8
-i09 = Interval O0 S9;  i10 = Interval O0 SX;  i11 = Interval O0 SE
-i12 = Interval O1 S0;  i13 = Interval O1 S1;  i14 = Interval O1 S2
-i15 = Interval O1 S3;  i16 = Interval O1 S4;  i17 = Interval O1 S5
-i18 = Interval O1 S6;  i19 = Interval O1 S7;  i20 = Interval O1 S8
-i21 = Interval O1 S9;  i22 = Interval O1 SX;  i23 = Interval O1 SE
-i24 = Interval O2 S0;  i25 = Interval O2 S1;  i26 = Interval O2 S2
-i27 = Interval O2 S3;  i28 = Interval O2 S4;  i29 = Interval O2 S5
-i30 = Interval O2 S6;  i31 = Interval O2 S7;  i32 = Interval O2 S8
-i33 = Interval O2 S9;  i34 = Interval O2 SX;  i35 = Interval O2 SE
-i36 = Interval O3 S0;  i37 = Interval O3 S1;  i38 = Interval O3 S2
-i39 = Interval O3 S3;  i40 = Interval O3 S4;  i41 = Interval O3 S5
-i42 = Interval O3 S6;  i43 = Interval O3 S7;  i44 = Interval O3 S8
-i45 = Interval O3 S9;  i46 = Interval O3 SX;  i47 = Interval O3 SE
-```
+data Interval
+  = I00 | I01 | I02 | I03 | I04 | I05 | I06 | I07 | I08 | I09 | I0X | I0E
+  | I10 | I11 | I12 | I13 | I14 | I15 | I16 | I17 | I18 | I19 | I1X | I1E
+  | I20 | I21 | I22 | I23 | I24 | I25 | I26 | I27 | I28 | I29 | I2X | I2E
+  | I30 | I31 | I32 | I33 | I34 | I35 | I36 | I37 | I38 | I39 | I3X | I3E
+  | I40 | I41 | I42 | I43 | I44 | I45 | I46 | I47 | I48 | I49 | I4X | I4E
+  | I50 | I51 | I52 | I53 | I54 | I55 | I56 | I57 | I58 | I59 | I5X | I5E
+  | I60 | I61 | I62 | I63 | I64 | I65 | I66 | I67 | I68 | I69 | I6X | I6E
+  | I70 | I71 | I72 | I73 | I74 | I75 | I76 | I77 | I78 | I79 | I7X | I7E
+  | I80 | I81 | I82 | I83 | I84 | I85 | I86 | I87 | I88 | I89 | I8X | I8E
+  | I90 | I91 | I92 | I93 | I94 | I95 | I96 | I97 | I98 | I99 | I9X | I9E
+  | IX0 | IX1 | IX2 | IX3 | IX4 | IX5 | IX6 | IX7
 
 
 All frettings:
@@ -414,13 +401,13 @@ archaicToFretting = Map.fromList [
     ]),
     ("am", [
       [[Pick F2 Middle], [Open], [Open], [Open]],
-      [[Pick F2 Middle], [Open], [Open], [Pick F3 SomFngr]],
-      [[Pick F2 Middle], [Pick F4 SomFngr], [Open], [Pick F3 SomFngr]]
+      [[Pick F2 Middle], [Open], [Open], [Pick F3 Any]],
+      [[Pick F2 Middle], [Pick F4 Any], [Open], [Pick F3 Any]]
     ]),
     ("am7", [
       [[Open], [Open], [Open], [Open]],
-      [[Pick F2 Middle], [Open], [Open], [Pick F3 SomFngr]],
-      [[Pick F2 Middle], [Pick F4 SomFngr], [Pick F3 SomFngr], [Pick F3 SomFngr]]
+      [[Pick F2 Middle], [Open], [Open], [Pick F3 Any]],
+      [[Pick F2 Middle], [Pick F4 Any], [Pick F3 Any], [Pick F3 Any]]
     ])
     -- ("a#", [[], [], [], [], ]),
     -- ("b",  [[], [], [], [], ]),
@@ -438,7 +425,7 @@ archaicToFretting = Map.fromList [
 
 
 Other formattings:
-```
+```txt
 ╓───┬─M─┬───┬───┬
 ╟───┼───┼─R─┼───┼
 ╟───┼─I─┼───┼───┼
