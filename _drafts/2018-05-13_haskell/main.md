@@ -51,13 +51,13 @@ Every single expression in Haskell is statically (i.e. at compile time) typed.
 
 If you're now thinking of a heavy weight type system like in Java or C++
 and are already disgusted, I have good news:
-Haskell's syntax is very leightweight, more akin to Python,
+Haskell's syntax is very lightweight, more akin to Python,
 as all types are globally inferred
 (i.e. across function and file boundaries).
 
 This means one doesn't have to explicitly state the type if the compiler
 can figure it out on it's own (which it can in most cases).
-E.g. a tupel like `nameAndIsMember = ("John Doe", True)` is obviously
+E.g. a tuple like `nameAndIsMember = ("John Doe", True)` is
 of type `(String, Bool)`.
 No need to annotate it.
 In practice this means you can write thousands lines of Haskell code
@@ -70,7 +70,7 @@ Let's have a look at a little example:
 > versions in each language.
 
 ```haskell
-data ShirtSize = Small | Medium | Large | Huge
+data ShirtSize = Small | Medium | Large
 
 johnsSize = Medium
 
@@ -89,7 +89,7 @@ But what happens if we later decide to introduce another size `Huge`
 and update the first line to be
 `data ShirtSize = Small | Medium | Large | Huge`
 
-```
+```txt
 shirt-size.hs:6:13: warning: [-Wincomplete-patterns]
     Pattern match(es) are non-exhaustive
     In a case alternative: Patterns not matched: Huge
@@ -98,23 +98,23 @@ shirt-size.hs:6:13: warning: [-Wincomplete-patterns]
   |             ^^^^^^^^^^^^^^^^^...
 ```
 
-The GHC (Glasgow Haskell Compiler - Haskell's default compiler) immideately
+The GHC (Glasgow Haskell Compiler - Haskell's default compiler) immediately
 warns us that we forgot to handle the case that `johnsSize` might
 be set to `Huge`. Awesome!
 
 Now imagine writing the same code in Python, JavaScript,
-or prett much any other language.
+or pretty much any other language.
 If it was dynamic, it would have crashed at runtime if there was a person
 with a `Huge` shirt size.
 Or even worse, it would just ignore it silently.
-That's what happenes in Java with an `enum`,
-a `swich` statement and no `default` case.
+That's what happens in Java with an `enum`,
+a `switch` statement and no `default` case.
 
 How would you even model the `ShirtSize` type in dynamic languages?
 With strings?
 Then who would save you from typos?
 
-```
+```txt
 shirt-size.hs:3:13: error:
     • Data constructor not in scope: Medum
     • Perhaps you meant ‘Medium’ (line 1)
@@ -123,10 +123,10 @@ shirt-size.hs:3:13: error:
   |             ^^^^^
 ```
 
-Even if you can find a workaround (Python supports enmus since 3.4) it will
-hardly bs as elegant and straight forward as in Haskell.
+Even if you can find a workaround (Python supports enums since 3.4) it will
+hardly be as elegant and straight forward as in Haskell.
 It's expressive type system in combination with the powerful compiler
-make data modelling one of Haskell's core strengths.
+make data modeling one of Haskell's core strengths.
 
 
 # Pure Functions
@@ -156,7 +156,7 @@ reverseAndShout :: Text -> Text
 reverseAndShout text =
   let
     reversed = reverse text
-    shouted = toUpper text
+    shouted = toUpper reversed
   in
     shouted
 ```
@@ -165,7 +165,7 @@ The JavaScript function sounds innocently enough.
 It takes a string, reverses and capitalizes it.
 What could go wrong?
 This might be the kind of function you import from a 3rd party library
-or maybe a collegue wrote it.
+or maybe a colleague wrote it.
 
 However, if you look under the hood it does all kind of things.
 It logs to the terminal, it writes to a database and it overwrites global state
@@ -190,6 +190,11 @@ It's also helpful for development as it tell the compiler what your
 function is supposed to do and the compiler will warn you accordingly
 if you're actually implementing something else.
 
+Also:
+The idiomatic version of the function in Haskell would actually be
+`reverseAndShout = toUpper . reverse`, but that's a topic
+for another post 😉.
+Feel free to search for "pointfree style" if you want to dig deeper.
 
 
 # Strong Immutability
@@ -327,7 +332,7 @@ main =
     else valueB)
 ```
 
-While it is easy to recognise the problem
+While it is easy to recognize the problem
 and fix the Python code in this situation by pulling the value
 assignments into the `if … else` statement,
 it becomes harder and harder to notice such missteps in a larger code base.
@@ -347,7 +352,7 @@ This prints `[2, 4, 6, 8, 10]` and there is no other
 programming language where this can be written as concisely and beautifully.
 
 (And don't tell me be about Python's list comprehension.
-This was actually invented by Haskell and ist still supported,
+This was actually invented by Haskell and is still supported,
 but considered bad practice as a few simple functions
 can achieve the same thing more readable and without the overhead
 of introducing another syntax construct.)
@@ -397,7 +402,7 @@ main = putStr $ toDockerfileStr $ do
 
 It's also pretty interesting, that many code fragments which look like
 first class syntax constructs are actually just normal functions
-which are defined in Haskells standard library called "Prelude"
+which are defined in Haskell's standard library called "Prelude"
 
 e.g. the `&` I used before is actually just a function with the signature
 `(&) :: a -> (a -> b) -> b`, meaning it takes a value of some type `a`,
