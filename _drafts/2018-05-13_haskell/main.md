@@ -191,7 +191,7 @@ function is supposed to do and the compiler will warn you accordingly
 if you're actually implementing something else.
 
 Also:
-The idiomatic version of the function in Haskell would actually be
+The idiomatic version of the function would actually be
 `reverseAndShout = toUpper . reverse`, but that's a topic
 for another post 😉.
 Feel free to search for "pointfree style" if you want to dig deeper.
@@ -296,8 +296,8 @@ heavily optimizes such scenarios by reusing existing elements.
 
 # Lazy Evaluation
 
-This is a feature most unique to Haskell, as it is besides its predecessor
-"Miranda" the only major language which is per default lazy evaluated.
+This is a feature most unique to Haskell, as it is the only major language
+- besides its predecessor "Miranda" - which is per default lazily evaluated.
 
 So what exactly does it mean?
 Let's have a look at following artificial Python code:
@@ -332,11 +332,11 @@ main =
     else valueB)
 ```
 
-While it is easy to recognize the problem
-and fix the Python code in this situation by pulling the value
+While it's easy to recognize the problem in this situation
+and fix the Python code by pulling the value
 assignments into the `if … else` statement,
 it becomes harder and harder to notice such missteps in a larger code base.
-Haskell again just does the right thing per default
+Haskell - again - just does the right thing per default.
 
 Another cool side effect of lazy evaluation is infinite lists:
 
@@ -353,7 +353,7 @@ programming language where this can be written as concisely and beautifully.
 
 (And don't tell me be about Python's list comprehension.
 This was actually invented by Haskell and is still supported,
-but considered bad practice as a few simple functions
+but considered bad practice, as a few simple functions
 can achieve the same thing more readable and without the overhead
 of introducing another syntax construct.)
 
@@ -362,6 +362,7 @@ of introducing another syntax construct.)
 These were the 4 corner stones which make Haskell a great language.
 They alone would make Haskell worthwhile, but it turns out even
 in other parts which aren't unique to Haskell it has a pretty strong standing.
+
 To not make the post longer than it already is I'm going to sum them
 up in a few short sentences.
 If you want to dig deeper there are several resources listed at the end
@@ -375,7 +376,7 @@ where to go next.
 GHC provides one of the best REPLs of any programming language.
 Some Lisp dialects have similar features, but none of the C like languages.
 
-Because of Haskell's purity functions don't interact with a global state
+Because of Haskell's purity, functions don't interact with a global state
 and are therefore perfectly suited for being tweaked and tested in the REPL.
 
 
@@ -383,7 +384,7 @@ and are therefore perfectly suited for being tweaked and tested in the REPL.
 
 As you have noticed by now, the syntax is really boiled down to the minimum.
 This makes Haskell a prime candidate for writing EDSLs
-(Embedded Domain Specific Language) and there exist tons of them.
+(Embedded Domain Specific Languages) and there exist tons of them.
 The motivation is to generate a non type safe language like e.g. HTML or CSS
 with a type safe language, while keeping the looks of the original language.
 
@@ -395,14 +396,14 @@ except now they are type safe and it's harder to make mistakes.
 import Language.Docker
 
 main = putStr $ toDockerfileStr $ do
-    from "node"
-    run "apt-get update"
-    runArgs ["apt-get", "install", "something"]
+  from "node"
+  run "apt-get update"
+  runArgs ["apt-get", "install", "something"]
 ```
 
 It's also pretty interesting, that many code fragments which look like
 first class syntax constructs are actually just normal functions
-which are defined in Haskell's standard library called "Prelude"
+which are defined in Haskell's standard library called "Prelude".
 
 e.g. the `&` I used before is actually just a function with the signature
 `(&) :: a -> (a -> b) -> b`, meaning it takes a value of some type `a`,
@@ -413,31 +414,99 @@ And voila: You have a function which reverses the application order.
 
 # Awesome Ecosystem
 
-- Hackage
-- Stackage
+## Packages / Modules
+
+Stackage.org is the most popular package index (similar to npm / PyPI)
+for Haskell and `stack` is the corresponding CLI tool
+to manage Haskell packages / modules.
+
+The quality of 3rd party tools is generally excellent, as Haskell developers
+care a lot about writing correct, stable and secure software.
+It's also exhaustive, as there exist modules to handle all major
+computing needs, like accessing databases,
+hosting servers or parsing / serializing different file types.
+
+
+## Solid Documentation
+
+Haddock is the default documentation generator for Haskell and already
+included in Stack.
+All packages on Stackage use it and this leads to a high consistency
+and comprehensiveness in the documentation of Haskell modules.
+
+Unfortunately some authors deem this to be enough and don't go the extra
+mile of adding soft documentation on usage patterns beyond the type signatures.
+The major Haskell modules, however, all provide excellent documentation.
+
 
 # Great Community
 
-- Slack
-- IRC
-- Reddit
+Due to the smaller size of the Haskell community, there is a strong sense
+of community and people tend to be very friendly and helpful.
+The functional programming Slack is especially impressive,
+as you'll get a response in just minutes all day long
+for whatever question you might have.
+May it be about how to get started, tips & tricks, code reviews or philosophical
+discussions about software development per se.
 
-# Great Documentation
 
-# Concurrency
+# Parallelism and Concurrency
+
+This is an area where Haskell is considered "Best in class" [1].
+Due to the purity of functions most code is thread-safe by construction
+and GHC provides a wide range of functions
+to implement parallelism & concurrency.
+
+
+# Maintainability and Refactorability
+
+I'll just post a quote from Gabriel Gonzalez here [2]:
+
+> Haskell is unbelievably awesome for maintaining large projects.
+> There's nothing that I can say that will fully convey
+> how nice it is to modify existing Haskell code.
+> You can only appreciate this through experience.
+
+This is mainly due to the compiler guiding you through any
+refactoring based on the types and I can fully attest: It's awesome! 😁
+
 
 # Haskell-Like Languages
 
-# Reliable / Maintainable / Refactorable / Testability
+By now, the advantages of Haskell's concepts got around and other languages
+incorporate and imitate them.
+Just check out the Wikipedia list of languages,
+which were influenced by Haskell:
 
-- High consistency in output / time
+![Languages influenced by Haskell](./influenced.png)
+
+Other languages even try to re-implement or extend Haskell.
+Some notable examples:
+
+- Elm - A reduced Haskell-like language to build webapps
+- Eta & Frege - Haskell for the JVM
+- Hackett - Implementation of a Haskell-like Lisp in Racket
+- Idris - Haskell-like with dependent types (e.g. a list with a certain length)
+- PureScript - Haskell-like language compiled to JavaScript
+
+As you can see Haskell is well alive and doing better than ever.
+I can't wait for what the future holds! 😁
+
+---
+
+My main resource for this article was the "State of the Haskell ecosystem"
+post by Gabriel Gonzalez [github.com/Gabriel439/post-rfc/blob/master/sotu.md].
+
+There you can also find an education section with tips on how to get started.
+As another way to get your feet wet with Haskell-like languages I can recommend
+to check out elm ([elm-lang.org]).
+It makes it really easy to get going
+and incorporates many of Haskell's great concepts.
 
 
-Not talked about: performance
-
-Not so good: Legacy problems
-
-Resources:
-
-- https://github.com/Gabriel439/post-rfc/blob/master/sotu.md
+[github.com/Gabriel439/post-rfc/blob/master/sotu.md]:
+  https://github.com/Gabriel439/post-rfc/blob/master/sotu.md)
+[elm-lang.org]: http://elm-lang.org
+[1]: https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#single-machine-concurrency
+[2]: https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#maintenance
 
