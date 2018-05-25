@@ -2,6 +2,17 @@
 title: Haskell - The Best Programming Language You Have Never Heard Of
 ...
 
+Many programming languages have been invented over the last 75 years.
+From the first high-level programming language "Plankalkül" in 1943
+to the latest efforts of Mozilla
+to make system level programming more secure with Rust.
+
+However, despite the extensive collection of available programming languages,
+a small number of popular languages make up the majority
+of the code written today.
+Are they simply the best ones or could it be worthwhile to look
+at some languages off the beaten track?
+
 The appeal to use a certain programming language
 often correlates with it's popularity.
 More popular means:
@@ -510,3 +521,17 @@ and incorporates many of Haskell's great concepts.
 [1]: https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#single-machine-concurrency
 [2]: https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#maintenance
 
+
+<!-- Purgatory
+
+By now you might have written some code in Java / C / C++, worked with some more
+unusual languages like Smalltalk and Lisp, or even defined some rules in Prolog.
+You might feel like you'd have a pretty complete picture
+of the language landscape.
+
+You'll most likely have your favorite language
+probably settle with one of the more popular languages
+
+Due to types it's almose impossible to set parentheses incorrectly.
+
+-->
