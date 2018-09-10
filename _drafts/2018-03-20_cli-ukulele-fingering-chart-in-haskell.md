@@ -1,13 +1,14 @@
 ---
-title: <code>uku</code> - A CLI tool to display Ukulele fingering charts
+title: <code>uku</code> -
+  A Haskell CLI tool to display Ukulele fingering charts
 ---
 
 **TLDR:**
-This is a tutorial on how to write a CLI tool to display fingering
+This is a tutorial on how to write a CLI tool in Haskell to display fingering
 charts for Ukuleles in your terminal.
 As it's written in literate Haskell
-the post also contains the code itself for the program.
-If you just want to use the tool install it with `stack install uku`.
+the post also contains the complete code for the program itself.
+If you just want to use the tool instead, install it with `stack install uku`.
 
 <!-- 2 years ago I started to write a CLI tool to display Ukulele fingering
 charts in the terminal as ANSI art.
@@ -16,13 +17,17 @@ I never found the time to finish it, but now I thought it was about time.
 
 While I originally started to write this in JavaScript 2 years ago
 (I thought it's about time to finish it 😛),
-I recently got introduced to Haskell and I fell in love with it.
+I recently got introduced to Haskell and it's awesome.
+[Especially for building CLI tools][cli-tools].
 One cool feature is that it has first class support for [literate programming].
 This means this post contains all the code
-and is executed like a shell script.
-([Expand documentation on how to do it.](TODO))
+and can be executed like a shell script.
+([Short how to](#literate-haskell-how-to))
 It also means I can explain to you how I build the tool
 while writing the code for it. 😁
+
+[cli-tools]:
+  https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#scripting--command-line-applications
 
 First a short overview of what it's actually supposed to do.
 This is our target output:
@@ -34,25 +39,6 @@ as ANSI art [chord boxes] to the terminal.
 Cool, right? So let's get started with the code:
 
 [chord boxes]: https://www.justinguitar.com/en/BC-108-TABandBoxes.php
-
-First some meta stuff. I'm using stack's [script interpreter]
-to make it an easily executable CLI script
-with no need for an extra compilation step.
-
-
-<!--
-```haskell
-{-
-stack
-  --resolver lts-11.1
-  script
-  --package protolude
-  --package cmdargs
--}
-```
--->
-
-[script interpreter]: https://docs.haskellstack.org/en/stable/GUIDE/#script-interpreter
 
 As dependencies we only use [Neil Mitchell][ndmitchell]'s [cmdargs]
 to parse CLI flags.
@@ -69,10 +55,11 @@ I'll explain the language extensions later when we need them.
 
 module Uku where
 
+import Protolude hiding (Any)
+
+import Data.Map.Strict as Map
 import Data.Text as Text hiding (length)
 import Data.Text.IO as Text
-import Data.Map.Strict as Map
-import Protolude
 import System.Console.CmdArgs
 import System.IO (stderr)
 import Unsafe
@@ -81,10 +68,14 @@ import Unsafe
 
 Now we need types to model our domain.
 Normally you'd expect something like `data Note = C | Cis | D | Dis …` here,
-but this notation is only for historical reasons still used.
-It actually makes not a lot of sense nowadays.
+but this notation is mostly used for historical reasons
+and not for its ingeniousness.
+It actually doesn't make a lot of sense
+in times of the twelve-tone [equal temperament].
 E.g. the distance between `E` and `F` is half the distance of `F` to `G` 🤦.
 I'll call this notation the  "arachaic notation" for the rest of the post.
+
+[equal temperament]: https://en.wikipedia.org/wiki/Equal_temperament
 
 Actually, even the notion of absolute note values isn't particularly useful,
 as western music is inherently relative and therefore
@@ -103,13 +94,14 @@ Unfortunately GHC (Glasgow Haskell Compiler) interprets them as symbols
 and does not allow them in regular names.
 <small>Explanation on [stackoverflow].</small>
 For that reason we replace `↊` with `X`
-(like the Roman literal) and `↋` with `E` (like "eleven"),
+(like the Roman literal for 10) and `↋` with `E` (like "eleven"),
 which is the recommend way for ASCII text
 by the [Dozenal Society of America][duodecimal].
 Each step corresponds to one archaic notation semi tone.
 
 [duodecimal]: http://www.dozenal.org
-[stackoverflow]: https://stackoverflow.com/questions/31965349/using-emoji-in-haskell
+[stackoverflow]:
+  https://stackoverflow.com/questions/31965349/using-emoji-in-haskell
 
 Our `Interval` data type.
 The first duodecimal number after the `I`
@@ -117,7 +109,9 @@ is the octave and the second one is the semi tone.
 To spare you the complete list, I append it to the end of the post.
 
 ```haskell
-data Interval = I00 | I01 | I02 | … | I09 | I0X | I0E | I10 | … | IEX | IEE
+-- data Interval
+--   = I00 | I01 | I02 | … | I09 | I0X | I0E
+--   | I10 | …                         | IEE
 ```
 
 Explicitly listing all possible intervals has the advantage that we can
@@ -127,40 +121,44 @@ This amounts to 144 intervals, which is great, as it's
 slightly more than the 128 notes defined in MIDI and therefore
 we can model everything that MIDI can.
 
-For specifying absolute note values, which you'll need at some point,
+For specifying absolute note values, which we'll need at some point,
 we simply use the MIDI values in dozenal notation:
-`data MidiNote = M00 | M01 | M02 | … | M09 | M0X | M0E | M10 | … | MX6 | MX7`
 
-Hereby applies that `M00` is `C-1`, `M10` is `C0` and so on.
-This makes it really easy to map notes from
-archaic notation to the equivalent MIDI notes and vice versa.
+```haskell
+-- data MidiNote
+--   = M00 | M01 | M02 | … | M09 | M0X | M0E
+--   | M10 |                         … | MX7
+```
+
+This can easily be translated to the archaic notation,
+as `M00` is C-1, `M10` is C0, `M20` is C1 and so on.
 I appended the full list to the end of the post.
 
 We can now map this to our Ukulele:
 
-```txt
-Archaic notation          Relative notation (to C4)    MIDI notes
+```
+Archaic notation    Relative to C4       MIDI notes
 
-A4 ╓──┬──┬──┬──┬          I09 ╓──┬──┬──┬──┬            M59 ╓──┬──┬──┬──┬
-E4 ╟──┼──┼──┼──┼          I04 ╟──┼──┼──┼──┼            M54 ╟──┼──┼──┼──┼
-C4 ╟──┼──┼──┼──┼          I00 ╟──┼──┼──┼──┼            M50 ╟──┼──┼──┼──┼
-G4 ╙──┴──┴──┴──┴          I07 ╙──┴──┴──┴──┴            M57 ╙──┴──┴──┴──┴
+A4 ╓──┬──┬──┬──┬    I09 ╓──┬──┬──┬──┬    M59 ╓──┬──┬──┬──┬
+E4 ╟──┼──┼──┼──┼    I04 ╟──┼──┼──┼──┼    M54 ╟──┼──┼──┼──┼
+C4 ╟──┼──┼──┼──┼    I00 ╟──┼──┼──┼──┼    M50 ╟──┼──┼──┼──┼
+G4 ╙──┴──┴──┴──┴    I07 ╙──┴──┴──┴──┴    M57 ╙──┴──┴──┴──┴
 ```
 
 
 To completely model the domain we need some more types ...
-like for our fingers🤞.
+like for our 5 fingers 🤚.
 
 ```haskell
 data Finger = Thumb | Index | Middle | Ring | Pinky | Any
 ```
 
-And now let's make it possible to pick a string at a certain position,
+Now let's make it possible to pick a string at a certain position,
 play the string open, or mute the string.
 To model the pick position we'll have to define a fret position scale as
-it's in the range 1 to _length of fretboard_
-and there is no good type safe way to model this with integers or similar.
-0 would mean open, but using a special value for it makes more sense.
+it's in the range 1 to _length of fretboard_.
+There is, however, no good type safe way to model this with integers or similar.
+0 could mean open, but using a special value for it makes more sense.
 
 Normally fretted instruments don't have more than around 30 frets,
 so we'll just use as base36 scheme without the zero.
@@ -176,9 +174,11 @@ data Pick = Pick FretPosition Finger | Open | Mute
 ```
 
 Several fingers can pick one string and that for each string.
-The strings are listed from `i07`/`G4` to `i09`/`A4`
+The strings are listed
+from `I07`/`G4` (placed at the top of the fretboard)
+to `I09`/`A4` (placed at the bottom)
 as that's what your fretboard looks like when you look at the ukulele
-as depicted in the chord boxes.
+as depicted in the chord boxes from above.
 
 ```haskell
 type Fretting = [[Pick]]
@@ -205,7 +205,7 @@ the data constructor like this:
 
 ```haskell
 ukulele :: Instrument
-ukulele = PlayedInst [i07, i00, i04, i09] M34
+ukulele = PlayedInst [I07, I00, I04, I09] M34
 ```
 
 I added the type signature to make it clearer.
@@ -249,13 +249,14 @@ bMajor = ukulele [
 --  │_│_│_│
 ```
 
-Now that we've fixed musical notation, we need a map from archaic notation
-to the fingering patterns.
-We could now write a function to automatically generate all of them,
+Now that we've invented a more logical musical notation system,
+we still need a map from archaic notation to the fingering patterns.
+We could write a function to automatically generate all of them,
 but deciding which finger to use for which pick
-is based on the anatomy of hands and it would be really hard to model this 😅.
-So instead of overengineering it, we'll stick to a simple manually generated
-lookup table.
+is based on the anatomy of hands and it would be really hard to model this 😅
+(Feel free to prove me wrong 😉).
+So instead of overengineering it,
+we'll stick to a simple manually generated lookup table.
 
 I'll give you a short excerpt of the map,
 so you know what it looks like
@@ -277,17 +278,19 @@ archaicToFrettingA = Map.fromList [
 ```
 
 
-The next step is a function which renders the fretting model in our ANSI art
+The next step is a function which renders the fretting model to our ANSI art
 chart boxes:
 
 ```haskell
-chordToPlayedInst :: Text -> Instrument -> Either Text PlayedInstrument
+chordToPlayedInst ::
+  Text -> Instrument -> Either Text PlayedInstrument
 chordToPlayedInst chord instrument =
   let
     maybeInst = do
       fretting <- Map.lookup chord archaicToFretting
       return $ instrument $ unsafeHead fretting -- TODO: Use safe head
-    errorMessage = "There is no fretting available for the specified chord"
+    errorMessage =
+      "There is no fretting available for the specified chord"
   in
     maybeToEither errorMessage maybeInst
 ```
@@ -327,14 +330,14 @@ main = do
 ```
 
 
-[1]
+<a name="literate-haskell-how-to">How to execute literate Haskell:</a>
 
 Turns out it's a little more involved when you
 want to write it in Markdown instead of LaTeX.
-(Also because of bugs in
+(Also because of issues with
 [Kramdown](https://github.com/gettalong/kramdown/issues/503) and
-[Pandoc](https://github.com/jgm/pandoc/issues/4510))
-But following command will execute this post in most shells:
+[Pandoc](https://github.com/jgm/pandoc/issues/4510)),
+but following command will execute this post in most shells:
 
 ```bash
 cat _drafts/2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
@@ -388,6 +391,7 @@ data Interval
   | I80 | I81 | I82 | I83 | I84 | I85 | I86 | I87 | I88 | I89 | I8X | I8E
   | I90 | I91 | I92 | I93 | I94 | I95 | I96 | I97 | I98 | I99 | I9X | I9E
   | IX0 | IX1 | IX2 | IX3 | IX4 | IX5 | IX6 | IX7
+```
 
 
 All frettings:
