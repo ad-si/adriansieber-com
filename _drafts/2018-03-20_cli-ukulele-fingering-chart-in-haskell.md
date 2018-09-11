@@ -355,7 +355,7 @@ showFretting fretting =
 showPlayedInst :: PlayedInstrument -> Either Text Text
 showPlayedInst (PlayedInst strings _ fretting)
   | length strings /= length fretting =
-      Left "Number of strings and number of picks in fretting do not match"
+      Left "Number of strings and picks in fretting do not match"
   | otherwise = Right $
       showFretting fretting
 ```
@@ -375,7 +375,7 @@ main = do
   chords <- getArgs
   if
     | Pl.length chords < 1 -> die "Usage: uku <chord>"
-    | Pl.length chords > 1 -> die "Only 1 chord per call is currently supported"
+    | Pl.length chords > 1 -> die "Supportrs only 1 chord per call"
     | otherwise            ->
         case (getAnsiArts $ pack $ unsafeHead chords) of
           Left error -> die error
@@ -505,7 +505,8 @@ archaicToFretting = Map.fromList [
 
     ("d#", [[[Open], [Pick F3 Ring], [Pick F3 Pinky], [Pick F1 Index]]]),
     ("d#m", [
-      [[Pick F3 Ring], [Pick F3 Pinky], [Pick F2 Middle], [Pick F1 Index]]]),
+      [[Pick F3 Ring], [Pick F3 Pinky], [Pick F2 Middle], [Pick F1 Index]]
+    ]),
 
     ("e",  [[[Pick F1 Index], [Pick F4 Pinky], [Open], [Pick F2 Middle]]]),
     ("em",  [[[Open], [Pick F4 Ring], [Pick F3 Middle], [Pick F2 Index]]]),
@@ -529,7 +530,8 @@ archaicToFretting = Map.fromList [
       ]
     ]),
     ("g#m", [
-      [[Pick F4 Ring], [Pick F3 Middle], [Pick F4 Pinky], [Pick F2 Index]]])
+      [[Pick F4 Ring], [Pick F3 Middle], [Pick F4 Pinky], [Pick F2 Index]]
+    ])
   ]
 ```
 
