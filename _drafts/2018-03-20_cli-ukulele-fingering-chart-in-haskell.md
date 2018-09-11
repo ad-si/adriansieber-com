@@ -40,22 +40,15 @@ Cool, right? So let's get started with the code:
 
 [chord boxes]: https://www.justinguitar.com/en/BC-108-TABandBoxes.php
 
-As dependencies we only use [Neil Mitchell][ndmitchell]'s [cmdargs]
-to parse CLI flags.
-I'll explain the language extensions later when we need them.
-
-[ndmitchell]: https://ndmitchell.com
-[cmdargs]: https://github.com/ndmitchell/cmdargs
-
+TODO
 
 ```haskell
 {-# OPTIONS_GHC -Wall -Wincomplete-uni-patterns #-}
 {-# LANGUAGE NoImplicitPrelude #-}
-{-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE MultiWayIf #-}
 
-module Uku where
+module Main where
 
 import Protolude as Pl hiding (Any)
 
@@ -63,7 +56,6 @@ import Data.Map.Strict as Map
 import Data.List.Index (setAt, imap)
 import Data.Text as Text hiding (length)
 import Data.Text.IO as Text
-import System.Console.CmdArgs
 import Unsafe
 ```
 
@@ -308,13 +300,13 @@ The next step is a function which renders the fretting model to our ANSI art
 chart boxes:
 
 ```haskell
-chordToPlayedInst ::
-  Text -> Instrument -> Either Text PlayedInstrument
-chordToPlayedInst chord instrument =
+chordToPlayedInsts ::
+  Text -> Instrument -> Either Text [PlayedInstrument]
+chordToPlayedInsts chord instrument =
   let
     maybeInst = do
-      fretting <- Map.lookup chord archaicToFretting
-      return $ instrument $ unsafeHead fretting -- TODO: Use safe head
+      frettings <- Map.lookup chord archaicToFretting
+      pure $ fmap instrument frettings
     errorMessage =
       "There is no fretting available for the specified chord"
   in
@@ -322,23 +314,27 @@ chordToPlayedInst chord instrument =
 ```
 
 ```haskell
+showPickOnString :: Pick -> [Char] -> [Char]
+showPickOnString pick ansiString = case pick of
+  Mute -> ansiString
+  Open -> ansiString
+  (Pick _ finger) -> setAt
+    (pickToInt pick)
+    (fingerToChar finger)
+    ansiString
+```
+
+```haskell
 showString :: Int -> Int -> Int -> [Pick] -> Text
 showString numberOfFrets numOfStrings stringIndex strPick =
   let
-    openString = (if
+    openString = unpack $ (if
       | stringIndex == 0                  -> "╒"
       | stringIndex == (numOfStrings - 1) -> "╕"
       | otherwise                         -> "╤")
       <> Text.replicate (numberOfFrets + 1) "│"
-    showPickOnString pick ansiString = case pick of
-      Mute -> ansiString
-      Open -> ansiString
-      (Pick _ finger) -> setAt (pickToInt pick) (fingerToChar finger) ansiString
   in
-    pack $ Pl.foldr
-      showPickOnString
-      (unpack openString)
-      strPick
+    pack $ Pl.foldr showPickOnString openString strPick
 ```
 
 ```haskell
@@ -364,18 +360,26 @@ showPlayedInst (PlayedInst strings _ fretting)
       showFretting fretting
 ```
 
+```haskell
+getAnsiArts :: Text -> Either Text Text
+getAnsiArts chord = do
+  playedInsts <- chordToPlayedInsts chord ukulele
+  fmap
+    (Text.intercalate "\n")
+    (mapM showPlayedInst playedInsts)
+```
 
 ```haskell
 main :: IO ()
 main = do
-  let
-    output = do
-      playedInst <- chordToPlayedInst "a" ukulele
-      ansiArt <- showPlayedInst playedInst
-      return ansiArt
-  case output of
-    Left error -> die error
-    Right ansiArt -> Text.putStr ansiArt
+  chords <- getArgs
+  if
+    | Pl.length chords < 1 -> die "Usage: uku <chord>"
+    | Pl.length chords > 1 -> die "Only 1 chord per call is currently supported"
+    | otherwise            ->
+        case (getAnsiArts $ pack $ unsafeHead chords) of
+          Left error -> die error
+          Right ansiArt -> Text.putStr $ ansiArt <> "\n"
 ```
 
 
@@ -399,17 +403,22 @@ cat _drafts/2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
   --to markdown+lhs \
   --output temp.lhs \
 | stack runhaskell \
-  --resolver lts-11.1 \
+  --resolver lts-12.9 \
   --package protolude \
-  --package cmdargs \
   --package ilist \
-  -- \
-  temp.lhs \
-; rm -f temp.lhs
+  -- temp.lhs
 ```
 
-Use `stack ghc --resolver=lts-11.1 --package=cmdargs -- -E temp.lhs`
-to compile it to Haskell
+Or to compile it to the executable `uku` replace the stack part with:
+
+```bash
+…
+| stack ghc \
+  --resolver lts-12.9 \
+  --package protolude \
+  --package ilist \
+  -- temp.lhs -o uku
+```
 
 All MIDI notes:
 
@@ -456,37 +465,71 @@ archaicToFretting :: Map Text [Fretting]
 archaicToFretting = Map.fromList [
     ("a", [
       [[Pick F2 Middle], [Pick F1 Index], [Open], [Open]],
-      [[Pick F2 Middle], [Pick F1 Index], [Open], [Pick F4 Pinky]],
-      [[Pick F2 Index], [Pick F4 Ring], [Open], [Pick F4 Pinky]]
+      [[Pick F4 Index, Pick F6 Ring],
+        [Pick F4 Index], [Pick F4 Index, Pick F5 Middle], [Pick F4 Index]]
     ]),
     ("am", [
-      [[Pick F2 Middle], [Open], [Open], [Open]],
-      [[Pick F2 Middle], [Open], [Open], [Pick F3 Any]],
-      [[Pick F2 Middle], [Pick F4 Any], [Open], [Pick F3 Any]]
-    ]),
-    ("am7", [
-      [[Open], [Open], [Open], [Open]],
-      [[Pick F2 Middle], [Open], [Open], [Pick F3 Any]],
-      [[Pick F2 Middle], [Pick F4 Any], [Pick F3 Any], [Pick F3 Any]]
+      [[Pick F2 Middle], [Open], [Open], [Open]]
     ]),
 
     ("a#", [
       [[Pick F1 Index, Pick F3 Ring],
-        [Pick F1 Index, Pick F2 Middle],
-        [Pick F1 Index],
-        [Pick F1 Index]]
-    ])
+        [Pick F1 Index, Pick F2 Middle], [Pick F1 Index], [Pick F1 Index]]
+    ]),
+    ("a#m", [
+      [[Pick F1 Index, Pick F3 Ring],
+        [Pick F1 Index], [Pick F1 Index], [Pick F1 Index]]
+    ]),
 
-    -- ("b",  [[], [], [], [], ]),
-    -- ("c",  [[], [], [], [], ]),
-    -- ("c#", [[], [], [], [], ]),
-    -- ("d",  [[], [], [], [], ]),
-    -- ("d#", [[], [], [], [], ]),
-    -- ("e",  [[], [], [], [], ]),
-    -- ("f",  [[], [], [], [], ]),
-    -- ("f#", [[], [], [], [], ]),
-    -- ("g",  [[], [], [], [], ]),
-    -- ("g#", [[], [], [], [], ]),
+    ("b", [
+      [[Pick F2 Index, Pick F4 Ring],
+        [Pick F2 Index, Pick F3 Middle], [Pick F2 Index], [Pick F2 Index]]
+    ]),
+    ("bm", [
+      [[Pick F2 Index, Pick F4 Ring],
+        [Pick F2 Index], [Pick F2 Index], [Pick F2 Index]]
+    ]),
+
+    ("c", [[[Open], [Open], [Open], [Pick F3 Ring]]]),
+    ("cm", [[[Open], [Pick F3 Index], [Pick F3 Index], [Pick F3 Index]]]),
+
+    ("c#", [
+      [[Pick F1 Index],
+        [Pick F1 Index], [Pick F1 Index], [Pick F1 Index, Pick F4 Pinky]
+      ]
+    ]),
+    ("c#m", [[[Pick F1 Index], [Pick F1 Index], [Open], [Open]]]),
+
+    ("d",  [[[Pick F2 Index], [Pick F2 Middle], [Pick F2 Middle], [Open]]]),
+    ("dm",  [[[Pick F2 Middle], [Pick F2 Ring], [Pick F1 Index], [Open]]]),
+
+    ("d#", [[[Open], [Pick F3 Ring], [Pick F3 Pinky], [Pick F1 Index]]]),
+    ("d#m", [
+      [[Pick F3 Ring], [Pick F3 Pinky], [Pick F2 Middle], [Pick F1 Index]]]),
+
+    ("e",  [[[Pick F1 Index], [Pick F4 Pinky], [Open], [Pick F2 Middle]]]),
+    ("em",  [[[Open], [Pick F4 Ring], [Pick F3 Middle], [Pick F2 Index]]]),
+
+    ("f",  [[[Pick F2 Middle], [Open], [Pick F1 Index], [Open]]]),
+    ("fm",  [[[Pick F1 Index], [Open], [Pick F1 Middle], [Pick F3 Pinky]]]),
+
+    ("f#", [
+      [[Pick F1 Index, Pick F3 Ring],
+        [Pick F1 Index], [Pick F1 Index, Pick F2 Middle], [Pick F1 Index]
+      ]
+    ]),
+    ("f#m", [[[Pick F2 Middle], [Pick F1 Index], [Pick F2 Ring], [Open]]]),
+
+    ("g",  [[[Open], [Pick F2 Index], [Pick F3 Ring], [Pick F2 Middle]]]),
+    ("gm",  [[[Open], [Pick F2 Middle], [Pick F3 Ring], [Pick F1 Index]]]),
+
+    ("g#", [
+      [[Pick F3 Index, Pick F5 Ring],
+        [Pick F3 Index], [Pick F3 Index, Pick F4 Middle], [Pick F3 Index]
+      ]
+    ]),
+    ("g#m", [
+      [[Pick F4 Ring], [Pick F3 Middle], [Pick F4 Pinky], [Pick F2 Index]]])
   ]
 ```
 
