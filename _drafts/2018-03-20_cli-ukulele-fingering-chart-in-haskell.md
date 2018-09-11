@@ -32,7 +32,7 @@ while writing the code for it. 😁
 First a short overview of what it's actually supposed to do.
 This is our target output:
 
-![Output of command "uku g"](/img/uku-g.svg)
+![Output of command "uku g"](./img/uku-g.svg)
 
 You specify an accord and `uku` pretty prints the fingering chart
 as ANSI art [chord boxes] to the terminal.
@@ -49,19 +49,21 @@ I'll explain the language extensions later when we need them.
 
 
 ```haskell
+{-# OPTIONS_GHC -Wall -Wincomplete-uni-patterns #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE MultiWayIf #-}
 
 module Uku where
 
-import Protolude hiding (Any)
+import Protolude as Pl hiding (Any)
 
 import Data.Map.Strict as Map
+import Data.List.Index (setAt, imap)
 import Data.Text as Text hiding (length)
 import Data.Text.IO as Text
 import System.Console.CmdArgs
-import System.IO (stderr)
 import Unsafe
 ```
 
@@ -137,7 +139,7 @@ I appended the full list to the end of the post.
 We can now map this to our Ukulele:
 
 ```
-Archaic notation    Relative to C4       MIDI notes
+Archaic notation    Relative to C4       Absolute MIDI notes
 
 A4 ╓──┬──┬──┬──┬    I09 ╓──┬──┬──┬──┬    M59 ╓──┬──┬──┬──┬
 E4 ╟──┼──┼──┼──┼    I04 ╟──┼──┼──┼──┼    M54 ╟──┼──┼──┼──┼
@@ -151,6 +153,16 @@ like for our 5 fingers 🤚.
 
 ```haskell
 data Finger = Thumb | Index | Middle | Ring | Pinky | Any
+  deriving (Eq, Ord, Show)
+
+fingerToChar :: Finger -> Char
+fingerToChar finger = case finger of
+  Thumb  -> 'T'
+  Index  -> 'I'
+  Middle -> 'M'
+  Ring   -> 'R'
+  Pinky  -> 'P'
+  Any    -> '⬤'
 ```
 
 Now let's make it possible to pick a string at a certain position,
@@ -161,16 +173,26 @@ There is, however, no good type safe way to model this with integers or similar.
 0 could mean open, but using a special value for it makes more sense.
 
 Normally fretted instruments don't have more than around 30 frets,
-so we'll just use as base36 scheme without the zero.
-I.e. 1-9 and A-Z.
+so we'll just use the base 36 system without the zero (i.e. 1, …, 9, A, …, Z).
 
 ```haskell
 data FretPosition
   =      F1 | F2 | F3 | F4 | F5 | F6 | F7 | F8 | F9 | FA | FB
   | FC | FD | FE | FF | FG | FH | FI | FJ | FK | FL | FM | FN
   | FO | FP | FQ | FR | FS | FT | FU | FV | FW | FX | FY | FZ
+  deriving (Bounded, Enum, Eq, Ord, Show)
 
-data Pick = Pick FretPosition Finger | Open | Mute
+data Pick
+  = Mute
+  | Open
+  | Pick FretPosition Finger
+  deriving (Eq, Ord, Show)
+
+pickToInt :: Pick -> Int
+pickToInt fretPosition =
+  case fretPosition of
+      Pick fret _ -> (fromEnum fret) + 1
+      _ -> 0
 ```
 
 Several fingers can pick one string and that for each string.
@@ -209,7 +231,8 @@ ukulele = PlayedInst [I07, I00, I04, I09] M34
 ```
 
 I added the type signature to make it clearer.
-Our ukulele is now a function which gets applied to a finger pattern
+Our ukulele is now an `Instrument`,
+aka a function which gets applied to a finger pattern
 and returns a played instrument.
 Makes sense, right?
 
@@ -217,6 +240,7 @@ And now we can finally play our first chords on the ukulele 🎉.
 For example G major:
 
 ```haskell
+gMajor :: PlayedInstrument
 gMajor = ukulele [
     [Open], [Pick F2 Index], [Pick F3 Ring], [Pick F2 Middle]
   ]
@@ -234,6 +258,7 @@ or B major:
 to show the relation between the list format and the output.)
 
 ```haskell
+bMajor :: PlayedInstrument
 bMajor = ukulele [
     [Pick F2 Index,
      Pick F4 Ring  ], [Pick F2 Index,
@@ -265,6 +290,7 @@ Note that for each chord there is a number of ways the chord can be picked.
 (Sorted from most to least common.)
 
 ```haskell
+archaicToFrettingA :: Map Text [Fretting]
 archaicToFrettingA = Map.fromList [
     ("a", [
       [[Pick F2 Middle], [Pick F1 Index], [Open], [Open]],
@@ -296,25 +322,48 @@ chordToPlayedInst chord instrument =
 ```
 
 ```haskell
-renderPicks :: [Pick] -> Text
-renderPicks picks =
+showString :: Int -> Int -> Int -> [Pick] -> Text
+showString numberOfFrets numOfStrings stringIndex strPick =
   let
-    maxPos = picks
-      & fmap (\(Pick fretPosition _) -> fretPosition)
-      & Protolude.maximum
+    openString = (if
+      | stringIndex == 0                  -> "╒"
+      | stringIndex == (numOfStrings - 1) -> "╕"
+      | otherwise                         -> "╤")
+      <> Text.replicate (numberOfFrets + 1) "│"
+    showPickOnString pick ansiString = case pick of
+      Mute -> ansiString
+      Open -> ansiString
+      (Pick _ finger) -> setAt (pickToInt pick) (fingerToChar finger) ansiString
   in
-    show maxPos
-
-showPlayedInst :: PlayedInstrument -> Either Text Text
-showPlayedInst (PlayedInst strings midiNote fretting)
-  | length strings /= length fretting =
-      Left "Number of strings and number of picks in fretting are not the same"
-  | otherwise = Right $
-      show (fmap renderPicks fretting)
+    pack $ Pl.foldr
+      showPickOnString
+      (unpack openString)
+      strPick
 ```
-ook
 
-[literate programming]: https://en.wikipedia.org/wiki/Literate_programming
+```haskell
+showFretting :: Fretting -> Text
+showFretting fretting =
+  let
+    maxPos = Pl.maximum $ fmap pickToInt $ fold fretting
+  in
+    fretting
+      & imap (showString maxPos $ Pl.length fretting)
+      & Pl.intersperse ("═" <> Text.replicate (maxPos + 1) "_")
+      & Text.transpose
+      & Text.intercalate "\n"
+      & (<> "\n")
+```
+
+```haskell
+showPlayedInst :: PlayedInstrument -> Either Text Text
+showPlayedInst (PlayedInst strings _ fretting)
+  | length strings /= length fretting =
+      Left "Number of strings and number of picks in fretting do not match"
+  | otherwise = Right $
+      showFretting fretting
+```
+
 
 ```haskell
 main :: IO ()
@@ -328,6 +377,9 @@ main = do
     Left error -> die error
     Right ansiArt -> Text.putStr ansiArt
 ```
+
+
+[literate programming]: https://en.wikipedia.org/wiki/Literate_programming
 
 
 <a name="literate-haskell-how-to">How to execute literate Haskell:</a>
@@ -350,6 +402,7 @@ cat _drafts/2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
   --resolver lts-11.1 \
   --package protolude \
   --package cmdargs \
+  --package ilist \
   -- \
   temp.lhs \
 ; rm -f temp.lhs
@@ -373,6 +426,7 @@ data MidiNote
   | M80 | M81 | M82 | M83 | M84 | M85 | M86 | M87 | M88 | M89 | M8X | M8E
   | M90 | M91 | M92 | M93 | M94 | M95 | M96 | M97 | M98 | M99 | M9X | M9E
   | MX0 | MX1 | MX2 | MX3 | MX4 | MX5 | MX6 | MX7
+  deriving (Eq, Ord, Show)
 ```
 
 
@@ -391,12 +445,14 @@ data Interval
   | I80 | I81 | I82 | I83 | I84 | I85 | I86 | I87 | I88 | I89 | I8X | I8E
   | I90 | I91 | I92 | I93 | I94 | I95 | I96 | I97 | I98 | I99 | I9X | I9E
   | IX0 | IX1 | IX2 | IX3 | IX4 | IX5 | IX6 | IX7
+  deriving (Eq, Ord, Show)
 ```
 
 
 All frettings:
 
 ```haskell
+archaicToFretting :: Map Text [Fretting]
 archaicToFretting = Map.fromList [
     ("a", [
       [[Pick F2 Middle], [Pick F1 Index], [Open], [Open]],
@@ -412,8 +468,15 @@ archaicToFretting = Map.fromList [
       [[Open], [Open], [Open], [Open]],
       [[Pick F2 Middle], [Open], [Open], [Pick F3 Any]],
       [[Pick F2 Middle], [Pick F4 Any], [Pick F3 Any], [Pick F3 Any]]
+    ]),
+
+    ("a#", [
+      [[Pick F1 Index, Pick F3 Ring],
+        [Pick F1 Index, Pick F2 Middle],
+        [Pick F1 Index],
+        [Pick F1 Index]]
     ])
-    -- ("a#", [[], [], [], [], ]),
+
     -- ("b",  [[], [], [], [], ]),
     -- ("c",  [[], [], [], [], ]),
     -- ("c#", [[], [], [], [], ]),
