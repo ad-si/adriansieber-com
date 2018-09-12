@@ -5,26 +5,18 @@ title: <code>uku</code> -
 
 **TLDR:**
 This is a tutorial on how to write a CLI tool in Haskell to display fingering
-charts for Ukuleles in your terminal.
-As it's written in literate Haskell
+charts for the Ukulele in your terminal.
+As it's written in [literate Haskell]
 the post also contains the complete code for the program itself.
-If you just want to use the tool instead, install it with `stack install uku`.
+If you just want to use the tool
+check out the [short how to](#literate-haskell-how-to) at the end.
 
-<!-- 2 years ago I started to write a CLI tool to display Ukulele fingering
-charts in the terminal as ANSI art.
-I never found the time to finish it, but now I thought it was about time.
- -->
+[literate Haskell]: https://en.wikipedia.org/wiki/Literate_programming
 
 While I originally started to write this in JavaScript 2 years ago
 (I thought it's about time to finish it 😛),
 I recently got introduced to Haskell and it's awesome.
 [Especially for building CLI tools][cli-tools].
-One cool feature is that it has first class support for [literate programming].
-This means this post contains all the code
-and can be executed like a shell script.
-([Short how to](#literate-haskell-how-to))
-It also means I can explain to you how I build the tool
-while writing the code for it. 😁
 
 [cli-tools]:
   https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#scripting--command-line-applications
@@ -32,15 +24,15 @@ while writing the code for it. 😁
 First a short overview of what it's actually supposed to do.
 This is our target output:
 
-![Output of command "uku g"](./img/uku-g.svg)
+![Output of command "uku g"](/img/uku-g.svg)
 
-You specify an accord and `uku` pretty prints the fingering chart
-as ANSI art [chord boxes] to the terminal.
+You specify a chord and `uku` pretty prints the fingering chart
+as an [ANSI art chord box] to the terminal.
 Cool, right? So let's get started with the code:
 
-[chord boxes]: https://www.justinguitar.com/en/BC-108-TABandBoxes.php
+[ANSI art chord box]: https://www.justinguitar.com/en/BC-108-TABandBoxes.php
 
-TODO
+First we need to set a few compiler settings and import some modules:
 
 ```haskell
 {-# OPTIONS_GHC -Wall -Wincomplete-uni-patterns #-}
@@ -50,15 +42,13 @@ TODO
 
 module Main where
 
-import Protolude as Pl hiding (Any)
+import Protolude as Pl
 
-import Data.Map.Strict as Map
 import Data.List.Index (setAt, imap)
-import Data.Text as Text hiding (length)
-import Data.Text.IO as Text
-import Unsafe
+import Data.Map.Strict as Map
+import Data.Text as Text
+import Unsafe (unsafeHead)
 ```
-
 
 Now we need types to model our domain.
 Normally you'd expect something like `data Note = C | Cis | D | Dis …` here,
@@ -84,15 +74,16 @@ An octave contains 12 notes and so we can use a base 12 ([duodecimal]) system
 to simplify counting in octaves.
 The duodecimal system uses 2 special unicode characters for ten and eleven,
 called pitman digits: `1 2 3 4 5 6 7 8 9 ↊ ↋`.
-Unfortunately GHC (Glasgow Haskell Compiler) interprets them as symbols
-and does not allow them in regular names.
-<small>Explanation on [stackoverflow].</small>
+Unfortunately [GHC] interprets them as symbols
+and does not allow them in regular names
+<small>(Explanation on [stackoverflow])</small>.
 For that reason we replace `↊` with `X`
 (like the Roman literal for 10) and `↋` with `E` (like "eleven"),
 which is the recommend way for ASCII text
 by the [Dozenal Society of America][duodecimal].
-Each step corresponds to one archaic notation semi tone.
+Each step corresponds to one semi tone in archaic notation.
 
+[GHC]: https://en.wikipedia.org/wiki/Glasgow_Haskell_Compiler
 [duodecimal]: http://www.dozenal.org
 [stackoverflow]:
   https://stackoverflow.com/questions/31965349/using-emoji-in-haskell
@@ -144,26 +135,33 @@ To completely model the domain we need some more types ...
 like for our 5 fingers 🤚.
 
 ```haskell
-data Finger = Thumb | Index | Middle | Ring | Pinky | Any
+data Finger = Thumb | Index | Middle | Ring | Pinky | AnyFinger
   deriving (Eq, Ord, Show)
+```
 
+Each finger will later be rendered by printing its first character.
+We also add ANSI color codes to colorize the terminal output.
+
+```haskell
 fingerToText :: Finger -> Text
 fingerToText finger =
   let colorize text = "\x1b[31m" <> text <> "\x1b[0m"
   in colorize $ case finger of
-    Thumb  -> "T"
-    Index  -> "I"
-    Middle -> "M"
-    Ring   -> "R"
-    Pinky  -> "P"
-    Any    -> "●"
+    Thumb     -> "T"
+    Index     -> "I"
+    Middle    -> "M"
+    Ring      -> "R"
+    Pinky     -> "P"
+    AnyFinger -> "●"
 ```
 
-Now let's make it possible to pick a string at a certain position,
-play the string open, or mute the string.
-To model the pick position we'll have to define a fret position scale as
-it's in the range 1 to _length of fretboard_.
-There is, however, no good type safe way to model this with integers or similar.
+Now we need to make it possible to pick a string at a certain position,
+play the string open, or mute the string
+<small>(Attention: "Strings" always refers to the Ukulele strings.
+The datatype to store a string of characters is called `Text`)</small>.
+To model the pick position we'll have to define a fret position
+in the range 1 to _length of fretboard_.
+There is, however, no good type safe way to model this with integers.
 0 could mean open, but using a special value for it makes more sense.
 
 Normally fretted instruments don't have more than around 30 frets,
@@ -175,13 +173,24 @@ data FretPosition
   | FC | FD | FE | FF | FG | FH | FI | FJ | FK | FL | FM | FN
   | FO | FP | FQ | FR | FS | FT | FU | FV | FW | FX | FY | FZ
   deriving (Bounded, Enum, Eq, Ord, Show)
+```
 
+`Mute` indicates to not play the string, `Open` means without picking it,
+and `Pick` defines the fretboard position
+and the finger to perform the pick with.
+
+```haskell
 data Pick
   = Mute
   | Open
   | Pick FretPosition Finger
   deriving (Eq, Ord, Show)
+```
 
+To be able to perform calculations with fretboard position
+we define a function to convert a `Pick` to an `Int`.
+
+```haskell
 pickToInt :: Pick -> Int
 pickToInt fretPosition =
   case fretPosition of
@@ -189,19 +198,21 @@ pickToInt fretPosition =
       _ -> 0
 ```
 
-Several fingers can pick one string and that for each string.
-The strings are listed
-from `I07`/`G4` (placed at the top of the fretboard)
-to `I09`/`A4` (placed at the bottom)
-as that's what your fretboard looks like when you look at the ukulele
-as depicted in the chord boxes from above.
+One complete fretting of a chord is defined as:
 
 ```haskell
 type Fretting = [[Pick]]
 ```
 
-Finally we define a played fretted instrument by a list of the relative notes
-of all strings, it's base note (the note of the lowest string)
+Several fingers can pick one string and that for each string.
+The strings are listed
+from `I07`/`G4` (placed at the top of the fretboard)
+to `I09`/`A4` (placed at the bottom).
+That's what your fretboard looks like when you look at the ukulele
+as depicted in the chord boxes from above.
+
+Finally we define a played fretted instrument by a list of relative notes
+for all strings, it's base note (the note of the lowest string)
 and the current fingering / fretting pattern.
 
 ```haskell
@@ -248,8 +259,8 @@ gMajor = ukulele [
 ```
 
 or B major:
-(Formatted like this
-to show the relation between the list format and the output.)
+(Formatted as 4 columns
+to show the relation between the datatype format and the output.)
 
 ```haskell
 bMajor :: PlayedInstrument
@@ -268,18 +279,18 @@ bMajor = ukulele [
 --  │_│_│_│
 ```
 
-Now that we've invented a more logical musical notation system,
-we still need a map from archaic notation to the fingering patterns.
-We could write a function to automatically generate all of them,
+Although we've invented a more logical musical notation system,
+we still need a way to map from the archaic notation to the fingering patterns.
+We could try to write a function to automatically generate all of them,
 but deciding which finger to use for which pick
-is based on the anatomy of hands and it would be really hard to model this 😅
-(Feel free to prove me wrong 😉).
+is based on the anatomy of hands and it would be really hard to model this.
+(Feel free to prove me wrong 😉.)
 So instead of overengineering it,
 we'll stick to a simple manually generated lookup table.
 
 I'll give you a short excerpt of the map,
 so you know what it looks like
-and move the complete one to the end of the post.
+and move the complete map to the end of the post.
 Note that for each chord there is a number of ways the chord can be picked.
 (Sorted from most to least common.)
 
@@ -292,14 +303,17 @@ archaicToFrettingA = Map.fromList [
     ]),
     ("am", [
       [[Pick F2 Middle], [Open], [Open], [Open]],
-      [[Pick F2 Middle], [Open], [Open], [Pick F3 Any]]
+      [[Pick F2 Middle], [Open], [Open], [Pick F3 AnyFinger]]
     ])
   ]
 ```
 
 
-The next step is a function which renders the fretting model to our ANSI art
-chart boxes:
+The next step is to write a set of functions
+to render the fretting model to our ANSI art chart boxesl
+This only works if the chord is defined.
+
+Generate the played instrument:
 
 ```haskell
 chordToPlayedInsts ::
@@ -315,9 +329,11 @@ chordToPlayedInsts chord instrument =
     maybeToEither errorMessage maybeInst
 ```
 
+Render the pick onto an empty string:
+
 ```haskell
-showPickOnString :: Pick -> [Text] -> [Text]
-showPickOnString pick stringParts =
+putPickOnString :: Pick -> [Text] -> [Text]
+putPickOnString pick stringParts =
   case pick of
     Mute -> stringParts
     Open -> stringParts
@@ -328,9 +344,11 @@ showPickOnString pick stringParts =
         stringParts
 ```
 
+Get the rendering of each string:
+
 ```haskell
-showString :: Int -> Int -> Int -> [Pick] -> [Text]
-showString numberOfFrets numOfStrings stringIndex strPick =
+getString :: Int -> Int -> Int -> [Pick] -> [Text]
+getString numberOfFrets numOfStrings stringIndex strPick =
   let
     openString = [(if
       | stringIndex == 0                  -> "╒"
@@ -338,8 +356,10 @@ showString numberOfFrets numOfStrings stringIndex strPick =
       | otherwise                         -> "╤")]
       <> Pl.replicate (numberOfFrets + 1) "│"
   in
-    Pl.foldr showPickOnString openString strPick
+    Pl.foldr putPickOnString openString strPick
 ```
+
+Render the complete fretting:
 
 ```haskell
 showFretting :: Fretting -> Text
@@ -348,7 +368,7 @@ showFretting fretting =
     maxPos = Pl.maximum $ fmap pickToInt $ fold fretting
   in
     fretting
-      & imap (showString maxPos $ Pl.length fretting)
+      & imap (getString maxPos $ Pl.length fretting)
       & Pl.intersperse (["═"] <> Pl.replicate (maxPos + 1) "_")
       & Pl.transpose
       & Pl.intercalate ["\n"]
@@ -356,14 +376,20 @@ showFretting fretting =
       & (<> "\n")
 ```
 
+Render the played instrument.
+Only works when number of strings per pick match with the number of strings
+of the instrument.
+
 ```haskell
 showPlayedInst :: PlayedInstrument -> Either Text Text
 showPlayedInst (PlayedInst strings _ fretting)
-  | length strings /= length fretting =
+  | Pl.length strings /= Pl.length fretting =
       Left "Number of strings and picks in fretting do not match"
   | otherwise = Right $
       showFretting fretting
 ```
+
+Render if for each possible fretting for a certain chord:
 
 ```haskell
 getAnsiArts :: Text -> Either Text Text
@@ -373,6 +399,9 @@ getAnsiArts chord = do
     (Text.intercalate "\n")
     (mapM showPlayedInst playedInsts)
 ```
+
+Finally a short `main` function to define the command line interface
+and handle I/O.
 
 ```haskell
 main :: IO ()
@@ -384,12 +413,17 @@ main = do
     | otherwise            ->
         case (getAnsiArts $ pack $ unsafeHead chords) of
           Left error -> die error
-          Right ansiArt -> Text.putStr $ ansiArt <> "\n"
+          Right ansiArt -> putStr $ ansiArt <> "\n"
 ```
 
+And there we go:
+You now have a simple CLI tool to render Ukulele fingering charts.
+If you're looking for a challenge you could now extend it for Guitars!
 
-[literate programming]: https://en.wikipedia.org/wiki/Literate_programming
+Hope you liked it and if so, feel free to [subscribe to my newsletter](/)
+to get a ping when I publish a new post! 😁
 
+---
 
 <a name="literate-haskell-how-to">How to execute literate Haskell:</a>
 
@@ -401,7 +435,8 @@ want to write it in Markdown instead of LaTeX.
 but following command will execute this post in most shells:
 
 ```bash
-cat _drafts/2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
+curl --silent \
+  http://code.adriansieber.com/adrian/adriansieber-com/raw/branch/master/_posts/2018-09-12_cli-ukulele-fingering-chart-in-haskell.md \
 | sed 's/```haskell/```{.literate .haskell}/g' \
 | pandoc \
   --from markdown \
@@ -414,7 +449,7 @@ cat _drafts/2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
   -- temp.lhs a
 ```
 
-Or to compile it to the executable `uku` replace the stack part with:
+Or to compile it to a `uku` executable replace the last part with:
 
 ```bash
 …
@@ -424,6 +459,8 @@ Or to compile it to the executable `uku` replace the stack part with:
   --package ilist \
   -- temp.lhs -o uku
 ```
+
+---
 
 All MIDI notes:
 
@@ -538,38 +575,4 @@ archaicToFretting = Map.fromList [
       [[Pick F4 Ring], [Pick F3 Middle], [Pick F4 Pinky], [Pick F2 Index]]
     ])
   ]
-```
-
-
-Other formattings:
-```txt
-╓───┬─M─┬───┬───┬
-╟───┼───┼─R─┼───┼
-╟───┼─I─┼───┼───┼
-╙───┴───┴───┴───┴
-╓──┬─M┬──┬──┬
-╟──┼──┼─R┼──┼
-╟──┼─I┼──┼──┼
-╙──┴──┴──┴──┴
-╓──┬Ⓜ─┬──┬──┬
-╟──┼──┼Ⓡ─┼──┼
-╟──┼Ⓘ─┼──┼──┼
-╙──┴──┴──┴──┴
-╓──┬❷─┬──┬──┬
-╟──┼──┼❸─┼──┼
-╟──┼❶─┼──┼──┼
-╙──┴──┴──┴──┴
-╓──┬⬤─┬──┬──┬
-╟──┼──┼⬤─┼──┼
-╟──┼⬤─┼──┼──┼
-╙──┴──┴──┴──┴
-
-   G        G
-╒═╤═╤═╕  ╒═╤═╤═╕
-│ │ │ │  │_│_│_│
-├─┼─┼─┤  │_I_│_M
-│ I │ M  │_│_R_│
-├─┼─┼─┤  │_│_│_│
-│ │ R │
-├─┼─┼─┤
 ```
