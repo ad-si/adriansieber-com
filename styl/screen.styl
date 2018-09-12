@@ -73,7 +73,7 @@ p
 
 ul,
 ol
-  margin-left 2em
+  margin-left 1.5em
   margin-bottom 1.5em
 
 code
@@ -179,6 +179,12 @@ article
     color rgb(80, 90, 100)
     font-size 0.99em
 
+#post-listing
+  li
+    display flex
+    flex-wrap nowrap
+    span
+      padding-right 0.4em
 
 .post
   font-family Palatino, Georgia, 'Times New Roman', Times, serif !important
@@ -284,6 +290,7 @@ aside
     white-space nowrap
   li
     display flex
+    flex-wrap wrap
     align-items center
     margin-bottom 1.5rem
     > a
@@ -294,6 +301,7 @@ aside
       display block
       height 100%
       height projectImageHeight
+      margin-bottom 0.5em
       margin-right 2rem
       text-align center
       text-decoration none
@@ -380,9 +388,11 @@ aside
 @media screen and (min-width 400px)
   #projects
     margin 0 auto
+
   aside
     a
       margin-right 0.5em
+
 
 @media screen and (min-width contentWidth)
   #wrapper
@@ -394,6 +404,8 @@ aside
 
   #projects
     max-width none
+    li
+      flex-wrap nowrap
 
   .post
     p

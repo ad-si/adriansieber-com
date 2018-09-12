@@ -1,6 +1,7 @@
 ---
 title: <code>uku</code> -
   A Haskell CLI tool to display Ukulele fingering charts
+image: /img/uku-g.svg
 ---
 
 **TLDR:**
