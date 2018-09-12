@@ -147,14 +147,16 @@ like for our 5 fingers 🤚.
 data Finger = Thumb | Index | Middle | Ring | Pinky | Any
   deriving (Eq, Ord, Show)
 
-fingerToChar :: Finger -> Char
-fingerToChar finger = case finger of
-  Thumb  -> 'T'
-  Index  -> 'I'
-  Middle -> 'M'
-  Ring   -> 'R'
-  Pinky  -> 'P'
-  Any    -> '⬤'
+fingerToText :: Finger -> Text
+fingerToText finger =
+  let colorize text = "\x1b[31m" <> text <> "\x1b[0m"
+  in colorize $ case finger of
+    Thumb  -> "T"
+    Index  -> "I"
+    Middle -> "M"
+    Ring   -> "R"
+    Pinky  -> "P"
+    Any    -> "●"
 ```
 
 Now let's make it possible to pick a string at a certain position,
@@ -314,27 +316,29 @@ chordToPlayedInsts chord instrument =
 ```
 
 ```haskell
-showPickOnString :: Pick -> [Char] -> [Char]
-showPickOnString pick ansiString = case pick of
-  Mute -> ansiString
-  Open -> ansiString
-  (Pick _ finger) -> setAt
-    (pickToInt pick)
-    (fingerToChar finger)
-    ansiString
+showPickOnString :: Pick -> [Text] -> [Text]
+showPickOnString pick stringParts =
+  case pick of
+    Mute -> stringParts
+    Open -> stringParts
+    (Pick _ finger) ->
+      setAt
+        (pickToInt pick)
+        (fingerToText finger)
+        stringParts
 ```
 
 ```haskell
-showString :: Int -> Int -> Int -> [Pick] -> Text
+showString :: Int -> Int -> Int -> [Pick] -> [Text]
 showString numberOfFrets numOfStrings stringIndex strPick =
   let
-    openString = unpack $ (if
+    openString = [(if
       | stringIndex == 0                  -> "╒"
       | stringIndex == (numOfStrings - 1) -> "╕"
-      | otherwise                         -> "╤")
-      <> Text.replicate (numberOfFrets + 1) "│"
+      | otherwise                         -> "╤")]
+      <> Pl.replicate (numberOfFrets + 1) "│"
   in
-    pack $ Pl.foldr showPickOnString openString strPick
+    Pl.foldr showPickOnString openString strPick
 ```
 
 ```haskell
@@ -345,9 +349,10 @@ showFretting fretting =
   in
     fretting
       & imap (showString maxPos $ Pl.length fretting)
-      & Pl.intersperse ("═" <> Text.replicate (maxPos + 1) "_")
-      & Text.transpose
-      & Text.intercalate "\n"
+      & Pl.intersperse (["═"] <> Pl.replicate (maxPos + 1) "_")
+      & Pl.transpose
+      & Pl.intercalate ["\n"]
+      & fold
       & (<> "\n")
 ```
 
@@ -406,7 +411,7 @@ cat _drafts/2018-03-20_cli-ukulele-fingering-chart-in-haskell.md \
   --resolver lts-12.9 \
   --package protolude \
   --package ilist \
-  -- temp.lhs
+  -- temp.lhs a
 ```
 
 Or to compile it to the executable `uku` replace the stack part with:
