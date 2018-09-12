@@ -6,16 +6,16 @@ title: <code>uku</code> -
 **TLDR:**
 This is a tutorial on how to write a CLI tool in Haskell to display fingering
 charts for the Ukulele in your terminal.
-As it's written in [literate Haskell]
-the post also contains the complete code for the program itself.
+As this post is written in [literate Haskell],
+it also contains the complete code for the program itself.
 If you just want to use the tool
 check out the [short how to](#literate-haskell-how-to) at the end.
 
 [literate Haskell]: https://en.wikipedia.org/wiki/Literate_programming
 
-While I originally started to write this in JavaScript 2 years ago
-(I thought it's about time to finish it 😛),
-I recently got introduced to Haskell and it's awesome.
+While I originally started to write this 2 years ago
+(I thought it's about time to finish it 😛)
+in JavaScript, I recently got introduced to Haskell and it's awesome.
 [Especially for building CLI tools][cli-tools].
 
 [cli-tools]:
@@ -32,7 +32,7 @@ Cool, right? So let's get started with the code:
 
 [ANSI art chord box]: https://www.justinguitar.com/en/BC-108-TABandBoxes.php
 
-First we need to set a few compiler settings and import some modules:
+First, we need to set a few compiler settings and import some basic modules:
 
 ```haskell
 {-# OPTIONS_GHC -Wall -Wincomplete-uni-patterns #-}
@@ -51,19 +51,19 @@ import Unsafe (unsafeHead)
 ```
 
 Now we need types to model our domain.
-Normally you'd expect something like `data Note = C | Cis | D | Dis …` here,
+Normally you'd expect something like `data Note = C | Cis | D | Dis …`,
 but this notation is mostly used for historical reasons
 and not for its ingeniousness.
-It actually doesn't make a lot of sense
-in times of the twelve-tone [equal temperament].
 E.g. the distance between `E` and `F` is half the distance of `F` to `G` 🤦.
+The notation just doesn't make a lot of sense
+in times of the twelve-tone [equal temperament].
 I'll call this notation the  "arachaic notation" for the rest of the post.
 
 [equal temperament]: https://en.wikipedia.org/wiki/Equal_temperament
 
 Actually, even the notion of absolute note values isn't particularly useful,
-as western music is inherently relative and therefore
-you can start a song from every note.
+as western music is inherently relative
+and you can start the same song from every note.
 To accommodate this we simply model everything relatively
 and only make the common note names and the particular tuning of the
 Ukulele a special instance of it.
@@ -73,7 +73,7 @@ A Piano supports 88 notes and MIDI supports 128 notes.
 An octave contains 12 notes and so we can use a base 12 ([duodecimal]) system
 to simplify counting in octaves.
 The duodecimal system uses 2 special unicode characters for ten and eleven,
-called pitman digits: `1 2 3 4 5 6 7 8 9 ↊ ↋`.
+called pitman digits: `0 1 2 3 4 5 6 7 8 9 ↊ ↋`.
 Unfortunately [GHC] interprets them as symbols
 and does not allow them in regular names
 <small>(Explanation on [stackoverflow])</small>.
@@ -88,16 +88,17 @@ Each step corresponds to one semi tone in archaic notation.
 [stackoverflow]:
   https://stackoverflow.com/questions/31965349/using-emoji-in-haskell
 
-Our `Interval` data type.
-The first duodecimal number after the `I`
-is the octave and the second one is the semi tone.
-To spare you the complete list, I append it to the end of the post.
+Our `Interval` data type:
 
 ```haskell
 -- data Interval
 --   = I00 | I01 | I02 | … | I09 | I0X | I0E
 --   | I10 | …                         | IEE
 ```
+
+The first duodecimal number after the `I`
+is the octave and the second one is the semi tone.
+To spare you the complete list, I appended it to the end of the post.
 
 Explicitly listing all possible intervals has the advantage that we can
 now ensure at compile time that no invalid intervals are specified.
@@ -159,11 +160,11 @@ Now we need to make it possible to pick a string at a certain position,
 play the string open, or mute the string
 <small>(Attention: "Strings" always refers to the Ukulele strings.
 The datatype to store a string of characters is called `Text`)</small>.
+
 To model the pick position we'll have to define a fret position
 in the range 1 to _length of fretboard_.
 There is, however, no good type safe way to model this with integers.
 0 could mean open, but using a special value for it makes more sense.
-
 Normally fretted instruments don't have more than around 30 frets,
 so we'll just use the base 36 system without the zero (i.e. 1, …, 9, A, …, Z).
 
@@ -187,7 +188,7 @@ data Pick
   deriving (Eq, Ord, Show)
 ```
 
-To be able to perform calculations with fretboard position
+To be able to perform calculations with fretboard positions
 we define a function to convert a `Pick` to an `Int`.
 
 ```haskell
@@ -204,11 +205,12 @@ One complete fretting of a chord is defined as:
 type Fretting = [[Pick]]
 ```
 
+Explanation:
 Several fingers can pick one string and that for each string.
 The strings are listed
 from `I07`/`G4` (placed at the top of the fretboard)
 to `I09`/`A4` (placed at the bottom).
-That's what your fretboard looks like when you look at the ukulele
+That's what your fretboard looks like when you look at the Ukulele
 as depicted in the chord boxes from above.
 
 Finally we define a played fretted instrument by a list of relative notes
@@ -222,9 +224,10 @@ type Instrument = Fretting -> PlayedInstrument
 ```
 
 The cool thing about this representation is that if you want to change
-the tuning of the instrument,
-e.g. by using a [capo](https://en.wikipedia.org/wiki/Capo),
-you only have to change the base note instead of changing each string.
+the tuning of the instrument
+(e.g. by using a [capo](https://en.wikipedia.org/wiki/Capo))
+or want to use a differntly tuned Ukulele
+you only have to change the base note, instead of changing each string.
 
 Based on this `PlayedInstrument` data type
 we can define a normal Ukulele by partially applying
@@ -258,9 +261,9 @@ gMajor = ukulele [
 --  │_│_│_│
 ```
 
-or B major:
+Or B major
 (Formatted as 4 columns
-to show the relation between the datatype format and the output.)
+to show the relation between the datatype format and the output.):
 
 ```haskell
 bMajor :: PlayedInstrument
@@ -279,7 +282,7 @@ bMajor = ukulele [
 --  │_│_│_│
 ```
 
-Although we've invented a more logical musical notation system,
+Although we've now invented a more logical musical notation system,
 we still need a way to map from the archaic notation to the fingering patterns.
 We could try to write a function to automatically generate all of them,
 but deciding which finger to use for which pick
@@ -291,7 +294,7 @@ we'll stick to a simple manually generated lookup table.
 I'll give you a short excerpt of the map,
 so you know what it looks like
 and move the complete map to the end of the post.
-Note that for each chord there is a number of ways the chord can be picked.
+Note that for each chord there are several ways how the chord can be picked.
 (Sorted from most to least common.)
 
 ```haskell
@@ -310,7 +313,7 @@ archaicToFrettingA = Map.fromList [
 
 
 The next step is to write a set of functions
-to render the fretting model to our ANSI art chart boxesl
+to render the fretting model to our ANSI art chart boxes.
 This only works if the chord is defined.
 
 Generate the played instrument:
@@ -329,7 +332,7 @@ chordToPlayedInsts chord instrument =
     maybeToEither errorMessage maybeInst
 ```
 
-Render the pick onto an empty string:
+Render the pick onto an open string text:
 
 ```haskell
 putPickOnString :: Pick -> [Text] -> [Text]
@@ -376,9 +379,9 @@ showFretting fretting =
       & (<> "\n")
 ```
 
-Render the played instrument.
-Only works when number of strings per pick match with the number of strings
-of the instrument.
+Render the played instrument
+(Only works when number of strings per pick match with the number of strings
+of the instrument):
 
 ```haskell
 showPlayedInst :: PlayedInstrument -> Either Text Text
@@ -389,7 +392,7 @@ showPlayedInst (PlayedInst strings _ fretting)
       showFretting fretting
 ```
 
-Render if for each possible fretting for a certain chord:
+Render it for each possible fretting for a certain chord:
 
 ```haskell
 getAnsiArts :: Text -> Either Text Text
@@ -418,21 +421,21 @@ main = do
 
 And there we go:
 You now have a simple CLI tool to render Ukulele fingering charts.
-If you're looking for a challenge you could now extend it for Guitars!
+If you're looking for a challenge you could now extend it to Guitars!
 
 Hope you liked it and if so, feel free to [subscribe to my newsletter](/)
-to get a ping when I publish a new post! 😁
+to get an email when I publish a new post! 😁
 
 ---
 
 <a name="literate-haskell-how-to">How to execute literate Haskell:</a>
 
 Turns out it's a little more involved when you
-want to write it in Markdown instead of LaTeX.
+want to write it in Markdown instead of LaTeX
 (Also because of issues with
 [Kramdown](https://github.com/gettalong/kramdown/issues/503) and
-[Pandoc](https://github.com/jgm/pandoc/issues/4510)),
-but following command will execute this post in most shells:
+[Pandoc](https://github.com/jgm/pandoc/issues/4510)).
+But following command will execute this post in most shells:
 
 ```bash
 curl --silent \
