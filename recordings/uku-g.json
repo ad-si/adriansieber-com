@@ -1,0 +1,4 @@
+{"version": 2, "width": 60, "height": 10, "timestamp": 1536741885, "env": {"SHELL": "/usr/bin/bash", "TERM": "xterm-256color"}, "title": "Uku g"}
+[1.253349, "o", "$ \u001b[38;2;195;151;216m./uku\u001b[34;2;150;152;150m g\u001b[30m\u001b(B\u001b[m\r\n"]
+[1.673856, "o", "╒═╤═╤═╕\r\n│_│_│_│\r\n│_\u001b[31mI\u001b[0m_│_\u001b[31mM\u001b[0m\r\n│_│_\u001b[31mR\u001b[0m_│\r\n│_│_│_│\r\n"]
+[1.674051, "o", "\r\n"]
