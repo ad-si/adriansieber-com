@@ -28,3 +28,24 @@ There are even a few (really old) videos on
 As sitting in front of the computer the whole day is rather unhealthy
 I regularly go jogging and do gymnastics.
 In addition I like to go skiing in winter and sailing in summer.
+
+
+## Organizations
+
+True to the motto "Put your money where your mouth is" I like to join
+non profit organizations supporting my beliefs:
+
+- [FSF] - Free Software Foundation.
+- [Gesellschaft für Informatik e.V.] - Society for computer science.
+- [IBKA e.V.] - International League of non-religious and atheists.
+- [Pro Rauchfrei e.V.] - German organization to protect non smokers.
+- [The Dozenal Society of America] - Promoting the base 12 number system.
+- [Zwanzigeins e.V.] - Fix pronunciation of numbers in German
+    (twenty-one instead of one-and-twenty).
+
+[FSF]: https://fsf.org
+[Gesellschaft für Informatik e.V.]: https://gi.de
+[IBKA e.V.]: https://www.ibka.org
+[Pro Rauchfrei e.V.]: https://www.pro-rauchfrei.de
+[The Dozenal Society of America]: http://dozenal.org
+[Zwanzigeins e.V.]: https://zwanzigeins.jetzt
