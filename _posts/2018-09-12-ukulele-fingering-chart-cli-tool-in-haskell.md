@@ -440,7 +440,7 @@ But following command will execute this post in most shells:
 
 ```bash
 curl --silent \
-  http://code.adriansieber.com/adrian/adriansieber-com/raw/branch/master/_posts/2018-09-12_cli-ukulele-fingering-chart-in-haskell.md \
+  http://code.adriansieber.com/adrian/adriansieber-com/raw/branch/master/_posts/2018-09-12-ukulele-fingering-chart-cli-tool-in-haskell.md \
 | sed 's/```haskell/```{.literate .haskell}/g' \
 | pandoc \
   --from markdown \
