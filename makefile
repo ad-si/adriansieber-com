@@ -1,3 +1,7 @@
+.PHONY: main
+main: build
+
+
 # Continously build website
 .PHONY: watch
 watch: stylus-watch docker-serve
