@@ -40,7 +40,7 @@ Write a function which creates a CSS RGB string:
 
 ```javascript
 function getRgbColor (red, green, blue) {
-  return 'rgb(' + red + ',' + green + ',' + blue + ')'
+  return `rgb(${red},${green},${blue})`
 }
 ```
 &nbsp;
@@ -58,7 +58,7 @@ Let's fix it:
 ```javascript
 function getRgbColor (red, green, blue) {
   if (red && green && blue) {
-    return 'rgb(' + red + ',' + green + ',' + blue + ')'
+    return `rgb(${red},${green},${blue})`
   }
   else throw new Error('Please provide a valid color')
 }
@@ -91,7 +91,7 @@ function getColor (red, green, blue) {
 
   // TODO: Check for upper and lower bound
 
-  if (isValidColor) return 'rgb(' + red + ',' + green + ',' + blue + ')'
+  if (isValidColor) return `rgb(${red},${green},${blue})`
   else throw new Error('Please provide a valid color')
 }
 ```
@@ -186,7 +186,7 @@ PureScript
 - `head`, `tail`, … safe per default
 - More explicit:
   - "X has unspecified imports, consider using the explicit form"
-  - Type-classes must be imported explicitly
+  - Type-classes must explicitly be imported with the `class` keyword
     ```purescript
     import A (class B)
     ```
@@ -433,7 +433,7 @@ nextBook = book {title = "Am Samstag kam das Sams zurück"}
 &nbsp;
 
 *Side note*:
-This would be ambigious if Records used `=` instead of `:` for assignments.
+This would be ambiguous if Records used `=` instead of `:` for assignments.
 
 Does it mean "apply function `book` to object `{ title: "…" }`"
 or "update the `title` of `book`"?
@@ -442,7 +442,7 @@ or "update the `title` of `book`"?
 ## Pattern Matching on Records
 
 ```purescript
-paulsTitle {author = "Paul Maar", title = t} = Just t
+paulsTitle {author: "Paul Maar", title: t} = Just t
 paulsTitle _ = Nothing
 ```
 
@@ -509,7 +509,7 @@ Type
 &nbsp;
 
 ```purescript
-type EitherTitleOrAuthor = Variant ( title :: String, author :: String )
+type EitherTitleOrYear = Variant ( title :: String, year :: Int )
 ```
 
 <!--
@@ -540,13 +540,13 @@ Finer subdivision into more classes:
 
 &nbsp;
 
-- Category has a superclass Semigroupoid
+- `Category` has a superclass `Semigroupoid`
   (provides `<<<`, does not require an identity)
 
-- Monoid has a superclass Semigroup
+- `Monoid` has a superclass `Semigroup`
   (provides `<>`, does not require an identity)
 
-- Applicative has a superclass Apply
+- `Applicative` has a superclass `Apply`
   (provides `<*>`, does not require an implementation for `pure`)
 
 
@@ -566,6 +566,7 @@ Equivalent to enabling following extension in GHC
 - `RankNTypes`
 - `RebindableSyntax`
 - `ScopedTypeVariables`
+- `UndecidableInstances` (cuts off after to much looping)
 
 
 ## Low Level Adaptions for JavaScript
@@ -640,7 +641,7 @@ Haskell                | PureScript
   - React
 
 - Language experiments
-  - [Neon] - Alternative Prelude without type class hierachy
+  - [Neon] - Alternative Prelude without type class hierarchy
 
 [PureScript Pop]: https://github.com/lettier/purescript-pop
 [Neon]: https://github.com/tfausak/purescript-neon
