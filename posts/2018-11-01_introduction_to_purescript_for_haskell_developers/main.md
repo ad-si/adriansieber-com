@@ -1,104 +1,345 @@
 ---
 title: Introduction to PureScript for Haskell Developers
-image:
+author: Adrian Sieber @AdrianSieber
+date: 2018-11-01
+theme: default
+colortheme: owl
+innertheme: circles
+aspectratio: 169
+image: ./expanding_brain.jpg
 ---
+
+
+## Why PureScript Instead of JavaScript
+
+::: notes
 
 For this post I'm going to try a new hybrid slides + text format.
 I attached an explanation at the bottom on how to build it
 
-
-# Why instead of JavaScript
+:::
 
 - Safety
-  - No more undefined is not a function
-  - No more `0 === false`
-- Maintainability
-- No more mutation
+  - No more `undefined is not a function`
+  - No more `0 == false`
+  - No more mutation
     ```js
     for (var key in object) {
       elements[key] = () => key.toUpperCase()
     }
+  ```
+- More robust
+- Better maintainability / refactoring
+
+
+## Example
+
+Write a function which creates a CSS RGB string:
+
+&nbsp;
+
+```javascript
+function getRgbColor (red, green, blue) {
+  return 'rgb(' + red + ',' + green + ',' + blue + ')'
+}
+```
+&nbsp;
+
+Well ... this shouldn't be possible:
+
+```javascript
+console.log(getRgbColor(undefined, 234, null))
+```
+
+---
+
+Let's fix it:
+
+```javascript
+function getRgbColor (red, green, blue) {
+  if (red && green && blue) {
+    return 'rgb(' + red + ',' + green + ',' + blue + ')'
+  }
+  else throw new Error('Please provide a valid color')
+}
+```
+&nbsp;
+
+But wait a minute:
+&nbsp;
+
+```javascript
+console.log(getRgbColor(221, 175, 15))
+// rgb(221,175,15)
+
+console.log(getRgbColor(221, 0, 89))
+// Error: Please provide a valid color
+```
+
+---
+
+Solution:
+
+&nbsp;
+
+```javascript
+function getColor (red, green, blue) {
+  const isValidColor =
+    isFinite(red) &&
+    isFinite(green) &&
+    isFinite(blue)
+
+  // TODO: Check for upper and lower bound
+
+  if (isValidColor) return 'rgb(' + red + ',' + green + ',' + blue + ')'
+  else throw new Error('Please provide a valid color')
+}
+```
+
+---
+
+**NOT THE GLOBAL `isFinite`**
+
+&nbsp;
+
+```javascript
+isFinite(null) === true
+Number.isFinite(null) === false
+```
+
+---
+
+\Huge{JavaScript is an minefield!!!}
+
+---
+
+\begin{table}
+\begin{tabular}{cc}
+\textbf{ES3}
+  & \raisebox{-.5\height}{\includegraphics[width=30mm]{./expanding_brain/0.jpg}} \\
+\textbf{ES2015}
+  & \raisebox{-.5\height}{\includegraphics[width=30mm]{./expanding_brain/1.jpg}} \\
+\textbf{TypeScript}
+  & \raisebox{-.5\height}{\includegraphics[width=30mm]{./expanding_brain/2.jpg}} \\
+\textbf{PureScript}
+  & \raisebox{-.5\height}{\includegraphics[width=30mm]{./expanding_brain/3.jpg}} \\
+\end{tabular}
+\end{table}
+
+
+<!--
+## Infos
+
+- Invented by Phil Freeman
+- Compiles to ES3
+-->
+
+
+## Compilation Example 1: Curried Functions
+
+PureScript
+:   ```purescript
+    add3 :: Int -> Int -> Int -> Int
+    add3 valA valB valC =
+      valA + valB + valC
     ```
 
-## Expanding Brain Meme
+&nbsp;
 
-ES3 -> ES2015 -> TypeScript -> PureScript
+JavaScript
+:   ```javascript
+    var add3 = function (valA) {
+        return function (valB) {
+            return function (valC) {
+                return (valA + valB | 0) + valC | 0;
+            };
+        };
+    };
+    ```
 
 
-## Basics
+## Compilation Example 2: Foreign Function Interface
 
-- TODO: History
+JavaScript
+:   ```javascript
+    exports.calculateInterest = (amount) => {
+      return amount * 0.1
+    }
+    ```
+
+&nbsp;
+
+PureScript
+:   ```purescript
+    module Interest where
+
+    foreign import calculateInterest :: Number -> Number
+    ```
+
+## Main Differences
+
 - Prelude
   - Must be included explicitly
   - Smaller
   - No libraries are distributed with the compiler
 - Strict, and not Lazy
-- head, tail, … save per default
-- More explicit (X has unspecified imports, consider using the explicit form)
-- Arrays instead of Lists
-  - `(:)` exists only for Arrays. `Cons` for Lists
-- No tuples
-- No qualified keyword as everything is imported qualified
-- Type classes in modules must be specifically imported `import A (class B)`
+- `head`, `tail`, … safe per default
+- More explicit:
+  - "X has unspecified imports, consider using the explicit form"
+  - Type-classes must be imported explicitly
+    ```purescript
+    import A (class B)
+    ```
+- Applicative Do with `ado` keyword
+- `|` (pipe character) must appear on every line in documentation comments
 
-- Type variables must be declared `length :: forall a. Array a -> Int`
+
+## Class and Type Differences
+
+- Type variables must be declared
+  ```purescript
+  length :: forall a. Array a -> Int
+  ```
+- Instance chains (type-class programming without overlapping instances)
+  ```purescript
+  instance zeroSucc :: Succ "zero" "one"
+  else instance oneSucc :: Succ "one" "two"
+  …
+  ```
+- Class constraint arrow is flipped
+  ```purescript
+  class (Eq a) <= Ord a where …
+  ```
+  where `<=` means "logical implication"
+- No default member implementations for type classes (yet)
+
+
+## Missing Features
+
+- Lists only via external library
+  (`[]` and `(:)` for Arrays, `List` and `Cons` for Lists)
+- No built in tuples (but external Tuple library with `Tuple a b`)
+- No `qualified` keyword as `import` is qualified per default
 - No Template PureScript (yet)
-- Instance chains
-- Applicative Do
-- `class (Eq a) <= Ord a where …` Interpret it as logical implication
-- Instances must be given names
-  `instance arbitraryUnit :: Arbitrary Unit where …`
-  (Only used for code generation)
 - Orphan instances are completely disallowed
-- In documentation `|` must appear on every line
 
 
-### Deriving
+## Deriving
 
-`StandaloneDeriving`
+Basically as if `StandaloneDeriving` was enabled in GHC.
 
-```haskell
-data Point = Point Int Int deriving (Eq, Ord)
-```
+&nbsp;
 
-becomes
+Haskell:
+:   ```haskell
+    data Point = Point Int Int deriving (Eq, Ord)
+    ```
 
-```purescript
-data Point = Point Int Int
+&nbsp;
 
-derive instance eqPoint :: Eq Foo
-derive instance ordPoint :: Ord Foo
-```
+PureScript:
+:   ```purescript
+    data Point = Point Int Int
 
-### Defining Operators
+    derive instance eqPoint :: Eq Foo
+    derive instance ordPoint :: Ord Foo
+    ```
 
-Only available as operator alias for a named function.
+## Instance Names
 
-```haskell
-f $ x = f x
-```
+Instances must be given names:
 
-becomes
-
-```purescript
-apply f x = f x
-infixr 0 apply as $
-```
-
-### Operator Sections
-
-Operator sections are only available with wildcards:
+&nbsp;
 
 ```purescript
-(2 ^ _)
-(_ ^ 2)
+instance arbitraryUnit :: Arbitrary Unit where …`
 ```
 
+&nbsp;
 
-### Names
+- Increase readability of compiled JavaScript
+- Deterministic names are good,
+  but no good function which still produces nice names
+- Renaming a class or type can break FFI code
+- Name instances differently:
+  `instance refl :: TypeEquals a a`
 
-Haskell        | PureScript
----------------|-----------
+
+## Defining Operators
+
+Only available as operator alias for named functions:
+
+&nbsp;
+
+Haskell:
+:   ```haskell
+    f $ x = f x
+    ```
+
+&nbsp;
+
+PureScript:
+:   ```purescript
+    apply f x = f x
+    infixr 0 apply as $
+    ```
+
+## Operator Sections
+
+Sections of an infix operator are only available with wildcards:
+
+&nbsp;
+
+Haskell:
+:   ```haskell
+    (2 /)
+    (/ 2)
+    ```
+
+&nbsp;
+
+PureScript:
+:   ```purescript
+    (2 / _)
+    (_ / 2)
+    ```
+
+
+## Multiline Strings
+
+Additional support for `"""` multiline strings:
+
+&nbsp;
+
+Haskell and PureScript:
+: &nbsp;
+
+&nbsp;
+:   ```haskell
+    sentence = "\
+      \This is\n\
+      \just some text\n\
+      \split over several lines\n"
+    ```
+
+&nbsp;
+
+PureScript:
+:   ```purescript
+    sentence = """This is
+    just some text
+    split over several lines
+    """
+    ```
+
+
+## Names
+
+:::::::::::::: {.columns}
+::: {.column width="40%"}
+
+**Haskell**    | **PureScript**
+---------------|----------------
 `IO`           | `Effect`
 `data () = ()` | `data Unit = unit`
 `&`            | `#`
@@ -107,30 +348,30 @@ Haskell        | PureScript
 `++`           | `<>`
 `fmap`         | `map`
 `Text`         | `String`
-`.`            | `<<<`
-`>>>`          | `>>>`
-`[a]`          | `Array a` / `List a`
-`(a,b)`        | `Tuple a b`
-`return`       | `pure`
-`[x | x*2]`    | `guard` monad
-`undefined`    | `unsafeCoerce`
-`>>`           | `*>`
 
-But as nothing is included per default you can change everything
+:::
+::: {.column width="60%"}
+
+**Haskell**         | **PureScript**
+--------------------|----------------
+`.`                 | `<<<`
+`>>>`               | `>>>`
+`[a]`               | `Array a` / `List a`
+`(a, b)`            | `Tuple a b`
+`return`            | `pure`
+`[x^2 | x<-[1..5]]` | `list` monad + `guard`
+`undefined`         | `unsafeCoerce`
+`>>`                | `*>`
+
+:::
+::::::::::::::
+
+&nbsp;
+
+But as nothing is included per default, you can change everything!
 
 
-## Low level adaptions to JavaScript
-
-```
-Boolean = true | false
-```
-
-Arrays instead of lists
-
-
-## Additional Features
-
-### Records
+## Records
 
 ```purescript
 module Main where
@@ -145,7 +386,11 @@ book =
 main = log book.title
 ```
 
-compiles to
+&nbsp;
+
+compiles to …
+
+---
 
 ```javascript
 // Generated by purs version 0.12.0
@@ -164,43 +409,37 @@ module.exports = {
 
 ```
 
+&nbsp;
 
-Sidenode: That's also a reason why `.` isn't used for function composition
+*Side note*:
+The syntax for fields is the reason why `.` isn't used for function composition
 
 
-### Records are Row Types
-
-```haskell
-data Book = Book { title :: Text, author :: Text, year :: Int }
-```
+## Field Access Function
 
 ```purescript
-type Book = { title :: Text, author :: Text, year :: Int }
+main = do
+  log $ _.title {title: "Just a title"}
+  log $ _.title book
 ```
 
 
-Update a record:
+## Updating a Record
 
-```
+```purescript
 nextBook = book {title = "Am Samstag kam das Sams zurück"}
 ```
 
-Sidenode: This would be ambigious
-if Records used `=` instead of `:` for assignments.
+&nbsp;
 
-Apply function `book` to object `{ title: "…" }`
-or update the `title` of `book`?
+*Side note*:
+This would be ambigious if Records used `=` instead of `:` for assignments.
 
-
-# Row Polymorphism
-
-```purescript
-log $ _.title book
-log $ _.title {title: "Just a title"}
-```
+Does it mean "apply function `book` to object `{ title: "…" }`"
+or "update the `title` of `book`"?
 
 
-# Pattern matching on records
+## Pattern Matching on Records
 
 ```purescript
 paulsTitle {author = "Paul Maar", title = t} = Just t
@@ -208,87 +447,200 @@ paulsTitle _ = Nothing
 ```
 
 
-### Row Types
+## Record Types
 
-ROW TYPES *blink* *blink*
+Haskell:
+:   ```haskell
+    data Book = Book
+      { title :: Text
+      , author :: Text
+      , year :: Int
+      }
+    ```
 
-multiline strings
+&nbsp;
+
+PureScript:
+:   ```purescript
+    type Book =
+      { title :: String
+      , author :: String
+      , year :: Int
+      }
+    ```
 
 
-### Type Class Hierarchy
+## Row Polymorphism
 
-![PureScript](../2018-11-01_introduction_to_purescript_for_haskell_developers/purescript-type-class-hierarchy.png)
+```purescript
+showPrint :: forall a.
+  { title :: String, author :: String | a }
+  -> String
+showPrint b =
+  b.title <> " by " <> b.author
+
+main :: Effect Unit
+main = do
+  log $ showPrint book
+```
+
+&nbsp;
+
+The kind of `a` is `# Type` (A row of types)
+
+---
+
+```purescript
+> :kind { title :: String }
+Type
+> :kind ( title :: String )
+# Type
+> :kind Record
+# Type -> Type
+> :kind Record ( title :: String )
+Type
+```
+
+&nbsp;
+
+- A row of types is a type level description of pairs of labels and types
+- `{ title :: String }` is just syntax sugar for `Record ( title :: String )`
+
+&nbsp;
+
+```purescript
+type EitherTitleOrAuthor = Variant ( title :: String, author :: String )
+```
+
+<!--
+## Type Class Hierarchy
+
+:::::::::::::: {.columns}
+::: {.column width="60%"}
+
+![Haskell](./haskell-type-class-hierarchy.png)
+
+From: https://wiki.haskell.org/Typeclassopedia
+Comparison: http://techscursion.com/2017/02/typeclass-cheatsheet.html
+
+:::
+::: {.column width="40%"}
+
+![PureScript](./purescript-type-class-hierarchy.png)
 
 From: https://pursuit.purescript.org/packages/purescript-control/4.1.0
 
+:::
+::::::::::::::
+ -->
 
-![Haskell](../2018-11-01_introduction_to_purescript_for_haskell_developers/haskell-type-class-hierarchy.png)
+## Type Class Hierarchy
 
-From: https://wiki.haskell.org/Typeclassopedia
+Finer subdivision into more classes:
 
-Comparison: http://techscursion.com/2017/02/typeclass-cheatsheet.html
+&nbsp;
 
+- Category has a superclass Semigroupoid
+  (provides `<<<`, does not require an identity)
 
-### Active Extensions
+- Monoid has a superclass Semigroup
+  (provides `<>`, does not require an identity)
 
-- DataKinds
-- EmptyDataDecls
-- ExplicitForAll
-- FlexibleContexts
-- FlexibleInstances
-- FunctionalDependencies
-- KindSignatures
-- MultiParamTypeClasses
-- PartialTypeSignatures
-- RankNTypes
-- RebindableSyntax
-- ScopedTypeVariables
+- Applicative has a superclass Apply
+  (provides `<*>`, does not require an implementation for `pure`)
 
 
-### Tooling
+## Active Extensions
 
-ghc -> purs
-ghci -> purs repl
-ghcid -> pscid
-stack -> pulp
-stack init -> pulp init
-stack exec -> pulp run
-haskell.org -> purescript.org
-hackage.haskell.org -> bower (or psc-package via git)
-hoogle.haskell.org -> pursuit.purescript.org
-try.haskell.org -> try.purescript.org (not up to date)
+Equivalent to enabling following extension in GHC
+
+- `DataKinds`
+- `EmptyDataDecls`
+- `ExplicitForAll`
+- `FlexibleContexts`
+- `FlexibleInstances`
+- `FunctionalDependencies`
+- `KindSignatures`
+- `MultiParamTypeClasses`
+- `PartialTypeSignatures`
+- `RankNTypes`
+- `RebindableSyntax`
+- `ScopedTypeVariables`
 
 
-Haskell is catching up with recent releases of GHC
-as most PureScript developers are also Haskell developers
+## Low Level Adaptions for JavaScript
+
+Several design decisions were made to improve the generated JavaScript:
+
+&nbsp;
+
+- Direct mapping to JavaScript:
+  ```purescript
+  Boolean = true | false
+  ```
+- Arrays instead of lists
+- Named instances
+- Records → JavaScript Objects
+- `String` is a JavaScript String (and not `[Char]`)
 
 
-### TODO: Output of currying
+## Tooling
 
-### TODO: Foreign Function Interface
+Haskell                | PureScript
+-----------------------|--------------------------------------
+`ghc`                  | `purs`
+`ghci`                 | `purs repl`
+`ghcid`                | `pscid`
+`stack`                | `pulp`
+`stack init`           | `pulp init`
+`stack exec`           | `pulp run`
+[haskell.org]          | [purescript.org]
+[hackage.haskell.org]  | [bower.io] \(or psc-package via git)
+[hoogle.haskell.org]   | [pursuit.purescript.org]
+[try.haskell.org]      | [try.purescript.org] \(not up to date yet)
 
-### TODO: Use Cases
+[bower.io]: https://bower.io
+[hackage.haskell.org]: https://hackage.haskell.org
+[haskell.org]: https://haskell.org
+[hoogle.haskell.org]: https://hoogle.haskell.org
+[purescript.org]: http://purescript.org
+[pursuit.purescript.org]: http://pursuit.purescript.org
+[try.haskell.org]: https://try.haskell.org)
+[try.purescript.org]: http://try.purescript.org
+
+
+## Use Cases and Notable Projects 1
+
+- Frontend
+  - Halogen - UI library
+  - Pux - Web apps like Elm
 
 - Reactive Tools / Websites
+  - Flare - Reactive UI
+  - [PureScript Pop] - FRP demo
+  <!-- https://www.youtube.com/watch?v=iTSosG7vUyI&t=16s -->
+
 - JavaScript Plugins
-- Serverless
-- CLI tools which also run in the Browser
-- Frontend
-- Game Development (https://bodil.lol/purescript-is-magic/)
-- Scripting interface for JavaScript libraries
+
+- Cloud functions
 
 
-### TODO: Notable Projects
+## Use Cases and Notable Projects 2
 
-- Insect
-- Transity (shameless plug)
-- Halogen (UI library)
-- Pux (Web apps like Elm)
-- Flare (Reactive UI)  // TODO: https://www.youtube.com/watch?v=iTSosG7vUyI&t=16s
-- Neodoc (CLI args parser)
-- [Neon] - alternative Prelude
-- All kinds of bindings / wrapper (D3, React, …)
-- [PureScript Pop] - FRP demo
+- CLI tools (can also be executed in the browser!)
+  - Insect - CLI calculator
+  - Transity - Plaintext accounting tool
+  - Neodoc - CLI args parser
+
+- Game Development
+  - [PureScript is Magic](https://bodil.lol/purescript-is-magic/)
+
+- Interfaces, bindings, and wrappers for JavaScript libraries
+  - D3
+  - React
+
+- Language experiments
+  - [Neon] - Alternative Prelude without type class hierachy
 
 [PureScript Pop]: https://github.com/lettier/purescript-pop
 [Neon]: https://github.com/tfausak/purescript-neon
@@ -297,37 +649,50 @@ as most PureScript developers are also Haskell developers
 ## The Not so Good
 
 - Trying to remember the differences to Haskell
-- New versions break a lot
+
+- Smaller Ecosystem than Haskell
+
+- New compiler versions break a lot
+
 - Performance
+
 - Memory footprint of Node.js
-- Smaller Ecosystem
 
 
+<!--
 ## Getting Started
 
 [javascript-to-purescript]
 
 [javascript-to-purescript]: https://github.com/adkelley/javascript-to-purescript
 
-
 ## PureScript of Elm
+-->
 
+## Future Development
 
-## Future
+PureScript
+:   - More backends:
+      - pure-c - C backend for PureScript
+      - pureswift - Swift backend for PureScript
+    - Stable compiler
 
-- Backends
-  - pure-c - C backend for PureScript
-  - pureswift - Swift backend for PureScript
-- Haskell
-  - Compiles to Webassembly?
-  - Fixes Records?
+Haskell
+:   - Backport features
+      (most PureScript developers are also Haskell developers)
+    - Maybe it catches up
+      - Compile to Webassembly
+      - Fix Records
+
 
 
 ## Summary
 
-Best way to write JavaScript at the moment
+\Huge{PureScript is currently the best way to write JavaScript!}
 
 
+<!--
 ## TODO
 
 - https://youtu.be/5AtyWgQ3vv0 - PureScript: Tomorrow’s JavaScript Today
+-->
