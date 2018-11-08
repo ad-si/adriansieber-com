@@ -1,25 +1,18 @@
-var fs = require('fs'),
-  path = require('path'),
-  yaml = require('js-yaml'),
-  handlebars = require('handlebars'),
-  resumeYaml = fs.readFileSync(
-    path.join(__dirname, 'resume.yaml')
-  )
+const fs = require('fs')
+const path = require('path')
+const yaml = require('js-yaml')
+const handlebars = require('handlebars')
+const resumeYaml = fs.readFileSync(
+  path.join(__dirname, 'resume.yaml')
+)
 
 function render (resume) {
+  const templatePath = path.join(__dirname, 'resume.hbs')
+  const template = fs.readFileSync(templatePath, 'utf-8')
+  const resumeHtml = handlebars.compile(template)({resume})
+  const resumeHtmlPath = path.resolve(__dirname, '../_includes/resume.html')
 
-  var template = fs.readFileSync(
-      path.join(__dirname, 'resume.hbs'),
-      'utf-8'
-    ),
-    resumeHtml = handlebars.compile(template)({
-      resume: resume
-    })
-
-  fs.writeFileSync(
-    path.resolve(__dirname, '../_includes/resume.html'),
-    resumeHtml
-  )
+  fs.writeFileSync(resumeHtmlPath, resumeHtml)
 }
 
 render(yaml.safeLoad(resumeYaml))

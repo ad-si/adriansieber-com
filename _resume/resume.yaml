@@ -1,14 +1,14 @@
 basics:
   name: Adrian Sieber
   label: Developer & Designer
-  picture:
+  picture: ./profile-picture.jpg
   email: mail@adriansieber.com
-  phone: +491639860910
+  phone: '+491639860910'
   website: http://adriansieber.com
   summary: I am Adrian Sieber
   location:
     address: Humboldtring 23/90
-    postalCode: 14473
+    postalCode: '14473'
     city: Potsdam
     region: Brandenburg
     countryCode: DE
@@ -41,8 +41,8 @@ work:
     position: |
       Student Research at the Internet Technologies and Systems Department
     website: http://blog-intelligence.com
-    startDate: 2012-11-01
-    endDate: 2014-02-01
+    startDate: '2012-11-01'
+    endDate: '2014-02-01'
     summary: |
       BlogIntelligence is a social media analysis platform backed by
       a 6 Terabyte HANA in memory database.
@@ -56,25 +56,24 @@ work:
   -
     company: Freelancer
     position: Web developer & designer
-    startDate: 2011-01-01
+    startDate: '2011-01-01'
     summary: |
       Implementation and maintenance of several websites for small businesses.
   -
     company: Designection UG & Co. KG
     position: CEO & CTO
-    startDate: 2010-05-31
-    endDate: 2012-10-01
+    startDate: '2010-05-31'
+    endDate: '2012-10-01'
     summary: One of three founders
     highlights:
-      -
       - Winner of Wayra Business Competition
 education:
   -
     institution: Hasso Plattner Institut
     area: IT-Systems Engineering
     studyType: Bachelor
-    startDate: 2012-10-01
-    endDate: 2015-10-01
+    startDate: '2012-10-01'
+    endDate: '2015-10-01'
     gpa: "TODO: http://www.foreigncredits.com/Resources/GPA-Calculator"
     courses:
       - Human Computer Interaction 1 & 2
@@ -94,13 +93,13 @@ education:
       - Law for Engineers 1 & 2
       - Software Architecture
       - Software Engineering
-      - Bachelor Project: Personal Fabrication Devices
+      - 'Bachelor Project: Personal Fabrication Devices'
   -
     institution: Gymnasium Lindenberg
     area: Scientific highschool
     studyType: Highschool level
-    startDate: 2001-09-01
-    endDate: 2011-05-01
+    startDate: '2002-09-01'
+    endDate: '2011-05-01'
     gpa: "TODO: http://www.foreigncredits.com/Resources/GPA-Calculator"
     courses:
       - Advanced Physics
@@ -111,11 +110,11 @@ education:
 awards:
   -
     title: DPG book award for outstanding achievements in physics
-    date: 2011-07-01
+    date: '2011-07-01'
     awarder: Deutsche Physikalische Gesellschaft (German Physics Society)
   -
     title: Art award for outstanding musical achievements
-    date: 2011-05-02
+    date: '2011-05-02'
     awarder: |
       "Förderkreis Gymnasium Lindenberg eV"
       (Gymnasium Lindenberg promotion society)
@@ -123,7 +122,7 @@ awards:
     title: |
       3. place in the first round of the "Bundeswettbewerb Mathematik"
       (Federal Math Competition) 2010
-    date: 2010-06-09
+    date: '2010-06-09'
     awarder: Federal Ministry of Education and Research
   -
     title: Several awards at the "Mathematical Kangaroo" competition
@@ -140,13 +139,13 @@ skills:
       - SVG
   -
     name: 3D Modelling
-    level: proficient
+    level: Intermediate
     keywords:
       - OpenScad
       - Blender
   -
     name: UI Design
-    level: proficient
+    level: Intermediate
     keywords:
       - Sketch
       - Inkscape
@@ -176,4 +175,3 @@ references:
   -
     name: Some Body (Lead of Megacorp)
     reference: Great guy!
-
