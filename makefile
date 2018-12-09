@@ -8,9 +8,9 @@ watch: stylus-watch docker-serve
 
 
 # Continously build website
-.PHONY: stylus-watch
+.PHONY: stylus-watch | css
 stylus-watch: styl/screen.styl
-	stylus \
+	npx stylus \
 		--watch \
 		--include-css \
 		--out \
@@ -54,7 +54,8 @@ build-resume: ./_resume/index.js
 
 # Build CSS files
 css: styl/screen.styl
-	stylus \
+	-mkdir $@
+	npx stylus \
 		--compress \
 		--include-css \
 		--out $@ \
