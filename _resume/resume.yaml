@@ -16,8 +16,8 @@ basics:
   profiles:
     -
       network: GitHub
-      username: adius
-      url: https://github.com/adius
+      username: ad-si
+      url: https://github.com/ad-si
     -
       network: Stack Overflow
       username: adius

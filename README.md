@@ -5,7 +5,13 @@ My personal website and blog.
 
 ## Development
 
-Check out all available tasks in the [makefile].
+1. Make sure the gems of the latest ruby version are in your path
+    (e.g. `/usr/local/lib/ruby/gems/2.6.0/bin`)
+1. `gem install bundler jekyll`
+1. `bundle install`
+1. `make`
+
+Check out all available tasks in the [makefile] for more options.
 
 
 ## Deployment of Gitea

@@ -2,7 +2,7 @@ title: Adrian Sieber's Website
 description: My personal website and blog
 url: adriansieber.com
 author: Adrian Sieber
-repository: adius/adius.github.io
+repository: http://code.adriansieber.com/adrian/adriansieber-com/
 twitter:
   username: AdrianSieber
 logo: /img/logo.png
@@ -11,7 +11,7 @@ social:
   name: Adrian Sieber
   links:
     - facebook.com/adriansieber1
-    - github.com/adius
+    - github.com/ad-si
     - linkedin.com/in/adriansieber
     - stackoverflow.com/users/1850340/adius
 

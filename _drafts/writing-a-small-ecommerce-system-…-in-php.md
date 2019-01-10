@@ -108,5 +108,5 @@ and I'm by no means a expert PHP programmer.
 As I said, it's been 5 years since my last line of PHP code and
 this was before I had any idea of how to program a website the right way™.
 
-[awesome-e-commerce]: https://github.com/adius/awesome-e-commerce
-[ecom-light]: https://github.com/adius/ecom-light
+[awesome-e-commerce]: https://github.com/ad-si/awesome-e-commerce
+[ecom-light]: https://github.com/ad-si/ecom-light
