@@ -3,11 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "make build"
+    "test": "make"
   },
   "devDependencies": {
-    "handlebars": "^4.0.10",
-    "js-yaml": "^3.9.1",
     "stylus": "^0.54.5"
   }
 }

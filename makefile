@@ -1,5 +1,30 @@
 .PHONY: main
-main: build
+main: _site
+
+
+# Install dependencies
+node_modules: package.json package-lock.json
+	npm install
+	# bundle install
+
+
+# Build page from markdown and template files
+_site: index.html resume.html _data/resume.yaml css/screen.css
+	bundler exec jekyll build
+
+
+# Build CSS files
+css/screen.css: styl/* | css
+	npx stylus \
+		--compress \
+		--include-css \
+		--out css/screen.css \
+		styl/screen.styl
+
+# Build CSS directory
+css:
+	mkdir -p $@
+
 
 
 # Continously build website
@@ -27,41 +52,6 @@ docker-serve:
 		--publish "4000:4000" \
 		starefossen/github-pages
 
-
-# Install dependencies
-.PHONY: install
-install:
-	npm install
-	# bundle install
-
-
-# Build deployable files
-.PHONY: build
-build: build-resume css build-page
-
-
-# Build page from markdown and template files
-.PHONY: build-page
-build-page:
-	bundler exec jekyll build
-
-
-# Build resume from resume.json
-.PHONY: build-resume
-build-resume: ./_resume/index.js
-	node $<
-
-
-# Build CSS files
-css: styl/screen.styl
-	-mkdir $@
-	npx stylus \
-		--compress \
-		--include-css \
-		--out $@ \
-		$<
-
-
 # Serve files with local jekyll server
 .PHONY: serve
 serve:
@@ -85,14 +75,14 @@ serve-drafts:
 
 # Deploy website to surge.sh
 .PHONY: deploy
-deploy: build
+deploy: _site
 	surge _site adriansieber.com
 
 
 # Remove all build artifacts
 .PHONY: clean
 clean:
-	-rm -r _site
+	-rm -r _site css
 
 
 # Upgrade bundler (ruby) dependencies
