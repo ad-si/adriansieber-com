@@ -19,42 +19,44 @@ permalink: /resume/
         <p>{{basics.summary}}</p>
       {% endif %}
 
-      {% if basics.website %}
-        <div class="website">
-          <strong>Website</strong>
-          <a href="{{basics.website}}">
-            {{basics.website}}
-          </a>
-        </div>
-      {% endif %}
-      {% if basics.email %}
-        <div class="email">
-          <strong>Email</strong>
-          <a href="mailto:{{email}}">{{basics.email}}</a>
-        </div>
-      {% endif %}
-      {% if basics.phone %}
-        <div class="phone">
-          <strong>Phone</strong>
-          <a href="tel:{{phone}}">{{basics.phone}}</a>
-        </div>
-      {% endif %}
-      {% if basics.location %}
-        {% assign loc = basics.location %}
-        <div class="location">
-          <strong>Location</strong>
-          <a href="https://www.google.com/maps/place/{{loc.countryCode}},{{loc.city}}">
-            {% if loc.countryCode %}
-              {{loc.countryCode}}, {% endif %}
-            {% if loc.region %}
-              {{loc.region}}, {% endif %}
-            {% if loc.city %}
-              {{loc.city}} {% endif %}
-            {% if loc.postalCode %}
-              {{loc.postalCode}} {% endif %}
-            {% if loc.address %}
-              , {{loc.address}} {% endif %}
-          </a>
+      <div id="infos">
+        {% if basics.website %}
+          <div class="website">
+            <span>Website</span>
+            <a href="{{basics.website}}">
+              {{basics.website}}
+            </a>
+          </div>
+        {% endif %}
+        {% if basics.email %}
+          <div class="email">
+            <span>Email</span>
+            <a href="mailto:{{email}}">{{basics.email}}</a>
+          </div>
+        {% endif %}
+        {% if basics.phone %}
+          <div class="phone">
+            <span>Phone</span>
+            <a href="tel:{{phone}}">{{basics.phone}}</a>
+          </div>
+        {% endif %}
+        {% if basics.location %}
+          {% assign loc = basics.location %}
+          <div class="location">
+            <span>Location</span>
+            <a href="https://www.google.com/maps/place/{{loc.countryCode}},{{loc.city}}">
+              {% if loc.countryCode %}
+                {{loc.countryCode}}, {% endif %}
+              {% if loc.region %}
+                {{loc.region}}, {% endif %}
+              {% if loc.city %}
+                {{loc.city}} {% endif %}
+              {% if loc.postalCode %}
+                {{loc.postalCode}} {% endif %}
+              {% if loc.address %}
+                , {{loc.address}} {% endif %}
+            </a>
+          </div>
         </div>
       </div>
     {% endif %}
@@ -137,6 +139,41 @@ permalink: /resume/
   {% endif %}
 
 
+  {% assign publications = site.data.resume.publications %}
+
+  {% if publications %}
+    <section id="publications">
+      <h2>Publications</h2>
+
+      {% for pub in publications %}
+        <div class="item">
+          {% if pub.name %}
+            <p class="name">{{pub.name}}</p>
+          {% endif %}
+
+          {% if pub.publisher %}
+            <p class="publisher">{{pub.publisher}}</p>
+          {% endif %}
+
+          {% if pub.releaseDate %}
+            <p class="date">{{pub.releaseDate}}</p>
+          {% endif %}
+
+          {% if pub.summary %}
+            <p class="summary">{{pub.summary}}</p>
+          {% endif %}
+
+          {% if pub.website %}
+            <p class="website">
+              <a href="{{pub.website}}">{{pub.website}}</a>
+            </p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+
   {% assign education = site.data.resume.education %}
 
   {% if education %}
@@ -204,41 +241,6 @@ permalink: /resume/
           {% endif %}
           {% if award.summary %}
             <p class="summary">{{award.summary}}</p>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </section>
-  {% endif %}
-
-
-  {% assign publications = site.data.resume.publications %}
-
-  {% if publications %}
-    <section id="publications">
-      <h2>Publications</h2>
-
-      {% for pub in publications %}
-        <div class="item">
-          {% if pub.name %}
-            <p class="name">{{pub.name}}</p>
-          {% endif %}
-
-          {% if pub.publisher %}
-            <p class="publisher">{{pub.publisher}}</p>
-          {% endif %}
-
-          {% if pub.releaseDate %}
-            <p class="date">{{pub.releaseDate}}</p>
-          {% endif %}
-
-          {% if pub.summary %}
-            <p class="summary">{{pub.summary}}</p>
-          {% endif %}
-
-          {% if pub.website %}
-            <p class="website">
-              <a href="{{pub.website}}">{{pub.website}}</a>
-            </p>
           {% endif %}
         </div>
       {% endfor %}
