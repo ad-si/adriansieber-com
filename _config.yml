@@ -1,8 +1,8 @@
 title: Adrian Sieber's Website
 description: My personal website and blog
-url: adriansieber.com
+url: https://adriansieber.com
 author: Adrian Sieber
-repository: http://code.adriansieber.com/adrian/adriansieber-com/
+repository: https://code.adriansieber.com/adrian/adriansieber-com/
 twitter:
   username: AdrianSieber
 logo: /img/logo.png
@@ -42,6 +42,8 @@ kramdown:
 safe: true
 incremental: true
 highlighter: rouge
+feed:
+  path: atom.xml
 plugins:
   - jekyll-feed
   - jekyll-github-metadata

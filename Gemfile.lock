@@ -233,6 +233,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-commonmark-ghpages
+  jekyll-feed
 
 BUNDLED WITH
    2.0.1
