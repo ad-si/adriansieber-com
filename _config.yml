@@ -43,6 +43,7 @@ safe: true
 incremental: true
 highlighter: rouge
 plugins:
+  - jekyll-feed
   - jekyll-github-metadata
   - jekyll-mentions
   - jekyll-redirect-from
