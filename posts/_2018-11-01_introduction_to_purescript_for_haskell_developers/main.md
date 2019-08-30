@@ -1,7 +1,7 @@
 ---
 title: Introduction to PureScript for Haskell Developers
-author: Adrian Sieber @AdrianSieber
-date: 2018-11-01
+author: Adrian Sieber (ad-si.com)
+date: 2019-08-15
 theme: default
 colortheme: owl
 innertheme: circles
@@ -24,12 +24,14 @@ I attached an explanation at the bottom on how to build it
   - No more `0 == false`
   - No more mutation
     ```js
-    for (var key in object) {
-      elements[key] = () => key.toUpperCase()
-    }
-  ```
+    const people = [{name: 'John'}, {name: 'Anna'}]
+    const newPeople = people.map(x => {
+      x.color = 'green'
+      return x
+    })
+    ```
 - More robust
-- Better maintainability / refactoring
+- Better maintainability and refactoring
 
 
 ## Example
@@ -109,7 +111,7 @@ Number.isFinite(null) === false
 
 ---
 
-\Huge{JavaScript is an minefield!!!}
+\center \Huge JavaScript is a Minefield!
 
 ---
 
@@ -162,7 +164,7 @@ JavaScript
 
 JavaScript
 :   ```javascript
-    exports.calculateInterest = (amount) => {
+    exports.calculateInterest = amount => {
       return amount * 0.1
     }
     ```
@@ -689,7 +691,7 @@ Haskell
 
 ## Summary
 
-\Huge{PureScript is currently the best way to write JavaScript!}
+\center \Huge PureScript is currently the best way to write JavaScript!
 
 
 <!--
