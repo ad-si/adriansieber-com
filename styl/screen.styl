@@ -45,6 +45,9 @@ h1, h2, h3, h4, h5, h6
 h1, h2
   margin-bottom 1em
 
+p + h2
+  margin-top: 2em
+
 input
   padding 0.5em 1em
   display inline-block
@@ -186,6 +189,8 @@ article
     flex-wrap nowrap
     span
       padding-right 0.4em
+      &:first-of-type
+        white-space nowrap
 
 .post
   font-family Palatino, Georgia, 'Times New Roman', Times, serif !important
@@ -312,13 +317,27 @@ aside
       margin-bottom 0
 
 
+#rosettagit > a
+  border 1px solid hsl(0, 0, 90%)
+  background-image url(/img/logos/rosettagit.png)
+  background-repeat no-repeat
+  background-size 80%
+  line-height projectImageHeight
+
+
+#qthority > a
+  border 1px solid hsl(0, 0, 90%)
+  background-image url(/img/logos/qthority.png)
+  background-repeat no-repeat
+  background-size 60%
+  line-height projectImageHeight
+
+
 #feram > a
   background-color hsl(0, 0, 95%)
   background-image url(/img/logos/feram.png)
   background-repeat no-repeat
   background-size 80%
-  color black
-  font-size 40px
   line-height projectImageHeight
 
 

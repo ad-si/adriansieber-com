@@ -14,7 +14,7 @@ _site: index.html resume.html _data/resume.yaml css/screen.css
 
 
 # Build CSS files
-css/screen.css: styl/* | css
+css/screen.css: styl | css
 	npx stylus \
 		--compress \
 		--include-css \
@@ -29,17 +29,17 @@ css:
 
 # Continously build website
 .PHONY: watch
-watch: stylus-watch docker-serve
+watch: stylus-watch serve | css
 
 
 # Continously build website
-.PHONY: stylus-watch | css
-stylus-watch: styl/screen.styl
+.PHONY: stylus-watch
+stylus-watch: styl | css
 	npx stylus \
 		--watch \
 		--include-css \
-		--out \
-		./css $<
+		--out css/screen.css \
+		$< &
 
 
 # Serve website with docker

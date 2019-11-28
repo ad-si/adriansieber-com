@@ -6,37 +6,47 @@ permalink: /about/
 # {{ page.title }}
 
 I'm Adrian Sieber (as you might have figured out by now…)
-and I'm a Software Engineer / Entrepreneur / Author living in Germany, Potsdam.
+and I'm a software engineer / entrepreneur / author living in Germany.
 
-Currently I'm running the Feram GmbH ([feram.io](https://feram.io)) and
-writing a book in which I compare various programming languages
-([programmiersprachenbuch.de](http://programmiersprachenbuch.de))
+Currently I'm the CTO of Qthority ([qthority.com])
+and writing a book in which I compare various programming languages
+([programmiersprachenbuch.de])
 
 Previously I studied IT-Systems Engineering
-at the [Hasso Plattner Institut](https://hpi.de).
+at the [Hasso Plattner Institut][hpi].
 
-If you're interested in my work make sure to check out my projects at
-[code.adriansieber.com](https://code.adriansieber.com)
-as I publish all my open source work there.
+If you're interested in my work, make sure to check out all of my
+open source projects at [github.com/ad-si].
+
+[qthority.com]: https://qthority.com
+[programmiersprachenbuch.de]: http://programmiersprachenbuch.de
+[hpi]: https://hpi.de
+[github.com/ad-si]: https://github.com/ad-si
 
 
 ## Hobbies
 
 Apart from work I used to make a lot of music, both electronically
-and with traditional instruments like the Saxophone and the Piano.
-However, recently I only find time to grab my ukulele now and then and
-to strum and sing along to my favorite pop/rock songs.
+and with traditional instruments like Saxophone, Piano, Guitar, and Ukukle.
+However, nowadays I barely find the time anymore, but when I do
+I prefer my new favorite instrument, the [LinnStrument].
 
 As sitting in front of the computer the whole day is rather unhealthy
-I regularly go jogging and work out in the fitness studio.
+I regularly go for a run and work out in the fitness studio.
 In addition I like to go skiing in winter and sailing in summer.
+
+[LinnStrument]: http://rogerlinndesign.com/linnstrument.html
 
 
 ## Supporting Good Causes
 
-True to the motto "Put your money where your mouth is" I like to join
-non profit organizations supporting my beliefs:
+True to the motto "Put your money where your mouth is" I join
+non profit organizations supporting my beliefs (you should too 😉):
 
+- [Atmosfair] -
+    Compensating around 22 Mg (1 Megagram == 1 Ton) of CO<sub>2</sub> per year.
+- [CO<sub>2</sub>Abgabe e.V.][CO2Abgabe] -
+    German organization demanding a CO<sub>2</sub> tax.
 - [FSF] - Free Software Foundation.
 - [Gesellschaft für Informatik e.V.] - Society for computer science.
 - [IBKA e.V.] - International League of non-religious and atheists.
@@ -47,6 +57,8 @@ non profit organizations supporting my beliefs:
 - [Zwanzigeins e.V.] - Fix pronunciation of numbers in German
     (twenty-one instead of one-and-twenty).
 
+[Atmosfair]: https://atmosfair.de
+[CO2Abgabe]: https://co2abgabe.de
 [FSF]: https://fsf.org
 [Gesellschaft für Informatik e.V.]: https://gi.de
 [IBKA e.V.]: https://www.ibka.org
