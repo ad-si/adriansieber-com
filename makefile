@@ -1,91 +1,30 @@
 .PHONY: main
-main: _site
+main: public
 
 
 # Install dependencies
 node_modules: package.json package-lock.json
 	npm install
-	# bundle install
+
+
+content/resume/resume.json: content/resume/resume.yaml
+	npx @adius/yaml2json < $< > $@
 
 
 # Build page from markdown and template files
-_site: index.html resume.html _data/resume.yaml css/screen.css
-	bundler exec jekyll build
-
-
-# Build CSS files
-css/screen.css: styl | css
-	npx stylus \
-		--compress \
-		--include-css \
-		--out css/screen.css \
-		styl/screen.styl
-
-# Build CSS directory
-css:
-	mkdir -p $@
-
-
-
-# Continously build website
-.PHONY: watch
-watch: stylus-watch serve | css
-
-
-# Continously build website
-.PHONY: stylus-watch
-stylus-watch: styl | css
-	npx stylus \
-		--watch \
-		--include-css \
-		--out css/screen.css \
-		$< &
-
-
-# Serve website with docker
-.PHONY: docker-serve
-docker-serve:
-	docker run \
-		--interactive \
-		--tty \
-		--volume "$$PWD":/usr/src/app \
-		--publish "4000:4000" \
-		starefossen/github-pages
-
-# Serve files with local jekyll server
-.PHONY: serve
-serve:
-	bundle exec jekyll serve --incremental
-
-
-# Serve files including drafts
-.PHONY: serve-drafts
-serve-drafts:
-	bundle exec jekyll serve \
-		--trace \
-		--strict_front_matter \
-		--future \
-		--drafts \
-		--unpublished \
-		--watch \
-		--incremental \
-		--livereload \
-		--open-url
+public: content static sass content/resume/resume.json
+	zola build
 
 
 # Deploy website to surge.sh
 .PHONY: deploy
-deploy: _site
-	surge _site adriansieber.com
+deploy: public
+	surge public adriansieber.com
 
 
 # Remove all build artifacts
 .PHONY: clean
 clean:
-	-rm -r _site css
-
-
-# Upgrade bundler (ruby) dependencies
-.PHONY: upgrade
-upgrade:
-	bundle update github-pages
+	-rm -r public
+	-rm -r node_modules
+	-rm content/resume/resume.json

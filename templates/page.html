@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block body_attr %}
+  class=page
+{% endblock body_attr %}
+
+{% block header_attr %}
+  class=fullHeader
+{% endblock header_attr %}
+
+{% block heading %}
+  <h1><a href=/ >Adrian Sieber</a></h1>
+{% endblock heading %}
+
+{% block content %}
+<article class=post>
+  <header>
+    <h1>{{ page.title | safe }}</h1>
+    <p class=subtitle>
+      <time>
+        {{ page.date | default(value="1970-01-01") | date(format="%Y-%m-%d") }}
+      </time> —
+      {{ page.word_count }} Words —
+      {{ page.reading_time }}
+      min
+    </p>
+  </header>
+  {{ page.content | safe }}
+  <hr>
+  <p>If you have any comments, thoughts, or other feedback
+    feel free to tweet me
+    <a href=https://twitter.com/AdrianSieber>@AdrianSieber</a>.
+    Thanks for your help! 😊</p>
+</article>
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block body_attr %}
+{% endblock body_attr %}
+
+{% block header_attr %}
+  class=fullHeader
+{% endblock header_attr %}
+
+{% block heading %}
+  <h1><a href=/ >Adrian Sieber</a></h1>
+{% endblock heading %}
+
+{% block htmltitle %}
+  {{page.title}}
+  {# macros::title_or_last(component=section) }} - {{ config.title #}
+{% endblock htmltitle %}
+
+{% block title %}
+  {# macros::title_or_last(component=section) #}
+{% endblock title %}
+
+{% block content %}
+<div id="section-{{section.title | slugify}}" class="section-container">
+  <h2>{{section.title}}</h2>
+
+  <div>
+    {{section.content | safe}}
+  </div>
+
+  <ul>
+    {% for page in section.pages %}
+      <li>
+        <a href="{{ page.permalink }}">{{page.title}}</a>
+        {% if page.taxonomies.tags %}
+          {% for tag in page.taxonomies.tags %}
+            <a class="tag" href="/tags/{{tag}}">{{tag}}</a>
+          {% endfor %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% endblock content %}
+</div>

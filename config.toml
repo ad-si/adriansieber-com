@@ -1,0 +1,12 @@
+base_url = "adriansieber.com"
+title = "Adrian Sieber's Website"
+description = "Adrian Sieber's personal website and blog"
+default_language = "en"
+
+# The site theme to use.
+# theme = ""
+
+highlight_code = true
+highlight_theme = "monokai"
+generate_rss = true
+compile_sass = true

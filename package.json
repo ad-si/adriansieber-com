@@ -6,6 +6,6 @@
     "test": "make"
   },
   "devDependencies": {
-    "stylus": "^0.54.5"
+    "@adius/yaml2json": "^1.0.1"
   }
 }

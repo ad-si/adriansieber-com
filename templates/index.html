@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <link rel=stylesheet media=all href=/site.css>
+  <link rel="shortcut icon" href=/images/favicon.png>
+  <link
+    rel=stylesheet
+    href=//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
+  <link
+    href=/atom.xml
+    rel=alternate
+    title="Adrian Sieber"
+    type=application/atom+xml>
+  <meta name=flattr:id content=wy9yl6>
+  <!-- TODO: SEO -->
+</head>
+<body {% block body_attr %} id=home {% endblock body_attr %}>
+
+<div id=wrapper>
+
+  <header {% block header_attr %}{% endblock header_attr %}>
+    <div class=headerContent>
+      {% block heading %}
+      {% endblock heading %}
+
+      <aside id=buttons>
+        <a class="fa fa-github"
+           href=https://github.com/ad-si>
+          <span>GitHub</span>
+        </a>
+        <a class="fa fa-gitlab"
+           href=https://gitlab.com/adius>
+          <span>GitLab</span>
+        </a>
+        <a class="fa fa-twitter"
+           href=https://twitter.com/adriansieber>
+          <span>Twitter</span>
+        </a>
+        <a class="fa fa-facebook"
+           href=https://facebook.com/adriansieber1>
+          <span>Facebook</span>
+        </a>
+        <a class="fa fa-linkedin"
+           href=https://de.linkedin.com/in/adriansieber>
+          <span>LinkedIn</span>
+        </a>
+        <a class="fa fa-stack-overflow"
+           href=https://stackoverflow.com/users/1850340/adius>
+          <span>Stack Overflow</span>
+        </a>
+        <a class="fa fa-dribbble"
+           href=https://dribbble.com/adius>
+          <span>Dribbble</span>
+        </a>
+        <a class="fa fa-rss"
+           href=/atom.xml>
+          <span>Atom Feed</span>
+        </a>
+      </aside>
+    </div>
+  </header>
+
+  <main id=wrapcontent>
+    {% block content %}
+      <header id=description>
+        <h1>Hi, <span>I'm Adrian Sieber</span></h1>
+
+        <p class=subtitle>A software developer and entrepreneur</p>
+
+        <p class=subSubtitle>
+          Check out my <a href=/about>about page</a> for a short summary
+          and my <a href=/resume>resume</a> for detailed information.
+        </p>
+      </header>
+
+      <hr/>
+
+      <article id=post-listing>
+        <h1>Blog Posts</h1>
+
+        <p>Signup for the newsletter to get informed about new posts!
+          <small>(~ 1 / quarter)</small>
+        </p>
+
+        <form
+          action="//adriansieber.us1.list-manage.com/subscribe/post?u=53f9a8f66939c80e2686e9084&amp;id=099350cf4a"
+          method=post
+          id=mc-embedded-subscribe-form
+          name=mc-embedded-subscribe-form
+          target=_blank>
+          <label for=mce-EMAIL>Email Address</label>
+          <input type=email name=EMAIL
+            class="required email" id=mce-EMAIL
+            placeholder="Email address">
+          <div id=mce-responses class=clear>
+            <div class=response id=mce-error-response style=display:none></div>
+            <div class=response id=mce-success-response style=display:none></div>
+          </div>
+          <!-- Do not remove this or risk form bot signups -->
+          <div style=position:absolute;left:-5000px; aria-hidden=true>
+            <input
+              type=text
+              name=b_53f9a8f66939c80e2686e9084_099350cf4a
+              tabindex=-1>
+          </div>
+          <input
+            type=submit
+            value=Subscribe
+            name=subscribe
+            id=mc-embedded-subscribe
+            class=button>
+        </form>
+
+        {% set pages = section.pages | sort(attribute="date") | reverse %}
+
+        <ul>
+          {% for page in pages%}
+          <li>
+            <span>{{ page.date | date(format="%Y-%m-%d") }}</span>
+            <span> – </span>
+            <a href="{{ page.slug }}">
+              {{ page.title | safe }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+
+      </article>
+
+      <hr/>
+
+      <article>
+        <h1>Projects</h1>
+
+        <ul id=projects>
+          <li id=rosettagit>
+            <a href=https://rosettagit.org title=RosettaGit>RosettaGit</a>
+            <p>
+              RosettaGit presents solutions to coding challenges
+              in as many programming languages as possible.
+              Started out as a fork of Rosetta Code.
+            </p>
+          </li>
+          <li id=qthority>
+            <a href=https://qthority.com title=Qthority>Qthority</a>
+            <p>
+              I joined Qthority as their new CTO in July 2019.
+              Our goal is to make legal advice easier accessible
+              for the average Joe & Jane and to proactively warn them about
+              scams they might have fallen for.
+            </p>
+          </li>
+          <li id=feram>
+            <a href=https://feram.io title=Feram>Feram</a>
+            <p>I co-founded Feram in 2017 and we developed the service
+              <a href="https://feram.io">feram.io</a> until early 2019.
+              It let developers find bugs in their code
+              by automatically checking every commit
+              with several dozen linters &amp; code analysis tools.
+            </p>
+          </li>
+          <li id=educatopia>
+            <a href=https://educatopia.org
+               title=Educatopia>educatopia</a>
+            <p>I started <a href="https://educatopia.org">Educatopia</a>
+              in 2013 during university because
+              I was annoyed that there was no simple wiki like
+              platform to share exercises (plus hints &amp; solutions).
+            </p>
+          </li>
+          <li id=shaven>
+            <a href=http://shaven.ad-si.com
+               title=Shaven>Shaven</a>
+            <p>A DOM building utility and template engine
+              where the virtual DOM is represented as nested arrays.
+            </p>
+          </li>
+          <li id=fakesome>
+            <a href=http://fakesome.ad-si.com
+               title=Fakesome>Fakesome</a>
+            <p>Create fake data to populate databases, build API prototypes,
+              train neural networks or generate names for your cats.
+            </p>
+          </li>
+          <li id=timeomat>
+            <a href=http://timeomat.com
+               title=Timeomat>Timeomat</a>
+            <p>Clock, Alarm, Stopwatch &amp; Timer. All in your Browser.</p>
+          </li>
+          <li id=schifferpatent>
+            <a href=https://schifferpatent.org
+               title=Bodenseeschifferpatent>Schifferpatent</a>
+            <p>When I trained for my sailing licence for Lake Constance in 2011
+              there were no good resources available except expensive books,
+              so I built a website.
+              I also started to build an english version:
+              <a href="http://sail-guide.com">sail-guide.com</a>
+            </p>
+          </li>
+          <li id=bitcoinate>
+            <a href=http://www.bitcoinate.org
+               title=bitcoinate>bitcoinate</a>
+            <p>Add a button to your website to display your bitcoin address
+              in order to receive donations.
+            </p>
+          </li>
+          <li id=vectual>
+            <a href=http://vectual.org
+               title=Vectual>vectual</a>
+            <p>A simple to use charting library originally implemented
+              in JavaScript, but which I recently started to reimplement
+              in <a href="http://elm-lang.org">elm</a>.
+            </p>
+          </li>
+          <li id=life-is-short>
+            <a href=https://life-is-short.ad-si.com
+               title='Life Is Short'>Life Is Short</a>
+            <p>A short reminder how precious each week of your life is.
+            </p>
+          </li>
+          <li id=utcify>
+            <a href=https://utcify.ad-si.com
+               title='UTCify'>UTCify</a>
+            <p>Simple online converter to convert all date formats to UTC
+            </p>
+          </li>
+          <li id=csstab>
+            <a href=https://csstab.ad-si.com
+               title=CSStab>CSStab</a>
+            <p>
+              A simple documentation page
+              listing all CSS properties and selectors.
+            </p>
+          </li>
+        </ul>
+      </article>
+
+      {{ section.content | safe }}
+    {% endblock content %}
+  </main>
+</div>
+
+<script
+  src=https://cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js
+></script>
+
+</body>
+</html>
