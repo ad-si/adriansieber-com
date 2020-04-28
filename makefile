@@ -14,6 +14,7 @@ content/resume/resume.json: content/resume/resume.yaml
 # Build page from markdown and template files
 public: content static sass content/resume/resume.json
 	zola build
+	-mv public/rss.xml public/atom.xml
 
 
 # Deploy website to surge.sh
