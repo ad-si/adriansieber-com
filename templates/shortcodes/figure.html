@@ -1,0 +1,10 @@
+<figure class="image">
+  <img
+    {% if width %}width="{{width}}"{% endif %}
+    {% if height %}height="{{height}}"{% endif %}
+    {% if style %}style="{{ style }}"{% endif %}
+    src="{{ src }}"
+    alt="{{ alt }}"
+  />
+  <figcaption>{{ body | safe }}</figcaption>
+</figure>

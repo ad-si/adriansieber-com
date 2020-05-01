@@ -102,8 +102,6 @@ pre
   margin: 2em 0
   overflow-x: scroll
   padding: 0.8em 1.5em
-  + p
-    margin-bottom: 10em
 
 h1,
 h2,
@@ -139,17 +137,27 @@ blockquote
   border-left: 0.3em solid rgb(230, 230, 230)
   padding-left: 1em
 
+figure
+  margin-bottom: 1.5em
+
+figure.image
+  img
+    margin-bottom: 0.8em
+  figcaption
+    font-size: 0.85em
+    text-align: right
+    font-style: italic
+
+
 strong
   font-weight: 700
 
 small
   font-size: 0.85em
-  font-style: italic
 
 article
   line-height: 1.4
   margin-bottom: 2em
-  font-weight: 200
 
   h1, h2, h3, h4, h5, h6
     margin-bottom: 2em
@@ -158,9 +166,6 @@ article
     font-size: 1.8em
     line-height: 1.2
     margin-bottom: 0.2em
-
-  p
-    margin-bottom: 1.5em
 
   p + h2
     margin-top: 3em
