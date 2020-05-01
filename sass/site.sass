@@ -177,15 +177,26 @@ article
     margin-bottom: 0.4em
 
   header
+    margin-bottom: 2em
     p
       color: $mutedColor
       font-weight: 500
-      margin-bottom: 2em
+      margin-bottom: 0
 
   .katex
     color: rgb(80, 90, 100)
     font-size: 0.99em
 
+.tag
+  font-size: 0.8em
+  color: $mutedColor !important
+  border-radius: 3px
+  padding: 0 0.2em
+  &:before
+    content: '#'
+
+.taxonomy
+  column-count: 3
 
 .footnote-definition
   display: block

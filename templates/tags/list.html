@@ -1,0 +1,18 @@
+{% extends "section.html" %}
+
+{% block content %}
+<div id="section-tags">
+  <h1>Tags</h1>
+
+  <div class="taxonomy">
+    <ul>
+      {% for tag in terms %}
+        <li>
+          <a href="{{ tag.permalink }}">{{ tag.name }}</a>
+          <small>({{ tag.pages | length }})</small>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock content %}

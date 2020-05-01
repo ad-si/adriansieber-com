@@ -10,3 +10,5 @@ highlight_code = true
 highlight_theme = "monokai"
 generate_rss = true
 compile_sass = true
+
+taxonomies = [{name = "tags"}]
