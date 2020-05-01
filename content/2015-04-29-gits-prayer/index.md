@@ -1,5 +1,8 @@
 +++
 title = "Git's Prayer"
+
+[taxonomies]
+tags = ["git"]
 +++
 
 <style>

@@ -1,6 +1,9 @@
 +++
 title = "The Perfect Keyboard"
 draft = true
+
+[taxonomies]
+tags = ["keyboard"]
 +++
 
 # {{page.title}}

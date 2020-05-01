@@ -1,6 +1,9 @@
 +++
 title = "Haskell Is Not Pure"
 draft = true
+
+[taxonomies]
+tags = ["Haskell"]
 +++
 
 Here is a simple function which builds a hello message from a name:

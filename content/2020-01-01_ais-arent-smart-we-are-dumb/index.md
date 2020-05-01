@@ -1,6 +1,9 @@
 +++
 title = "AIs won't become smart. We'll realize we're dumb."
 draft = true
+
+[taxonomies]
+tags = ["AI"]
 +++
 
 There has been one consistent pattern in Human history:

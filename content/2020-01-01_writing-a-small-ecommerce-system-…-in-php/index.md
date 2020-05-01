@@ -1,6 +1,9 @@
 +++
 title = "Writing a small eCommerce system … in PHP 😱"
 draft = true
+
+[taxonomies]
+tags = ["PHP"]
 +++
 
 A few days ago a friend approached me and asked me for help.

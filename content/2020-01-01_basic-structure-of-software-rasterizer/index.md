@@ -1,6 +1,9 @@
 +++
 title = "Basic strcture of a ECMAScript 6 software rasterizer"
 draft = true
+
+[taxonomies]
+tags = ["JavaScript", "rasterization"]
 +++
 
 As described in the [last post](/) we need data-format to hold a set of shapes

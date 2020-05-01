@@ -1,6 +1,9 @@
 +++
 title = "Ultimate List of Keyboards"
 draft = true
+
+[taxonomies]
+tags = ["keyboard"]
 +++
 
 - [http://shop.keyboard.io](keyboard.io) splitable, background-color,

@@ -1,6 +1,9 @@
 +++
 title = "The Neometric System - A proposal"
 draft = true
+
+[taxonomies]
+tags = ["metric"]
 +++
 
 # {{page.title}}

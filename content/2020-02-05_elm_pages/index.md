@@ -7,6 +7,9 @@ colortheme = "owl"
 innertheme = "circles"
 aspectratio = "169"
 draft = true
+
+[taxonomies]
+tags = ["Elm", "static"]
 +++
 
 

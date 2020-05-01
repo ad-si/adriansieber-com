@@ -1,6 +1,9 @@
 +++
 title = "SVG Cheatsheet"
 draft = true
+
+[taxonomies]
+tags = ["SVG"]
 +++
 
 # {{page.title}}

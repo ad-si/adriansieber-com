@@ -1,5 +1,8 @@
 +++
 title = "How to Download GitHub Issues from the Command Line"
+
+[taxonomies]
+tags = ["GitHub", "CLI"]
 +++
 
 A few days ago I got a warning in my GitHub news feed that my 2 year

@@ -1,6 +1,9 @@
 +++
 title = "How to write a software rasterizer in ES2015"
 draft = true
+
+[taxonomies]
+tags = ["rasterization", "JavaScript"]
 +++
 
 This is the table of contents for an extensive series of posts on how to write

@@ -1,6 +1,9 @@
 +++
 title = "What is a Software Rasterizer?"
 draft = true
+
+[taxonomies]
+tags = ["rasterization"]
 +++
 
 In order to answer this question we first of all need to make a trivial

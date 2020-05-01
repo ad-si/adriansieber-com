@@ -4,6 +4,8 @@ title = """
   via Swift Playgrounds on iPadOS
 """
 draft = true
+
+[taxonomies]
 tags = ["LEGO", "iPadOS", "Swift", "Swift Playgrounds"]
 +++
 

@@ -1,6 +1,9 @@
 +++
 title = "Introduction to Gray Code"
 draft = true
+
+[taxonomies]
+tags = ["math", "algorithm", "Gray Code"]
 +++
 
 Imagine you would sell tower cranes.

@@ -1,6 +1,9 @@
 +++
 title = "DigitSets - A Haskell Package for Various Digit Alphabets"
 draft = true
+
+[taxonomies]
+tags = ["Haskell"]
 +++
 
 ```haskell

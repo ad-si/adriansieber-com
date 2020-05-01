@@ -3,6 +3,9 @@ title = """
   <code>uku</code> - A Haskell CLI tool to display Ukulele fingering charts
 """
 image = "uku-g.svg"
+
+[taxonomies]
+tags = ["Haskell", "ukulele", "music"]
 +++
 
 **TLDR:**

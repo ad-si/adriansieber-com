@@ -1,6 +1,9 @@
 +++
 title = "Makefile Cheatsheet"
 draft = true
+
+[taxonomies]
+tags = ["make"]
 +++
 
 ```makefile

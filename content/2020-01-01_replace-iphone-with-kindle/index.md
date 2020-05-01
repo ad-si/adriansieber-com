@@ -1,6 +1,9 @@
 +++
 title = "How I Replaced My iPhone with a Kindle 3"
 draft = true
+
+[taxonomies]
+tags = ["iPhone", "Kindle"]
 +++
 
 Minimalism => Being device independent and handling only PDFs

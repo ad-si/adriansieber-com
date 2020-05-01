@@ -1,6 +1,9 @@
 +++
 title = "Singularity Script"
 draft = true
+
+[taxonomies]
+tags = ["script", "language"]
 +++
 
 - Designed for readability and not writability

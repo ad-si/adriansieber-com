@@ -1,6 +1,9 @@
 +++
 title = "Haskell records are redundant"
 draft = true
+
+[taxonomies]
+tags = ["Haskell"]
 +++
 
 ```hs

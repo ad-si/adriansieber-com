@@ -1,6 +1,9 @@
 +++
 title = "Haskell - The Best Programming Language You Have Never Heard Of"
 draft = true
+
+[taxonomies]
+tags = ["Haskell"]
 +++
 
 Many programming languages have been invented over the last 75 years.

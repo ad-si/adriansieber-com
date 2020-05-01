@@ -1,5 +1,8 @@
 +++
-title = "How to Extract Data from iOS Apps on Mac OS"
+title = "How to Extract Data from iOS Apps on MacOS"
+
+[taxonomies]
+tags = ["iOS", "macOS"]
 +++
 
 I've been using the sleep tracking app [SleepBot](https://mysleepbot.com)

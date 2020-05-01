@@ -1,6 +1,9 @@
 +++
 title = "<code>cal</code> - Display a Calendar in Your Terminal"
 image = "cal-screenshot.png"
+
+[taxonomies]
+tags = ["CLI", "cal"]
 +++
 
 <style>

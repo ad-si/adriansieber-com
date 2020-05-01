@@ -1,5 +1,8 @@
 +++
 title = "Command Line Monday"
+
+[taxonomies]
+tags = ["CLI"]
 +++
 
 This post acts as the table of contents for the Command Line Monday post series.

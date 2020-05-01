@@ -1,5 +1,8 @@
 +++
 title = "Germany — You have failed the metric system"
+
+[taxonomies]
+tags = ["metric"]
 +++
 
 <link

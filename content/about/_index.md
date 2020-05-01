@@ -1,5 +1,8 @@
 +++
 title = "About Me"
+
+[taxonomies]
+tags = ["about"]
 +++
 
 I'm Adrian Sieber (as you might have figured out by now…)

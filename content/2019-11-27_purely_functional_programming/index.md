@@ -8,6 +8,9 @@ innertheme = "circles"
 aspectratio = 169
 image = "./expanding_brain.jpg"
 draft = true
+
+[taxonomies]
+tags = ["PureScript", "JavaScript", "pure"]
 +++
 
 

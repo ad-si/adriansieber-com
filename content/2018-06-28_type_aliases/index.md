@@ -1,6 +1,9 @@
 +++
 title = "Type Aliases"
 draft = true
+
+[taxonomies]
+tags = ["Haskell"]
 +++
 
 

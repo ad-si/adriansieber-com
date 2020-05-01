@@ -2,6 +2,9 @@
 title = "Filter Pattern in Haskell"
 date = 1970-01-01
 draft = true
+
+[taxonomies]
+tags = ["Haskell"]
 +++
 
 adius [6:14 PM]

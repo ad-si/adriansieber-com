@@ -1,6 +1,9 @@
 +++
 title = "Parsing and Processing of Mesh-based 3D Models"
 draft = true
+
+[taxonomies]
+tags = ["3D", "mesh"]
 +++
 
 # {{ page.title }}

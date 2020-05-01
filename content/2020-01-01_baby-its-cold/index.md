@@ -1,6 +1,9 @@
 +++
 title = "\"Baby it's cold outside\" is the precursor to a crime"
 draft = true
+
+[taxonomies]
+tags = ["music"]
 +++
 
 Schade, dass du dazu eine so undifferenzierte Meinung hast.

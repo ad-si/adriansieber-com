@@ -1,6 +1,9 @@
 +++
 title = "I'm done with GitHub"
 draft = true
+
+[taxonomies]
+tags = ["GitHub"]
 +++
 
 Disclaimer:

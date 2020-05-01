@@ -1,6 +1,9 @@
 +++
 title = "<code>fold</code> - Wrap lines to fit in specified width"
 image = "fold-screenshot.png"
+
+[taxonomies]
+tags = ["CLI", "fold"]
 +++
 
 ![Screenshot of command line execution of `fold`](fold-screenshot.png)

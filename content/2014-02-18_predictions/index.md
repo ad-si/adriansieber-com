@@ -1,6 +1,9 @@
 +++
 title = "Predictions"
 draft = true
+
+[taxonomies]
+tags = ["opinion"]
 +++
 
 2020: http://techcrunch.com/2014/02/18/new-iwatch-concept-video-envisions-a-vertical-notification-based-ui-for-an-apple-wearable/?utm_campaign=fb&ncid=fb

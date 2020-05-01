@@ -1,6 +1,9 @@
 +++
 title = "Teams"
 draft = true
+
+[taxonomies]
+tags = ["team"]
 +++
 
 This post is based on the final paper of the university course

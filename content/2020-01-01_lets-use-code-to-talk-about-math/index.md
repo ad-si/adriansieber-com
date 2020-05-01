@@ -1,6 +1,9 @@
 +++
 title = "Let's Use Code to Talk About Math"
 draft = true
+
+[taxonomies]
+tags = ["math"]
 +++
 
 https://news.ycombinator.com/item?id=15343559

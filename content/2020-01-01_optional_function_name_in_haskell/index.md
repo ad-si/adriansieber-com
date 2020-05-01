@@ -1,6 +1,9 @@
 +++
 title = "Optional Function Names for Haskell"
 draft = true
+
+[taxonomies]
+tags = ["Haskell"]
 +++
 
 I was looking for a language extension like this:

@@ -1,6 +1,9 @@
 +++
 title = "The Future of Technology"
 draft = true
+
+[taxonomies]
+tags = ["future", "opinion"]
 +++
 
 

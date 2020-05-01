@@ -1,6 +1,9 @@
 +++
 title = "Getting Started with GraphViz on Mac"
 draft = true
+
+[taxonomies]
+tags = ["GraphViz", "macOS"]
 +++
 
 # {{page.title}}

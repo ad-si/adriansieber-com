@@ -1,6 +1,9 @@
 +++
 title = "RosettaGit - Solutions to tasks in more than 700 programming languages"
 image = "/images/logos/rosettagit.png"
+
+[taxonomies]
+tags = ["language", "website", "announcement"]
 +++
 
 **TLDR:**

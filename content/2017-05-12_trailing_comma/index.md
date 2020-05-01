@@ -1,6 +1,9 @@
 +++
 title = "Comma first is bullshit"
 draft = true
+
+[taxonomies]
+tags = ["opinion", "comma"]
 +++
 
 <!--
