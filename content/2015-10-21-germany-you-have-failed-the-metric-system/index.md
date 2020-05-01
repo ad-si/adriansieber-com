@@ -143,7 +143,7 @@ it has, instead of using the much more suited SI unit kilowatt.
 of the horsepower — also called imperial mechanical horsepower —
 isn't even the same as the German metric horsepower.
 To be exact:
-1 metric hp is 0.986 imperial mechanical horsepower.</small> 🙈
+1 metric hp is 0.986 imperial mechanical horsepower. 🙈</small>
 
 But to be fair, it seems like we're on the right track with this issue.
 Since 2010 it's mandatory to specify the power of vehicles in ads

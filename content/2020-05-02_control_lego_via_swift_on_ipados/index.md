@@ -52,7 +52,12 @@ and development kits available for the RCX,
 the options for our 4 sets were more reduced.
 The Scout at least supported LEGO Assembly (LASM)
 – as described in the [Scout SDK] –
-but the others only could be programmed with VLL (Visual Light Link).[^1]
+but the others only could be programmed with VLL (Visual Light Link).
+
+<small>There is actually one more robotic system which was programmed via VLL
+– [LEGO Spybotics](https://brickipedia.fandom.com/wiki/Spybotics) –
+but VLL was merely used as an abstract transmission protocol for it.
+</small>
 
 VLL is comprised of short light pulses (20 ms - 400 ms) which
 amount to 35 bit binary codes.
@@ -63,10 +68,6 @@ and for a listing of all the possible codes of the different controllers
 check out the last 2 pages of the [Scout SDK].
 
 In order to transmit the codes to the controllers, there are 2 different ways:
-
-[^1]: There is actually one more robotic system which was programmed via VLL
-- [LEGO Spybotics](https://brickipedia.fandom.com/wiki/Spybotics) -
-but there it was merely used as an abstract transmission protocol.
 
 
 **1. Barcodes**
@@ -134,10 +135,9 @@ To get started we first need to write the necessary code to transmit the VLL com
 I will focus on the Micro Scout instruction set,
 but the code could be easily extended to also support the other controllers.
 
-Create a new Playground in Swift Playgrounds and paste following code,
-or download the [full Playground with additional features][pg-feed]
-
-[pg-feed]: https://developer.apple.com/ul/sp0?url=./feed.json
+Create a new Playground in Swift Playgrounds and paste the following code,
+or download the
+[full Playground with additional features](LegoMicroScout.playground.zip).
 
 
 ```swift
