@@ -3,7 +3,6 @@ title = """
   Control a LEGO Code Pilot, Scout, or MicroScout
   via Swift Playgrounds on iPadOS
 """
-draft = true
 
 [taxonomies]
 tags = ["LEGO", "iPadOS", "Swift", "Swift Playgrounds"]
