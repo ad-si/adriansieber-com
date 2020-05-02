@@ -310,11 +310,12 @@ There is also a [version on YouTube](https://youtu.be/EUvMtlkUM4Y)
 if this embedded version doesn't work for you.
 
 <video controls>
-  <source src="programming_lego_mini_scout_ipad.webm">
+  <source src="programming_lego_mini_scout_ipad.mp4" type="video/mp4">
+  <source src="programming_lego_mini_scout_ipad.webm" type="video/webm">
   <p>
     Your browser doesn't support HTML5 videos.
     Here is a
-    <a href="programming_lego_mini_scout_ipad.webm">link to the video</a>
+    <a href="programming_lego_mini_scout_ipad.mp4">link to the video</a>
     instead.
   </p>
 </video>
