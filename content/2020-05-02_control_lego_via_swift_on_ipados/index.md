@@ -25,6 +25,10 @@ tags = ["LEGO", "iPadOS", "Swift", "Swift Playgrounds"]
   }
 </style>
 
+![Programming a LEGO Micro Scout with an iPad](lego_micro_scout_ipad.jpeg)
+
+&nbsp;
+
 More than 20 years ago LEGO released 4 quite interesting LEGO Technic sets:
 
 
@@ -302,7 +306,19 @@ runCmd(scriptBeep5)
 runCmd(directRun)
 ```
 
-[TODO Video]
+Here is a short video of the code in action.
+There is also a [version on YouTube](https://youtu.be/EUvMtlkUM4Y)
+if this embedded version doesn't work for you.
+
+<video controls>
+  <source src="programming_lego_mini_scout_ipad.webm">
+  <p>
+    Your browser doesn't support HTML5 videos.
+    Here is a
+    <a href="programming_lego_mini_scout_ipad.webm">link to the video</a>
+    instead.
+  </p>
+</video>
 
 I guess the car is mocking me for not having written a more interesting
 program, but I wanted to leave this challenge for you! 😉
