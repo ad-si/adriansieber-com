@@ -9,8 +9,7 @@ basics:
   phone: '+491639860910'
   website: https://adriansieber.com
   location:
-    city: Potsdam
-    region: Brandenburg
+    city: Frankfurt am Main
     countryCode: DE
 
   profiles:
@@ -53,6 +52,11 @@ basics:
       id: hashtag
       username: adius
       url: https://freenode.net
+
+    - network: Dribbble
+      id: dribbble
+      username: adius
+      url: https://dribbble.com/adius
 
 
 work:
@@ -247,7 +251,7 @@ skills:
       - PostgreSQL
 
   - name: DevOps
-    level: Intermediate
+    level: Master
     keywords:
       - Docker
       - Kubernetes
@@ -266,12 +270,10 @@ skills:
   - name: UI & UX Design
     level: Intermediate
     keywords:
+      - Affinity Designer & Photo
       - Sketch
       - Inkscape
       - Gimp
-      - HTML
-      - CSS
-      - SVG
 
 
 languages:

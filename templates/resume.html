@@ -76,21 +76,22 @@
           <div class="profile">
             {% if profile.network %}
               <span class="fa fa-{{profile.id}}"></span>
-              <br>
               <strong class="network">
                 {{profile.network}}
               </strong>
             {% endif %}
             {% if profile.username %}
-              <div class="username">
+              /
+              <span class="username">
                 {% if profile.url %}
                   <a href="{{profile.url}}">
                     {{profile.username}}
                   </a>
                 {% endif %}
-              </div>
+              </span>
             {% endif %}
           </div>
+          <br>
         {% endfor %}
       </div>
     {% endif %}
@@ -291,17 +292,20 @@
   {% if languages %}
     <section id="languages">
       <h2>Languages</h2>
-      {% for lang in languages %}
-        <p class="language">
-          {% if lang.language %}
-            <span class="name">{{lang.language}}</span>
-          {% endif %}
 
-          {% if lang.fluency %}
-            <span class="fluency">{{lang.fluency}}</span>
-          {% endif %}
-        </p>
-      {% endfor %}
+      <table>
+        {% for lang in languages %}
+          <tr>
+            {% if lang.language %}
+              <td class="name">{{lang.language}}</td>
+            {% endif %}
+
+            {% if lang.fluency %}
+              <td class="fluency">{{lang.fluency}}</td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </table>
     </section>
   {% endif %}
 
