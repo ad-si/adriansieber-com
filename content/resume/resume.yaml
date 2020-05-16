@@ -60,6 +60,20 @@ basics:
 
 
 work:
+  - company: Qthority GmbH & Co. KG
+    position: CTO
+    website: https://qthority.com
+    startDate: 2019-07
+    summary: |
+      Qthority simplifies receiving legal advice by streamlining
+      the data flow during casework.
+    highlights:
+      - Leading the technical design and managing the IT department
+      - Rebuilding the IT infrastructure with micro services on Kubernetes
+      - Migration from Zoho CRM and Microsoft Dynamics to Salesforce
+      - Migration from a Windows Server based computing environment
+        to Google Cloud
+
   - company: Feram GmbH
     position: Cofounder and CEO
     website: https://feram.io
@@ -101,10 +115,12 @@ work:
     position: Developer and Designer
     startDate: '2011-01-01'
     summary: |
-      Implementation and maintenance of several websites for small businesses.
+      Conception, Implementation, and maintenance
+      of several websites for small businesses.
 
   - company: Hasso Plattner Institut - Human Computer Interaction Department
     position: Student Researcher
+    website: https://hpi.de/forschung/fachgebiete/human-computer-interaction.html
     startDate: '2015-10-01'
     endDate: '2016-03-01'
     summary: |
@@ -116,8 +132,7 @@ work:
 
   - company: Hasso Plattner Institut - Internet Technologies & Systems Department
     position: Student Researcher
-    website: |
-      https://hpi.de/meinel/knowledge-tech/social-media/blog-intelligence.html
+    website: https://hpi.de/forschung/fachgebiete/internet-technologien-und-systeme.html
     startDate: '2012-11-01'
     endDate: '2014-02-01'
     summary: |
@@ -126,6 +141,9 @@ work:
       My responsibility was to design & develop the frontend and the Node.js
       backend infrastructure to be able to address and visualize the data
       crawled into the HANA database.
+      <a href="https://web.archive.org/web/20191115120222/https://hpi.de/meinel/knowledge-tech/social-media/blog-intelligence.html">
+        hpi.de/meinel/knowledge-tech/social-media/blog-intelligence
+      </a>
     highlights:
       - Switch from Django to Node.js
       - Reimplementation of frontend
@@ -134,7 +152,10 @@ work:
   - company: Designection UG & Co. KG
     position: Cofounder, shared CEO & CTO
     website: |
-      https://blog.telefonica.de/2013/06/wayra-startup-chuisy-fashion-neu-entdeckt-dank-app/
+      https://web.archive.org/web/20140817171832/http://www.chuisy.com/en-us/
+    # Not available anymore
+    # website: |
+    #   https://blog.telefonica.de/2013/06/wayra-startup-chuisy-fashion-neu-entdeckt-dank-app/
     startDate: '2010-05-31'
     endDate: '2012-10-01'
     summary: |

@@ -110,7 +110,13 @@
           {% endif %}
 
           {% if item.company %}
-            <p class="company">{{item.company}}</p>
+            <p class="company">
+              {% if item.website %}
+                <a href="{{item.website}}">{{item.company}}</a>
+              {% else %}
+                {{item.company}}
+              {% endif %}
+            </p>
           {% endif %}
 
           <p class="date">
@@ -136,12 +142,6 @@
                 <li>{{highlight | safe}}</li>
               {% endfor %}
             </ul>
-          {% endif %}
-
-          {% if item.website %}
-            <div class="website">
-              <a href="{{item.website}}">{{item.website}}</a>
-            </div>
           {% endif %}
         </div>
       {% endfor %}
