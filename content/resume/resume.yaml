@@ -91,8 +91,10 @@ work:
       - >-
         High performance through parallelization
         by using around 30 micro services running on Docker Swarm
-        (<a href="https://www.feram.io/blog/2018-05-09_our_progress_in_2018/"
-        >Release blog post</a>)
+
+# TODO: Readd when online again
+# (<a href="https://www.feram.io/blog/2018-05-09_our_progress_in_2018/"
+#  >Release blog post</a>)
 
   - company: IMP Consulting
     position: External Consultant
@@ -171,10 +173,12 @@ education:
     area: IT-Systems Engineering
     studyType: Master
     startDate: '2017-10-01'
+    endDate: '2019-07-01'
     courses:
       - Management Essentials
       - IT Entrepreneurship
       - Web-based Development Environments
+      - Polyglot Programming
 
   - institution: Hasso Plattner Institut
     area: IT-Systems Engineering
