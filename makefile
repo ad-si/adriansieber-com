@@ -27,12 +27,15 @@ serve:
 .PHONY: deploy
 deploy: public
 	surge public adriansieber.com
-	echo "Promote the new post on:"
-	echo "- reddit.com"
-	echo "- twitter.com"
-	echo "- news.ycombinator.com"
-	echo "- mailchimp.com"
-	echo "- hackaday.com"
+
+	@printf "\
+	Promote the new post on: \n\
+	- reddit.com \n\
+	- twitter.com \n\
+	- news.ycombinator.com \n\
+	- mailchimp.com \n\
+	- hackaday.com \n\
+	"
 
 
 # Remove all build artifacts
