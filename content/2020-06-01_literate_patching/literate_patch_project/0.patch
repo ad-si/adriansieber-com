@@ -1,0 +1,36 @@
+From: Adrian Sieber
+Subject:
+First we create the main Python file containing
+the main function which prints a short usage text to the terminal.
+
+--- /dev/null
++++ b/__main__.py
+@@ -0,0 +1,11 @@
++import textwrap
++
++def main():
++    print(textwrap.dedent("""
++        Commands:
++        + <body>   - Add a new TODO entry
++        - <number> - Delete the numbered entry
++    """))
++
++if __name__ == '__main__':
++    main()
+
+-----
+
+From: Adrian Sieber
+Subject:
+Next, we add a function to write added tasks to a file
+
+--- a/__main__.py
++++ b/__main__.py
+@@ -0 +0 @@
+ import textwrap
+
++def addTask(task):
++ print(task)
++
+ def main():
+     print(textwrap.dedent("""
