@@ -34,7 +34,7 @@
       {% if page.taxonomies.tags %}
         {% for tag in page.taxonomies.tags %}
           <a
-            href="/tags/{{ tag | replace(from=" ", to="-") }}"
+            href="/tags/{{ tag | replace(from=" ", to="-") | lower }}"
             class="tag"
           >{{ tag }}</a>
         {% endfor %}
