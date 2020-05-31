@@ -113,6 +113,10 @@
             class=button>
         </form>
 
+        <p id="tags-info">
+          You can also browse all posts by their tags <a href="/tags">here</a>.
+        </p>
+
         {% set pages = section.pages | sort(attribute="date") | reverse %}
 
         <ul>
