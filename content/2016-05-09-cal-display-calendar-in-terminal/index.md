@@ -258,7 +258,7 @@ For convenience I use following script on my mac to alias `cal`:
 ```bash
 #! /usr/bin/env bash
 
-gcal --starting-day=1 "$1"
+gcal --starting-day=1 "$@"
 ```
 
 This uses Monday as the first day of the week.
