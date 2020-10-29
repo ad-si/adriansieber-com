@@ -1,7 +1,7 @@
 function reverseAndShoutName (person) {
   person.fullName = person.firstName + person.lastName
   setTimeout(
-    () => {delete person.firstName; person.lastName = 'Foo'},
+    () => {delete person.firstName; person.lastName = 'Smith'},
     1
   )
   return person.fullName
@@ -13,4 +13,4 @@ const john = {firstName: 'John', lastName: 'Doe'}
 
 console.log(reverseAndShoutName(john))
 console.log(john.fullName)
-setTimeout(() => console.log(reverseAndShoutName(john)), 5)
+setTimeout(() => console.log(john), 5)
