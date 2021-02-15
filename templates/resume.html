@@ -33,7 +33,7 @@
           <div class="website">
             <span>Website</span>
             <a href="{{basics.website}}">
-              {{basics.website}}
+              {{basics.website | replace(from="https://", to="")}}
             </a>
           </div>
         {% endif %}

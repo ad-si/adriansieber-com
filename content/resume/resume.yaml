@@ -60,27 +60,15 @@ basics:
 
 
 work:
-  - company: Qthority GmbH & Co. KG
-    position: CTO
-    website: https://qthority.com
-    startDate: 2019-07
-    summary: |
-      Qthority simplifies receiving legal advice by streamlining
-      the data flow during casework.
-    highlights:
-      - Leading the technical design and managing the IT department
-      - Rebuilding the IT infrastructure with micro services on Kubernetes
-      - Migration from Zoho CRM and Microsoft Dynamics to Salesforce
-      - Migration from a Windows Server based computing environment
-        to Google Cloud
-
   - company: Feram GmbH
     position: Cofounder and CEO
     website: https://feram.io
-    startDate: 2016-04
+    startDate: '2016-04'
     summary: |
-       Feram is a service which automatically finds bugs in code
-       and proposes fixes for them.
+       Feram is a software agency specialized in fullstack web development
+       and the implementation of cloud infrastructures.
+       Originally, it was an online service
+       which automatically found bugs in code and proposed fixes for them.
     highlights:
       - >-
         Winner of
@@ -113,9 +101,25 @@ work:
         <a href="https://newsroom.bpw.de/pressreleases/sicherer-laden-wendiger-rangieren-bpw-doppelt-ausgezeichnet-als-trailer-innovation-2019-2710080"
         >Trailer Innovation price 2019</a> for the iGurt
 
+  - company: Qthority GmbH & Co. KG
+    position: CTO
+    website: https://qthority.com
+    startDate: '2019-07-01'
+    endDate: '2020-06-30'
+    summary: |
+      Qthority simplifies receiving legal advice by streamlining
+      the data flow during casework.
+    highlights:
+      - Leading the technical design and managing the IT department
+      - Rebuilding the IT infrastructure with micro services on Kubernetes
+      - Migration from Zoho CRM and Microsoft Dynamics to Salesforce
+      - Migration from a Windows Server based computing environment
+        to Google Cloud
+
   - company: Freelancer
     position: Developer and Designer
     startDate: '2011-01-01'
+    endDate: 2020-07
     summary: |
       Conception, Implementation, and maintenance
       of several websites for small businesses.
