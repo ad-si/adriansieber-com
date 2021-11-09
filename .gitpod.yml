@@ -1,9 +1,11 @@
 tasks:
   - name: Install dependencies and start dev server
     init: |
-      sudo apt install zola
+      curl -L https://github.com/getzola/zola/releases/download/v0.14.1/zola-v0.14.1-x86_64-unknown-linux-gnu.tar.gz \
+        > test.tar.gz
+      tar -xzf test.tar.gz
       npm install
-    command: zola serve
+    command: ./zola serve
 
 ports:
   - port: 1111
