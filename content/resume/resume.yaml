@@ -63,22 +63,13 @@ work:
   - company: Feram GmbH
     position: Cofounder and CEO
     website: https://feram.io
-    startDate: '2016-04'
+    startDate: '2020-07-01'
     summary: |
        Feram is a software agency specialized in fullstack web development
        and the implementation of cloud infrastructures.
-       Originally, it was an online service
-       which automatically found bugs in code and proposed fixes for them.
     highlights:
-      - >-
-        Winner of
-        (<a href="https://hpi.de/en/entrepreneurship/events/business-plan-competition/hpi-business-plan-competition-2016.html"
-        >HPI Business Plan Competition 2016</a>,
-        <a href="https://www.gruenderszene.de/allgemein/feram-bugs-software-fehler-check-kontrolle"
-        >Gründerszene Article</a>)
-      - >-
-        High performance through parallelization
-        by using around 30 micro services running on Docker Swarm
+      - Development of a legal case management platform
+          with several thousand users / day
 
 # TODO: Readd when online again
 # (<a href="https://www.feram.io/blog/2018-05-09_our_progress_in_2018/"
@@ -115,6 +106,25 @@ work:
       - Migration from Zoho CRM and Microsoft Dynamics to Salesforce
       - Migration from a Windows Server based computing environment
         to Google Cloud
+
+  - company: Feram GmbH
+    position: Cofounder and CEO
+    website: https://feram.io
+    startDate: '2016-04'
+    endDate: '2019-06-30'
+    summary: |
+       Online service
+       which automatically found bugs in code and proposed fixes for them.
+    highlights:
+      - >-
+        Winner of
+        (<a href="https://hpi.de/en/entrepreneurship/events/business-plan-competition/hpi-business-plan-competition-2016.html"
+        >HPI Business Plan Competition 2016</a>,
+        <a href="https://www.gruenderszene.de/allgemein/feram-bugs-software-fehler-check-kontrolle"
+        >Gründerszene Article</a>)
+      - >-
+        High performance through parallelization
+        by using around 30 micro services running on Docker Swarm
 
   - company: Freelancer
     position: Developer and Designer
