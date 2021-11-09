@@ -269,7 +269,7 @@ Problem solved 😊
 a cool flag which displays the astronomical holidays.
 I.e. the next full moon or the next lunar eclipse.
 
-```shell
+```txt
 $ gcal --holiday-list --astronomical-holidays
 
 Eternal holiday list:                      The year 2016 is A leap year

@@ -30,8 +30,8 @@ from input files and stdin.
 
 The easiest way to use `fold` is to simply call it on a file.
 
-```shell
-$ fold example.txt
+```bash
+fold example.txt
 ```
 
 This will wrap every line of the file

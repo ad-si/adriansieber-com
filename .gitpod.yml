@@ -5,6 +5,7 @@ tasks:
         > test.tar.gz
       tar -xzf test.tar.gz
       npm install
+      make public
     command: ./zola serve
 
 ports:
