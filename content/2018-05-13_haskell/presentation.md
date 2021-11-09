@@ -1,7 +1,7 @@
 ---
 title: Haskell and the case for purely functional programming
 author: Adrian Sieber
-date: 2020-10-29
+date: 2021-06-16
 theme: default
 colortheme: owl
 innertheme: circles
@@ -47,65 +47,84 @@ But maybe it can just as well mean:
 
   - Easy to get started, but not easy to maintain
   - A big ecosystem of low quality
-  - Company pushed the language for self promotion
+  - Companies pushed the language for self promotion
   - More companies have to use the language in order to appear "modern"
   - Hard to find high quality documentation
+    (instead of simple "How to get started" tutorials)
   - Susceptible to superficial trends
-  - Popular because of an unfair monopoly (e.g. JavaScript in the Browser)
+  - Popular because of an unfair monopoly
+    (e.g. JavaScript in the Browser)
 
 
 ---
 
-<!--
-Popularity isn't a good indicator of Haskell's appeal
+\Large
+
+**Popularity isn't a good indicator of Haskell's appeal**
 
 - Position 22 on the PYPL (PopularitY of Programming Language) index (May 2018)
 - Position 25 on IEEE Spectrum's "The Top Programming Languages 2017"
 - Position 48 on the Tiobe index (May 2018).
 
----
--->
+**but**
 
+> The functional language Haskell is the tag most visited outside of the workday [^1]
 
-\Large
+[^1]: https://stackoverflow.blog/2017/04/19/programming-languages-used-late-night/
 
-## History of FP Languages
-
-- 1920 - Combinatory Logic by Moses Schönfinkel and Haskell Curry
-
-  > A combinator is a higher-order function
-  > that uses only function application
-  > and earlier defined combinators to define a result from its arguments.
-
-- 1930 - (Typed) Lambda Calculus by Alonzo Church
-- 1936 - Turing Machine
-
----
-
-\Large
-
-- 1950 - *Lisp* - First functional programming language (but not pure!)
-- 1973 - *ML* (Meta Language) - Uses Polymorphic Hindley–Milner type system
-  - 1987 - *Caml* - Dialect of ML
-  - 1996 - *OCaml* - Extends the Caml with object-oriented features
-- 1985 - *Miranda* - Lazy & purely functional language, but proprietary
-
----
-
-\Large
-
-1990 - *Haskell* - Committee consolidated existing functional languages
-    to serve as a basis for future research
-
-- 2007 - *Idris* - Dependent types (list with x entries), totality checker
-- 2012 - *Elm* - DSL for building webapps
-- 2015 - *PureScript* - Compiles to general purpose JavaScript
 
 ---
 
 \center \Huge
 
-What makes Haskell so great then?
+**Developers love to spend their free time coding in Haskell!**
+
+
+---
+
+\Large
+
+## History of FP Languages
+
+- 1920 - **Combinatory Logic** by Moses Schönfinkel and Haskell Curry
+
+  > A combinator is a higher-order function
+  > that uses only function application
+  > and earlier defined combinators to define a result from its arguments.
+
+- 1930 - **(Typed) Lambda Calculus** by Alonzo Church
+- 1936 - **Turing Machine** by Alan Turing
+
+
+---
+
+\Large
+
+- 1950 - **Lisp** - First functional programming language (but not pure!)
+- 1973 - **ML** (Meta Language) - Uses Polymorphic Hindley–Milner type system
+  - 1987 - **Caml** - Dialect of ML
+  - 1996 - **OCaml** - Extends the Caml with object-oriented features
+- 1985 - **Miranda** - Lazy & purely functional language, but proprietary
+
+
+---
+
+\Large
+
+1990 - **Haskell** - A committee consolidated existing functional languages
+    to serve as a basis for future research [^1]
+
+- 2007 - **Idris** - Dependent types (list with x entries), totality checker
+- 2012 - **Elm** - DSL for building webapps
+- 2015 - **PureScript** - Compiles to general purpose JavaScript
+
+[^1]: Only major language invented by committee!
+
+---
+
+\center \Huge
+
+**What makes Haskell so great then?**
 
 ---
 
@@ -117,13 +136,14 @@ Every single expression in Haskell is statically (i.e. at compile time) typed.
 
 &nbsp;
 
-Don't think "Java, C++"" => More like Python + Types
+Don't think "Java" of "C++" => More like Python + unobtrusive Types
+
 
 ---
 
 \Large
 
-Types are globally inferred
+Types are **globally** inferred
 (i.e. across function and file boundaries).
 
 => Explicitly stating type not necessary
@@ -134,10 +154,14 @@ Types are globally inferred
 
 \Large
 
+Let's try it out in the Haskell REPL:
+
+&nbsp;
+
 ```haskell
-> nameAndIsMember = ("John Doe", True)
-> :t nameAndIsMember
-nameAndIsMember :: ([Char], Bool)
+> nameAndIsMemberTuple = ("John Doe", True)
+> :t nameAndIsMemberTuple
+nameAndIsMemberTuple :: ([Char], Bool)
 ```
 
 &nbsp;

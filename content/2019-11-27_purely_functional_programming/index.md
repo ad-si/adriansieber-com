@@ -13,6 +13,24 @@ draft = true
 tags = ["PureScript", "JavaScript", "pure"]
 +++
 
+## TODO
+
+### --------
+
+Move functions out of `main`
+
+
+### --------
+
+From the React documentation (https://reactjs.org/docs/hooks-reference.html)
+
+> Mutations, subscriptions, timers, logging, and other side effects
+> are not allowed inside the main body of a function component
+> (referred to as React’s render phase).
+> **Doing so** will lead to confusing bugs and inconsistencies in the UI.
+
+It's still possible!
+
 
 ## What Is Functional Programming?
 
