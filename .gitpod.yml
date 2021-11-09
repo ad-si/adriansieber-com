@@ -1,0 +1,10 @@
+tasks:
+  - name: Install dependencies and start dev server
+    init: |
+      sudo apt install zola
+      npm install
+    command: zola serve
+
+ports:
+  - port: 1111
+    onOpen: open-preview
