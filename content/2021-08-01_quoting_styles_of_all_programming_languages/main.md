@@ -1,4 +1,11 @@
-# Quoting Styles Comparison Of Major Programming Languages
++++
+title = "Quoting Styles Comparison Of Major Programming Languages"
+author = "Adrian Sieber (ad-si.com)"
+draft = true
+
+[taxonomies]
+tags = ["programming", "language", "style"]
++++
 
 
 Language    |    `"`     |    `'`     |  `` ` ``   |    `"""`   | Extras

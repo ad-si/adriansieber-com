@@ -1,6 +1,7 @@
 +++
 title = "Modern Medicine is not Enough"
 author = "Adrian Sieber (ad-si.com)"
+draft = true
 
 [taxonomies]
 tags = ["Genealogy", "New Eugenics", "Medicine"]

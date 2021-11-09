@@ -136,7 +136,8 @@ yet also most powerful ways to program via VLL.
 [Swift Playgrounds]: https://www.apple.com/swift/playgrounds/
 [Swift]: https://swift.org/
 
-To get started we first need to write the necessary code to transmit the VLL commands.
+To get started we first need to write the necessary code
+to transmit the VLL commands.
 I will focus on the Micro Scout instruction set,
 but the code could be easily extended to also support the other controllers.
 
