@@ -26,7 +26,7 @@ serve:
 # Deploy website to surge.sh
 .PHONY: deploy
 deploy: public
-	surge public adriansieber.com
+	npx surge public adriansieber.com
 
 	@printf "\
 	Promote the new post on: \n\

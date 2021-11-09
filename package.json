@@ -6,6 +6,7 @@
     "test": "make"
   },
   "devDependencies": {
-    "@adius/yaml2json": "^1.0.1"
+    "@adius/yaml2json": "^1.0.1",
+    "surge": "^0.23.0"
   }
 }
