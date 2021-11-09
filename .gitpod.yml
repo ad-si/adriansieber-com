@@ -4,10 +4,13 @@ tasks:
       curl -L https://github.com/getzola/zola/releases/download/v0.14.1/zola-v0.14.1-x86_64-unknown-linux-gnu.tar.gz \
         > test.tar.gz
       tar -xzf test.tar.gz
-      sudo mv zola /usr/local/bin
+      rm test.tar.gz
+      mkdir /workspace/bin
+      sudo mv zola /workspace/bin
+      PATH=/workspace/bin:$PATH
       npm install
       make public
-    command: ./zola serve
+    command: zola serve
 
 ports:
   - port: 1111
