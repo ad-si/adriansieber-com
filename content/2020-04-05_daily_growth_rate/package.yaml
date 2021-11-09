@@ -1,0 +1,3 @@
+name: daily-growth-rate
+dependencies:
+  - chart-diagrams

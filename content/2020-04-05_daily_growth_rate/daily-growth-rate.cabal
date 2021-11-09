@@ -1,0 +1,11 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 4193612b98ba1e723161af26ce31b98e16dfaac1eb2a6cfa69ca33f9ab28735b
+
+name:           daily-growth-rate
+version:        0.0.0
+build-type:     Simple
