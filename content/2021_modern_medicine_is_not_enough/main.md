@@ -9,3 +9,7 @@ tags = ["Genealogy", "New Eugenics", "Medicine"]
 
 
 - Incest is already prohibited in many countries
+
+
+- DNA is a compressed database with an insane compression ratio
+  - Decompression will lead to errors => Genetic drift

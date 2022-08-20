@@ -6,11 +6,10 @@ tags = ["about"]
 +++
 
 I'm Adrian Sieber (as you might have figured out by now…)
-and I'm a software engineer / entrepreneur / author living in Germany.
+and I'm a software engineer and entrepreneur living in Germany.
 
-Currently I'm the CTO of Qthority ([qthority.com])
-and writing a book in which I compare various programming languages
-([programmiersprachenbuch.de])
+Currently I'm the CEO of Feram ([feram.io])
+and we're developing Airsequel ([airsequel.com]).
 
 Previously I studied IT-Systems Engineering
 at the [Hasso Plattner Institut][hpi].
@@ -18,7 +17,7 @@ at the [Hasso Plattner Institut][hpi].
 If you're interested in my work, make sure to check out all of my
 open source projects at [github.com/ad-si].
 
-[qthority.com]: https://qthority.com
+[airsequel.com]: https://www.airsequel.com
 [programmiersprachenbuch.de]: http://programmiersprachenbuch.de
 [hpi]: https://hpi.de
 [github.com/ad-si]: https://github.com/ad-si
@@ -32,7 +31,7 @@ However, nowadays I barely find the time anymore, but when I do
 I prefer my new favorite instrument, the [LinnStrument].
 
 As sitting in front of the computer the whole day is rather unhealthy
-I regularly go for a run and work out in the fitness studio.
+I regularly go out for runs.
 In addition I like to go skiing in winter and sailing in summer.
 
 [LinnStrument]: http://rogerlinndesign.com/linnstrument.html
@@ -41,7 +40,7 @@ In addition I like to go skiing in winter and sailing in summer.
 ## Supporting Good Causes
 
 True to the motto "Put your money where your mouth is" I join
-non profit organizations supporting my beliefs
+nonprofit organizations supporting my beliefs
 and donate regularly to them (you should too 😉):
 
 - [Atmosfair] -
@@ -49,7 +48,6 @@ and donate regularly to them (you should too 😉):
 - [CO<sub>2</sub>Abgabe e.V.][CO2Abgabe] -
     German organization demanding a CO<sub>2</sub> tax.
 - [FSF] - Free Software Foundation.
-- [Gesellschaft für Informatik e.V.] - Society for computer science.
 - [IBKA e.V.] - International League of non-religious and atheists.
 - [Pro Rauchfrei e.V.] - German organization to protect non smokers.
 - [The Dozenal Society of America] - Promoting the base 12 number system.
@@ -62,7 +60,6 @@ and donate regularly to them (you should too 😉):
 [Atmosfair]: https://atmosfair.de
 [CO2Abgabe]: https://co2abgabe.de
 [FSF]: https://fsf.org
-[Gesellschaft für Informatik e.V.]: https://gi.de
 [IBKA e.V.]: https://www.ibka.org
 [Pro Rauchfrei e.V.]: https://www.pro-rauchfrei.de
 [The Dozenal Society of America]: http://dozenal.org

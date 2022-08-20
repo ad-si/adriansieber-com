@@ -274,12 +274,13 @@ skills:
   - name: Web Development
     level: Master
     keywords:
-      - PureScript
       - Elm
+      - PureScript
       - TypeScript
       - JavaScript
       - HTML
       - CSS
+      - Tailwind CSS
       - SVG
 
   - name: Backend Development
@@ -287,7 +288,9 @@ skills:
     keywords:
       - Node.js
       - Haskell
-      - PostgreSQL
+      - SQLite
+      - MongoDB
+      - Firebase
 
   - name: DevOps
     level: Master
@@ -310,7 +313,6 @@ skills:
     level: Intermediate
     keywords:
       - Affinity Designer & Photo
-      - Sketch
       - Inkscape
       - Gimp
 
