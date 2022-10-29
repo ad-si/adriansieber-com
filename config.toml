@@ -6,7 +6,7 @@ default_language = "en"
 # The site theme to use.
 # theme = ""
 
-generate_rss = true
+generate_feed = true
 compile_sass = true
 
 taxonomies = [{name = "tags"}]

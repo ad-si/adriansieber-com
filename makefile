@@ -1,5 +1,10 @@
-.PHONY: main
-main: public
+.PHONY: help
+help: makefile
+	@tail -n +4 makefile | grep ".PHONY"
+
+
+.PHONY: build
+build: public
 
 
 # Install dependencies
@@ -14,7 +19,6 @@ content/resume/resume.json: content/resume/resume.yaml
 # Build page from markdown and template files
 public: content static sass content/resume/resume.json
 	zola build
-	-mv public/rss.xml public/atom.xml
 
 
 # Serve website at http://127.0.0.1:1111
