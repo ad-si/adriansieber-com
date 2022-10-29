@@ -17,6 +17,7 @@ at the [Hasso Plattner Institut][hpi].
 If you're interested in my work, make sure to check out all of my
 open source projects at [github.com/ad-si].
 
+[feram.io]: https://www.feram.io
 [airsequel.com]: https://www.airsequel.com
 [programmiersprachenbuch.de]: http://programmiersprachenbuch.de
 [hpi]: https://hpi.de
@@ -45,8 +46,8 @@ and donate regularly to them (you should too 😉):
 
 - [Atmosfair] -
     Compensating around 22 Mg (1 Megagram == 1 Ton) of CO<sub>2</sub> per year.
-- [CO<sub>2</sub>Abgabe e.V.][CO2Abgabe] -
-    German organization demanding a CO<sub>2</sub> tax.
+- [Klimaschutz im Bundestag] - German organization demanding clear climate goals
+    from the German government.
 - [FSF] - Free Software Foundation.
 - [IBKA e.V.] - International League of non-religious and atheists.
 - [Pro Rauchfrei e.V.] - German organization to protect non smokers.
@@ -58,7 +59,7 @@ and donate regularly to them (you should too 😉):
     (twenty-one instead of one-and-twenty).
 
 [Atmosfair]: https://atmosfair.de
-[CO2Abgabe]: https://co2abgabe.de
+[Klimaschutz im Bundestag]: https://klimaschutz-im-bundestag.de
 [FSF]: https://fsf.org
 [IBKA e.V.]: https://www.ibka.org
 [Pro Rauchfrei e.V.]: https://www.pro-rauchfrei.de
