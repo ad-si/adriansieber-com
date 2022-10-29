@@ -1,4 +1,11 @@
-# Visualize Utility Meter Readings With Elixir's Livebook
++++
+title = "Visualize Utility Meter Readings With Elixir's Livebook"
+author = "Adrian Sieber (ad-si.com)"
+draft = true
+
+[taxonomies]
+tags = ["programming", "elixir", "livebook", "visualization"]
++++
 
 ## Start with Docker
 
