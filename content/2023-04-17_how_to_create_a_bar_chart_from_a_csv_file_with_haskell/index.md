@@ -34,7 +34,7 @@ Check out this post's
   https://github.com/ad-si/adriansieber-com/tree/master/content)
 for the full source files.
 
-I used [Cassandra](https://hackage.haskell.org/package/cassandra)
+I used [Cassava](https://hackage.haskell.org/package/cassava)
 to parse the CSV file
 and [Chart](https://hackage.haskell.org/package/Chart) to create the SVG chart.
 
