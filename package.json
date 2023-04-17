@@ -7,6 +7,6 @@
   },
   "devDependencies": {
     "@adius/yaml2json": "^1.0.1",
-    "surge": "^0.23.0"
+    "surge": "^0.23.1"
   }
 }
