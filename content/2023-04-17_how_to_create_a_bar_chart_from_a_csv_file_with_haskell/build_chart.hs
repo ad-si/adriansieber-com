@@ -18,11 +18,28 @@ import Data.ByteString.Char8 (unpack)
 import Data.ByteString.Lazy qualified as BL
 import Data.Csv qualified as Csv
 import Data.Text qualified as T
-import Data.Time.Clock (UTCTime, diffUTCTime, getCurrentTime)
+import Data.Time.Calendar (diffDays)
+import Data.Time.Clock (UTCTime, getCurrentTime, utctDay)
 import Data.Time.Format (defaultTimeLocale, parseTimeM)
 import Data.Vector qualified as V
-import Graphics.Rendering.Chart.Backend.Diagrams
-import Graphics.Rendering.Chart.Easy
+import Graphics.Rendering.Chart.Backend.Diagrams (
+  FileFormat (SVG),
+  FileOptions (FileOptions),
+  loadSansSerifFonts,
+  toFile,
+ )
+import Graphics.Rendering.Chart.Easy (
+  BarsPlotValue,
+  EC,
+  PlotBars,
+  PlotBarsSpacing (BarsFixGap),
+  PlotBarsStyle (BarsClustered),
+  PlotValue,
+  (&),
+  (.=),
+  (<&>),
+ )
+import Graphics.Rendering.Chart.Easy qualified as CE
 
 -- | Define the data type for each row in the CSV
 data Release = Release
@@ -45,13 +62,8 @@ instance Csv.FromRecord Release where
           <*> (T.pack . unpack <$> v Csv..! 1)
     | otherwise = mzero
 
--- | Calculate the number of days between two dates
-daysBetween :: UTCTime -> UTCTime -> Int
-daysBetween d1 d2 =
-  floor $ diffUTCTime d1 d2 / 86400
-
 -- | Calculate difference between consecutive elements
-stepSizes :: Num a => V.Vector a -> V.Vector a
+stepSizes :: V.Vector Int -> V.Vector Int
 stepSizes xs =
   V.zipWith (-) (V.tail xs) xs
 
@@ -60,12 +72,12 @@ createBars ::
   (PlotValue x, BarsPlotValue y) =>
   [(x, [y])] ->
   EC l (PlotBars x y)
-createBars vals = liftEC $ do
-  plot_bars_titles .= ["Days since last release"]
-  plot_bars_values .= vals
-  plot_bars_style .= BarsClustered
-  plot_bars_spacing .= BarsFixGap 0.2 2
-  plot_bars_item_styles .= [(solidFillStyle $ opaque teal, Nothing)]
+createBars vals = CE.liftEC $ do
+  CE.plot_bars_titles .= ["Days since last release"]
+  CE.plot_bars_values .= vals
+  CE.plot_bars_style .= BarsClustered
+  CE.plot_bars_spacing .= BarsFixGap 0.2 2
+  CE.plot_bars_item_styles .= [(CE.solidFillStyle $ CE.opaque CE.teal, Nothing)]
 
 {- | Load the CSV file, calculate the number of days since each release,
 | and write the chart to an SVG file
@@ -81,16 +93,20 @@ main = do
       let
         daysSinceLastRelease =
           releases
-            & V.map (daysBetween now . date)
+            & V.map
+              ( \release ->
+                  fromInteger $
+                    diffDays (utctDay now) (utctDay release.date)
+              )
             & stepSizes
 
       toFile
         (FileOptions (800, 450) SVG loadSansSerifFonts)
         "days_since_last_sqlite_release.svg"
         $ do
-          layout_title .= "Days Since Last SQLite Release"
-          plot $
-            plotBars
+          CE.layout_title .= "Days Since Last SQLite Release"
+          CE.plot $
+            CE.plotBars
               <$> createBars
                 ( releases
                     `V.zip` daysSinceLastRelease
