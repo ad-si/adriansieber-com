@@ -269,9 +269,11 @@ article
     float: right
     display: inline-block
 
-aside
-  text-align: center
+aside#buttons
+  display: flex
+  justify-content: center
   font-size: 1.2em
+  gap: 0.5em
   a
     display: inline-block
     margin-right: 0.2em
@@ -281,6 +283,9 @@ aside
       display: none
     &:last-of-type
       margin-right: 0
+    svg
+      width: 1.2em
+      height: 1.2em
 
 #description
   margin-bottom: 3em
