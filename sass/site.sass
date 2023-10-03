@@ -63,7 +63,12 @@ input
     border-width: 1px
     border-style: solid
     border-color: $mediumMutedColor
-    color: $mutedColor
+    color: $contrastColor
+    cursor: pointer
+    &:hover
+      background-color: $mediumMutedColor
+    &:active
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2)
 
 
 a
@@ -272,7 +277,7 @@ article
 aside#buttons
   display: flex
   justify-content: center
-  font-size: 1.2em
+  font-size: 1em
   gap: 0.5em
   a
     display: inline-block
