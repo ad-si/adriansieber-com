@@ -1,0 +1,211 @@
+[gd_scene load_steps=24 format=3 uid="uid://e1fkotuafybr"]
+
+[ext_resource type="Script" path="res://Disc.gd" id="1_b18y5"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_54mnf"]
+ground_color = Color(0.04, 0.02416, 0.0184, 1)
+
+[sub_resource type="Sky" id="Sky_a76ue"]
+sky_material = SubResource("PhysicalSkyMaterial_54mnf")
+
+[sub_resource type="Environment" id="Environment_wbtre"]
+background_mode = 2
+sky = SubResource("Sky_a76ue")
+tonemap_mode = 2
+ssr_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_wlui8"]
+colors = PackedColorArray(0.5, 0.5, 0.5, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6grk4"]
+noise_type = 3
+seed = 1
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8c376"]
+color_ramp = SubResource("Gradient_wlui8")
+noise = SubResource("FastNoiseLite_6grk4")
+
+[sub_resource type="Gradient" id="Gradient_yfvx5"]
+colors = PackedColorArray(0.685146, 0.685146, 0.685146, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dc4hn"]
+frequency = 0.8751
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lkjim"]
+width = 2048
+height = 2048
+normalize = false
+color_ramp = SubResource("Gradient_yfvx5")
+noise = SubResource("FastNoiseLite_dc4hn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_homqu"]
+albedo_color = Color(0.270588, 0.137255, 0.0666667, 1)
+albedo_texture = SubResource("NoiseTexture2D_8c376")
+emission = Color(0.270588, 0.0431373, 0.0784314, 1)
+subsurf_scatter_strength = 0.8
+refraction_scale = 0.65
+detail_blend_mode = 3
+detail_albedo = SubResource("NoiseTexture2D_lkjim")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rfafi"]
+noise_type = 0
+frequency = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7qrh0"]
+noise = SubResource("FastNoiseLite_rfafi")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_88rba"]
+frequency = 0.6182
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pr17o"]
+noise = SubResource("FastNoiseLite_88rba")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r86ew"]
+albedo_color = Color(0.02, 0.02, 0.02, 1)
+albedo_texture = SubResource("NoiseTexture2D_7qrh0")
+detail_blend_mode = 3
+detail_albedo = SubResource("NoiseTexture2D_pr17o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3os1e"]
+
+[sub_resource type="Gradient" id="Gradient_6j13a"]
+colors = PackedColorArray(0.6, 0.6, 0.6, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s8g1x"]
+noise_type = 3
+frequency = 0.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_frw1v"]
+color_ramp = SubResource("Gradient_6j13a")
+noise = SubResource("FastNoiseLite_s8g1x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwo0l"]
+transparency = 1
+cull_mode = 2
+diffuse_mode = 2
+albedo_color = Color(1, 1, 1, 0.0784314)
+metallic = 0.8
+metallic_specular = 1.0
+roughness_texture = SubResource("NoiseTexture2D_frw1v")
+emission = Color(0.396078, 0.0313726, 0.0823529, 1)
+emission_energy_multiplier = 9.82
+emission_operator = 1
+rim = 0.2
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+proximity_fade_distance = 0.0
+distance_fade_max_distance = 0.0
+
+[sub_resource type="Animation" id="Animation_846l8"]
+resource_name = "Rotate Disc"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Disc")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12, 1, 1, 1, 2.08165e-12, 1, 2.08165e-12, 2.08165e-12)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qd6as"]
+_data = {
+"Rotate Disc": SubResource("Animation_846l8")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_wbtre")
+
+[node name="Table" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, 2.08165e-12)
+size = Vector3(8, 0.1, 8)
+material = SubResource("StandardMaterial3D_homqu")
+metadata/_edit_lock_ = true
+
+[node name="BackLight" type="SpotLight3D" parent="."]
+transform = Transform3D(0.66697, -0.29822, -0.6828, 0.74456, 0.232388, 0.6258, -0.027952, -0.925776, 0.377039, -7.39611, 6.51374, 3.33724)
+light_energy = 10.0
+spot_range = 15.3246
+spot_angle = 14.0625
+metadata/_edit_lock_ = true
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, -5.72983e-16, 2.67186e-16, 2.67186e-16, 0.766044, 0.642788, -5.72983e-16, -0.642788, 0.766044, 2.08165e-12, 10, 10)
+metadata/_edit_lock_ = true
+
+[node name="Disc" type="Node3D" parent="."]
+transform = Transform3D(-1, 4.1633e-12, 1.50996e-07, 4.1633e-12, 1, 4.1633e-12, -1.50996e-07, 4.1633e-12, -1, 0, 0, 0)
+script = ExtResource("1_b18y5")
+metadata/movie_file = "just_a_test"
+metadata/_edit_lock_ = true
+
+[node name="R1 Black" type="CSGCombiner3D" parent="Disc"]
+transform = Transform3D(-1, 3.48484e-16, -8.74228e-08, 3.49378e-16, 1, -3.49547e-16, 8.74228e-08, -3.48679e-16, -1, -0.001, 2.08165e-12, 2.08165e-12)
+material_override = SubResource("StandardMaterial3D_r86ew")
+metadata/_edit_lock_ = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Disc/R1 Black"]
+transform = Transform3D(1, -4.02214e-24, 0, -4.02214e-24, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+radius = 0.4
+height = 0.1
+sides = 32
+material = SubResource("StandardMaterial3D_3os1e")
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Disc/R1 Black"]
+transform = Transform3D(1, -4.02214e-24, 0, -4.02214e-24, 1, 0, 0, 0, 1, 0.3, 2.08165e-12, 2.08189e-12)
+operation = 1
+size = Vector3(0.6, 0.2, 1.2)
+metadata/_edit_lock_ = true
+
+[node name="Axle" type="CSGCylinder3D" parent="Disc/R1 Black"]
+transform = Transform3D(1, -4.02214e-24, 0, -4.02214e-24, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+operation = 2
+radius = 0.2
+height = 0.2
+sides = 32
+metadata/_edit_lock_ = true
+
+[node name="R1 Transparent" type="CSGCombiner3D" parent="Disc"]
+material_override = SubResource("StandardMaterial3D_xwo0l")
+metadata/_edit_lock_ = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Disc/R1 Transparent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+radius = 0.4
+height = 0.1
+sides = 32
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Disc/R1 Transparent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2.08165e-12, 2.08165e-12)
+operation = 1
+size = Vector3(0.6, 0.2, 1.2)
+metadata/_edit_lock_ = true
+
+[node name="Axle" type="CSGCylinder3D" parent="Disc/R1 Transparent"]
+transform = Transform3D(1, -4.02214e-24, 0, -4.02214e-24, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+operation = 2
+radius = 0.2
+height = 0.2
+sides = 32
+metadata/_edit_lock_ = true
+
+[node name="Sensor Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 2.08165e-12, -0.4, -0.3)
+light_color = Color(1, 0, 0, 1)
+light_energy = 20.0
+spot_range = 0.706236
+spot_angle = 10.2316
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.573576, 0.819152, 2.85709e-16, 0.819152, 0.573576, -1, 2.50718e-08, -3.58063e-08, 2, 1.5, 2.08165e-12)
+fov = 30.0
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Rotate Disc"
+movie_quit_on_finish = true
+libraries = {
+"": SubResource("AnimationLibrary_qd6as")
+}
