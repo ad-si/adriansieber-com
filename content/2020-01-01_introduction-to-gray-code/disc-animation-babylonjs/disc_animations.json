@@ -1,0 +1,25 @@
+{
+  "animations": [{
+    "name": "xSlide",
+    "property": "position.x",
+    "framePerSecond": 60,
+    "dataType": 0,
+    "loopBehavior": 1,
+    "blendingSpeed": 0.01,
+    "keys": [
+      {
+        "frame": 0,
+        "values": [2, null, -0.002284583195142099]
+      },
+      {
+        "frame": 59.9985167673361,
+        "values": [-1.9982698827846088, 0.000609646176012967, 0.0006096434902831627, 0]
+      },
+      {
+        "frame": 120,
+        "values": [2, 0.0022729745064392986]
+      }
+    ],
+    "ranges": []
+  }]
+}
