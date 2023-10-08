@@ -3,18 +3,99 @@
   height="120mm"
   viewBox="0,0,120,120"
   xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink">
-<style>.background {
-  fill: white;
-}
-.background {
-  fill: black;
-}
-.fringe {
-  fill: gray;
-}
-.lasercut {
-  fill: none !important;
-  stroke: rgb(255, 0, 0) !important;
-  stroke-width: 0.1 !important;
-}</style><defs><clipPath id="discWithAxleHole" transform="translate(-60,-60)"><path d="M0,0 h120 v120 h-120 z M53.5, 60 a 1,1 0 0 0 13,0 a 1,1 0 0 0 -13,0 z"></path></clipPath></defs><g fill="transparent" transform="translate(60,60)" clip-path="url(#discWithAxleHole)"><circle class="fringe" r="60" style="fill:gray;stroke-width:0.1"></circle><g><path d="M0,0L55,0A55,55 0 0 0 38.890872965260115,-38.89087296526011Z" class="background"></path><path d="M0,0L38.890872965260115,-38.89087296526011A55,55 0 0 0 3.3677786976552213e-15,-55Z" class="foreground"></path><path d="M0,0L3.3677786976552213e-15,-55A55,55 0 0 0 -38.89087296526011,-38.890872965260115Z" class="background"></path><path d="M0,0L-38.89087296526011,-38.890872965260115A55,55 0 0 0 -55,-6.735557395310443e-15Z" class="foreground"></path><path d="M0,0L-55,-6.735557395310443e-15A55,55 0 0 0 -38.89087296526012,38.89087296526011Z" class="background"></path><path d="M0,0L-38.89087296526012,38.89087296526011A55,55 0 0 0 -1.0103336092965664e-14,55Z" class="foreground"></path><path d="M0,0L-1.0103336092965664e-14,55A55,55 0 0 0 38.8908729652601,38.89087296526012Z" class="background"></path><path d="M0,0L38.8908729652601,38.89087296526012A55,55 0 0 0 55,1.3471114790620885e-14Z" class="foreground"></path></g><g><path d="M0,0L40.5,0A40.5,40.5 0 0 0 2.4799097682733903e-15,-40.5Z" class="background"></path><path d="M0,0L2.4799097682733903e-15,-40.5A40.5,40.5 0 0 0 -40.5,-4.9598195365467806e-15Z" class="foreground"></path><path d="M0,0L-40.5,-4.9598195365467806e-15A40.5,40.5 0 0 0 -7.43972930482017e-15,40.5Z" class="background"></path><path d="M0,0L-7.43972930482017e-15,40.5A40.5,40.5 0 0 0 40.5,9.919639073093561e-15Z" class="foreground"></path></g><g><path d="M0,0L26,0A26,26 0 0 0 -26,-3.184081677783118e-15Z" class="background"></path><path d="M0,0L-26,-3.184081677783118e-15A26,26 0 0 0 26,6.368163355566236e-15Z" class="foreground"></path></g><circle class="fringe" r="11.5"></circle></g></svg>
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+  <style>
+    .foreground {
+      fill: white;
+    }
+    .background {
+      fill: black;
+    }
+    .fringe {
+      fill: gray;
+    }
+    .lasercut {
+      fill: none !important;
+      stroke: rgb(255, 0, 0) !important;
+      stroke-width: 0.1 !important;
+    }
+  </style>
+  <defs>
+    <clipPath id="discWithAxleHole" transform="translate(-60,-60)">
+      <path
+        d="M0,0 h120 v120 h-120 z M53.5, 60 a 1,1 0 0 0 13,0 a 1,1 0 0 0 -13,0 z"
+      />
+    </clipPath>
+  </defs>
+  <g
+    fill="transparent"
+    transform="translate(60,60)"
+    clip-path="url(#discWithAxleHole)"
+  >
+    <circle class="fringe" r="60" style="fill:gray;stroke-width:0.1"/>
+    <g>
+      <path
+        d="M0,0L55,0A55,55 0 0 0 38.890872965260115,-38.89087296526011Z"
+          class="background"
+      />
+      <path
+        d="M0,0L38.890872965260115,-38.89087296526011A55,55 0 0 0 3.3677786976552213e-15,-55Z"
+        class="foreground"
+      />
+      <path
+        d="M0,0L3.3677786976552213e-15,-55A55,55 0 0 0 -38.89087296526011,-38.890872965260115Z"
+        class="background"
+      />
+      <path
+        d="M0,0L-38.89087296526011,-38.890872965260115A55,55 0 0 0 -55,-6.735557395310443e-15Z"
+        class="foreground"
+      />
+      <path
+        d="M0,0L-55,-6.735557395310443e-15A55,55 0 0 0 -38.89087296526012,38.89087296526011Z"
+        class="background"
+      />
+      <path
+        d="M0,0L-38.89087296526012,38.89087296526011A55,55 0 0 0 -1.0103336092965664e-14,55Z"
+        class="foreground"
+      />
+      <path
+        d="M0,0L-1.0103336092965664e-14,55A55,55 0 0 0 38.8908729652601,38.89087296526012Z"
+        class="background"
+      />
+      <path
+        d="M0,0L38.8908729652601,38.89087296526012A55,55 0 0 0 55,1.3471114790620885e-14Z"
+        class="foreground"
+      />
+    </g>
+    <g>
+      <path
+        d="M0,0L40.5,0A40.5,40.5 0 0 0 2.4799097682733903e-15,-40.5Z"
+          class="background"
+      />
+      <path
+        d="M0,0L2.4799097682733903e-15,-40.5A40.5,40.5 0 0 0 -40.5,-4.9598195365467806e-15Z"
+        class="foreground"
+      />
+      <path
+        d="M0,0L-40.5,-4.9598195365467806e-15A40.5,40.5 0 0 0 -7.43972930482017e-15,40.5Z"
+        class="background"
+      />
+      <path
+        d="M0,0L-7.43972930482017e-15,40.5A40.5,40.5 0 0 0 40.5,9.919639073093561e-15Z"
+        class="foreground"
+      />
+    </g>
+    <g>
+      <path
+        d="M0,0L26,0A26,26 0 0 0 -26,-3.184081677783118e-15Z"
+        class="background"
+      />
+      <path
+        d="M0,0L-26,-3.184081677783118e-15A26,26 0 0 0 26,6.368163355566236e-15Z"
+        class="foreground"
+      />
+    </g>
+    <circle class="fringe" r="11.5"/>
+  </g>
+</svg>
