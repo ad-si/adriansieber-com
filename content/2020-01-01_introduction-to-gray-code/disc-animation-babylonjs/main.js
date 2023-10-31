@@ -7,7 +7,7 @@ canvas.height = 1080 / 2
 let sceneToRender = null
 
 function startRenderLoop(theEngine, canvas) {
-  theEngine.runRenderLoop(function () {
+  theEngine.runRenderLoop(() => {
     if (sceneToRender && sceneToRender.activeCamera) {
       sceneToRender.render()
     }
@@ -140,7 +140,7 @@ function createSensorLight(scene, position) {
   spotLight.parent = bulbRed1
 }
 
-async function createScene() {
+async function createDefaultScene() {
   const scene = new BABYLON.Scene(engine)
 
   const defaultEnv = scene.createDefaultEnvironment({
@@ -150,18 +150,6 @@ async function createScene() {
   defaultEnv.setMainColor(woodBrown)
 
   scene.debugLayer.show() // Show inspector
-
-  const camera = new BABYLON.ArcRotateCamera(
-    "camera",
-    BABYLON.Tools.ToRadians(45),
-    BABYLON.Tools.ToRadians(50),
-    15,
-    BABYLON.Vector3.Zero(),
-    scene
-  )
-
-  // This attaches the camera to the canvas
-  camera.attachControl(canvas, true)
 
   // Light from above
   const lightDown = new BABYLON.HemisphericLight(
@@ -179,6 +167,34 @@ async function createScene() {
   )
   lightUp.intensity = 0.3
 
+  return scene
+}
+
+// Semi transparent glass material
+function getGlassMaterial(scene) {
+  const matGlass = new BABYLON.PBRMaterial("glass", scene)
+  matGlass.alpha = 0.5
+  matGlass.metallic = 0
+  matGlass.roughness = 1
+  matGlass.indexOfRefraction = 2
+  matGlass.directIntensity = 1
+  matGlass.cameraExposure = 0.66
+  matGlass.cameraContrast = 1.66
+  matGlass.microSurface = 1
+  return matGlass
+}
+
+async function createClip1(scene) {
+  const camera = new BABYLON.ArcRotateCamera(
+    "camera",
+    BABYLON.Tools.ToRadians(45),
+    BABYLON.Tools.ToRadians(50),
+    15,
+    BABYLON.Vector3.Zero(),
+    scene
+  )
+  camera.attachControl(canvas, true)
+
   createSensorLight(scene, 1)
   createSensorLight(scene, 2)
   createSensorLight(scene, 3)
@@ -189,16 +205,7 @@ async function createScene() {
   const matWhite = new BABYLON.StandardMaterial("mat", scene)
   matWhite.diffuseColor = new BABYLON.Color3(1, 1, 1)
 
-  // Semi transparent glass material
-  const matGlass = new BABYLON.PBRMaterial("glass", scene)
-  matGlass.alpha = 0.5
-  matGlass.metallic = 0
-  matGlass.roughness = 1
-  matGlass.indexOfRefraction = 2
-  matGlass.directIntensity = 1
-  matGlass.cameraExposure = 0.66
-  matGlass.cameraContrast = 1.66
-  matGlass.microSurface = 1
+  const matGlass = getGlassMaterial(scene)
 
   let disc = new BABYLON.TransformNode("disc", scene)
 
@@ -221,12 +228,78 @@ async function createScene() {
   let r3bWhite = createRingSection(scene, 3, matGlass, 0.875, 1.125)
   r3bWhite.parent = disc
 
-  const gl = new BABYLON.GlowLayer("glow", scene)
+  // Make red lights glow
+  new BABYLON.GlowLayer("glow", scene)
 
   await runAnimation(scene, disc)
   // recordAnimation()
 
   return scene
+}
+
+async function createClip2(scene) {
+  const camera = new BABYLON.ArcRotateCamera(
+    "camera",
+    BABYLON.Tools.ToRadians(45),
+    BABYLON.Tools.ToRadians(50),
+    15,
+    BABYLON.Vector3.Zero(),
+    scene
+  )
+  camera.attachControl(canvas, true)
+  camera.viewport = new BABYLON.Viewport(0, 0.5, 1, 1)
+  scene.activeCameras.push(camera)
+
+  const sensorCamera = new BABYLON.ArcRotateCamera(
+    "sensorCamera",
+    0,
+    0,
+    10,
+    BABYLON.Vector3(0, 0, 0),
+    scene
+  )
+  sensorCamera.attachControl(canvas, true)
+  sensorCamera.viewport = new BABYLON.Viewport(0, 0, 0.5, 0.4)
+  scene.activeCameras.push(sensorCamera)
+
+  createSensorLight(scene, 1)
+  createSensorLight(scene, 2)
+  createSensorLight(scene, 3)
+
+  const matBlack = new BABYLON.StandardMaterial("mat", scene)
+  matBlack.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2)
+
+  const matWhite = new BABYLON.StandardMaterial("mat", scene)
+  matWhite.diffuseColor = new BABYLON.Color3(1, 1, 1)
+
+  const matGlass = getGlassMaterial(scene)
+
+  let disc = new BABYLON.TransformNode("disc", scene)
+
+  let r1Black = createRingSection(scene, 1, matBlack, 0, 0.5)
+  r1Black.parent = disc
+  let r1White = createRingSection(scene, 1, matGlass, 0.5, 1)
+  r1White.parent = disc
+
+  let r2Black = createRingSection(scene, 2, matGlass, -0.25, 0.25)
+  r2Black.parent = disc
+  let r2White = createRingSection(scene, 2, matBlack, 0.25, 0.75)
+  r2White.parent = disc
+
+  let r3aBlack = createRingSection(scene, 3, matBlack, 0.125, 0.375)
+  r3aBlack.parent = disc
+  let r3aWhite = createRingSection(scene, 3, matGlass, 0.375, 0.625)
+  r3aWhite.parent = disc
+  let r3bBlack = createRingSection(scene, 3, matBlack, 0.625, 0.875)
+  r3bBlack.parent = disc
+  let r3bWhite = createRingSection(scene, 3, matGlass, 0.875, 1.125)
+  r3bWhite.parent = disc
+
+  // Make red lights glow
+  new BABYLON.GlowLayer("glow", scene)
+
+  await runAnimation(scene, disc)
+  // recordAnimation()
 }
 
 window.initFunction = async function () {
@@ -244,7 +317,8 @@ window.initFunction = async function () {
 
   window.engine = await asyncEngineCreation()
   startRenderLoop(window.engine, canvas)
-  window.scene = await createScene()
+  window.scene = await createDefaultScene()
+  await createClip2(window.scene)
 }
 
 initFunction().then(() => {
