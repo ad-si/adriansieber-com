@@ -1,12 +1,47 @@
-const canvas = document.getElementById("renderCanvas")
+import {
+  Animation,
+  ArcRotateCamera,
+  Axis,
+  Color3,
+  Color4,
+  CSG,
+  Engine,
+  GlowLayer,
+  HemisphericLight,
+  MeshBuilder,
+  PBRMaterial,
+  Scene,
+  VideoRecorder,
+  Space,
+  SpotLight,
+  StandardMaterial,
+  Tools,
+  TransformNode,
+  Vector3,
+  Viewport,
+} from "@babylonjs/core"
+import "@babylonjs/inspector"
+import { animations } from "./disc_animations.json"
+
+interface Canvas extends HTMLElement {
+  width: number
+  height: number
+}
+
+const canvas = <HTMLCanvasElement>document.getElementById("renderCanvas")
+
+if (!canvas) {
+  throw new Error("Canvas not found")
+}
 
 // Set size of canvas to full HD
 canvas.width = 1920 / 2
 canvas.height = 1080 / 2
 
-let sceneToRender = null
+let sceneToRender: Scene | null = null
+let engine: Engine | null = null
 
-function startRenderLoop(theEngine, canvas) {
+function startRenderLoop(theEngine: Engine, canvas: HTMLCanvasElement) {
   theEngine.runRenderLoop(() => {
     if (sceneToRender && sceneToRender.activeCamera) {
       sceneToRender.render()
@@ -15,21 +50,19 @@ function startRenderLoop(theEngine, canvas) {
 }
 
 function createDefaultEngine() {
-  return new BABYLON.Engine(canvas, true, {
+  return new Engine(canvas, true, {
     preserveDrawingBuffer: true,
     stencil: true,
     disableWebGL2Support: false,
   })
 }
 
-async function runAnimation(scene, newMesh) {
+async function runAnimation(scene: Scene, newMesh: TransformNode) {
   const frameRate = 60
-  const animations = await BABYLON.Animation.ParseFromFileAsync(
-    null,
-    "disc_animations.json"
+  newMesh.animations = animations.map((animation: Record<string, unknown>) =>
+    Animation.Parse(animation)
   )
 
-  newMesh.animations = animations
   scene.beginAnimation(newMesh, 0, 3 * frameRate, true)
 }
 
@@ -37,16 +70,27 @@ function recordAnimation() {
   const duration = 2 // seconds
   const codec = "opus" // Had the best visual results during testing
 
-  const recorder = new BABYLON.VideoRecorder(engine, {
+  if (!engine) {
+    throw new Error("Engine not found")
+  }
+
+  const recorder = new VideoRecorder(engine, {
     fps: 60,
+    // @ts-expect-error duration does not exist in the type
     duration: 2,
     mimeType: `video/webm;codecs=${codec}`,
   })
   recorder.startRecording(`a-video-${codec}.webm`, duration)
 }
 
-function createRingSection(scene, position, material, arcStartRad, arcEndRad) {
-  const outerCylinder = BABYLON.MeshBuilder.CreateCylinder(
+function createRingSection(
+  scene: Scene,
+  position: number,
+  material: StandardMaterial,
+  arcStartRad: number,
+  arcEndRad: number
+) {
+  const outerCylinder = MeshBuilder.CreateCylinder(
     "outer",
     {
       diameter: position * 2 + 1,
@@ -57,14 +101,14 @@ function createRingSection(scene, position, material, arcStartRad, arcEndRad) {
     },
     scene
   )
-  const outerCSG = BABYLON.CSG.FromMesh(outerCylinder)
+  const outerCSG = CSG.FromMesh(outerCylinder)
 
-  const innerCylinder = BABYLON.MeshBuilder.CreateCylinder(
+  const innerCylinder = MeshBuilder.CreateCylinder(
     "inner",
     { diameter: (position - 1) * 2 + 1, height: 1, tessellation: 60 },
     scene
   )
-  const innerCSG = BABYLON.CSG.FromMesh(innerCylinder)
+  const innerCSG = CSG.FromMesh(innerCylinder)
   const ringCSG = outerCSG.subtract(innerCSG)
 
   const ringMesh = ringCSG.toMesh("ring", outerCylinder.material, scene, true)
@@ -73,18 +117,14 @@ function createRingSection(scene, position, material, arcStartRad, arcEndRad) {
   outerCylinder.dispose()
   innerCylinder.dispose()
 
-  ringMesh.rotate(
-    BABYLON.Axis.Y,
-    arcStartRad * 2 * Math.PI,
-    BABYLON.Space.LOCAL
-  )
+  ringMesh.rotate(Axis.Y, arcStartRad * 2 * Math.PI, Space.LOCAL)
 
   return ringMesh
 }
 
-function createSensorLight(scene, position) {
+function createSensorLight(scene: Scene, position: number) {
   // Create a red bulb
-  const bulbRed1 = BABYLON.MeshBuilder.CreateCylinder(
+  const bulbRed1 = MeshBuilder.CreateCylinder(
     "bulb red 1",
     {
       diameter: 0.4,
@@ -92,9 +132,9 @@ function createSensorLight(scene, position) {
       tessellation: 60,
       enclose: true,
       faceColors: [
-        new BABYLON.Color3(0.5, 0.5, 0.5),
-        new BABYLON.Color3(0.5, 0.5, 0.5),
-        new BABYLON.Color3(1, 0, 0),
+        new Color4(0.5, 0.5, 0.5, 1),
+        new Color4(0.5, 0.5, 0.5, 1),
+        new Color4(1, 0, 0, 1),
       ],
     },
     scene
@@ -104,7 +144,7 @@ function createSensorLight(scene, position) {
 
   // Create a light cone emitting from the bulb
   const height = 3
-  const lightCone1 = BABYLON.MeshBuilder.CreateCylinder(
+  const lightCone1 = MeshBuilder.CreateCylinder(
     "light cone",
     {
       diameterTop: 0.4,
@@ -118,61 +158,68 @@ function createSensorLight(scene, position) {
   lightCone1.position.y = height / 2
   lightCone1.parent = bulbRed1
   // Trasulcent red light color
-  lightCone1.material = new BABYLON.StandardMaterial("light cone 1 mat", scene)
-  lightCone1.material.diffuseColor = new BABYLON.Color3(0, 0, 0)
-  lightCone1.material.emissiveColor = new BABYLON.Color3(1, 0, 0)
-  lightCone1.material.specularColor = new BABYLON.Color3(1, 1, 1)
+  lightCone1.material = new StandardMaterial("light cone 1 mat", scene)
+  // @ts-expect-error Property 'diffuseColor' does not exist
+  lightCone1.material.diffuseColor = new Color3(0, 0, 0)
+  // @ts-expect-error Property 'emissiveColor' does not exist
+  lightCone1.material.emissiveColor = new Color3(1, 0, 0)
+  // @ts-expect-error Property 'specularColor' does not exist
+  lightCone1.material.specularColor = new Color3(1, 1, 1)
   lightCone1.material.alpha = 0.3
 
   // Red spotlight pointing upwards
-  const spotLight = new BABYLON.SpotLight(
+  const spotLight = new SpotLight(
     "spotlight red 1",
-    new BABYLON.Vector3.Zero(), // position
-    new BABYLON.Vector3(0, 1, 0), // direction
-    BABYLON.Tools.ToRadians(30),
+    Vector3.Zero(), // position
+    new Vector3(0, 1, 0), // direction
+    Tools.ToRadians(30),
     1,
     scene
   )
   spotLight.intensity = 0.5
-  spotLight.diffuse = new BABYLON.Color3(1, 0, 0)
-  spotLight.specular = new BABYLON.Color3(1, 0, 0)
+  spotLight.diffuse = new Color3(1, 0, 0)
+  spotLight.specular = new Color3(1, 0, 0)
 
   spotLight.parent = bulbRed1
 }
 
 async function createDefaultScene() {
-  const scene = new BABYLON.Scene(engine)
+  if (!engine) {
+    throw new Error("Engine not found")
+  }
+  const scene = new Scene(engine)
 
   const defaultEnv = scene.createDefaultEnvironment({
     createGround: false,
   })
-  const woodBrown = new BABYLON.Color3(0.6, 0.3, 0.2)
+
+  if (!defaultEnv) {
+    throw new Error("Default environment not found")
+  }
+
+  const woodBrown = new Color3(0.6, 0.3, 0.2)
   defaultEnv.setMainColor(woodBrown)
 
   scene.debugLayer.show() // Show inspector
 
   // Light from above
-  const lightDown = new BABYLON.HemisphericLight(
+  const lightDown = new HemisphericLight(
     "light-down",
-    new BABYLON.Vector3(0, 1, 0),
+    new Vector3(0, 1, 0),
     scene
   )
   lightDown.intensity = 0.7
 
   // Light from below
-  const lightUp = new BABYLON.HemisphericLight(
-    "light-up",
-    new BABYLON.Vector3(0, -1, 0),
-    scene
-  )
+  const lightUp = new HemisphericLight("light-up", new Vector3(0, -1, 0), scene)
   lightUp.intensity = 0.3
 
   return scene
 }
 
 // Semi transparent glass material
-function getGlassMaterial(scene) {
-  const matGlass = new BABYLON.PBRMaterial("glass", scene)
+function getGlassMaterial(scene: Scene) {
+  const matGlass = new PBRMaterial("glass", scene)
   matGlass.alpha = 0.5
   matGlass.metallic = 0
   matGlass.roughness = 1
@@ -184,13 +231,13 @@ function getGlassMaterial(scene) {
   return matGlass
 }
 
-async function createClip1(scene) {
-  const camera = new BABYLON.ArcRotateCamera(
+async function createClip1(scene: Scene) {
+  const camera = new ArcRotateCamera(
     "camera",
-    BABYLON.Tools.ToRadians(45),
-    BABYLON.Tools.ToRadians(50),
+    Tools.ToRadians(45),
+    Tools.ToRadians(50),
     15,
-    BABYLON.Vector3.Zero(),
+    Vector3.Zero(),
     scene
   )
   camera.attachControl(canvas, true)
@@ -199,15 +246,15 @@ async function createClip1(scene) {
   createSensorLight(scene, 2)
   createSensorLight(scene, 3)
 
-  const matBlack = new BABYLON.StandardMaterial("mat", scene)
-  matBlack.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2)
+  const matBlack = new StandardMaterial("mat", scene)
+  matBlack.diffuseColor = new Color3(0.2, 0.2, 0.2)
 
-  const matWhite = new BABYLON.StandardMaterial("mat", scene)
-  matWhite.diffuseColor = new BABYLON.Color3(1, 1, 1)
+  const matWhite = new StandardMaterial("mat", scene)
+  matWhite.diffuseColor = new Color3(1, 1, 1)
 
   const matGlass = getGlassMaterial(scene)
 
-  let disc = new BABYLON.TransformNode("disc", scene)
+  let disc = new TransformNode("disc", scene)
 
   let r1Black = createRingSection(scene, 1, matBlack, 0, 0.5)
   r1Black.parent = disc
@@ -229,7 +276,7 @@ async function createClip1(scene) {
   r3bWhite.parent = disc
 
   // Make red lights glow
-  new BABYLON.GlowLayer("glow", scene)
+  new GlowLayer("glow", scene)
 
   await runAnimation(scene, disc)
   // recordAnimation()
@@ -237,44 +284,44 @@ async function createClip1(scene) {
   return scene
 }
 
-async function createClip2(scene) {
-  const camera = new BABYLON.ArcRotateCamera(
+async function createClip2(scene: Scene) {
+  const camera = new ArcRotateCamera(
     "camera",
-    BABYLON.Tools.ToRadians(45),
-    BABYLON.Tools.ToRadians(50),
+    Tools.ToRadians(45),
+    Tools.ToRadians(50),
     15,
-    BABYLON.Vector3.Zero(),
+    Vector3.Zero(),
     scene
   )
   camera.attachControl(canvas, true)
-  camera.viewport = new BABYLON.Viewport(0, 0.5, 1, 1)
-  scene.activeCameras.push(camera)
+  camera.viewport = new Viewport(0, 0.5, 1, 1)
+  scene.activeCameras!.push(camera)
 
-  const sensorCamera = new BABYLON.ArcRotateCamera(
+  const sensorCamera = new ArcRotateCamera(
     "sensorCamera",
     0,
     0,
     10,
-    BABYLON.Vector3(0, 0, 0),
+    new Vector3(0, 0, 0),
     scene
   )
   sensorCamera.attachControl(canvas, true)
-  sensorCamera.viewport = new BABYLON.Viewport(0, 0, 0.5, 0.4)
-  scene.activeCameras.push(sensorCamera)
+  sensorCamera.viewport = new Viewport(0, 0, 0.5, 0.4)
+  scene.activeCameras!.push(sensorCamera)
 
   createSensorLight(scene, 1)
   createSensorLight(scene, 2)
   createSensorLight(scene, 3)
 
-  const matBlack = new BABYLON.StandardMaterial("mat", scene)
-  matBlack.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2)
+  const matBlack = new StandardMaterial("mat", scene)
+  matBlack.diffuseColor = new Color3(0.2, 0.2, 0.2)
 
-  const matWhite = new BABYLON.StandardMaterial("mat", scene)
-  matWhite.diffuseColor = new BABYLON.Color3(1, 1, 1)
+  const matWhite = new StandardMaterial("mat", scene)
+  matWhite.diffuseColor = new Color3(1, 1, 1)
 
   const matGlass = getGlassMaterial(scene)
 
-  let disc = new BABYLON.TransformNode("disc", scene)
+  let disc = new TransformNode("disc", scene)
 
   let r1Black = createRingSection(scene, 1, matBlack, 0, 0.5)
   r1Black.parent = disc
@@ -296,13 +343,13 @@ async function createClip2(scene) {
   r3bWhite.parent = disc
 
   // Make red lights glow
-  new BABYLON.GlowLayer("glow", scene)
+  new GlowLayer("glow", scene)
 
   await runAnimation(scene, disc)
   // recordAnimation()
 }
 
-window.initFunction = async function () {
+async function init() {
   const asyncEngineCreation = async function () {
     try {
       return createDefaultEngine()
@@ -315,17 +362,17 @@ window.initFunction = async function () {
     }
   }
 
-  window.engine = await asyncEngineCreation()
-  startRenderLoop(window.engine, canvas)
-  window.scene = await createDefaultScene()
-  await createClip2(window.scene)
+  engine = await asyncEngineCreation()
+  startRenderLoop(engine, canvas)
+  const scene = await createDefaultScene()
+  await createClip1(scene)
+  sceneToRender = scene
 }
 
-initFunction().then(() => {
-  sceneToRender = scene
-})
+init()
 
-// Resize
-window.addEventListener("resize", function () {
-  engine.resize()
+window.addEventListener("resize", () => {
+  if (engine) {
+    engine.resize()
+  }
 })

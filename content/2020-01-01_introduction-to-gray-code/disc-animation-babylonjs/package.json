@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@babylonjs/core": "^6.27.1",
+    "@babylonjs/inspector": "^6.27.1",
+    "parcel": "^2.10.1",
+    "typescript": "^5.2.2"
+  }
+}
