@@ -148,14 +148,11 @@
     </section>
   {% endif %}
 
-
-  {% set publications = data.publications %}
-
-  {% if publications %}
+  {% if data.publications %}
     <section id="publications">
       <h2>Publications</h2>
 
-      {% for pub in publications %}
+      {% for pub in data.publications %}
         <div class="item">
           {% if pub.name %}
             <p class="name">{{pub.name}}</p>

@@ -18,45 +18,20 @@ basics:
       username: ad-si
       url: https://github.com/ad-si
 
-    - network: GitLab
-      id: gitlab
-      username: adius
-      url: https://gitlab.com/adius
-
-    - network: Bitbucket
-      id: bitbucket
-      username: adius
-      url: https://bitbucket.org/adius
-
     - network: Stack Overflow
       id: stack-overflow
       username: adius
       url: https://stackoverflow.com/users/1850340/adius
 
-    - network: Twitter
-      id: twitter
+    - network: 𝕏
+      id: x
       username: adriansieber
-      url: https://twitter.com/adriansieber
+      url: https://x.com/adriansieber
 
     - network: LinkedIn
       id: linkedin
       username: adriansieber
       url: https://linkedin.com/in/adriansieber
-
-    - network: Facebook
-      id: facebook
-      username: adriansieber1
-      url: https://facebook.com/adriansieber1
-
-    - network: IRC
-      id: hashtag
-      username: adius
-      url: https://freenode.net
-
-    - network: Dribbble
-      id: dribbble
-      username: adius
-      url: https://dribbble.com/adius
 
 
 work:
@@ -68,8 +43,10 @@ work:
        Feram is a software agency specialized in fullstack web development
        and the implementation of cloud infrastructures.
     highlights:
+      - Development and operation of
+          <a href="https://www.airsequel.com">Airsequel</a>
       - Development of a legal case management platform
-          with several thousand users / day
+          with thousands of users per day
 
 # TODO: Readd when online again
 # (<a href="https://www.feram.io/blog/2018-05-09_our_progress_in_2018/"
@@ -260,14 +237,14 @@ awards:
   #   awarder: Mathematikwettbewerb Känguru e.V.
 
 
-publications:
-  - name: Programmiersprachen im Vergleich
-    publisher: Springer
-    releaseDate: TBD
-    website: https://www.programmiersprachenbuch.de
-    summary: |
-      Comparison of around 30 programming languages
-      in terms of their features, use-cases, usability, and security.
+# publications:
+#   - name: Programmiersprachen im Vergleich
+#     publisher: Springer
+#     releaseDate: TBD
+#     website: https://www.programmiersprachenbuch.de
+#     summary: |
+#       Comparison of around 30 programming languages
+#       in terms of their features, use-cases, usability, and security.
 
 
 skills:
@@ -286,7 +263,7 @@ skills:
   - name: Backend Development
     level: Master
     keywords:
-      - Node.js
+      - Node.js / Deno / Bun
       - Haskell
       - SQLite
       - MongoDB
@@ -315,6 +292,7 @@ skills:
       - Affinity Designer & Photo
       - Inkscape
       - Gimp
+      - Figma
 
 
 languages:
