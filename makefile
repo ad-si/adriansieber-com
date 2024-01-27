@@ -27,19 +27,17 @@ serve:
 	zola serve
 
 
-# Deploy website to surge.sh
 .PHONY: deploy
 deploy: public
-	npx surge public adriansieber.com
-
-	@printf "\
-	Promote the new post on: \n\
-	- reddit.com \n\
-	- twitter.com \n\
-	- news.ycombinator.com \n\
-	- mailchimp.com \n\
-	- hackaday.com \n\
-	"
+	@echo "1. Open https://app.netlify.com/sites/adriansieber/deploys"
+	@echo "2. Drag & drop the ./public directory"
+	@echo "3. Promote any new posts on:\n\
+		- twitter.com\n\
+		- reddit.com\n\
+		- news.ycombinator.com\n\
+		- mailchimp.com\n\
+		- hackaday.com\n\
+		"
 
 
 # Remove all build artifacts
