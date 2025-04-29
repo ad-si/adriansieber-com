@@ -4,8 +4,8 @@
 
 ### Gleam
 
-Website: https://gleam.run
-Playground: https://tour.gleam.run
+Website: [gleam.run](https://gleam.run) \
+Playground: [tour.gleam.run](https://tour.gleam.run)
 
 ```sh
 gleam new my-app
@@ -33,8 +33,8 @@ export function add(num1, num2) {
 
 ### ReScript
 
-Website: https://rescript-lang.org
-Playground: https://rescript-lang.org/try
+Website: [rescript-lang.org](https://rescript-lang.org) \
+Playground: [rescript-lang.org/try](https://rescript-lang.org/try)
 
 ```rescript
 let add = (num1, num2) =>
@@ -54,8 +54,8 @@ export {
 
 ### PureScript
 
-Website: https://purescript.org
-Playground: https://try.purescript.org
+Website: [purescript.org](https://purescript.org) \
+Playground: [try.purescript.org](https://try.purescript.org)
 
 ```sh
 purs init
@@ -85,8 +85,8 @@ export {
 
 ### Elm
 
-Website: https://elm-lang.org
-Playground: https://ellie-app.com
+Website: [elm-lang.org](https://elm-lang.org) \
+Playground: [ellie-app.com](https://ellie-app.com)
 
 ```elm
 module Add exposing (..)
@@ -106,13 +106,13 @@ var $author$project$Add$add = F2(
 
 ### Gren
 
-Website: https://gren-lang.org
+Website: [gren-lang.org](https://gren-lang.org)
 
 
 ### OCaml
 
-Website: https://ocaml.org
-Playground: https://melange.re/v5.0.0/playground
+Website: [ocaml.org](https://ocaml.org) \
+Playground: [melange.re/v5.0.0/playground](https://melange.re/v5.0.0/playground)
 
 ```ocaml
 let add num1 num2 =
@@ -132,8 +132,8 @@ export {
 
 ### F#
 
-Website: https://fable.io
-Playground: https://fable.io/repl
+Website: [fable.io](https://fable.io) \
+Playground: [fable.io/repl](https://fable.io/repl)
 
 ```fsharp
 let add num1 num2 =
@@ -149,11 +149,12 @@ export function add(num1, num2) {
 
 ### V Lang
 
-Website: https://vlang.io
-Playground: https://play.vlang.io
-Docs: https://docs.vlang.io/debugging.html#javascript-backend
+Website: [vlang.io](https://vlang.io) \
+Playground: [play.vlang.io](https://play.vlang.io) \
+Docs: [docs.vlang.io/debugging#javascript-backend](
+  https://docs.vlang.io/debugging.html#javascript-backend)
 
-From https://play.vlang.io/p/88b5d16294:
+From [play.vlang.io/p/88b5d16294](https://play.vlang.io/p/88b5d16294):
 ```v
 fn add(num1 int, num2 int) int {
   return num1 + num2
@@ -174,7 +175,7 @@ function main__add(num1, num2) {
 
 ### Lean
 
-Website: https://lean-lang.org
+Website: [lean-lang.org](https://lean-lang.org)
 
 > [!WARNING]
 > Does currently not work:
@@ -189,7 +190,8 @@ elan default leanprover/lean4:stable
 
 ### Idris
 
-https://docs.idris-lang.org/en/latest/reference/codegen.html#javascript
+Docs: [docs.idris-lang.org/en/latest/reference/codegen.html#javascript](
+  https://docs.idris-lang.org/en/latest/reference/codegen.html#javascript)
 
 ```lean
 def add (num1 : Nat) (num2 : Nat) : Nat :=
@@ -199,29 +201,31 @@ def add (num1 : Nat) (num2 : Nat) : Nat :=
 
 ### Agda
 
-Website: https://wiki.portal.chalmers.se/agda/pmwiki.php
-Docs: https://agda.readthedocs.io/en/v2.5.2/tools/compilers.html#javascript-backend
+Website: [wiki.portal.chalmers.se/agda/pmwiki.php](https://wiki.portal.chalmers.se/agda/pmwiki.php) \
+Docs: [agda.readthedocs.io/en/v2.5.2/tools/compilers.html#javascript-backend](
+  https://agda.readthedocs.io/en/v2.5.2/tools/compilers.html#javascript-backend)
 
 
 ## WASM
 
 ### Rust
 
-Website: https://www.rust-lang.org
+Website: [rust-lang.org](https://www.rust-lang.org)
 
 
 ### Haskell
 
-Website: https://www.haskell.org
+Website: [haskell.org](https://www.haskell.org)
 
 
 ### Futhark
 
-Website: https://futhark-lang.org
-Docs: https://futhark.readthedocs.io/en/latest/js-api.html
+Website: [futhark-lang.org](https://futhark-lang.org) \
+Docs: [futhark.readthedocs.io/en/latest/js-api](
+  https://futhark.readthedocs.io/en/latest/js-api.html)
 
 
 ### Luau
 
-Website: https://luau.org
-Playground: https://luau.org/demo
+Website: [luau.org](https://luau.org) \
+Playground: [luau.org/demo](https://luau.org/demo)
