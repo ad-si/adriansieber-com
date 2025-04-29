@@ -129,6 +129,10 @@ export {
 }
 ```
 
+Alternatives:
+- [js_of_ocaml](https://github.com/ocsigen/js_of_ocaml)
+- [Bonsai](https://opensource.janestreet.com/bonsai/)
+
 
 ### F#
 
@@ -144,6 +148,24 @@ let add num1 num2 =
 export function add(num1, num2) {
     return num1 + num2;
 }
+```
+
+
+### Scala
+
+Website: [scala-js.org](https://www.scala-js.org) \
+Playgrounds:
+  - [scribble.ninja](https://scribble.ninja)
+  - [Scastie](https://scastie.scala-lang.org)
+
+```scala
+def add(num1: Int, num2: Int): Int = {
+  return num1 + num2
+}
+```
+
+```js
+todo
 ```
 
 
@@ -204,6 +226,25 @@ def add (num1 : Nat) (num2 : Nat) : Nat :=
 Website: [wiki.portal.chalmers.se/agda/pmwiki.php](https://wiki.portal.chalmers.se/agda/pmwiki.php) \
 Docs: [agda.readthedocs.io/en/v2.5.2/tools/compilers.html#javascript-backend](
   https://agda.readthedocs.io/en/v2.5.2/tools/compilers.html#javascript-backend)
+
+
+### Koka
+
+Website: [koka-lang.github.io](https://koka-lang.github.io) \
+Docs: [koka-lang.github.io/koka/doc/book](https://koka-lang.github.io/koka/doc/book.html)
+
+```sh
+koka --target=js koka/add.kk
+```
+
+```kk
+fun add( num1 : int, num2 : int )
+  num1 + num2
+```
+
+```js
+todo
+```
 
 
 ## WASM
