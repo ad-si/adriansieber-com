@@ -1,3 +1,4 @@
+.direnv
 .parcel-cache
 .stack-work
 /node_modules
