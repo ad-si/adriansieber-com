@@ -1,4 +1,6 @@
-# Comparison of Compile-to-JavaScript Languages
++++
+title = "Comparison of Compile-to-JavaScript Languages"
++++
 
 ## Human Readable JavaScript
 

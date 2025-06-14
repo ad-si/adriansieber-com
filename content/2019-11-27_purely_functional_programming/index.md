@@ -207,9 +207,9 @@ Oh well, look at those unfortunate side effects:
 
 &nbsp;
 
-\normalsize
+\normalize
 
-\* While not strictly part of the definiton,
+\* While not strictly part of the definition,
 there are no commonly used untyped pure FP languages
 
 

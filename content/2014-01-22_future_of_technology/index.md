@@ -28,7 +28,7 @@ hit the road until 2025 at the latest.
 
 ## Drones
 
-Drones are aircrafts, which are controlled either autonomously by integrated computers or remote controlled
+Drones are aircraft, which are controlled either autonomously by integrated computers or remote controlled
 by pilots on the ground.
 Because of the advanced possibilities introduced through autonomous drones, they are expected to be the
 tools of tomorrow in terms of surveillance, delivery services, construction work but also warfare. At the

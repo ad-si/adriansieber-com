@@ -33,7 +33,7 @@ main =
 Which is good advice I guess as you could use newtypes in this case.
 
 However, I really like the increased readability of `greet :: FirstName -> LastName -> Message` instead of `greet :: Text -> Text -> Text`.
-Especially when it's rendered in Haddock, you don't see the paramater names anymore.
+Especially when it's rendered in Haddock, you don't see the parameter names anymore.
 
 
 But sometimes there is no need for added type security, cause there is nothing to mix up:
