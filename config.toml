@@ -6,10 +6,12 @@ default_language = "en"
 # The site theme to use.
 # theme = ""
 
-generate_feed = true
+generate_feeds = true
 compile_sass = true
 
-taxonomies = [{name = "tags"}]
+taxonomies = [{ name = "tags" }]
+
+ignored_content = ["**/.spago/**"]
 
 [markdown]
 highlight_code = true
