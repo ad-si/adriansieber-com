@@ -2,15 +2,27 @@
 @import '_base16-tomorrow.dark.sass'
 @import '_resume.sass'
 
-$sansSerifFont: Helvetica, sans-serif
+:root
+  --primaryColor: white
+  --textColor: rgb(40, 50, 60)
+  --slightlyMutedColor: rgb(240, 240, 240)
+  --fairlyMutedColor: rgb(230, 230, 230)
+  --mediumMutedColor: rgb(220, 220, 220)
+  --mutedColor: rgb(150, 150, 150)
+  --contrastColor: rgb(30, 30, 30)
 
+@media (prefers-color-scheme: dark)
+  :root
+    --primaryColor: rgb(17, 17, 17)
+    --textColor: rgb(224, 224, 224)
+    --slightlyMutedColor: rgb(34, 34, 34)
+    --fairlyMutedColor: rgb(42, 42, 42)
+    --mediumMutedColor: rgb(51, 51, 51)
+    --mutedColor: rgb(160, 160, 160)
+    --contrastColor: rgb(224, 224, 224)
+
+$sansSerifFont: Helvetica, sans-serif
 $contentWidth: 660px
-$textColor: rgb(40, 50, 60)
-$primaryColor: white
-$slightlyMutedColor: rgb(240, 240, 240)
-$mediumMutedColor: rgb(220, 220, 220)
-$mutedColor: rgb(150, 150, 150)
-$contrastColor: rgb(30, 30, 30)
 $projectImageHeight: 100px
 $projectImageWidth: 300px
 
@@ -22,25 +34,25 @@ $projectImageWidth: 300px
   box-sizing: border-box
 
 html
-  background-color: $primaryColor
+  background-color: var(--primaryColor)
 
 body
   font-size: 18px
   font-family: $sansSerifFont
   line-height: 1.4
-  color: $textColor
+  color: var(--textColor)
 
 header
   text-align: left
 
 hr
   height: 1px
-  background-color: $slightlyMutedColor
+  background-color: var(--slightlyMutedColor)
   margin-bottom: 1em
 
 h1, h2, h3, h4, h5, h6
   font-family: $sansSerifFont
-  color: $contrastColor
+  color: var(--contrastColor)
 
 h1, h2
   margin-bottom: 1em
@@ -53,20 +65,24 @@ input
   display: inline-block
   border-radius: 2px
   &[type=email]
+    background-color: var(--primaryColor)
     border-width: 1px
     border-style: solid
-    border-color: $mediumMutedColor
+    border-color: var(--mediumMutedColor)
     width: 20em
 
+  &[type=email], &[type=text]
+    color: var(--textColor)
+
   &[type=submit]
-    background-color: $slightlyMutedColor
+    background-color: var(--slightlyMutedColor)
     border-width: 1px
     border-style: solid
-    border-color: $mediumMutedColor
-    color: $contrastColor
+    border-color: var(--mediumMutedColor)
+    color: var(--contrastColor)
     cursor: pointer
     &:hover
-      background-color: $mediumMutedColor
+      background-color: var(--mediumMutedColor)
     &:active
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2)
 
@@ -86,10 +102,10 @@ ol
   margin-bottom: 1.5em
 
 code
-  background-color: rgb(230, 230, 230)
+  background-color: var(--fairlyMutedColor)
   border-radius: 2px
-  border: 1px solid rgb(220, 220, 220)
-  font-family: Source Code Pro, Courier New, monospace
+  border: 1px solid var(--mediumMutedColor)
+  font-family: "Source Code Pro", Menlo, Monaco, "Courier New", monospace
   font-size: 0.8em
   font-weight: 400
   padding: 0 0.2em
@@ -112,7 +128,6 @@ h2,
 h3
   code
     font-size: 0.9em
-    font-weight: 700
 
 table,
 svg
@@ -132,13 +147,13 @@ table
   th, td
     padding: 0 0.5em
   thead
-    background-color: rgb(240, 240, 240)
+    background-color: var(--slightlyMutedColor)
   tbody
     tr:nth-of-type(2n)
-      background-color: rgb(240, 240, 240)
+      background-color: var(--slightlyMutedColor)
 
 blockquote
-  border-left: 0.3em solid rgb(230, 230, 230)
+  border-left: 0.3em solid var(--mediumMutedColor)
   padding-left: 1em
 
 figure
@@ -187,7 +202,7 @@ article
   header
     margin-bottom: 2em
     p
-      color: $mutedColor
+      color: var(--mutedColor)
       font-weight: 500
       margin-bottom: 0
 
@@ -197,7 +212,7 @@ article
 
 .tag
   font-size: 0.8em
-  color: $mutedColor !important
+  color: var(--mutedColor !important)
   border-radius: 3px
   padding: 0 0.2em
   &:before
@@ -240,8 +255,8 @@ article
 
 #wrapper
   > header
+    background-color: var(--slightlyMutedColor)
     text-align: center
-    background-color: rgb(240, 240, 240)
     height: 2.5em
     margin-bottom: 40px
     padding-top: 10px
@@ -251,7 +266,9 @@ article
     a
       &:link,
       &:visited
-        color: $textColor
+        color: var(--textColor)
+    svg
+      fill: var(--textColor)
 
   .headerContent
     margin: 0 auto
@@ -325,6 +342,10 @@ aside#buttons
   form
     margin-bottom: 1em
 
+  .field-shift
+    left: -9999px
+    position: absolute
+
   #tags-info
     margin-bottom: 2em
 
@@ -335,8 +356,10 @@ aside#buttons
 #projects
   margin-left: 0
   max-width: $projectImageWidth
+
   a
     white-space: nowrap
+
   li
     display: flex
     flex-wrap: wrap
@@ -346,6 +369,7 @@ aside#buttons
       flex-grow: 0
       flex-shrink: 0
       flex-basis: 15rem
+      background-color: white
       background-position: 50% 50%
       display: block
       height: 100%
@@ -396,7 +420,7 @@ aside#buttons
   line-height: $projectImageHeight
 
 #feram > a
-  background-color: hsl(0, 0, 95%)
+  background-color: hsl(0, 0, 95%) !important
   background-image: url(/images/logos/feram.png)
   background-repeat: no-repeat
   background-size: 80%
@@ -422,7 +446,7 @@ aside#buttons
   background-size: 100%
 
 #vectual > a
-  background-color: hsl(0, 0, 10%)
+  background-color: hsl(0, 0, 10%) !important
   text-indent: 0 !important
   color: white
   font-size: 40px
@@ -465,7 +489,7 @@ aside#buttons
   text-align: center
 
 #life-is-short > a
-  background-color: hsl(0, 0, 94%)
+  background-color: hsl(0, 0, 94%) !important
   font-weight: 900
   font-size: 30px
   line-height: $projectImageHeight

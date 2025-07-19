@@ -100,25 +100,34 @@
         </p>
 
         <form
-          action="//adriansieber.us1.list-manage.com/subscribe/post?u=53f9a8f66939c80e2686e9084&amp;id=099350cf4a"
+          action="https://adriansieber.us1.list-manage.com/subscribe/post"
           method=post
           id=mc-embedded-subscribe-form
           name=mc-embedded-subscribe-form
-          target=_blank>
+          target=_blank
+        >
+          <input type="hidden" name="u" value="53f9a8f66939c80e2686e9084">
+          <input type="hidden" name="id" value="099350cf4a">
+
           <label for=mce-EMAIL>Email Address</label>
-          <input type=email name=EMAIL
-            class="required email" id=mce-EMAIL
-            placeholder="Email address">
-          <div id=mce-responses class=clear>
-            <div class=response id=mce-error-response style=display:none></div>
-            <div class=response id=mce-success-response style=display:none></div>
-          </div>
-          <!-- Do not remove this or risk form bot signups -->
-          <div style=position:absolute;left:-5000px; aria-hidden=true>
-            <input
-              type=text
-              name=b_53f9a8f66939c80e2686e9084_099350cf4a
-              tabindex=-1>
+          <input type=email name=MERGE0 id=MERGE0
+            class="required email" placeholder="Email address">
+
+          <!-- Reudce bot signups -->
+          <div class="field-shift"
+            aria-label="Please leave the following three fields empty" aria-hidden="true"
+          >
+            <label for="b_name">Name: </label>
+            <input type="text" name="b_name" tabindex="-1" value=""
+              placeholder="Freddie" id="b_name">
+
+            <label for="b_email">Email: </label>
+            <input type="email" name="b_email" tabindex="-1" value=""
+              placeholder="youremail@gmail.com" id="b_email">
+
+            <label for="b_comment">Comment: </label>
+            <textarea name="b_comment" tabindex="-1"
+              placeholder="Please comment" id="b_comment"></textarea>
           </div>
           <input
             type=submit
