@@ -1,6 +1,6 @@
 +++
 title = """
-  <code>uku</code> - A Haskell CLI tool to display Ukulele fingering charts
+  <code>uku</code> — A Haskell CLI tool to display Ukulele fingering charts
 """
 image = "uku-g.svg"
 
