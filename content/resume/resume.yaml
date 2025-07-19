@@ -35,6 +35,11 @@ basics:
 
 
 work:
+  - company: Oxford Abstracts
+    position: Full Stack Engineer
+    website: https://oxfordabstracts.com
+    startDate: '2025-11-25'
+
   - company: Feram GmbH
     position: Cofounder and CEO
     website: https://feram.io
@@ -302,7 +307,7 @@ languages:
   - language: English
     fluency: Fluent
 
-  - language: Esperanto
+  - language: Spanish
     fluency: Beginner
 
   - language: Latin
