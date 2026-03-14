@@ -78,19 +78,37 @@ A Piano supports 88 notes and MIDI supports 128 notes.
 An octave contains 12 notes and so we can use a base 12 ([duodecimal]) system
 to simplify counting in octaves.
 The duodecimal system uses 2 special unicode characters for ten and eleven,
-called pitman digits: `0 1 2 3 4 5 6 7 8 9 ↊ ↋`.
-Unfortunately [GHC] interprets them as symbols
-and does not allow them in regular names
-<small>(Explanation on [stackoverflow])</small>.
-For that reason we replace `↊` with `X`
-(like the Roman literal for 10) and `↋` with `E` (like "eleven"),
-which is the recommend way for ASCII text
-by the [Dozenal Society of America][duodecimal].
+called Pitman digits:
+
+- 10 → <span style="display:inline-block;transform:scaleX(-1)">2</span>
+    <small style="padding-left: 1em;">(U+218A ↊ TURNED DIGIT TWO)</small>
+- 11 → <span style="display:inline-block;transform:scaleX(-1)">3</span>
+    <small style="padding-left: 1em;">(U+218B ↋ TURNED DIGIT THREE)</small>
+
+So all 12 digits are:
+<code>
+  0 1 2 3 4 5 6 7 8 9
+  <span style="display:inline-block;transform:scaleX(-1)">2</span>
+  <span style="display:inline-block;transform:scaleX(-1)">3</span></code>.
 Each step corresponds to one semi tone in archaic notation.
+
+Gotchas:
+
+- As most fonts don't support the digits yet,
+    I have to manually flip 2 and 3 with CSS to show them in this post.
+- [GHC] interprets them as symbols and
+    [does not allow them in regular names][Stack Overflow].
+    For that reason we replace
+    <span style="display:inline-block;transform:scaleX(-1)">2</span>
+    with `X` (like the Roman literal for 10) and
+    <span style="display:inline-block;transform:scaleX(-1)">3</span>
+    with `E` (like "eleven").
+    This is the recommend way for ASCII text
+    by the [Dozenal Society of America][duodecimal].
 
 [GHC]: https://en.wikipedia.org/wiki/Glasgow_Haskell_Compiler
 [duodecimal]: http://www.dozenal.org
-[stackoverflow]:
+[Stack Overflow]:
   https://stackoverflow.com/questions/31965349/using-emoji-in-haskell
 
 Our `Interval` data type:
