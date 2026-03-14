@@ -52,7 +52,6 @@ import Protolude as Pl
 import Data.List.Index (setAt, imap)
 import Data.Map.Strict as Map
 import Data.Text as Text
-import Unsafe (unsafeHead)
 ```
 
 Now we need types to model our domain.
@@ -437,9 +436,12 @@ main = do
     | Pl.length chords < 1 -> die "Usage: uku <chord>"
     | Pl.length chords > 1 -> die "Supportrs only 1 chord per call"
     | otherwise            ->
-        case (getAnsiArts $ pack $ unsafeHead chords) of
-          Left error -> die error
-          Right ansiArt -> putStr $ ansiArt <> "\n"
+        case Pl.headMay chords of
+          Nothing -> die "Usage: uku <chord>"
+          Just chord ->
+            case (getAnsiArts $ pack chord) of
+              Left error -> die error
+              Right ansiArt -> putStr $ ansiArt <> "\n"
 ```
 
 And there we go:
@@ -462,14 +464,14 @@ But following command will execute this post in most shells:
 
 ```bash
 curl --silent \
-  http://code.adriansieber.com/adrian/adriansieber-com/raw/branch/master/_posts/2018-09-12-ukulele-fingering-chart-cli-tool-in-haskell.md \
+  https://raw.githubusercontent.com/ad-si/adriansieber-com/refs/heads/main/content/2018-09-12-ukulele-fingering-chart-cli-tool-in-haskell/index.md \
 | sed 's/```haskell/```{.literate .haskell}/g' \
 | pandoc \
   --from markdown \
   --to markdown+lhs \
   --output temp.lhs \
 | stack runhaskell \
-  --resolver lts-12.9 \
+  --resolver lts-24.33 \
   --package protolude \
   --package ilist \
   -- temp.lhs a
