@@ -38,20 +38,37 @@ work:
   - company: Oxford Abstracts
     position: Full Stack Engineer
     website: https://oxfordabstracts.com
-    startDate: '2025-11-25'
+    startDate: '2024-11-25'
+    endDate: '2026-03-01'
+    summary: |
+      Extension and maintenance of a large-scale
+      conference management platform,
+      delivering full-stack features and improving platform infrastructure.
 
-  - company: Feram GmbH
+  - company: Zeit AI
+    position: Founding Engineer
+    website: https://www.zeit-ai.com
+    startDate: '2024-06-01'
+    endDate: '2024-11-01'
+    summary: |
+      One of the two lead engineers building Zeit AI's core platform.
+    highlights:
+      - Development of an agentic data analysis system based on SQL
+      - Building AI-powered data exploration and analysis tools
+
+  - company: Feram
     position: Cofounder and CEO
     website: https://feram.io
     startDate: '2020-07-01'
+    endDate: '2024-06-01'
     summary: |
-       Feram is a software agency specialized in fullstack web development
-       and the implementation of cloud infrastructures.
+       Feram is a software agency specialized in full-stack web development
+       and the implementation of cloud infrastructure.
     highlights:
-      - Development and operation of
-          <a href="https://www.airsequel.com">Airsequel</a>
       - Development of a legal case management platform
           with thousands of users per day
+      - Development and operation of
+          <a href="https://www.airsequel.com">Airsequel</a>
 
 # TODO: Readd when online again
 # (<a href="https://www.feram.io/blog/2018-05-09_our_progress_in_2018/"
@@ -61,9 +78,10 @@ work:
     position: External Consultant
     website: https://impconsulting.com
     startDate: '2017-05-30'
+    endDate: '2021-03-01'
     summary: |
       Participating in consulting workshops as an external expert for
-      digitalization, digitally driven business models, and
+      digitization, digitally driven business models, and
       blockchain technologies.
     highlights:
       - >-
@@ -72,9 +90,9 @@ work:
         >smart cargo securing device "iGurt"</a>
       - >-
         <a href="https://newsroom.bpw.de/pressreleases/sicherer-laden-wendiger-rangieren-bpw-doppelt-ausgezeichnet-als-trailer-innovation-2019-2710080"
-        >Trailer Innovation price 2019</a> for the iGurt
+        >Trailer Innovation prize 2019</a> for the iGurt
 
-  - company: Qthority GmbH & Co. KG
+  - company: Qthority
     position: CTO
     website: https://qthority.com
     startDate: '2019-07-01'
@@ -84,12 +102,12 @@ work:
       the data flow during casework.
     highlights:
       - Leading the technical design and managing the IT department
-      - Rebuilding the IT infrastructure with micro services on Kubernetes
+      - Rebuilding the IT infrastructure with microservices on Kubernetes
       - Migration from Zoho CRM and Microsoft Dynamics to Salesforce
       - Migration from a Windows Server based computing environment
         to Google Cloud
 
-  - company: Feram GmbH
+  - company: Feram
     position: Cofounder and CEO
     website: https://feram.io
     startDate: '2016-04'
@@ -105,8 +123,8 @@ work:
         <a href="https://www.gruenderszene.de/allgemein/feram-bugs-software-fehler-check-kontrolle"
         >Gründerszene Article</a>)
       - >-
-        High performance through parallelization
-        by using around 30 micro services running on Docker Swarm
+        High-performance through parallelization
+        by using around 30 microservices running on Docker Swarm
 
   - company: Freelancer
     position: Developer and Designer
@@ -123,7 +141,7 @@ work:
     endDate: '2016-03-01'
     summary: |
       Working on a spin-off in the field of personal fabrication
-      (3D-printing / laser cutting) based on my bachelor project
+      (3D-printing / laser cutting) based on my bachelor's project
       <a href="https://brickify.it">brickify.it</a>.
       Ideas and concepts were later used to build
       <a href="https://kyub.com">kyub.com</a>.
@@ -182,18 +200,18 @@ education:
     startDate: '2012-10-01'
     endDate: '2015-10-01'
     courses:
-      - 'Bachelor Project: Personal Fabrication Devices'
+      - "Bachelor's Project: Personal Fabrication Devices"
       - Human Computer Interaction 1 & 2
       - Database Systems 1
       - Theoretical Computer Science 1 & 2
       - Economy Basics 1 & 2
-      - Computer-graphics 1
+      - Computer Graphics 1
       - Design Thinking Introduction
       - Math 1 & 2
       - English 2
       - Basics of Digital Systems
       - Internet Technologies
-      - Modelling 1 & 2
+      - Modeling 1 & 2
       - Operating Systems 1
       - Project Management Seminar
       - Programming 1 & 2
@@ -202,8 +220,8 @@ education:
       - Software Engineering
 
   - institution: Gymnasium Lindenberg
-    area: Highschool with Focus on Science
-    studyType: Highschool level
+    area: High school with Focus on Science
+    studyType: High school level
     startDate: '2002-09-01'
     endDate: '2011-05-01'
     courses:
@@ -233,7 +251,7 @@ awards:
       (Gymnasium Lindenberg promotion society)
 
   - title: |
-      3. place in the first round of the Bundeswettbewerb Mathematik 2010
+      3rd place in the first round of the Bundeswettbewerb Mathematik 2010
       (Federal math competition)
     date: '2010-06-09'
     awarder: Federal Ministry of Education and Research
@@ -281,9 +299,9 @@ skills:
       - Kubernetes
       - AWS
       - Google Cloud
-      - Continus Integration & Deployment
+      - Continuous Integration & Deployment
 
-  - name: 3D Modelling and Fabrication
+  - name: 3D Modeling and Fabrication
     level: Intermediate
     keywords:
       - OpenSCAD
@@ -316,11 +334,7 @@ languages:
 
 interests:
   - name: Sailing
-    keywords:
-      - Bodenseeschifferpatent
-
   - name: Skiing
-
   - name: Music production
 
 
