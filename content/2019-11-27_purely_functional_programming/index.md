@@ -332,4 +332,4 @@ but it depends on your discipline and skills.**
 &nbsp;
 
 \Large PS: We are looking for working students! \newline
-\Large PS2: More rants on Twitter @AdrianSieber
+\Large PS2: More rants on 𝕏 @AdrianSieber

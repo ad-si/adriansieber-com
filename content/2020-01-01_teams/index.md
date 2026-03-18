@@ -12,13 +12,13 @@ in the winter-semester 2012/2013 at the
 [Hasso Plattner Institute](https://hpi.de) in Potsdam, Germany.
 
 Thanks a lot to the co-authors
-[Johannes Deselaers](https://twitter.com/johannes_d)
+[Johannes Deselaers](https://x.com/johannes_d)
 and [Yannis Kommana](https://github.com/stuikomma)
 for letting me publish this post.
 
 Please note that this is a living document and therefore might change over time.
 For the full history check out the post on
-[GitHub](https://github.com/adius/adius.github.com)
+[GitHub](https://github.com/ad-si/adriansieber-com)
 This, however, also means that you can feel free to send pull requests
 with improvements and fixes! =)
 

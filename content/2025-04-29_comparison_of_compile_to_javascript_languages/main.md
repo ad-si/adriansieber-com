@@ -1,5 +1,6 @@
 +++
 title = "Comparison of Compile-to-JavaScript Languages"
+draft = true
 +++
 
 ## Human Readable JavaScript

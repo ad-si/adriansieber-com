@@ -1,6 +1,6 @@
 +++
 title = "How to create a bar chart from a CSV file with Haskell"
-date = "2023-04-17"
+date = 2023-04-17
 author = "Adrian Sieber"
 
 [taxonomies]
@@ -20,7 +20,7 @@ This is the final chart:
 
 The data is simply copied from the
 [History Of SQLite Releases](https://sqlite.org/chronology.html) page
-and formated as a CSV file with the following columns:
+and formatted as a CSV file with the following columns:
 
 ```csv
 Date,Version
@@ -49,7 +49,7 @@ Without further ado, here is the code:
 {{ load_file(path="build_chart.hs") }}
 ```
 
-The only change I had to make to the SVG afterwards was to remove the
+The only change I had to make to the SVG afterward was to remove the
 `width` and `height` attributes from the `<svg>` tag.
 This lets it automatically scale to the size of the parent element.
 I also created a ticket for them on GitHub to support omitting the size:

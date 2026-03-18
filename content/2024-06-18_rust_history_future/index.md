@@ -1,7 +1,7 @@
 +++
 title = "History and Future of Rust"
 author = "Adrian Sieber"
-date = "2024-07-21"
+date = 2024-07-21
 draft = true
 +++
 

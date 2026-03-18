@@ -31,8 +31,8 @@ serve:
 deploy: public
 	@echo "1. Open https://app.netlify.com/sites/adriansieber/deploys"
 	@echo "2. Drag & drop the ./public directory"
-	@echo "3. Promote any new posts on:\n\
-		- twitter.com\n\
+	@echo -e "3. Promote any new posts on:\n\
+		- x.com\n\
 		- reddit.com\n\
 		- news.ycombinator.com\n\
 		- mailchimp.com\n\
