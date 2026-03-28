@@ -35,7 +35,7 @@ You specify a chord and `uku` pretty prints the fingering chart
 as an [ANSI art chord box] to the terminal.
 Cool, right? So let's get started with the code:
 
-[ANSI art chord box]: https://www.justinguitar.com/en/BC-108-TABandBoxes.php
+[ANSI art chord box]: https://www.justinguitar.com/guitar-lessons/how-to-read-guitar-chord-boxes-b1-104
 
 First, we need to set a few compiler settings and import some basic modules:
 
