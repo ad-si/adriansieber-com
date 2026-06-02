@@ -118,3 +118,12 @@ do (( count++ )); echo $line | js-yaml > $count.yaml; done
 ```
 
 Note that it's necessary to escape `&` characters as they would get interpreted by the shell.
+
+
+## Pagination
+
+GitHub limits the number of items per request to
+[30 by default](https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api),
+which causes the script to only download the first 30 issues.
+A quick fix is to add `&per_page=100` to the request URL
+and to traverse through the pages if necessary.
