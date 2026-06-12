@@ -7,6 +7,15 @@ help: makefile
 build: public
 
 
+.PHONY: test
+test: build
+
+
+.PHONY: format
+format:
+	echo "TODO"
+
+
 # Install dependencies
 node_modules: package.json package-lock.json
 	npm install
@@ -21,9 +30,8 @@ public: content static sass content/resume/resume.json
 	zola build
 
 
-# Serve website at http://127.0.0.1:1111
-.PHONY: serve
-serve:
+.PHONY: dev  # Serve website at http://127.0.0.1:1111
+dev:
 	zola serve
 
 
