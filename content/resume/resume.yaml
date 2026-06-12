@@ -35,6 +35,14 @@ basics:
 
 
 work:
+  - company: AI Assitant for Engineers
+    position: Founder
+    startDate: '2026-03-01'
+    summary: |
+      An AI assistant with a built-in computational engine.
+      Ask mathematical, computational, or symbolic questions
+      and get executable, verifiable answers directly in your browser.
+
   - company: Oxford Abstracts
     position: Full Stack Engineer
     website: https://oxfordabstracts.com
