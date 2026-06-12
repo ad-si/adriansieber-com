@@ -29,9 +29,8 @@ serve:
 
 .PHONY: deploy
 deploy: public
-	@echo "1. Open https://app.netlify.com/sites/adriansieber/deploys"
-	@echo "2. Drag & drop the ./public directory"
-	@echo -e "3. Promote any new posts on:\n\
+	netlify deploy --prod --dir public --site adriansieber
+	@echo -e "Promote any new posts on:\n\
 		- x.com\n\
 		- reddit.com\n\
 		- news.ycombinator.com\n\

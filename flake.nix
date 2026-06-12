@@ -21,6 +21,7 @@
             bash
             coreutils # cat
             gnumake
+            netlify-cli
             nodejs_24
             zola
           ];
