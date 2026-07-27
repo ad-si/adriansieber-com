@@ -1,7 +1,7 @@
 ---
 title: Announcing Perspec 1.0
 author: Adrian Sieber
-date: 2026-04-24
+date: 2026-07-27
 tags: [haskell, desktop, app, computer-vision]
 draft: true
 ---
@@ -35,7 +35,7 @@ There I have a big screen, a keyboard, and a precise mouse,
 which leads to faster and more accurate editing.
 
 Also, the mobile apps make some annoying technical decisions
-in the name of delivering the user something that's familar to them.
+in the name of delivering the user something that's familiar to them.
 
 For example:
 If you store a document as a grayscale PNG,
@@ -46,12 +46,12 @@ just because JPEG is what people are familiar with.
 
 Or maybe I'm giving them too much credit
 and they actually don't know that PNGs can
-be smaller than JPEGs if the image contains a lot of continous areas with the same color.
+be smaller than JPEGs if the image contains a lot of continuous areas with the same color.
 Whereas for normal photos, JPEG is smaller than PNGs.
 And no, converting it to PNG afterwards is not an option,
 as the image then already contains all the JPEG compression artifacts.
 
-For example, let's check the results when scanning following document:
+For example, let's check the results when scanning the following document:
 
 <img
   alt="Photo of research paper lying on table"
@@ -59,8 +59,8 @@ For example, let's check the results when scanning following document:
   style="max-width: 20rem;"
 />
 
-The sizes are bigger and you can clearly see the compression artifacts
-that lead to a worse result.
+The file sizes of the other apps are bigger and you can clearly see
+the compression artifacts that lead to a worse result.
 
 <table>
   <thead>
@@ -74,23 +74,41 @@ that lead to a worse result.
   <tbody>
     <tr>
       <td>Perspec</td>
-      <td>~110 kB, PNG</td>
-      <td><img alt="Perspec result detail" src="result_perspec_detail.png"
-        style="min-width: 15rem; image-rendering: pixelated;"></td>
+      <td>
+        ~110 kB, PNG
+        <br>
+        <a href="result_perspec.png" target="_blank">View result</a>
+      </td>
+      <td>
+        <img alt="Perspec result detail" src="result_perspec_detail.png"
+          style="min-width: 15rem; image-rendering: pixelated;">
+      </td>
       <td></td>
     </tr>
     <tr>
       <td>Scanner Pro</td>
-      <td>~190 kB, JPEG</td>
-      <td><img alt="Scanner Pro result detail" src="result_scanner_pro_detail.jpeg"
-        style="min-width: 15rem; image-rendering: pixelated;"></td>
+      <td>
+        ~190 kB, JPEG
+        <br>
+        <a href="result_scanner_pro.jpeg" target="_blank">View result</a>
+      </td>
+      <td>
+        <img alt="Scanner Pro result detail" src="result_scanner_pro_detail.jpeg"
+          style="min-width: 15rem; image-rendering: pixelated;">
+      </td>
       <td>Extracted JPEG from exported PDF</td>
     </tr>
     <tr>
       <td>iOS</td>
-      <td>~300 kB, JPEG</td>
-      <td><img alt="iOS result detail" src="result_ios_detail.jpeg"
-        style="min-width: 15rem; image-rendering: pixelated;"></td>
+      <td>
+        ~300 kB, JPEG
+        <br>
+        <a href="result_ios.jpeg" target="_blank">View result</a>
+      </td>
+      <td>
+        <img alt="iOS result detail" src="result_ios_detail.jpeg"
+          style="min-width: 15rem; image-rendering: pixelated;">
+      </td>
       <td>Extracted JPEG from exported PDF</td>
     </tr>
   </tbody>
