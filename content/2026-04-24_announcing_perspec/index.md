@@ -160,25 +160,34 @@ I was still a student when I started to work on Perspec
 and had to scan a lot of stuff for my studies,
 so I had a good motivation to build something like this.
 
+Sure, you could also fix the perspective with Photoshop, [Affinity Photo], or [GIMP].
+But the overhead is substantial:
+Open each photo, find the perspective tool, drag the corners,
+pick the right export settings, repeat for the next photo, …
+These tools are built to do everything with any image
+and not to churn through 50 receipts as quickly as possible.
+I wanted an app that's focused on this one task,
+with a workflow that's as streamlined as possible.
+
 My first iteration was a fully automatic CLI app called [Perspectra],
 implemented with Python and [scikit-image].
 You'd pass your image and it would try to detect and extract the document for you.
 Simple as that.
 
 Although I actually liked [scikit-image] --
-feature rich, yet more straight forward than [OpenCV] --
-I quickly realized that I absolutely do not like Python
-and that I also needed a GUI to fix incorrectly detected document boundaries,
+feature rich, yet more straightforward than [OpenCV] --
+I quickly realized that I absolutely do not like Python.
+But more importantly, I realized that I also need a GUI
+to fix incorrectly detected document boundaries,
 as the fully automatic CV pipeline would never get all documents 100% right.
-
-TODO: you could also do it with Photoshop or GIMP but more overhead and not focused workflow
 
 And how do you build a desktop app with a GUI?
 Obviously with Haskell. 😝
+Joking aside, I had recently started learning Haskell and was absolutely in love with it.
+So naturally, I wanted to try out if it could be used for building the desktop app.
 
-So I started to work on the desktop app in parallel to trying to improve the CV pipeline.
-
-As I didn't want to use Python any longer, my next instinct was to use ImageMagick,
+As I didn't want to use Python any longer,
+my next instinct was to use ImageMagick for the computer vision and image manipulation tasks,
 as I had some experience with its features and capabilities.
 The [existing Haskell bindings](https://hackage.haskell.org/packages/search?terms=magick)
 were rather lacking, so I opted to simply call `magick` as an external process.
@@ -194,16 +203,16 @@ With the help of the author [@lehins](/u/lehins) himself and [@HanStolpo](/u/han
 we were able to make it work at ZuriHac! _(Thanks again!)_
 
 However, it was still missing some features that I wanted, like binarization with Otsu's Method.
-While it would certainly be possible to implement this in Hip,
+While it was certainly possible to implement this in Hip,
 I (for once) felt that Haskell's abstractions didn't really help with the task at hand
 and only complicated things unnecessarily.
-A for loop in C, by comparison, is conceptually very simple and already as fast as the Haskell code.
+A `for` loop in C, by comparison, is conceptually very simple and already as fast as the Haskell code.
 Luckily, C is a first-class citizen in Haskell
 and it's very easy to bundle some C code and call it via Haskell's FFI.
 
 Unfortunately, there didn't seem to be a straightforward C library
-that I could hook up to Perspec,
-so I started to work on [FlatCV] -
+that I could hook up to Perspec without too much FFI headaches
+and so I started to work on [FlatCV] -
 a pure C library for computer vision and image manipulation.
 
 I might have overdone it with the yak shaving here,
@@ -225,22 +234,164 @@ SIMD, GPU usage,
 However, as FlatCV isn't used in a real-time context (i.e., 60 fps),
 the performance is already more than sufficient.
 
-Hope you like it, and I'd be interested to know if you have any use cases for FlatCV!
+Hope you like it, and I'd be interested to know
+if you have any other use cases for FlatCV!
 
+With FlatCV in place, I could finally implement the last missing piece for 1.0:
+automatic corner detection directly in Perspec.
+
+
+## Edge Detection vs. Corner Detection
+
+As promised, let's take a closer look at the computer vision techniques
+for detecting documents in photos.
+
+Most scanner apps detect documents with a pipeline
+along the lines of the one
+[described by Dropbox](https://dropbox.tech/machine-learning/fast-and-accurate-document-detection-for-scanning):
+
+1. Downscale the image
+1. Run an edge detection algorithm (e.g. [Canny])
+1. Find the most prominent straight lines with a [Hough transform]
+1. Build quadrilaterals from the intersections of those lines
+    and score them to pick the best one
+
+This works great for a perfectly flat sheet of paper on a high-contrast background.
+But real documents are rarely perfectly flat.
+Receipts are wrinkled, book pages are curved,
+and paper that has been folded never lies completely flat either.
+When you fit a straight line to a curved edge,
+the intersections of the lines (i.e. the reconstructed corners)
+can be quite off, even if the edge detection itself was perfect.
+
+Perspec therefore approaches it from the other side:
+Instead of looking for straight edges,
+it segments the photo into document and background
+and then derives the corners from the document's outline.
+This is FlatCV's [corner detection](https://flatcv.ad-si.com/corner-detection.html)
+pipeline in detail:
+
+1. Convert the image to grayscale and downscale it to 256×256 px.
+    (The detection doesn't need the full resolution, and this makes it fast.)
+1. Blur the image to get rid of noise and paper texture.
+1. Create an elevation map with a [Sobel filter].
+    (Strong edges become mountain ridges.)
+1. Flood the elevation map with [watershed segmentation]:
+    The center of the image seeds the document basin
+    and the image border seeds the background basin.
+    The result is a binary mask of the document.
+1. Smooth the mask with a binary closing.
+1. Run a [Förstner corner detector] on the mask.
+    (Unlike the more popular Harris detector,
+    whose corners are shifted inwards,
+    the Förstner detector yields sub-pixel accurate corner positions.)
+1. Sort the corner candidates and
+    keep the 4 corners with the largest angles.
+1. Scale the corner coordinates back up to the original resolution.
+
+<table>
+  <thead>
+    <tr>
+      <th>Input</th>
+      <th>Detected Corners</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img alt="Photo of a receipt" src="receipt.jpeg"
+        style="max-width: 15rem;"></td>
+      <td><img alt="Receipt with detected corners marked" src="receipt_corners.jpeg"
+        style="max-width: 15rem;"></td>
+    </tr>
+  </tbody>
+</table>
+
+The nice thing about this approach is that it never assumes straight edges.
+The watershed happily follows a wrinkled document boundary,
+and even on a crumpled receipt the corners are still locally well defined.
+
+And when the detection is off after all,
+you can just drag the selection polygon to the right size and position.
+The best of both worlds: automatic detection and manual correction.
+
+
+## What Else Is New in 1.0
+
+The automatic corner detection is the headline feature,
+but quite a few other things landed in
+[the 1.0 release](https://github.com/ad-si/Perspec/releases/tag/v1.0.0.0):
+
+- Support for Windows.
+    With macOS and Linux already covered,
+    Perspec now runs on all 3 major desktop operating systems.
+- The edges of the selection polygon can now be dragged as well
+    (previously only the corners),
+    and grid lines make it easier to align the selection.
+- A new "Select Files" view with a button
+    and drag-and-drop support for selecting images.
+- A new `Save BW Smooth` export option that converts the image
+    to anti-aliased black & white.
+    This is now the recommended option for documents, receipts, and whiteboards.
+- EXIF rotation data is now also handled for PNGs.
+- An upgrade to the latest version of [Brillo],
+    which brings an improved app design, button hover effects,
+    and per-OS default fonts.
+
+Check out the [changelog](https://github.com/ad-si/Perspec/blob/master/changelog.md)
+for the full list of changes.
+
+
+## Installation
+
+Prebuilt binaries for macOS, Windows, and Linux are available on the
+[releases page](https://github.com/ad-si/Perspec/releases).
+
+On macOS you can also install it via my [Homebrew](https://brew.sh) tap:
+
+```sh
+brew install --cask ad-si/tap/perspec
+```
+
+Afterwards, you can either drop images onto the app window
+or batch process them via the CLI:
+
+```sh
+perspec fix photos/*.jpeg
+```
 
 
 ## Next Steps
 
-- support defining several regions
-- output sizes (A4, letter, …)
-- QR code detection
-  - Inspired by https://blog.marcelrobitaille.me/receipt-ingestion/
+While the 1.0 release is a big milestone, there are still some features
+that I would like to add in the future.
+Here is what I've planned for the upcoming releases:
 
+- **Fixed output sizes:**
+    Force the output to standardized dimensions like A4 or US Letter,
+    so a scanned document ends up with the correct proportions and size.
+- **QR code detection:**
+    Marcel Robitaille wrote a great post about
+    [automating receipt ingestion](https://blog.marcelrobitaille.me/receipt-ingestion/)
+    where a QR code next to the document is used to attach metadata.
+    I'd love to support such workflows out of the box.
+
+If this sounds useful to you, [give Perspec a try][Perspec]!
+And if you run into any issues or have ideas for improvements,
+please [open an issue](https://github.com/ad-si/Perspec/issues) --
+I'd love to hear your feedback!
 
 ---
 
+[Affinity Photo]: https://affinity.serif.com/en-us/photo/
+[Brillo]: https://github.com/ad-si/Brillo
+[Canny]: https://en.wikipedia.org/wiki/Canny_edge_detector
 [FlatCV]: https://github.com/ad-si/FlatCV
+[Förstner corner detector]: https://en.wikipedia.org/wiki/Corner_detection#The_F%C3%B6rstner_corner_detector
+[GIMP]: https://www.gimp.org/
+[Hough transform]: https://en.wikipedia.org/wiki/Hough_transform
 [OpenCV]: https://opencv.org
 [Perspec]: https://github.com/ad-si/Perspec
 [Perspectra]: https://github.com/ad-si/Perspectra
 [scikit-image]: https://scikit-image.org/
+[Sobel filter]: https://en.wikipedia.org/wiki/Sobel_operator
+[watershed segmentation]: https://en.wikipedia.org/wiki/Watershed_(image_processing)
