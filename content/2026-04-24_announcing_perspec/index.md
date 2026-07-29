@@ -46,8 +46,8 @@ just because JPEG is what people are familiar with.
 
 Or maybe I'm giving them too much credit
 and they actually don't know that PNGs can
-be smaller than JPEGs if the image contains a lot of continuous areas with the same color.
-Whereas for normal photos, JPEG is smaller than PNGs.
+be smaller than JPEGs if the image contains a lot of continuous areas with the same color,
+whereas for normal photos, JPEGs are smaller than PNGs.
 And no, converting it to PNG afterwards is not an option,
 as the image then already contains all the JPEG compression artifacts.
 
@@ -114,7 +114,7 @@ the compression artifacts that lead to a worse result.
   </tbody>
 </table>
 
-Another thing that annoys me more than it should are the
+Another thing that annoys me more than it should is the
 ridiculous detection previews that seemingly all apps incorporate by now:
 
 <table>
@@ -126,9 +126,10 @@ ridiculous detection previews that seemingly all apps incorporate by now:
   </tr>
 </table>
 
-While taking a photo it will already show you an overlay of where it is detecting the document.
+While you're taking a photo, the app will already show you an overlay
+of where it is detecting the document.
 This, however, doesn't help you at all.
-Just because it can detect the document correctly in the preview video feed,
+Just because it can detect the document correctly in the preview video feed
 doesn't mean it will detect it correctly in the final photo.
 Due to the higher resolution, different lighting (exposure times, flash, …),
 and different contrast,
@@ -148,13 +149,13 @@ Most apps use some kind of edge detection step in their pipeline.
 Like Dropbox [explains here](https://dropbox.tech/machine-learning/fast-and-accurate-document-detection-for-scanning).
 But I knew that documents and receipts often don't have straight edges
 but rather wrinkled or curved ones.
-When you try to match an even just slight curve with a straight line,
+When you try to match even just a slight curve with a straight line,
 the endpoints will be quite off.
 So instead, it should try to detect the corners and build up the document from there.
 There is a detailed comparison of the computer vision techniques later in the post.
 
 
-## The long road to 1.0
+## The Long Road to 1.0
 
 I was still a student when I started to work on Perspec
 and had to scan a lot of stuff for my studies,
@@ -175,16 +176,16 @@ You'd pass your image and it would try to detect and extract the document for yo
 Simple as that.
 
 Although I actually liked [scikit-image] --
-feature rich, yet more straightforward than [OpenCV] --
+feature-rich, yet more straightforward than [OpenCV] --
 I quickly realized that I absolutely do not like Python.
-But more importantly, I realized that I also need a GUI
+But more importantly, I realized that I also needed a GUI
 to fix incorrectly detected document boundaries,
 as the fully automatic CV pipeline would never get all documents 100% right.
 
 And how do you build a desktop app with a GUI?
 Obviously with Haskell. 😝
 Joking aside, I had recently started learning Haskell and was absolutely in love with it.
-So naturally, I wanted to try out if it could be used for building the desktop app.
+So naturally, I wanted to see if it could be used for building the desktop app.
 
 As I didn't want to use Python any longer,
 my next instinct was to use ImageMagick for the computer vision and image manipulation tasks,
@@ -199,7 +200,8 @@ Another obvious choice might be OpenCV, but I had some bad memories of using it 
 (maybe it was just the C++ context …), and the Haskell bindings looked rather painful.
 
 So, my next experiment was using [Hip](https://github.com/lehins/hip).
-With the help of the author [@lehins](/u/lehins) himself and [@HanStolpo](/u/hanstolpo)
+With the help of the author [@lehins](https://github.com/lehins) himself
+and [@HanStolpo](https://github.com/hanstolpo),
 we were able to make it work at ZuriHac! _(Thanks again!)_
 
 However, it was still missing some features that I wanted, like binarization with Otsu's Method.
@@ -211,12 +213,12 @@ Luckily, C is a first-class citizen in Haskell
 and it's very easy to bundle some C code and call it via Haskell's FFI.
 
 Unfortunately, there didn't seem to be a straightforward C library
-that I could hook up to Perspec without too much FFI headaches
-and so I started to work on [FlatCV] -
+that I could hook up to Perspec without too many FFI headaches,
+and so I started to work on [FlatCV] —
 a pure C library for computer vision and image manipulation.
 
 I might have overdone it with the yak shaving here,
-but since the whole project is a labour of love anyways,
+but since the whole project is a labor of love anyway,
 why not go all the way? 😅
 
 I'm quite happy with the UX of using C for the image manipulation algorithms,
@@ -315,7 +317,7 @@ you can just drag the selection polygon to the right size and position.
 The best of both worlds: automatic detection and manual correction.
 
 
-## Binarization algorithms
+## Binarization Algorithms
 
 Correcting the perspective is only half of the story.
 For documents and receipts, the other half is converting the photo
@@ -334,8 +336,8 @@ the dark pixels (the text) from the bright pixels (the paper).
 This works well … for evenly lit images.
 
 Unfortunately, photos are seldom evenly lit.
-There is often some brightness gradient or a shadow.
-Often cast by the very hand that's holding the camera.
+There is often some brightness gradient or a shadow —
+often cast by the very hand that's holding the camera.
 
 The document scanning literature is full of locally adaptive algorithms
 (e.g. [Niblack and Sauvola]) that compute an individual threshold
@@ -358,7 +360,7 @@ It removes the shadows *before* thresholding.
 1. Apply a global threshold calculated with Otsu's Method.
 
 For photos of printed documents,
-I've found this to work just as well or even better than
+I've found this to work just as well as or even better than
 the more complicated locally adaptive algorithms,
 while being faster and simpler to implement.
 
@@ -471,7 +473,7 @@ Here is what I've planned for the upcoming releases:
 
 If this sounds useful to you, [give Perspec a try][Perspec]!
 And if you run into any issues or have ideas for improvements,
-please [open an issue](https://github.com/ad-si/Perspec/issues).
+please [open an issue](https://github.com/ad-si/Perspec/issues) —
 I'd love to hear your feedback!
 
 ---
