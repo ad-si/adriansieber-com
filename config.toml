@@ -13,6 +13,5 @@ taxonomies = [{ name = "tags" }]
 
 ignored_content = ["**/.spago/**"]
 
-[markdown]
-highlight_code = true
-highlight_theme = "monokai"
+[markdown.highlighting]
+theme = "monokai"
