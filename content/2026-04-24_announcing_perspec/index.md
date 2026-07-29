@@ -152,7 +152,7 @@ but rather wrinkled or curved ones.
 When you try to match even just a slight curve with a straight line,
 the endpoints will be quite far off.
 So instead, the app should try to detect the corners and build up the document from there.
-There is a detailed comparison of the computer vision techniques later in the post.
+There is a detailed explanation of the computer vision techniques later in the post.
 
 
 ## The Long Road to 1.0
@@ -164,7 +164,7 @@ so I had plenty of motivation to build something like this.
 Sure, you could also fix the perspective with Photoshop, [Affinity Photo], or [GIMP].
 But the overhead is substantial:
 Open each photo, find the perspective tool, drag the corners,
-pick the right export settings, repeat for the next photo, …
+pick the right export settings, repeat for the next photo, and so on.
 These tools are built to do everything with any image
 and not to churn through 50 receipts as quickly as possible.
 I wanted an app that's focused on this one task,
@@ -199,8 +199,9 @@ and the performance was surprisingly bad for larger images.
 Another obvious choice would have been OpenCV, but I had some bad memories of using it at university
 (maybe it was just the C++ context …), and the Haskell bindings looked rather painful.
 
-So, my next experiment was using [Hip](https://github.com/lehins/hip).
-With the help of the author [@lehins](https://github.com/lehins) himself
+So, my next experiment was using the native Haskell image processing library
+[Hip](https://github.com/lehins/hip).
+With the help of its author [@lehins](https://github.com/lehins) himself
 and [@HanStolpo](https://github.com/hanstolpo),
 we were able to make it work at ZuriHac! _(Thanks again!)_
 
@@ -236,17 +237,11 @@ SIMD, GPU usage,
 However, as FlatCV isn't used in a real-time context (i.e., 60 fps),
 the performance is already more than sufficient.
 
-Hope you like it, and I'd be interested to know
-if you have any other use cases for FlatCV!
-
 With FlatCV in place, I could finally implement the last missing piece for 1.0:
-automatic corner detection directly in Perspec.
+Automatic corner detection directly in Perspec.
 
 
 ## Edge Detection vs. Corner Detection
-
-As promised, let's take a closer look at the computer vision techniques
-for detecting documents in photos.
 
 Most scanner apps detect documents with a pipeline
 along the lines of the one
@@ -259,7 +254,7 @@ along the lines of the one
     and score them to pick the best one
 
 This works great for a perfectly flat sheet of paper on a high-contrast background.
-But real documents are rarely perfectly flat.
+But real documents are rarely perfectly flat:
 Receipts are wrinkled, book pages are curved,
 and paper that has been folded never lies completely flat either.
 When you fit a straight line to a curved edge,
@@ -336,8 +331,8 @@ the dark pixels (the text) from the bright pixels (the paper).
 This works well … for evenly lit images.
 
 Unfortunately, photos are seldom evenly lit.
-There is often a brightness gradient or a shadow —
-often cast by the very hand that's holding the camera.
+There is often a brightness gradient or a shadow
+cast by the person that's holding the camera or the camera itself.
 
 The document scanning literature is full of locally adaptive algorithms
 (e.g. [Niblack and Sauvola]) that compute an individual threshold
@@ -360,7 +355,7 @@ It removes the shadows *before* thresholding.
 1. Apply a global threshold calculated with Otsu's Method.
 
 For photos of printed documents,
-I've found this to work just as well as, or even better than,
+I've found this to work just as well as — or even better than —
 the more complicated locally adaptive algorithms,
 while being faster and simpler to implement.
 
@@ -427,12 +422,6 @@ for the full list of changes.
 
 ## Installation
 
-You can buy Perspec on
-[itch.io](https://feramhq.itch.io/perspec) or
-[Gumroad](https://feram.gumroad.com/l/perspec).
-This gets you a license key,
-which removes the annoying "please buy a license" messages in the app.
-
 Prebuilt binaries for macOS, Windows, and Linux are also available on the
 [releases page](https://github.com/ad-si/Perspec/releases),
 and on macOS you can install it via my [Homebrew](https://brew.sh) tap:
@@ -442,7 +431,13 @@ brew install --cask ad-si/tap/perspec
 ```
 
 However, you'll still need to buy a license
-to get rid of the banner in those versions as well.
+to get rid of the upgrade banner in those versions.
+
+You can purchase a license for Perspec on either
+[itch.io](https://feramhq.itch.io/perspec) or
+[Gumroad](https://feram.gumroad.com/l/perspec).
+This gets you a license key,
+which removes the annoying "please buy a license" messages in the app.
 
 And even if you don't need the software yourself,
 please consider buying it as a way to support the development of
