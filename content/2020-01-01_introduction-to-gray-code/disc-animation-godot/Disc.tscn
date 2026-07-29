@@ -1,0 +1,168 @@
+[gd_scene load_steps=11 format=3 uid="uid://cackf7gkly023"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_terxw"]
+noise_type = 0
+frequency = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7qrh0"]
+noise = SubResource("FastNoiseLite_terxw")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_glhjh"]
+frequency = 0.6182
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pr17o"]
+noise = SubResource("FastNoiseLite_glhjh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2gs7o"]
+albedo_color = Color(0.02, 0.02, 0.02, 1)
+albedo_texture = SubResource("NoiseTexture2D_7qrh0")
+detail_blend_mode = 3
+detail_albedo = SubResource("NoiseTexture2D_pr17o")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo0qy"]
+
+[sub_resource type="Gradient" id="Gradient_msnrc"]
+colors = PackedColorArray(0.6, 0.6, 0.6, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l2xba"]
+noise_type = 3
+frequency = 0.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_frw1v"]
+color_ramp = SubResource("Gradient_msnrc")
+noise = SubResource("FastNoiseLite_l2xba")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3y3n5"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.0784314)
+metallic = 0.8
+metallic_specular = 1.0
+roughness_texture = SubResource("NoiseTexture2D_frw1v")
+emission = Color(0.396078, 0.0313726, 0.0823529, 1)
+emission_energy_multiplier = 15.34
+emission_operator = 1
+rim = 0.2
+subsurf_scatter_strength = 1.0
+subsurf_scatter_skin_mode = true
+backlight_enabled = true
+backlight = Color(1, 1, 1, 1)
+refraction_scale = 1.0
+proximity_fade_distance = 0.0
+distance_fade_max_distance = 0.0
+
+[node name="Disc" type="Node3D"]
+
+[node name="Ring 1" type="Node3D" parent="."]
+transform = Transform3D(-0.0861769, 3.59158e-13, 0.99628, 8.31146e-12, 1, 3.58431e-13, -0.99628, 8.31143e-12, -0.0861769, 0, 0, 0)
+metadata/movie_file = "just_a_test"
+metadata/_edit_lock_ = true
+
+[node name="R1 Black" type="CSGCombiner3D" parent="Ring 1"]
+transform = Transform3D(-1, 3.48484e-16, -8.74228e-08, 3.49378e-16, 1, -3.49547e-16, 8.74228e-08, -3.48679e-16, -1, -0.001, 2.08165e-12, 2.08165e-12)
+material_override = SubResource("StandardMaterial3D_2gs7o")
+metadata/_edit_lock_ = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Ring 1/R1 Black"]
+transform = Transform3D(1, -4.02214e-24, 0, -4.02214e-24, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+radius = 0.25
+height = 0.01
+sides = 64
+material = SubResource("StandardMaterial3D_wo0qy")
+metadata/_edit_lock_ = true
+
+[node name="Axle" type="CSGCylinder3D" parent="Ring 1/R1 Black"]
+transform = Transform3D(1, -4.02308e-24, 0, -4.04726e-24, 1, 0, 0, 0, 1, 0, 2.08165e-12, 2.08165e-12)
+operation = 2
+radius = 0.05
+height = 1.0
+sides = 64
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ring 1/R1 Black"]
+transform = Transform3D(1, -4.02214e-24, 0, -4.02214e-24, 1, 0, 0, 0, 1, 3, 2.08165e-12, 2.08165e-12)
+operation = 1
+size = Vector3(6, 1, 6)
+metadata/_edit_lock_ = true
+
+[node name="R1 Transparent" type="CSGCombiner3D" parent="Ring 1"]
+material_override = SubResource("StandardMaterial3D_3y3n5")
+metadata/_edit_lock_ = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Ring 1/R1 Transparent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+radius = 0.25
+height = 0.01
+sides = 32
+metadata/_edit_lock_ = true
+
+[node name="Axle" type="CSGCylinder3D" parent="Ring 1/R1 Transparent"]
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+operation = 2
+radius = 0.05
+height = 1.0
+sides = 64
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ring 1/R1 Transparent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.08165e-12, 2.08165e-12)
+operation = 1
+size = Vector3(6, 1, 6)
+metadata/_edit_lock_ = true
+
+[node name="Ring 2" type="Node3D" parent="."]
+transform = Transform3D(-0.99628, 3.59097e-13, -0.0861769, -3.58432e-13, 1, 8.31076e-12, 0.0861769, 8.31073e-12, -0.99628, 0, 0, 0)
+metadata/movie_file = "just_a_test"
+metadata/_edit_lock_ = true
+
+[node name="R2 Black" type="CSGCombiner3D" parent="Ring 2"]
+transform = Transform3D(-1, 3.48484e-16, -8.74228e-08, 3.49378e-16, 1, -3.49547e-16, 8.74228e-08, -3.48679e-16, -1, -0.001, 2.08165e-12, 2.08165e-12)
+material_override = SubResource("StandardMaterial3D_2gs7o")
+metadata/_edit_lock_ = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Ring 2/R2 Black"]
+transform = Transform3D(1, -2.32002e-20, -9.10103e-09, 1.88884e-19, 1, 3.26372e-19, -9.10103e-09, -5.19128e-20, 1, 0, 2.08165e-12, 0)
+radius = 0.45
+height = 0.01
+sides = 64
+material = SubResource("StandardMaterial3D_wo0qy")
+metadata/_edit_lock_ = true
+
+[node name="Axle" type="CSGCylinder3D" parent="Ring 2/R2 Black"]
+transform = Transform3D(1, -4.03783e-24, 2.84311e-15, -3.99495e-24, 1, -2.87429e-28, -2.84312e-15, 1.06377e-27, 1, 0, 2.08165e-12, 2.08165e-12)
+operation = 2
+radius = 0.25
+height = 1.0
+sides = 64
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ring 2/R2 Black"]
+transform = Transform3D(1, -4.02214e-24, 0, -4.02214e-24, 1, 0, 0, 0, 1, 3, 2.08165e-12, 2.08165e-12)
+operation = 1
+size = Vector3(6, 1, 6)
+metadata/_edit_lock_ = true
+
+[node name="R2 Transparent" type="CSGCombiner3D" parent="Ring 2"]
+material_override = SubResource("StandardMaterial3D_3y3n5")
+metadata/_edit_lock_ = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Ring 2/R2 Transparent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+radius = 0.45
+height = 0.01
+sides = 64
+metadata/_edit_lock_ = true
+
+[node name="Axle" type="CSGCylinder3D" parent="Ring 2/R2 Transparent"]
+transform = Transform3D(1, -3.02177e-23, -2.36536e-16, 3.74792e-24, 1, -1.89939e-23, 2.36531e-16, 1.49718e-23, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+operation = 2
+radius = 0.25
+height = 1.0
+sides = 64
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Ring 2/R2 Transparent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.08165e-12, 2.08165e-12)
+operation = 1
+size = Vector3(6, 0.2, 6)
+metadata/_edit_lock_ = true

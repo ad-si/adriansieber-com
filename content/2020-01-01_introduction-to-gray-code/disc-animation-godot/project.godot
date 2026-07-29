@@ -8,27 +8,24 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Gray Code Disc Animation"
 run/main_scene="res://world_environment.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
-[display]
-
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-
 [editor]
 
+movie_writer/movie_file="/Users/adrian/Dropbox/Projects/adriansieber-com/content/2020-01-01_introduction-to-gray-code/disc-animation-godot/video.avi"
 movie_writer/mjpeg_quality=1.0
-movie_writer/movie_file="/Users/adrian/Dropbox/Projects/adriansieber-com/content/2020-01-01_introduction-to-gray-code/disc-animation/video.avi"
 
 [rendering]
 
-anti_aliasing/quality/msaa_3d=2
-anti_aliasing/quality/screen_space_aa=1
-anti_aliasing/quality/use_taa=true
-anti_aliasing/quality/use_debanding=true
+global_illumination/gi/use_half_resolution=true
+anti_aliasing/screen_space_roughness_limiter/enabled=false
