@@ -6,6 +6,9 @@ draft = true
 tags = ["programming"]
 +++
 
+Literate programming: Knuth is doing it wrong
+https://akkartik.name/post/literate-programming
+
 In 1984 Donald Knuth released the seminal work "[Literate Programming]",
 which describes the novel "literate programming paradigm".
 It's defined as the combination of documentation and source code
@@ -136,3 +139,21 @@ This is reflected in the file names, which are
 [uku-post]: /ukulele-fingering-chart-cli-tool-in-haskell
 [CWEB]: https://www-cs-faculty.stanford.edu/~knuth/cweb.html
 [Literate Programming]: https://www-cs-faculty.stanford.edu/~knuth/lp.html
+
+
+IDEA: Use https://runme.dev apply patches
+
+
+In conclusion, Literate Patching offers a promising approach to documenting not
+just what code does, but why it evolved the way it did. By treating patches as
+first-class citizens with rich documentation capabilities, we can create more
+maintainable and comprehensible codebases. This approach bridges the gap between
+the technical implementation details and the human reasoning behind them, making
+our software development process more transparent and accessible to future
+developers.
+
+The next steps would be to develop tooling that supports this workflow natively,
+perhaps integrating with existing version control systems while adding the
+enhanced documentation capabilities described above. By combining the strengths
+of literate programming with the historical context of version control, we can
+create a more complete picture of our software's evolution.
