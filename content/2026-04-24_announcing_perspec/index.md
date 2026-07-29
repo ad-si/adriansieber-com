@@ -425,14 +425,26 @@ for the full list of changes.
 
 ## Installation
 
-Prebuilt binaries for macOS, Windows, and Linux are available on the
-[releases page](https://github.com/ad-si/Perspec/releases).
+You can buy Perspec on
+[itch.io](https://feramhq.itch.io/perspec) or
+[Gumroad](https://feram.gumroad.com/l/perspec).
+This gets you a license key,
+which removes the annoying "please buy a license" messages in the app.
 
-On macOS you can also install it via my [Homebrew](https://brew.sh) tap:
+Prebuilt binaries for macOS, Windows, and Linux are also available on the
+[releases page](https://github.com/ad-si/Perspec/releases),
+and on macOS you can install it via my [Homebrew](https://brew.sh) tap:
 
 ```sh
 brew install --cask ad-si/tap/perspec
 ```
+
+However, you'll still need to buy a license
+to get rid of the banner in those versions as well.
+
+And even if you don't need the software yourself,
+please consider buying it as a way to support the development of
+Haskell desktop applications and computer vision software.
 
 Afterwards, you can either drop images onto the app window
 or batch process them via the CLI:
@@ -459,7 +471,7 @@ Here is what I've planned for the upcoming releases:
 
 If this sounds useful to you, [give Perspec a try][Perspec]!
 And if you run into any issues or have ideas for improvements,
-please [open an issue](https://github.com/ad-si/Perspec/issues) --
+please [open an issue](https://github.com/ad-si/Perspec/issues).
 I'd love to hear your feedback!
 
 ---
