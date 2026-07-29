@@ -32,7 +32,7 @@ public: content static sass content/resume/resume.json
 
 .PHONY: dev  # Serve website at http://127.0.0.1:1111
 dev:
-	zola serve
+	zola serve --drafts
 
 
 .PHONY: deploy

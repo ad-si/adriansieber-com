@@ -1,6 +1,7 @@
 +++
 title = "Modern Medicine is not Enough"
 author = "Adrian Sieber (ad-si.com)"
+date = 2021-01-01
 draft = true
 
 [taxonomies]

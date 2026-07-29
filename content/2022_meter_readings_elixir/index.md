@@ -1,6 +1,7 @@
 +++
 title = "Visualize Utility Meter Readings With Elixir's Livebook"
 author = "Adrian Sieber (ad-si.com)"
+date = 2022-01-01
 draft = true
 
 [taxonomies]
