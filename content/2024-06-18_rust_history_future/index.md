@@ -6,3 +6,6 @@ draft = true
 +++
 
 Check out the [presentation.pdf](./presentation.pdf) file for the slides.
+
+
+TODO: Use https://github.com/mfontanini/presenterm
