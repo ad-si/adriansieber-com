@@ -151,13 +151,26 @@ table
   margin-left: auto
   margin-right: auto
   margin-bottom: 2em
+  border-collapse: collapse
   th, td
     padding: 0 0.5em
+  td:has(> img:only-child)
+    padding: 0
+    img
+      display: block
   thead
     background-color: var(--slightlyMutedColor)
   tbody
     tr:nth-of-type(2n)
       background-color: var(--slightlyMutedColor)
+  &.bordered
+    th, td
+      border: 1px solid var(--mediumMutedColor)
+    thead
+      background-color: transparent
+    tbody
+      tr:nth-of-type(2n)
+        background-color: transparent
 
 blockquote
   border-left: 0.3em solid var(--mediumMutedColor)

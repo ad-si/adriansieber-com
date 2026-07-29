@@ -315,6 +315,88 @@ you can just drag the selection polygon to the right size and position.
 The best of both worlds: automatic detection and manual correction.
 
 
+## Binarization algorithms
+
+Correcting the perspective is only half of the story.
+For documents and receipts, the other half is converting the photo
+into a clean black & white image.
+This is what the `Save BW` and `Save BW Smooth` buttons in Perspec do.
+
+The task sounds trivial:
+Every pixel darker than some threshold becomes black
+and every other pixel becomes white.
+The tricky part is picking the threshold.
+
+The classic solution is [Otsu's Method]:
+It builds a histogram of all gray values in the image
+and then picks the threshold that best separates
+the dark pixels (the text) from the bright pixels (the paper).
+This works well … for evenly lit images.
+
+Unfortunately, photos are seldom evenly lit.
+There is often some brightness gradient or a shadow.
+Often cast by the very hand that's holding the camera.
+
+The document scanning literature is full of locally adaptive algorithms
+(e.g. [Niblack and Sauvola]) that compute an individual threshold
+for every pixel based on its neighborhood.
+
+FlatCV's [smart black & white conversion](https://flatcv.ad-si.com/binarize.html),
+however, uses a simpler trick to get away with a single global threshold:
+It removes the shadows *before* thresholding.
+
+1. Convert the image to grayscale.
+1. Create a heavily blurred copy of it
+    (with a blur radius of roughly 10 % of the image size).
+    All the text and details get averaged away
+    and what remains is basically just the illumination:
+    brightness gradients and soft shadows.
+1. Subtract the blurred copy from the grayscale image.
+    This keeps the high frequencies (the text)
+    and removes the low frequencies (the shadows).
+    The result is an evenly lit image.
+1. Apply a global threshold calculated with Otsu's Method.
+
+For photos of printed documents,
+I've found this to work just as well or even better than
+the more complicated locally adaptive algorithms,
+while being faster and simpler to implement.
+
+The `Save BW` button applies exactly this pipeline
+and stores the result as a true 1-bit black & white image,
+where every pixel is either fully black or fully white.
+
+The new `Save BW Smooth` button goes one step further and uses
+two thresholds (the Otsu threshold ± a small offset):
+Pixels below the lower threshold become black,
+pixels above the upper threshold become white,
+and pixels in between keep a scaled gray value.
+This yields anti-aliased edges, so the text doesn't look jagged,
+while the file size stays almost as small.
+That's why it's the recommended option
+for documents, receipts, and whiteboards.
+
+<table class="bordered">
+  <tbody>
+    <tr>
+      <th scope="row">Input</th>
+      <td><img alt="Section of the perspective-corrected paper" src="paper_section.png"
+        style="width: 28rem; image-rendering: pixelated;"></td>
+    </tr>
+    <tr>
+      <th scope="row">Save BW</th>
+      <td><img alt="Section converted to black and white" src="paper_section_bw_smart.png"
+        style="width: 28rem; image-rendering: pixelated;"></td>
+    </tr>
+    <tr>
+      <th scope="row">Save BW Smooth</th>
+      <td><img alt="Section converted to anti-aliased black and white" src="paper_section_bw_smooth.png"
+        style="width: 28rem; image-rendering: pixelated;"></td>
+    </tr>
+  </tbody>
+</table>
+
+
 ## What Else Is New in 1.0
 
 The automatic corner detection is the headline feature,
@@ -329,7 +411,7 @@ but quite a few other things landed in
     and grid lines make it easier to align the selection.
 - A new "Select Files" view with a button
     and drag-and-drop support for selecting images.
-- A new `Save BW Smooth` export option that converts the image
+- The new `Save BW Smooth` export option that converts the image
     to anti-aliased black & white.
     This is now the recommended option for documents, receipts, and whiteboards.
 - EXIF rotation data is now also handled for PNGs.
@@ -389,7 +471,9 @@ I'd love to hear your feedback!
 [Förstner corner detector]: https://en.wikipedia.org/wiki/Corner_detection#The_F%C3%B6rstner_corner_detector
 [GIMP]: https://www.gimp.org/
 [Hough transform]: https://en.wikipedia.org/wiki/Hough_transform
+[Niblack and Sauvola]: https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_niblack_sauvola.html
 [OpenCV]: https://opencv.org
+[Otsu's Method]: https://en.wikipedia.org/wiki/Otsu%27s_method
 [Perspec]: https://github.com/ad-si/Perspec
 [Perspectra]: https://github.com/ad-si/Perspectra
 [scikit-image]: https://scikit-image.org/
