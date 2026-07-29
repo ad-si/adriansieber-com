@@ -37,7 +37,7 @@ dev:
 
 .PHONY: deploy
 deploy: public
-	netlify deploy --prod --dir public --site adriansieber
+	netlify deploy --prod --dir public --site 535ba809-8ce8-49d2-9d3a-a3139e8f940b
 	@echo -e "Promote any new posts on:\n\
 		- x.com\n\
 		- reddit.com\n\
