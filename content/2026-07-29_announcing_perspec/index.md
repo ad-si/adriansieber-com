@@ -1,9 +1,8 @@
 ---
 title: Announcing Perspec 1.0
 author: Adrian Sieber
-date: 2026-07-27
+date: 2026-07-29
 tags: [haskell, desktop, app, computer-vision]
-draft: true
 ---
 
 I'm very excited to announce the 1.0 release of [Perspec]!
