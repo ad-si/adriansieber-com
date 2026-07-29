@@ -1,10 +1,12 @@
 +++
-title = "Haskell - The Best Programming Language You Have Never Heard Of"
+title = "The Best Programming Language"
 draft = true
 
 [taxonomies]
-tags = ["Haskell"]
+tags = ["Haskell", "coding", "programming", "functional programming"]
 +++
+
+https://discourse.haskell.org/t/commercial-haskell-should-go-after-python-julia-not-rust/6964/3
 
 Many programming languages have been invented over the last 75 years.
 From the first high-level programming language "Plankalkül" in 1943
@@ -30,7 +32,7 @@ More popular means:
   - If it wasn't any good it wouldn't have become so popular
 
 Or at least so the narrative goes.
-Lately I've become a little wary of this story.
+I've become a little wary of this story.
 Maybe it can just as well mean:
 
   - Easy to get started, but not easy to maintain
@@ -47,14 +49,25 @@ different programming languages as possible.
 
 The minutiae of this journey might be the content of another article,
 but for now I just want to share my conclusion with you and highlight
-the features which made the difference for me.
+the features which make the difference for me.
+
+For me the best default programming language is **Haskell**.
+<!-- <small>
+(I'll skip all the disclaimers here,
+as it is obvious that I can't use Haskell for everything (yet).
+This, however, is not the programming language's fault.)
+</small> -->
 
 As it turns out, popularity wouldn't have been a good indicator
 of Haskell's appeal.
-It only ranks on position 22 on the
-PYPL (PopularitY of Programming Language) index of May 2018,
-position 25 on IEEE Spectrum's "The Top Programming Languages 2017" ranking
-and position 48 on the Tiobe index of May 2018.
+It only ranks on position 25 on the
+[PYPL index](https://pypl.github.io/PYPL.html)
+(PopularitY of Programming Language) index of February 2025,
+position 38 on
+[IEEE Spectrum's "The Top Programming Languages 2024"](
+  https://spectrum.ieee.org/top-programming-languages-2024) ranking,
+and position 27 on the [Tiobe index](https://www.tiobe.com/tiobe-index/)
+of February 2025.
 
 So what characteristics make up Haskell's appeal then?
 
@@ -64,7 +77,7 @@ So what characteristics make up Haskell's appeal then?
 Let's jump to the most important one right away:
 Every single expression in Haskell is statically (i.e. at compile time) typed.
 
-If you're now thinking of a heavy weight type system like in Java or C++
+If you're now thinking of a heavy yet clumsy type system like in Java or C++
 and are already disgusted, I have good news:
 Haskell's syntax is very lightweight, more akin to Python,
 as all types are globally inferred
@@ -113,8 +126,9 @@ shirt-size.hs:6:13: warning: [-Wincomplete-patterns]
   |             ^^^^^^^^^^^^^^^^^...
 ```
 
-The GHC (Glasgow Haskell Compiler - Haskell's default compiler) immediately
-warns us that we forgot to handle the case that `johnsSize` might
+The GHC ([Glasgow Haskell Compiler](https://www.haskell.org/ghc/) -
+Haskell's default compiler) immediately warns us,
+that we forgot to handle the case that `johnsSize` might
 be set to `Huge`. Awesome!
 
 Now imagine writing the same code in Python, JavaScript,
@@ -498,11 +512,12 @@ which were influenced by Haskell:
 Other languages even try to re-implement or extend Haskell.
 Some notable examples:
 
-- Elm - A reduced Haskell-like language to build webapps
-- Eta & Frege - Haskell for the JVM
-- Hackett - Implementation of a Haskell-like Lisp in Racket
-- Idris - Haskell-like with dependent types (e.g. a list with a certain length)
-- PureScript - Haskell-like language compiled to JavaScript
+- [Elm](https://elm-lang.org/) - A reduced Haskell-like language to build webapps
+- [Hackett](https://lexi-lambda.github.io/hackett/) - Implementation of a Haskell-like Lisp in Racket
+- [Idris](https://www.idris-lang.org/) - Haskell-like with dependent types (e.g. a list with a certain length)
+- [PureScript](https://www.purescript.org/) - Haskell-like language compiled to JavaScript
+- [Lean](https://lean-lang.org/) - Haskell-like language with dependent types and a focus on theorem proving
+- [Gleam](https://gleam.run/) - Haskell-like language compiled to Erlang
 
 As you can see Haskell is well alive and doing better than ever.
 I can't wait for what the future holds! 😁
@@ -525,6 +540,9 @@ and incorporates many of Haskell's great concepts.
 [1]: https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#single-machine-concurrency
 [2]: https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#maintenance
 
+This article first appeared in a slightly different form
+in the [HPImgzn 22](https://hpimgzn.de/alle-ausgaben/hpimgzn-22/) in July 2018.
+
 
 <!-- Purgatory
 
@@ -536,6 +554,6 @@ of the language landscape.
 You'll most likely have your favorite language
 probably settle with one of the more popular languages
 
-Due to types it's almose impossible to set parentheses incorrectly.
+Due to types it's almost impossible to set parentheses incorrectly.
 
 -->
