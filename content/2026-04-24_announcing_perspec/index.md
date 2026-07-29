@@ -22,20 +22,20 @@ but I'm very happy with the result and I hope you'll like it too!
 
 ## Initial Motivation
 
-I guess you all know the scanner apps available for mobile phones like
+You're probably familiar with the scanner apps available for mobile phones, like
 [Adobe Scan](https://www.adobe.com/acrobat/mobile/scanner-app.html), [vFlat](https://www.vflat.com),
 [SwiftScan](https://swiftscan.app/), … and numerous others.
 Scanning functionality is also integrated into
-[Dropbox](https://www.dropbox.com/features/productivity/document-scanner) and
-natively into [iOS](https://support.apple.com/en-us/108963) itself by now.
+[Dropbox](https://www.dropbox.com/features/productivity/document-scanner),
+and these days even natively into [iOS](https://support.apple.com/en-us/108963) itself.
 
-However, I don't like working on my phone and I'd rather just take photos of the documents / receipts
-and deal with cleaning them up and organizing them another day on my computer.
-There I have a big screen, a keyboard, and a precise mouse,
-which leads to faster and more accurate editing.
+However, I don't like working on my phone and I'd rather just take photos of the documents and receipts
+and deal with cleaning them up and organizing them on my computer another day.
+There, I have a big screen, a keyboard, and a precise mouse,
+which makes editing faster and more accurate.
 
 Also, the mobile apps make some annoying technical decisions
-in the name of delivering the user something that's familiar to them.
+in the name of giving users something they're familiar with.
 
 For example:
 If you store a document as a grayscale PNG,
@@ -46,12 +46,12 @@ just because JPEG is what people are familiar with.
 
 Or maybe I'm giving them too much credit
 and they actually don't know that PNGs can
-be smaller than JPEGs if the image contains a lot of continuous areas with the same color,
+be smaller than JPEGs if the image contains large areas of uniform color,
 whereas for normal photos, JPEGs are smaller than PNGs.
 And no, converting it to PNG afterwards is not an option,
-as the image then already contains all the JPEG compression artifacts.
+as by then the image already contains all the JPEG compression artifacts.
 
-For example, let's check the results when scanning the following document:
+For example, let's compare the results of scanning the following document:
 
 <img
   alt="Photo of research paper lying on table"
@@ -59,8 +59,8 @@ For example, let's check the results when scanning the following document:
   style="max-width: 20rem;"
 />
 
-The file sizes of the other apps are bigger and you can clearly see
-the compression artifacts that lead to a worse result.
+The other apps produce bigger files, and you can clearly see
+the compression artifacts that degrade the result.
 
 <table>
   <thead>
@@ -115,7 +115,7 @@ the compression artifacts that lead to a worse result.
 </table>
 
 Another thing that annoys me more than it should is the
-ridiculous detection previews that seemingly all apps incorporate by now:
+ridiculous detection previews that seemingly every app includes these days:
 
 <table>
   <tr>
@@ -126,8 +126,8 @@ ridiculous detection previews that seemingly all apps incorporate by now:
   </tr>
 </table>
 
-While you're taking a photo, the app will already show you an overlay
-of where it is detecting the document.
+While you're taking a photo, the app shows you a live overlay
+of where it detects the document.
 This, however, doesn't help you at all.
 Just because it can detect the document correctly in the preview video feed
 doesn't mean it will detect it correctly in the final photo.
@@ -139,18 +139,18 @@ So all the preview is telling you
 is that there is indeed a document in front of your camera,
 which you already know since you placed it there. 🤦‍♂️
 
-Lastly and most importantly, I knew I could build
+Lastly, and most importantly, I knew I could build
 a better document detection algorithm for the kind of photos I was taking.
-The detection of existing apps would often be slightly off,
+The detection in existing apps would often be slightly off,
 even if you had a good picture
 with good contrast between the document and the background.
 
-Most apps use some kind of edge detection step in their pipeline.
-Like Dropbox [explains here](https://dropbox.tech/machine-learning/fast-and-accurate-document-detection-for-scanning).
+Most apps use some kind of edge detection step in their pipeline,
+as Dropbox [explains here](https://dropbox.tech/machine-learning/fast-and-accurate-document-detection-for-scanning).
 But I knew that documents and receipts often don't have straight edges
 but rather wrinkled or curved ones.
 When you try to match even just a slight curve with a straight line,
-the endpoints will be quite off.
+the endpoints will be quite far off.
 So instead, it should try to detect the corners and build up the document from there.
 There is a detailed comparison of the computer vision techniques later in the post.
 
@@ -159,7 +159,7 @@ There is a detailed comparison of the computer vision techniques later in the po
 
 I was still a student when I started to work on Perspec
 and had to scan a lot of stuff for my studies,
-so I had a good motivation to build something like this.
+so I had plenty of motivation to build something like this.
 
 Sure, you could also fix the perspective with Photoshop, [Affinity Photo], or [GIMP].
 But the overhead is substantial:
@@ -192,8 +192,8 @@ my next instinct was to use ImageMagick for the computer vision and image manipu
 as I had some experience with its features and capabilities.
 The [existing Haskell bindings](https://hackage.haskell.org/packages/search?terms=magick)
 were rather lacking, so I opted to simply call `magick` as an external process.
-While this mostly worked, it was always a pain to get it to install
-and link correctly across platforms,
+While this mostly worked, it was always a pain to get it installed
+and linked correctly across platforms,
 and the performance was surprisingly bad for larger images.
 
 Another obvious choice might be OpenCV, but I had some bad memories of using it at university
@@ -208,7 +208,7 @@ However, it was still missing some features that I wanted, like binarization wit
 While it was certainly possible to implement this in Hip,
 I (for once) felt that Haskell's abstractions didn't really help with the task at hand
 and only complicated things unnecessarily.
-A `for` loop in C, by comparison, is conceptually very simple and already as fast as the Haskell code.
+A `for` loop in C, by comparison, is conceptually very simple and just as fast as the Haskell code.
 Luckily, C is a first-class citizen in Haskell
 and it's very easy to bundle some C code and call it via Haskell's FFI.
 
@@ -221,7 +221,7 @@ I might have overdone it with the yak shaving here,
 but since the whole project is a labor of love anyway,
 why not go all the way? 😅
 
-I'm quite happy with the UX of using C for the image manipulation algorithms,
+I'm quite happy with the experience of using C for the image manipulation algorithms,
 and I was able to quickly build a fully functioning version with the necessary Haskell bindings.
 Just recently, I released [version 0.3.0](https://github.com/ad-si/FlatCV/releases/tag/v0.3.0),
 and by now it has most of the basic operations you would expect from an image manipulation library.
@@ -312,14 +312,14 @@ The nice thing about this approach is that it never assumes straight edges.
 The watershed happily follows a wrinkled document boundary,
 and even on a crumpled receipt the corners are still locally well defined.
 
-And when the detection is off after all,
-you can just drag the selection polygon to the right size and position.
+And if the detection does get it wrong,
+you can simply drag the selection polygon into the right size and position.
 The best of both worlds: automatic detection and manual correction.
 
 
 ## Binarization Algorithms
 
-Correcting the perspective is only half of the story.
+Correcting the perspective is only half the story.
 For documents and receipts, the other half is converting the photo
 into a clean black & white image.
 This is what the `Save BW` and `Save BW Smooth` buttons in Perspec do.
@@ -336,7 +336,7 @@ the dark pixels (the text) from the bright pixels (the paper).
 This works well … for evenly lit images.
 
 Unfortunately, photos are seldom evenly lit.
-There is often some brightness gradient or a shadow —
+There is often a brightness gradient or a shadow —
 often cast by the very hand that's holding the camera.
 
 The document scanning literature is full of locally adaptive algorithms
@@ -349,7 +349,7 @@ It removes the shadows *before* thresholding.
 
 1. Convert the image to grayscale.
 1. Create a heavily blurred copy of it
-    (with a blur radius of roughly 10 % of the image size).
+    (with a blur radius of roughly 10% of the image size).
     All the text and details get averaged away
     and what remains is basically just the illumination:
     brightness gradients and soft shadows.
@@ -460,7 +460,7 @@ perspec fix photos/*.jpeg
 
 While the 1.0 release is a big milestone, there are still some features
 that I would like to add in the future.
-Here is what I've planned for the upcoming releases:
+Here is what I have planned for the upcoming releases:
 
 - **Fixed output sizes:**
     Force the output to standardized dimensions like A4 or US Letter,
@@ -478,7 +478,7 @@ I'd love to hear your feedback!
 
 ---
 
-[Affinity Photo]: https://affinity.serif.com/en-us/photo/
+[Affinity Photo]: https://www.affinity.studio/photo-editing-software
 [Brillo]: https://github.com/ad-si/Brillo
 [Canny]: https://en.wikipedia.org/wiki/Canny_edge_detector
 [FlatCV]: https://github.com/ad-si/FlatCV
