@@ -8,7 +8,7 @@ draft: true
 
 I'm very excited to announce the 1.0 release of [Perspec]!
 
-Perspec is a desktop app to correct the perspective of images.
+Perspec is a desktop app for correcting the perspective of images.
 This is primarily useful for photos of documents and receipts,
 but it can be used for any kind of image.
 
@@ -40,8 +40,8 @@ in the name of giving users something they're familiar with.
 For example:
 If you store a document as a grayscale PNG,
 you can get small file sizes without introducing any compression artifacts.
-However, all common apps will give you a grayscale JPEG image
-with much bigger file sizes and worse image quality,
+However, all the popular apps will give you a grayscale JPEG image
+with a much bigger file size and worse image quality,
 just because JPEG is what people are familiar with.
 
 Or maybe I'm giving them too much credit
@@ -151,13 +151,13 @@ But I knew that documents and receipts often don't have straight edges
 but rather wrinkled or curved ones.
 When you try to match even just a slight curve with a straight line,
 the endpoints will be quite far off.
-So instead, it should try to detect the corners and build up the document from there.
+So instead, the app should try to detect the corners and build up the document from there.
 There is a detailed comparison of the computer vision techniques later in the post.
 
 
 ## The Long Road to 1.0
 
-I was still a student when I started to work on Perspec
+I was still a student when I started working on Perspec
 and had to scan a lot of stuff for my studies,
 so I had plenty of motivation to build something like this.
 
@@ -175,8 +175,8 @@ implemented with Python and [scikit-image].
 You'd pass your image and it would try to detect and extract the document for you.
 Simple as that.
 
-Although I actually liked [scikit-image] --
-feature-rich, yet more straightforward than [OpenCV] --
+Although I actually liked [scikit-image] —
+feature-rich, yet more straightforward than [OpenCV] —
 I quickly realized that I absolutely do not like Python.
 But more importantly, I realized that I also needed a GUI
 to fix incorrectly detected document boundaries,
@@ -196,7 +196,7 @@ While this mostly worked, it was always a pain to get it installed
 and linked correctly across platforms,
 and the performance was surprisingly bad for larger images.
 
-Another obvious choice might be OpenCV, but I had some bad memories of using it at university
+Another obvious choice would have been OpenCV, but I had some bad memories of using it at university
 (maybe it was just the C++ context …), and the Haskell bindings looked rather painful.
 
 So, my next experiment was using [Hip](https://github.com/lehins/hip).
@@ -214,7 +214,7 @@ and it's very easy to bundle some C code and call it via Haskell's FFI.
 
 Unfortunately, there didn't seem to be a straightforward C library
 that I could hook up to Perspec without too many FFI headaches,
-and so I started to work on [FlatCV] —
+and so I started working on [FlatCV] —
 a pure C library for computer vision and image manipulation.
 
 I might have overdone it with the yak shaving here,
@@ -286,7 +286,7 @@ pipeline in detail:
 1. Run a [Förstner corner detector] on the mask.
     (Unlike the more popular Harris detector,
     whose corners are shifted inwards,
-    the Förstner detector yields sub-pixel accurate corner positions.)
+    the Förstner detector yields sub-pixel-accurate corner positions.)
 1. Sort the corner candidates and
     keep the 4 corners with the largest angles.
 1. Scale the corner coordinates back up to the original resolution.
@@ -360,7 +360,7 @@ It removes the shadows *before* thresholding.
 1. Apply a global threshold calculated with Otsu's Method.
 
 For photos of printed documents,
-I've found this to work just as well as or even better than
+I've found this to work just as well as, or even better than,
 the more complicated locally adaptive algorithms,
 while being faster and simpler to implement.
 
@@ -448,7 +448,7 @@ And even if you don't need the software yourself,
 please consider buying it as a way to support the development of
 Haskell desktop applications and computer vision software.
 
-Afterwards, you can either drop images onto the app window
+Once installed, you can either drop images onto the app window
 or batch process them via the CLI:
 
 ```sh
@@ -459,7 +459,7 @@ perspec fix photos/*.jpeg
 ## Next Steps
 
 While the 1.0 release is a big milestone, there are still some features
-that I would like to add in the future.
+that I would like to add.
 Here is what I have planned for the upcoming releases:
 
 - **Fixed output sizes:**
