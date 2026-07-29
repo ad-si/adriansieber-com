@@ -6,6 +6,13 @@ draft = true
 tags = ["math", "algorithm", "Gray Code"]
 +++
 
+<!--
+TODO:
+- https://hackaday.com/2017/01/25/fifty-shades-of-gray-code/
+- https://www.youtube.com/shorts/EIpvP7Zb9nc
+- https://hcie.csail.mit.edu/research/MechSense/MechSense.html
+-->
+
 Imagine you would sell tower cranes.
 (Those are the T shaped ones you normally see on construction sites.)
 Your models are top notch: Super reliable, stable, fast, yet
