@@ -11,7 +11,19 @@
     title="Adrian Sieber"
     type=application/atom+xml>
   <meta name=flattr:id content=wy9yl6>
-  <!-- TODO: SEO -->
+  {% block seo %}
+    <title>{{ config.title }}</title>
+    <meta name=description content="{{ config.description }}">
+    <meta property=og:site_name content="{{ config.title }}">
+    <meta property=og:type content=website>
+    <meta property=og:title content="{{ config.title }}">
+    <meta property=og:description content="{{ config.description }}">
+    <meta property=og:url
+      content="{{ current_url | default(value=config.base_url) | safe }}">
+    <meta property=og:image
+      content="{{ config.base_url | safe }}/images/profile-picture@2x.jpg">
+    <meta name=twitter:card content=summary>
+  {% endblock seo %}
 </head>
 <body {% block body_attr %} id=home {% endblock body_attr %}>
 

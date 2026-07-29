@@ -3,6 +3,11 @@ title: Announcing Perspec 1.0
 author: Adrian Sieber
 date: 2026-07-29
 tags: [haskell, desktop, app, computer-vision]
+description: >-
+  Perspec is a desktop app for correcting the perspective of images.
+  After 9 years of development, version 1.0 is finally here.
+extra:
+  image: screenshot.png
 ---
 
 I'm very excited to announce the 1.0 release of [Perspec]!
