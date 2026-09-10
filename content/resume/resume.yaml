@@ -35,8 +35,9 @@ basics:
 
 
 work:
-  - company: AI Assitant for Engineers
+  - company: Symiro
     position: Founder
+    website: https://symiro.com
     startDate: '2026-03-01'
     summary: |
       An AI assistant with a built-in computational engine.
